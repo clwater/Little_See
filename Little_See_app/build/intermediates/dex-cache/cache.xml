@@ -30,6 +30,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/haizhi/.gradle/caches/modules-2/files-2.1/org.greenrobot/eventbus/3.0.0/ddd99896e9569eaababbe81b35d80e1b91c4ad85/eventbus-3.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="ddd99896e9569eaababbe81b35d80e1b91c4ad85">
+        <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/eventbus-3.0.0_b7af551ce1cfd49b8f8fdb623cc61e015657b990/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -144,6 +153,15 @@
         revision="24.0.1"
         sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
         <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.9.0_84e9f7ab1454a4e294cb898c5a9c11aef46213d7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/haizhi/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife/6.1.0/63735f48b82bcd24cdd33821342428252eb1ca5a/butterknife-6.1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="63735f48b82bcd24cdd33821342428252eb1ca5a">
+        <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/butterknife-6.1.0_796b49e12bdda2b33184edd117dfc9e1a6ba6c3f/classes.dex" />
     </item>
     <item
         is-multidex="true"

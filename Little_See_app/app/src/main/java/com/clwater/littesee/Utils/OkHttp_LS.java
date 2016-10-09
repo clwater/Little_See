@@ -3,6 +3,8 @@ package com.clwater.littesee.Utils;
 import android.util.Log;
 
 import java.io.IOException;
+import java.io.InputStream;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -16,7 +18,9 @@ import okhttp3.RequestBody;
 public class OkHttp_LS {
 
     private String TAG ="Little_See";
-    private static String result;
+    private static String result_get;
+    private static String result_post;
+    private static InputStream result_image;
 
     public static String okhttp_get(String url){
         try {
@@ -25,18 +29,18 @@ public class OkHttp_LS {
             client.newCall(request).enqueue(new okhttp3.Callback() {
                 @Override
                 public void onFailure(okhttp3.Call call, IOException e) {
-                    result = "ok http  get error";
+                    result_get = "ok http  get error";
                 }
                 @Override
                 public void onResponse(okhttp3.Call call, okhttp3.Response response) throws IOException {
-                    result = response.body().string();
+                    result_get = response.body().string();
                 }
             });
         } catch (Exception e) {
             e.printStackTrace();
-            result = "ok http  get error";
+            result_get = "ok http  get error";
         }finally {
-            return result;
+            return result_get;
         }
     }
 
@@ -47,18 +51,41 @@ public class OkHttp_LS {
             client.newCall(request).enqueue(new okhttp3.Callback() {
                 @Override
                 public void onFailure(okhttp3.Call call, IOException e) {
-                    result = "ok http  post error";
+                    result_post = "ok http  post error";
                 }
                 @Override
                 public void onResponse(okhttp3.Call call, okhttp3.Response response) throws IOException {
-                    result = response.body().string();
+                    result_post = response.body().string();
                 }
             });
         } catch (Exception e) {
             e.printStackTrace();
-            result = "ok http  post error";
+            result_post = "ok http  post error";
         }finally {
-            return result;
+            return result_post;
+        }
+    }
+
+
+    public static InputStream okhttp_getImage(String url){
+        try {
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder().url(url).build();
+            client.newCall(request).enqueue(new okhttp3.Callback() {
+                @Override
+                public void onFailure(okhttp3.Call call, IOException e) {
+                    result_image = null;
+                }
+                @Override
+                public void onResponse(okhttp3.Call call, okhttp3.Response response) throws IOException {
+                    result_image = response.body().byteStream();
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            result_image = null;
+        }finally {
+            return result_image;
         }
     }
 
