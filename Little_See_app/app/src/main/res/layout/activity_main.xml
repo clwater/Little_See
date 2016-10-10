@@ -10,14 +10,19 @@
     tools:context=".MainActivity">
 
 
-    <FrameLayout
+
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <FrameLayout
-            android:id="@+id/fragment_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+
+
+
+
+
+
+
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/mv_toolbar"
@@ -28,7 +33,16 @@
             app:titleTextColor="@color/_ffffff"
             app:theme="@style/Title"
             />
-    </FrameLayout>
+
+
+        <FrameLayout
+            android:id="@+id/id_content"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/mv_toolbar"
+            />
+
+    </RelativeLayout>
 
 
     <android.support.design.widget.NavigationView
@@ -38,9 +52,7 @@
         android:layout_gravity="left"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nv_head"
-        app:menu="@menu/nv_menu"
-
-        />
+        app:menu="@menu/nv_menu" />
 
 
 

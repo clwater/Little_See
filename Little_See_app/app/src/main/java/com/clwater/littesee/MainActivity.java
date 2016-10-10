@@ -1,6 +1,8 @@
 package com.clwater.littesee;
 
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -19,6 +21,9 @@ import android.view.WindowManager;
 
 import com.clwater.littesee.Activity.AboutActivity;
 import com.clwater.littesee.Activity.BaseActivity;
+import com.clwater.littesee.Fragment.ContentFragment;
+import com.clwater.littesee.Fragment.TitleFragment;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -34,6 +39,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     Toolbar toolbar;
 
 
+    private ContentFragment mWeixin;
+    private TitleFragment t;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,16 +52,27 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         //initTitleBar();
         initNavigationView();
-
+        setDefaultFragment();
 
     }
 
+    private void setDefaultFragment() {
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        mWeixin = new ContentFragment();
+        transaction.replace(R.id.id_content, mWeixin);
+        transaction.commit();
+
+        t = new TitleFragment();
+        transaction.replace(R.id.id_content, t);
+
+    }
 
 
     private void initNavigationView() {
         setSupportActionBar(toolbar);
         final ActionBar ab = getSupportActionBar();
-        ab.setHomeAsUpIndicator(R.drawable.ic_menu_more);
+        ab.setHomeAsUpIndicator(R.drawable.ic_menu_nv);
         ab.setDisplayHomeAsUpEnabled(true);
         setupDrawerContent(navigationView);
         navigationView.setNavigationItemSelectedListener(this);
@@ -63,9 +83,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         switch (item.getItemId()) {
             case R.id.nav_zhihu:
                // getSupportFragmentManager().beginTransaction().replace(R.id.frame_content, new FragmentOne()).commit();
-                //mToolbar.setTitle("我的动态");
+                toolbar.setTitle("我的动态");
+                drawerLayout.closeDrawers();
                 break;
             case R.id.nav_about:
+                toolbar.setTitle("Little_See");
+                drawerLayout.closeDrawers();
                 startActivity(new Intent(this , AboutActivity.class));
                 break;
         }
