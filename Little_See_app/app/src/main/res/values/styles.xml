@@ -48,4 +48,7 @@
         <item name="android:windowBackground">@color/window_background</item>
     </style>
 
+    <style name="Title" parent="Base.ThemeOverlay.AppCompat.Light">
+        <item name="actionMenuTextColor">@color/_ffffff</item>
+    </style>
 </resources>

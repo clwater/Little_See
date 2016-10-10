@@ -23,9 +23,11 @@
             android:id="@+id/mv_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/_000000"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+            app:titleTextColor="@color/_ffffff"
+            app:theme="@style/Title"
+            />
     </FrameLayout>
 
 

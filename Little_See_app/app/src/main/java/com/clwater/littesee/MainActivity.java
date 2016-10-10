@@ -2,6 +2,8 @@ package com.clwater.littesee;
 
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -11,7 +13,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.view.Window;
+import android.view.WindowManager;
 
 
 import com.clwater.littesee.Activity.AboutActivity;
@@ -38,11 +41,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         ButterKnife.inject(this);
 
 
-
+        //initTitleBar();
         initNavigationView();
 
 
     }
+
+
 
     private void initNavigationView() {
         setSupportActionBar(toolbar);
