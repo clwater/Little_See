@@ -1,101 +1,126 @@
 package com.clwater.littesee;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
-import android.telecom.Call;
-import android.util.EventLog;
-import android.util.Log;
-import android.widget.ImageView;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.Window;
+import android.widget.Toast;
 
-import com.clwater.littesee.Utils.EventBus.EventBus_test;
-import com.clwater.littesee.Utils.OkHttp_LS;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
+import com.clwater.littesee.Activity.AboutActivity;
+import com.clwater.littesee.Activity.BaseActivity;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     private String TAG ="Little_See";
 
-    @InjectView(R.id.ijimage)
-    public ImageView ijimage;
+
+    private DrawerLayout mDrawerLayout;
+    private NavigationView mNavigationView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         ButterKnife.inject(this);
-        EventBus.getDefault().register(this);
-//        Log.d("gzb" , "Little_See");
-//        RequestBody formBody = new FormBody.Builder()
-//                .add("username", "1")
-//                .add("password", "2")
-//                .build();
-//        Log.d("gzb" ,    OkHttp_LS.okhttp_post("http://120.27.53.146:5000/api/login" , formBody));
-        InputStream image =OkHttp_LS.okhttp_getImage("https://avatars3.githubusercontent.com/u/14257964?v=3&s=466");
 
-        saveimage(image);
 
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.id_drawer_layout);
+        mNavigationView = (NavigationView) findViewById(R.id.id_nv_menu);
+
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.id_toolbar);
+        setSupportActionBar(toolbar);
+
+        final ActionBar ab = getSupportActionBar();
+        ab.setHomeAsUpIndicator(R.drawable.ic_menu_more);
+        ab.setDisplayHomeAsUpEnabled(true);
+
+        setupDrawerContent(mNavigationView);
     }
 
-    private void saveimage(InputStream image) {
-        InputStream is = null;
-        FileOutputStream fos = null;
-        byte[] buffer = new byte[1024];
-        int lenght = 0;
-        File f=new File("a.jpg");
-        inputstreamtofile(is, f);
-        EventBus.getDefault().post(new EventBus_test() );
+    private void setupDrawerContent(NavigationView navigationView)
+    {
+        navigationView.setNavigationItemSelectedListener(
 
+                new NavigationView.OnNavigationItemSelectedListener()
+                {
+
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem)
+                    {
+                        menuItem.setChecked(true);
+                        mDrawerLayout.closeDrawers();
+                        return true;
+                    }
+                });
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onShowDataEvent(EventBus_test EventBus_test) {
-        String path= "a.jpg";
-        Bitmap bm = BitmapFactory.decodeFile(path);
-        ijimage.setImageBitmap(bm);//不会变形
 
+
+
+
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.actionbar_main_activity,menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()){
+//            case R.id.action_bar_about:
+//                startActivity(new Intent(this , AboutActivity.class));
+//                return true;
+//
+//            case R.id.action_bar_more:
+//                Toast.makeText(MainActivity.this,"您点击了更多！", Toast.LENGTH_SHORT).show();
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.actionbar_main_activity, menu);
+        return true;
     }
 
-    public static void inputstreamtofile(InputStream ins,File file) {
-        try {
-            OutputStream os = new FileOutputStream(file);
-            int bytesRead = 0;
-            byte[] buffer = new byte[8192];
-            while ((bytesRead = ins.read(buffer, 0, 8192)) != -1) {
-                os.write(buffer, 0, bytesRead);
-            }
-            os.close();
-            ins.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId()){
+            case R.id.action_bar_about:
+                startActivity(new Intent(this , AboutActivity.class));
+                return true;
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                return true ;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-    }
-
-    public void onDestory(){
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);
-
 
     }
 
 }
+
+
+
+//requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+//        ImageLoader imageLoader = ImageLoader.getInstance();
+//        imageLoader.init(ImageLoaderConfiguration.createDefault(MainActivity.this));
+//        ImageLoader.getInstance().displayImage("https://avatars3.githubusercontent.com/u/14257964?v=3&s=466",ijimage, AppConfig.imageOptions());

@@ -8,4 +8,44 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="Widget.Look" parent="android:Widget" />
+
+
+    <style name="Look" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorPrimary">@color/primary</item>
+        <item name="android:colorBackground">@color/background_light</item>
+        <item name="android:colorAccent">@color/accent</item>
+        <item name="android:navigationBarColor">@color/primary_super_dark</item>
+        <item name="android:statusBarColor">@color/background_super_dark</item>
+        <item name="android:textColorHint">@color/hint_disabled_dark</item>
+        <item name="android:windowBackground">@color/background_light</item>
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
+        <item name="android:windowSharedElementsUseOverlay">false</item>
+    </style>
+
+
+    <style name="Look.Translucent">
+        <item name="android:windowBackground">@color/scrim</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    </style>
+
+
+
+    <style name="Theme.DesignDemo" parent="Base.Theme.DesignDemo">
+    </style>
+
+    <style name="Base.Theme.DesignDemo" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#673AB7</item>
+        <item name="colorPrimaryDark">#512DA8</item>
+        <item name="colorAccent">#FF4081</item>
+        <item name="android:windowBackground">@color/window_background</item>
+    </style>
+
 </resources>
