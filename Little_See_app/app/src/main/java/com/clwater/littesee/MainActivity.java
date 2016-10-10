@@ -4,8 +4,6 @@ package com.clwater.littesee;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -15,14 +13,13 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
-import android.view.WindowManager;
 
 
 import com.clwater.littesee.Activity.AboutActivity;
 import com.clwater.littesee.Activity.BaseActivity;
-import com.clwater.littesee.Fragment.ContentFragment;
-import com.clwater.littesee.Fragment.TitleFragment;
+import com.clwater.littesee.Fragment.ImageFragment;
+import com.clwater.littesee.Fragment.WangyiFragment;
+import com.clwater.littesee.Fragment.ZhiHuFragment;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -39,8 +36,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     Toolbar toolbar;
 
 
-    private ContentFragment mWeixin;
-    private TitleFragment t;
+    private WangyiFragment _wangyi;
+    private ZhiHuFragment _zhihu;
+    private ImageFragment _image;
 
 
     @Override
@@ -50,21 +48,18 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         ButterKnife.inject(this);
 
 
-        //initTitleBar();
         initNavigationView();
         setDefaultFragment();
 
     }
 
     private void setDefaultFragment() {
+
         FragmentManager fm = getFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        mWeixin = new ContentFragment();
-        transaction.replace(R.id.id_content, mWeixin);
+        _image = new ImageFragment();
+        transaction.replace(R.id.id_content, _image);
         transaction.commit();
-
-        t = new TitleFragment();
-        transaction.replace(R.id.id_content, t);
 
     }
 
@@ -80,14 +75,38 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+
         switch (item.getItemId()) {
             case R.id.nav_zhihu:
-               // getSupportFragmentManager().beginTransaction().replace(R.id.frame_content, new FragmentOne()).commit();
-                toolbar.setTitle("我的动态");
+                toolbar.setTitle("知乎");
+                if (_zhihu == null){
+                    _zhihu = new ZhiHuFragment();
+                }
+                transaction.replace(R.id.id_content, _zhihu);
+                transaction.commit();
+                drawerLayout.closeDrawers();
+                break;
+            case R.id.nav_wangyi:
+                toolbar.setTitle("网易");
+                if (_wangyi == null){
+                    _wangyi = new WangyiFragment();
+                }
+                transaction.replace(R.id.id_content, _wangyi);
+                transaction.commit();
+                drawerLayout.closeDrawers();
+                break;
+            case R.id.nav_image:
+                toolbar.setTitle("图片");
+                if (_image == null){
+                    _image = new ImageFragment();
+                }
+                transaction.replace(R.id.id_content, _image);
+                transaction.commit();
                 drawerLayout.closeDrawers();
                 break;
             case R.id.nav_about:
-                toolbar.setTitle("Little_See");
                 drawerLayout.closeDrawers();
                 startActivity(new Intent(this , AboutActivity.class));
                 break;

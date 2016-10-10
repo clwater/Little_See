@@ -16,14 +16,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-
-
-
-
-
-
-
         <android.support.v7.widget.Toolbar
             android:id="@+id/mv_toolbar"
             android:layout_width="match_parent"
@@ -33,8 +25,6 @@
             app:titleTextColor="@color/_ffffff"
             app:theme="@style/Title"
             />
-
-
         <FrameLayout
             android:id="@+id/id_content"
             android:layout_width="fill_parent"

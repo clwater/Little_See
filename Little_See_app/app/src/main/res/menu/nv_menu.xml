@@ -6,6 +6,12 @@
             android:id="@+id/nav_zhihu"
             android:title="hahu"/>
         <item
+            android:id="@+id/nav_wangyi"
+            android:title="wangyi"/>
+        <item
+            android:id="@+id/nav_image"
+            android:title="image"/>
+        <item
             android:id="@+id/nav_about"
             android:title="关于我"/>
     </group>
