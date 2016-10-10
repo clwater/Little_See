@@ -6,26 +6,20 @@
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-
     <TextView
         android:id="@+id/id_link"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="16dp"
-        android:text="http://blog.csdn.net/lmj623565791"/>
+        android:text="some text"/>
 
-    <TextView
-        android:id="@+id/id_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/id_link"
-        android:text="Zhang Hongyang"/>
+
 
     <ImageView
         android:layout_width="72dp"
         android:layout_height="72dp"
-        android:layout_above="@id/id_username"
+        android:layout_above="@id/id_link"
         android:layout_marginBottom="16dp"
         android:src="#666"/>
 
