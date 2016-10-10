@@ -26,7 +26,7 @@ import butterknife.InjectView;
 
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private String TAG ="Little_See";
+    
 
     @InjectView(R.id.ma_layout)
     public DrawerLayout drawerLayout;
