@@ -1,6 +1,6 @@
 
 from selenium import webdriver
-zhihulist = [[]]
+zhihulist = []
 
 
 def main():
