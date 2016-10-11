@@ -1,3 +1,6 @@
 
+def main():
+    print("aaaa")
 
-print("aaa")
+
+main()
