@@ -83,6 +83,7 @@ public class ZhuHuInfoActivity  extends BaseWebActivity{
         //webview.loadDataWithBaseURL();
 
         webview.loadUrl("http://daily.zhihu.com/story/8874308");
+        //loadDataWithBaseURL/?
 
 
 
