@@ -38,10 +38,10 @@
 
 
 
-    <style name="Theme.DesignDemo" parent="Base.Theme.DesignDemo">
+    <style name="Theme.Design" parent="Base.Theme.Design">
     </style>
 
-    <style name="Base.Theme.DesignDemo" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Base.Theme.Design" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">#673AB7</item>
         <item name="colorPrimaryDark">#512DA8</item>
         <item name="colorAccent">#FF4081</item>
@@ -51,4 +51,8 @@
     <style name="Title" parent="Base.ThemeOverlay.AppCompat.Light">
         <item name="actionMenuTextColor">@color/_ffffff</item>
     </style>
+
+
+
+
 </resources>

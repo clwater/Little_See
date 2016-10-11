@@ -3,7 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:id="@+id/zh_info_image"/>
 
 
     <android.support.v7.widget.Toolbar
@@ -13,7 +21,8 @@
         android:background="#3b000000"
         app:layout_scrollFlags="scroll|enterAlways"
         app:titleTextColor="@color/_ffffff"
-        app:theme="@style/Title"
         />
+
+
 
 </RelativeLayout>

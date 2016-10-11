@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"
-            android:theme="@style/Theme.DesignDemo">
+            android:theme="@style/Theme.Design">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,7 +30,11 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity"/>
-            </activity>
+        </activity>
+        <activity android:name=".Activity.ZhuHuInfoActivity"
+            android:theme="@style/Theme.Design"/>
+
+
     </application>
 
 </manifest>
