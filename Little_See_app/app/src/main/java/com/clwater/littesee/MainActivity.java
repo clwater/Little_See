@@ -33,7 +33,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @InjectView(R.id.ma_nv)
     public NavigationView navigationView;
     @InjectView(R.id.mv_toolbar)
-    Toolbar toolbar;
+    public Toolbar toolbar;
 
 
     private WangyiFragment _wangyi;

@@ -9,11 +9,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.clwater.littesee.R;
 
+import butterknife.InjectView;
+
 public class ZhiHuFragment extends Fragment
 {
+
+    @InjectView(R.id.test_zhihu)
+    TextView test;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
