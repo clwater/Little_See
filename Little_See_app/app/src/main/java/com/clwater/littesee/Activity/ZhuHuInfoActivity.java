@@ -2,11 +2,13 @@ package com.clwater.littesee.Activity;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.XmlResourceParser;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -22,6 +24,8 @@ import android.widget.Toast;
 
 import com.clwater.littesee.Config.AppConfig;
 import com.clwater.littesee.R;
+import com.clwater.littesee.Utils.OkHttp_LS;
+import com.clwater.littesee.Utils.WebUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.orhanobut.logger.Logger;
@@ -29,8 +33,6 @@ import com.orhanobut.logger.Logger;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-
-import static java.security.AccessController.getContext;
 
 /**
  * Created by gengzhibo on 16/10/11.
@@ -124,29 +126,9 @@ public class ZhuHuInfoActivity  extends BaseWebActivity{
 
     String[] scc;
 
-    private static final String CSS_LINK_PATTERN = " <link href=\"%s\" type=\"text/css\" rel=\"stylesheet\" />";
-    private static final String NIGHT_DIV_TAG_START = "<div class=\"night\">";
-    private static final String NIGHT_DIV_TAG_END = "</div>";
 
 
-    private static final String DIV_IMAGE_PLACE_HOLDER = "class=\"img-place-holder\"";
-    private static final String DIV_IMAGE_PLACE_HOLDER_IGNORED = "class=\"img-place-holder-ignored\"";
 
-    public static String buildHtmlWithCss(String html, String[] cssUrls, boolean isNightMode) {
-        StringBuilder result = new StringBuilder();
-        for (String cssUrl : cssUrls) {
-            result.append(String.format(CSS_LINK_PATTERN, cssUrl));
-        }
-
-        if (isNightMode) {
-            result.append(NIGHT_DIV_TAG_START);
-        }
-        result.append(html.replace(DIV_IMAGE_PLACE_HOLDER, DIV_IMAGE_PLACE_HOLDER_IGNORED));
-        if (isNightMode) {
-            result.append(NIGHT_DIV_TAG_END);
-        }
-        return result.toString();
-    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -178,64 +160,48 @@ public class ZhuHuInfoActivity  extends BaseWebActivity{
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         webview.setWebChromeClient(new WebChromeClient());
 
-        //webview.loadDataWithBaseURL();
 
-     //   webview.loadUrl("http://daily.zhihu.com/story/8874308");
-        //loadDataWithBaseURL/?
+
+
+        testanalisus();
+
+
 
         scc = new String[10];
-        scc[0]  = "http://news-at.zhihu.com/css/news_qa.auto.css?v=4b3e3";
+        scc[0]  = "http://daily.zhihu.com/css/share.css?v=5956a";
+//        http://daily.zhihu.com/story/8876124
 
-        String data = buildHtmlWithCss(testtext, scc, true);
+        String data = WebUtils.buildHtmlWithCss(testtext, scc, false);
 
-        webview.loadDataWithBaseURL("file:///android_asset/", data, "text/html", "utf-8", "http//:daily.zhihu.com/");
-
-
-
-//        webview.setWebViewClient(new WebViewClient()
-//        {
-//            @Override
-//            public void onPageFinished(WebView view, String url)
-//            {
-////                String fun="javascript:alert(\"aaa\") ";
-////                view.loadUrl(fun);
-//
-//
-//                if (pd == true) {
-//
-//
-//
-////                    final String insertJavaScript = "javascript:window.onload=function(){ " +
-////                            "document.getElementsByClassName('img-wrap')[0].style.display='none'; " +
-////                            "document.getElementsByClassName('img-wrap')[0].style.display='none';}";
-////
-////                    webview.loadUrl(insertJavaScript);
-//                     webview.loadUrl("javascript:document.getElementsByClassName(\"img-wrap\").style.width=\"20px\";");
-//                    webview.loadUrl("javascript:alert(\"aaaa\")");
-//                    Logger.d("11111");
-//
-//
-////                   // String fun2 = "javascript:alert(\"aaaaa\")";
-////
-////                    String fun2 = "javascript:\n" +
-////                            "var aaaa = document.getElementsByClassName(\"img-wrap\"); alert(aaaa)\n" ;
-////
-////                    // String fun2 = "javascript:document.getElementsByClassName(\"img-wrap\").style.visibility='hidden'";
-////                    view.loadUrl(fun2);
-////
-////                    //Logger.d("2");
-//                    pd = false;
-//                }
-//
-//
-//
-//                super.onPageFinished(view, url);
-//            }
-//        });
+        webview.loadDataWithBaseURL(WebUtils.BASE_URL, data, WebUtils.MIME_TYPE, WebUtils.ENCODING, WebUtils.FAIL_URL);
 
 
 
     }
+
+    private void testanalisus() {
+        String url = "http://daily.zhihu.com/story/8876124";
+
+        String re = OkHttp_LS.okhttp_get(url);
+        Logger.d("" + re);
+
+        if (re != null) {
+            re = re.replace("<html lang=\"zh-CN\">", "");
+            re = re.replace("<!doctype html>", "");
+            Logger.d(re);
+        }else {
+            Logger.d("re is null");
+        }
+
+
+//        int start_index = re.indexOf("<div class=\"main-wrap\">");
+//        Logger.d("" + start_index);
+
+
+
+
+    }
+
 
 
 

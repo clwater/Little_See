@@ -37,11 +37,9 @@ public class OkHttp_LS {
                 }
             });
         } catch (Exception e) {
-            e.printStackTrace();
             result_get = "ok http  get error";
-        }finally {
-            return result_get;
         }
+        return  result_get;
     }
 
     public static String okhttp_post(String url, RequestBody formBody) {
@@ -61,9 +59,10 @@ public class OkHttp_LS {
         } catch (Exception e) {
             e.printStackTrace();
             result_post = "ok http  post error";
-        }finally {
-            return result_post;
         }
+
+        return result_post;
+
     }
 
 
@@ -84,9 +83,9 @@ public class OkHttp_LS {
         } catch (Exception e) {
             e.printStackTrace();
             result_image = null;
-        }finally {
-            return result_image;
         }
+        return result_image;
+
     }
 
 
