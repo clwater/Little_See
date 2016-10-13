@@ -6,7 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.transition.TransitionManager;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -30,7 +31,7 @@ import butterknife.InjectView;
  * Created by gengzhibo on 16/10/11.
  */
 
-public class ZhuHuInfoActivity  extends BaseWebActivity{
+public class ZhuHuInfoActivity  extends BaseWebActivity implements View.OnScrollChangeListener {
 
     @InjectView(R.id.mv_toolbar)
     public Toolbar toolbar;
@@ -40,10 +41,17 @@ public class ZhuHuInfoActivity  extends BaseWebActivity{
     public TextView zh_SV_space;
     @InjectView(R.id.zh_info_web)
     public WebView webview;
+    @InjectView(R.id.zh_LL)
+    public  LinearLayout linearLayout;
+    @InjectView(R.id.zh_titile)
+    public TextView zh_title;
+    @InjectView(R.id.myScrolView)
+    public com.clwater.littesee.Weight.MyScrollView myscrollview;
 
     private String webText;
     private String webCss;
     private String webImage;
+    private int _yold = 0;
 
 
     @Override
@@ -55,12 +63,14 @@ public class ZhuHuInfoActivity  extends BaseWebActivity{
         activity = this;
 
         webImage = "https://avatars3.githubusercontent.com/u/14257964?v=3&s=466";
+       // webImage = "http://support.lexmark.com/library/LEXMARK/Blank%20Page.jpg";
 
         initTitle();
         initNavigation();
         initUI();
         initWebView();
-        initWebViewInfo("http://daily.zhihu.com/story/8817495");
+        initWebViewInfo("http://daily.zhihu.com/story/8877570");
+        initOtherInfo(webImage , "aaaa");
 
 
         if (webText != null) {
@@ -68,10 +78,14 @@ public class ZhuHuInfoActivity  extends BaseWebActivity{
             webview.loadDataWithBaseURL(WebUtils.BASE_URL, data, WebUtils.MIME_TYPE, WebUtils.ENCODING, WebUtils.FAIL_URL);
         }
 
+
+
+
+    }
+
+    private void initOtherInfo(String webImage , String webTitle) {
         ImageLoader.getInstance().displayImage(webImage ,title_image, AppConfig.imageOptions());
-
-
-
+        zh_title.setText(webTitle);
     }
 
     private void initWebViewInfo(String url) {
@@ -97,7 +111,6 @@ public class ZhuHuInfoActivity  extends BaseWebActivity{
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         settings.setDisplayZoomControls(false);
         webview.setWebChromeClient(new WebChromeClient());
-
     }
 
 
@@ -109,12 +122,13 @@ public class ZhuHuInfoActivity  extends BaseWebActivity{
         relativeParams.height = height * 4  / 10;
         title_image.setLayoutParams(relativeParams);
         relativeParams = (RelativeLayout.LayoutParams) zh_SV_space.getLayoutParams();
-        //LinearLayout.LayoutParams linearParams = (LinearLayout.LayoutParams) zh_SV_space.getLayoutParams();
-        relativeParams.height = height * 4  / 10;
+        relativeParams.height = height * 4  / 10 - 20;
         zh_SV_space.setLayoutParams(relativeParams);
 
         ImageLoader imageLoader = ImageLoader.getInstance();
         imageLoader.init(ImageLoaderConfiguration.createDefault(ZhuHuInfoActivity.this));
+
+        myscrollview.setOnScrollChangeListener(this);
 
     }
 
@@ -137,8 +151,23 @@ public class ZhuHuInfoActivity  extends BaseWebActivity{
             @Override
             public void onClick(View v) {
                 activity.finish();
+
             }
         });
+    }
+
+    private void changeTitlePositation(boolean bool) {
+        TransitionManager.beginDelayedTransition(linearLayout);
+        if(bool){
+            LinearLayout.LayoutParams rp = (LinearLayout.LayoutParams) zh_title.getLayoutParams();
+            rp.gravity = Gravity.TOP;
+            zh_title.setLayoutParams(rp);
+        }else {
+            LinearLayout.LayoutParams rp = (LinearLayout.LayoutParams) zh_title.getLayoutParams();
+            rp.gravity = Gravity.BOTTOM;
+            zh_title.setLayoutParams(rp);
+        }
+
     }
 
     @TargetApi(19)
@@ -153,5 +182,22 @@ public class ZhuHuInfoActivity  extends BaseWebActivity{
         }
         win.setAttributes(winParams);
     }
+
+
+    @Override
+    public void onScrollChange(View v, int x, int y, int oldx, int oldy) {
+        int _y = y - oldy;
+        if ( (_y > 20) || (_y < -20) ){
+            if ((((_yold >= 0) && (_y <= 0)) || ((_yold <= 0) && (_y >= 0)))) {
+                if (_y > 0) {
+                    changeTitlePositation(true);
+                } else {
+                    changeTitlePositation(false);
+                }
+            }
+            _yold = _y;
+        }
+    }
+
 
 }

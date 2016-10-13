@@ -14,12 +14,10 @@
         android:scaleType="centerCrop"
         android:id="@+id/zh_info_image"/>
 
-
-
-    <ScrollView
+    <com.clwater.littesee.Weight.MyScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
+        android:id="@+id/myScrolView">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,26 +32,25 @@
                     android:layout_height="200dp"
                     android:background="#00ffffff"
                     android:id="@+id/zh_SV_space"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/zh_titile"
-                    android:text="titile"
-                    android:layout_alignParentBottom="true"
-                    android:gravity="center"
-                    android:textColor="@color/_ffffff"
-                    android:layout_gravity="bottom|start"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginBottom="40dp"
-                    android:textSize="23sp"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp"
-                    />
-
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="bottom"
+                        android:id="@+id/zh_LL">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:id="@+id/zh_titile"
+                            android:text="titile"
+                            android:gravity="bottom"
+                            android:textColor="@color/_ffffff"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:textSize="23sp"
+                            android:paddingTop="20dp" />
+                    </LinearLayout>
             </RelativeLayout>
-
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -65,20 +62,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/zh_info_web">
-
                 </WebView>
-
             </LinearLayout>
-
-
         </LinearLayout>
-
-    </ScrollView>
-
-
-
-
-
+    </com.clwater.littesee.Weight.MyScrollView>
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/mv_toolbar"
