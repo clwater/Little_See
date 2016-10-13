@@ -1,8 +1,6 @@
 package com.clwater.littesee.Activity;
 
 import android.annotation.TargetApi;
-import android.content.Context;
-import android.content.res.XmlResourceParser;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,24 +13,18 @@ import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.clwater.littesee.Config.AppConfig;
 import com.clwater.littesee.R;
 import com.clwater.littesee.Utils.OkHttp_LS;
 import com.clwater.littesee.Utils.WebUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.orhanobut.logger.Logger;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import butterknife.OnClick;
 
 /**
  * Created by gengzhibo on 16/10/11.
@@ -49,17 +41,9 @@ public class ZhuHuInfoActivity  extends BaseWebActivity{
     @InjectView(R.id.zh_info_web)
     public WebView webview;
 
-
-    String testtext ;
-
-
-    boolean pd = true;
-
-    String[] scc;
-    String css;
-
-
-
+    private String webText;
+    private String webCss;
+    private String webImage;
 
 
     @Override
@@ -70,12 +54,34 @@ public class ZhuHuInfoActivity  extends BaseWebActivity{
 
         activity = this;
 
+        webImage = "https://avatars3.githubusercontent.com/u/14257964?v=3&s=466";
+
         initTitle();
         initNavigation();
         initUI();
         initWebView();
+        initWebViewInfo("http://daily.zhihu.com/story/8817495");
 
 
+        if (webText != null) {
+            String data = WebUtils.buildHtmlWithCss(webText, webCss, false);
+            webview.loadDataWithBaseURL(WebUtils.BASE_URL, data, WebUtils.MIME_TYPE, WebUtils.ENCODING, WebUtils.FAIL_URL);
+        }
+
+        ImageLoader.getInstance().displayImage(webImage ,title_image, AppConfig.imageOptions());
+
+
+
+    }
+
+    private void initWebViewInfo(String url) {
+        String re = OkHttp_LS.okhttp_get(url);
+        if (re != null) {
+            webText = WebUtils.getWebText(re);
+            webCss = WebUtils.getWebCss(re);
+        }else {
+            initWebViewInfo(url);
+        }
     }
 
     private void initWebView() {
@@ -84,91 +90,31 @@ public class ZhuHuInfoActivity  extends BaseWebActivity{
         settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         settings.setLoadWithOverviewMode(true);
         settings.setBuiltInZoomControls(true);
-        //settings.setUseWideViewPort(true);造成文字太小
         settings.setDomStorageEnabled(true);
         settings.setDatabaseEnabled(true);
         settings.setAppCachePath(getCacheDir().getAbsolutePath() + "/webViewCache");
         settings.setAppCacheEnabled(true);
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        settings.setDisplayZoomControls(false);
         webview.setWebChromeClient(new WebChromeClient());
 
-
-
-
-        testanalisus();
-
-
-
-        scc = new String[10];
-        scc[0]  = css;
-        Log.d("gzb" , "scc[0]:" + scc[0]);
-//        http://daily.zhihu.com/story/8876124
-
-        if (testtext != null) {
-
-            String data = WebUtils.buildHtmlWithCss(testtext, scc, false);
-
-            webview.loadDataWithBaseURL(WebUtils.BASE_URL, data, WebUtils.MIME_TYPE, WebUtils.ENCODING, WebUtils.FAIL_URL);
-
-        }
-
     }
-
-    private void testanalisus() {
-        String url = "http://daily.zhihu.com/story/8817495";
-
-        String re = OkHttp_LS.okhttp_get(url);
-        String _re = re;
-
-        if (re != null) {
-            int  _strat = re.indexOf("<div class=\"content-inner\">");
-            int _end = re.lastIndexOf("<div class=\"question\">");
-
-            testtext = re.substring(_strat , _end);
-
-            String link = _re.substring(_re.indexOf("/css/share.css?") , _re.lastIndexOf("<script src=\"http://static.daily.zhihu.com/js/modernizr-2.6.2.min.js\"></script>"));
-            link = link.trim();
-            link = link.substring("/css/share.css?v=".length() , link.length() - "\">".length() );
-
-            css = "http://news-at.zhihu.com/css/news_qa.auto.css?v=" + link;
-
-
-        }else {
-            testanalisus();
-        }
-
-
-//        int start_index = re.indexOf("<div class=\"main-wrap\">");
-//        Logger.d("" + start_index);
-
-
-
-
-    }
-
-
-
 
 
     private void initUI() {
         WindowManager wm = this.getWindowManager();
         width = wm.getDefaultDisplay().getWidth();
         height = wm.getDefaultDisplay().getHeight();
-
-
         RelativeLayout.LayoutParams relativeParams = (RelativeLayout.LayoutParams) title_image.getLayoutParams();
         relativeParams.height = height * 4  / 10;
         title_image.setLayoutParams(relativeParams);
-
-        LinearLayout.LayoutParams linearParams = (LinearLayout.LayoutParams) zh_SV_space.getLayoutParams();
-        linearParams.height = height * 4  / 10;
-        zh_SV_space.setLayoutParams(linearParams);
-
-
+        relativeParams = (RelativeLayout.LayoutParams) zh_SV_space.getLayoutParams();
+        //LinearLayout.LayoutParams linearParams = (LinearLayout.LayoutParams) zh_SV_space.getLayoutParams();
+        relativeParams.height = height * 4  / 10;
+        zh_SV_space.setLayoutParams(relativeParams);
 
         ImageLoader imageLoader = ImageLoader.getInstance();
         imageLoader.init(ImageLoaderConfiguration.createDefault(ZhuHuInfoActivity.this));
-        ImageLoader.getInstance().displayImage("https://avatars3.githubusercontent.com/u/14257964?v=3&s=466",title_image, AppConfig.imageOptions());
 
     }
 
