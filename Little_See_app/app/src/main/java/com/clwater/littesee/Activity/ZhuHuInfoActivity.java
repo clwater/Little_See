@@ -1,6 +1,7 @@
 package com.clwater.littesee.Activity;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -51,6 +52,8 @@ public class ZhuHuInfoActivity  extends BaseWebActivity implements View.OnScroll
     private String webText;
     private String webCss;
     private String webImage;
+    private String webTitle;
+    private String webUrl;
     private int _yold = 0;
 
 
@@ -62,23 +65,23 @@ public class ZhuHuInfoActivity  extends BaseWebActivity implements View.OnScroll
 
         activity = this;
 
-        webImage = "https://avatars3.githubusercontent.com/u/14257964?v=3&s=466";
-       // webImage = "http://support.lexmark.com/library/LEXMARK/Blank%20Page.jpg";
+        Intent intent = this.getIntent();
+        webImage = intent.getStringExtra("webImage");
+        webTitle = intent.getStringExtra("webTitle");
+        webUrl = intent.getStringExtra("webUrl");
 
         initTitle();
         initNavigation();
         initUI();
         initWebView();
-        initWebViewInfo("http://daily.zhihu.com/story/8877570");
-        initOtherInfo(webImage , "aaaa");
+        initOtherInfo(webImage , webTitle);
+        initWebViewInfo(webUrl);
 
 
         if (webText != null) {
             String data = WebUtils.buildHtmlWithCss(webText, webCss, false);
             webview.loadDataWithBaseURL(WebUtils.BASE_URL, data, WebUtils.MIME_TYPE, WebUtils.ENCODING, WebUtils.FAIL_URL);
         }
-
-
 
 
     }

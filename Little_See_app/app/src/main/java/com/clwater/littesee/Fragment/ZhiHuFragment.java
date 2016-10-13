@@ -37,8 +37,11 @@ public class ZhiHuFragment extends Fragment
     }
 
     @OnClick(R.id.test_zhihu)
-    public void test(View view){
-        startActivity(new Intent(getActivity() , ZhuHuInfoActivity.class));
-
+    public void enterZHihu(View view){
+        Intent intent = new Intent(getActivity() , ZhuHuInfoActivity.class);
+        intent.putExtra("webImage" , "http://pic1.zhimg.com/4bc084ff79fd054994025722a9482f40.jpg");
+        intent.putExtra("webTitle" , "我只是听个故事，怎么不知不觉就被「洗脑」了");
+        intent.putExtra("webUrl" , "http://daily.zhihu.com/story/8874151");
+        startActivity(intent);
     }
 }
