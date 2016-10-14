@@ -1,6 +1,9 @@
 package com.clwater.littesee.Activity;
 
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -8,7 +11,10 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -56,6 +62,8 @@ public class ZhuHuInfoActivity  extends BaseWebActivity implements View.OnScroll
     private String webUrl;
     private int _yold = 0;
 
+    private  AlertDialog prcessDialog;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,8 +83,8 @@ public class ZhuHuInfoActivity  extends BaseWebActivity implements View.OnScroll
         initUI();
         initWebView();
         initOtherInfo(webImage , webTitle);
+        initProcessDialog();
         initWebViewInfo(webUrl);
-
 
         if (webText != null) {
             String data = WebUtils.buildHtmlWithCss(webText, webCss, false);
@@ -86,6 +94,26 @@ public class ZhuHuInfoActivity  extends BaseWebActivity implements View.OnScroll
 
     }
 
+    private void initProcessDialog() {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.dlalog_process,null);
+        prcessDialog = new AlertDialog.Builder(this).create();
+        prcessDialog.show();
+        prcessDialog.getWindow().setContentView(layout);
+        prcessDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    destoryParentActivity();
+                }
+                return false;
+            }
+        });
+    }
+
+    private void destoryParentActivity() {
+        this.finish();
+    }
+
     private void initOtherInfo(String webImage , String webTitle) {
         ImageLoader.getInstance().displayImage(webImage ,title_image, AppConfig.imageOptions());
         zh_title.setText(webTitle);
@@ -93,9 +121,15 @@ public class ZhuHuInfoActivity  extends BaseWebActivity implements View.OnScroll
 
     private void initWebViewInfo(String url) {
         String re = OkHttp_LS.okhttp_get(url);
+        Log.d("gzb" , "re" + re);
         if (re != null) {
-            webText = WebUtils.getWebText(re);
-            webCss = WebUtils.getWebCss(re);
+            if (!re.equals("ok http  get error")) {
+                webText = WebUtils.getWebText(re);
+                webCss = WebUtils.getWebCss(re);
+                prcessDialog.dismiss();
+            }else {
+                initWebViewInfo(url);
+            }
         }else {
             initWebViewInfo(url);
         }
@@ -148,7 +182,7 @@ public class ZhuHuInfoActivity  extends BaseWebActivity implements View.OnScroll
         toolbar.setTitle("知乎日报");
         setSupportActionBar(toolbar);
         final ActionBar ab = getSupportActionBar();
-        ab.setHomeAsUpIndicator(R.drawable.ic_menu_nv);
+        ab.setHomeAsUpIndicator(R.drawable.ic_menu_back);
         ab.setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,6 +235,8 @@ public class ZhuHuInfoActivity  extends BaseWebActivity implements View.OnScroll
             _yold = _y;
         }
     }
+
+
 
 
 }
