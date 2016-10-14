@@ -1,18 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="45dp"
+    android:layout_height="match_parent"
     xmlns:wheel="http://schemas.android.com/apk/res-auto">
 
 
-    <TextView
-        android:layout_width="fill_parent"
+    <!--<TextView-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:gravity="center"-->
+        <!--android:text="zhihu"-->
+        <!--android:id="@+id/test_zhihu"-->
+        <!--android:textSize="20sp"-->
+        <!--android:textStyle="bold" />-->
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/zhihu_main_top_process">
+
+        <com.pnikosis.materialishprogress.ProgressWheel
+            android:id="@+id/zh_top_process"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            wheel:matProg_barColor="#5588FF"
+            android:visibility="gone"
+            wheel:matProg_progressIndeterminate="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="更新成功"
+            android:visibility="gone"
+            android:id="@+id/zh_top_pro_text"
+            android:gravity="center"
+            />
+    </RelativeLayout>
+
+
+    <ListView
+        android:id="@+id/main_list"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="zhihu"
-        android:id="@+id/test_zhihu"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:layout_below="@id/zhihu_main_top_process"/>
 
 
 
