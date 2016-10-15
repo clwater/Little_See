@@ -21,6 +21,7 @@ import com.clwater.littesee.Activity.BaseActivity;
 import com.clwater.littesee.Fragment.ImageFragment;
 import com.clwater.littesee.Fragment.WangyiFragment;
 import com.clwater.littesee.Fragment.ZhiHuFragment;
+import com.clwater.littesee.Utils.DBHelper.DBHelper;
 import com.clwater.littesee.Utils.DBHelper.PackageInfo;
 import com.clwater.littesee.Utils.DBHelper.PackageinfoDao;
 
@@ -57,24 +58,25 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         initNavigationView();
         setDefaultFragment();
         
-        //testSql();
+        testSql();
 
 
     }
 
     private void testSql() {
+        //DBHelper.getHelper(this);
         PackageInfo packageinfo = new PackageInfo();
         packageinfo.id = 1 ;
         packageinfo.pid = "1111";
-        new PackageinfoDao(this).add(packageinfo);
-
-        PackageinfoDao pd = new PackageinfoDao(this);
-        List<PackageInfo> list = pd.queryForAll();
-        //PackageInfo mPackage = pd.queryForId();
-        for (int i = 0 ; i < list.size() ; i++){
-            PackageInfo p = list.get(i);
-            Log.d("gzb" , " " + p.toString());
-        }
+//        new PackageinfoDao(this).add(packageinfo);
+//
+//        PackageinfoDao pd = new PackageinfoDao(this);
+//        List<PackageInfo> list = pd.queryForAll();
+//        //PackageInfo mPackage = pd.queryForId();
+//        for (int i = 0 ; i < list.size() ; i++){
+//            PackageInfo p = list.get(i);
+//            Log.d("gzb" , " " + p.toString());
+//        }
 
     }
 
