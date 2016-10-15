@@ -6,6 +6,7 @@ package com.clwater.littesee.Fragment;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.clwater.littesee.Activity.ZhuHuInfoActivity;
 import com.clwater.littesee.Adapater.ListViewImageAdapter;
 import com.clwater.littesee.Utils.EventBus.Event_RunInBack;
 import com.clwater.littesee.Utils.EventBus.Event_RunInFront;
@@ -130,6 +132,14 @@ public class ZhiHuFragment extends Fragment
             stopTopProsess();
             precess_statu = false;
         }
+
+        Intent intent = new Intent(getActivity() , ZhuHuInfoActivity.class);
+        intent.putExtra("webImage" , "http://pic1.zhimg.com/d5a48ff99d7efe62c0ce4f2ae7c9c780.jpg");
+        intent.putExtra("webTitle" , "复活恐龙的希望，科学家们一直都没放弃");
+        intent.putExtra("webUrl" , "http://daily.zhihu.com/story/8874135");
+
+        startActivity(intent);
+
     }
 
 

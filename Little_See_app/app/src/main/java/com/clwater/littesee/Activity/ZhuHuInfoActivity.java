@@ -31,6 +31,9 @@ import com.clwater.littesee.Utils.OkHttp_LS;
 import com.clwater.littesee.Utils.WebUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
+import org.greenrobot.eventbus.Subscribe;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -122,18 +125,16 @@ public class ZhuHuInfoActivity  extends BaseWebActivity implements View.OnScroll
     private void initWebViewInfo(String url) {
         String re = OkHttp_LS.okhttp_get(url);
         Log.d("gzb" , "re" + re);
-        if (re != null) {
-            if (!re.equals("ok http  get error")) {
-                webText = WebUtils.getWebText(re);
-                webCss = WebUtils.getWebCss(re);
-                prcessDialog.dismiss();
-            }else {
-                initWebViewInfo(url);
-            }
+        if ( (re != null) && (!re.equals("ok http  get error"))){
+            webText = WebUtils.getWebText(re);
+            webCss = WebUtils.getWebCss(re);
+            prcessDialog.dismiss();
         }else {
             initWebViewInfo(url);
         }
     }
+
+
 
     private void initWebView() {
         WebSettings settings = webview.getSettings();

@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    buildToolsVersion "24.0.2"
     defaultConfig {
         applicationId "com.clwater.littesee"
         minSdkVersion 23
@@ -18,18 +18,38 @@ android {
         }
     }
 }
+
+apply plugin: 'org.greenrobot.greendao'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.0.0'
+    }
+}
+
 repositories {
     maven {
         url "https://jitpack.io"
     }
 }
 
+greendao {
+    schemaVersion 1
+    daoPackage 'com.clwater.littlesee.greendao.gen'
+    targetGenDir 'src/main/java'
+}
+
+
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:appcompat-v7:24.2.0'
     testCompile 'junit:junit:4.12'
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'com.squareup.okio:okio:1.5.0'
@@ -37,7 +57,8 @@ dependencies {
     compile 'com.jakewharton:butterknife:6.1.0'
     compile 'com.orhanobut:logger:1.15'
     compile files('libs/universal-image-loader-1.9.5.jar')
-    compile 'com.android.support:design:24.2.1'
+    compile 'com.android.support:design:24.2.0'
     compile 'com.pnikosis:materialish-progress:1.7'
     compile 'com.github.recruit-lifestyle:WaveSwipeRefreshLayout:1.6'
+
 }

@@ -2,18 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:minHeight="100dp">
 
     <ImageView
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:id="@+id/listview_main_image"/>
+        android:id="@+id/listview_main_image"
+        android:layout_width="100dip"
+        android:layout_height="100dip"
+        android:scaleType="fitXY"
+        android:padding="5dp"
+        />
 
     <TextView
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="3"
-        android:id="@+id/listview_main_text"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listview_main_text"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"
+        android:textSize="24sp"
+        />
 
 </LinearLayout>

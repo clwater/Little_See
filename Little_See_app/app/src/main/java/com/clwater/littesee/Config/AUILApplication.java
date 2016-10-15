@@ -38,7 +38,7 @@ public class AUILApplication extends Application {
         //构建配置
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)
                 //默认屏幕的大小
-                .memoryCacheExtraOptions(480, 800)
+                .memoryCacheExtraOptions(200,200 )
                 // 内存缓存的设置选项 (最大图片宽度,最大图片高度) 默认当前屏幕分辨率
                 .diskCacheExtraOptions(480, 800, null)
                 // 设置自定义加载和显示图片的线程池

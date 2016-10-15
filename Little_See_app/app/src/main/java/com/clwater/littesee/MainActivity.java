@@ -21,6 +21,7 @@ import com.clwater.littesee.Fragment.ImageFragment;
 import com.clwater.littesee.Fragment.WangyiFragment;
 import com.clwater.littesee.Fragment.ZhiHuFragment;
 
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -51,7 +52,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         initNavigationView();
         setDefaultFragment();
 
+
     }
+
 
     private void setDefaultFragment() {
 
@@ -160,9 +163,3 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 }
 
 
-
-//requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-//        ImageLoader imageLoader = ImageLoader.getInstance();
-//        imageLoader.init(ImageLoaderConfiguration.createDefault(MainActivity.this));
-//        ImageLoader.getInstance().displayImage("https://avatars3.githubusercontent.com/u/14257964?v=3&s=466",ijimage, AppConfig.imageOptions());
