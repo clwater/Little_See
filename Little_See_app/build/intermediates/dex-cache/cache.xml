@@ -93,6 +93,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="/Users/yszsyf/Desktop/android/Little_See/Little_See_app/app/libs/ormlite-core-5.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="03382b8260646dd334a1b9c1b3d412fcb73d8b21">
+        <dex dex="/Users/yszsyf/Desktop/android/Little_See/Little_See_app/app/build/intermediates/pre-dexed/debug/ormlite-core-5.0_4d23147891ec30eae6ee168de6347bbbbc850449.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/Users/yszsyf/Desktop/android/Little_See/Little_See_app/app/build/intermediates/exploded-aar/com.orhanobut/logger/1.15/jars/classes.jar"
         jumboMode="false"
         optimize="true"
@@ -162,6 +171,15 @@
         revision="24.0.2"
         sha1="6e02e34594ebe9c0501ffda8dd48497f81b82977">
         <dex dex="/Users/yszsyf/Desktop/android/Little_See/Little_See_app/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_6a36310ee2083d6a20fb2b990673ea3b9e03739b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yszsyf/Desktop/android/Little_See/Little_See_app/app/libs/ormlite-android-5.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="01f065373aeef355dd9e2fd9854efd5ed4d54f6d">
+        <dex dex="/Users/yszsyf/Desktop/android/Little_See/Little_See_app/app/build/intermediates/pre-dexed/debug/ormlite-android-5.0_af58332fd8ee1b02840551f6fd91b12aa4f81615.jar" />
     </item>
     <item
         is-multidex="false"

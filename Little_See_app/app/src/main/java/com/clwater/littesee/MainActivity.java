@@ -11,6 +11,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -20,7 +21,11 @@ import com.clwater.littesee.Activity.BaseActivity;
 import com.clwater.littesee.Fragment.ImageFragment;
 import com.clwater.littesee.Fragment.WangyiFragment;
 import com.clwater.littesee.Fragment.ZhiHuFragment;
+import com.clwater.littesee.Utils.DBHelper.PackageInfo;
+import com.clwater.littesee.Utils.DBHelper.PackageinfoDao;
 
+
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -51,7 +56,25 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         initNavigationView();
         setDefaultFragment();
+        
+        //testSql();
 
+
+    }
+
+    private void testSql() {
+        PackageInfo packageinfo = new PackageInfo();
+        packageinfo.id = 1 ;
+        packageinfo.pid = "1111";
+        new PackageinfoDao(this).add(packageinfo);
+
+        PackageinfoDao pd = new PackageinfoDao(this);
+        List<PackageInfo> list = pd.queryForAll();
+        //PackageInfo mPackage = pd.queryForId();
+        for (int i = 0 ; i < list.size() ; i++){
+            PackageInfo p = list.get(i);
+            Log.d("gzb" , " " + p.toString());
+        }
 
     }
 
