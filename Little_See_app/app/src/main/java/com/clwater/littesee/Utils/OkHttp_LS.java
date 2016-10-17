@@ -23,6 +23,7 @@ public class OkHttp_LS {
     private static InputStream result_image;
 
     public static String okhttp_get(String url){
+        result_get = "";
         try {
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder().url(url).build();
@@ -43,6 +44,7 @@ public class OkHttp_LS {
     }
 
     public static String okhttp_post(String url, RequestBody formBody) {
+        result_post = "";
         try {
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder().url(url).post(formBody).build();
@@ -67,6 +69,7 @@ public class OkHttp_LS {
 
 
     public static InputStream okhttp_getImage(String url){
+        result_image = null;
         try {
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder().url(url).build();

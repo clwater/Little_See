@@ -20,6 +20,7 @@
         android:paddingTop="10dp"
         android:paddingLeft="10dp"
         android:textSize="24sp"
+        android:textColor="@color/_000000"
         />
 
 </LinearLayout>

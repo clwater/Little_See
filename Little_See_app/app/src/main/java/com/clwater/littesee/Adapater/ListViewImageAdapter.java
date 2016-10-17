@@ -1,6 +1,8 @@
 package com.clwater.littesee.Adapater;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +13,10 @@ import android.widget.TextView;
 import com.clwater.littesee.Activity.ZhuHuInfoActivity;
 import com.clwater.littesee.Config.AppConfig;
 import com.clwater.littesee.Fragment.ZhiHuFragment;
+import com.clwater.littesee.MainActivity;
 import com.clwater.littesee.R;
+import com.clwater.littesee.Utils.DBHelper.ZhiHu;
+import com.clwater.littesee.Utils.DBHelper.ZhiHuDaoOrm;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
@@ -39,6 +44,8 @@ public class ListViewImageAdapter  extends BaseAdapter {
     public final class Zujian{
         public ImageView image;
         public TextView title;
+//        public String address;
+        public int isread;
     }
 
     @Override
@@ -70,17 +77,24 @@ public class ListViewImageAdapter  extends BaseAdapter {
             zujian.image=(ImageView)convertView.findViewById(R.id.listview_main_image);
             zujian.title=(TextView)convertView.findViewById(R.id.listview_main_text);
 
-            ImageLoader imageLoader = ImageLoader.getInstance();
-            imageLoader.init(ImageLoaderConfiguration.createDefault(ZhiHuFragment.activity));
-            ImageLoader.getInstance().displayImage("http://pic4.zhimg.com/f37d5f8f9304030141c006402304847b.jpg" ,zujian.image, AppConfig.imageOptions());
 
             convertView.setTag(zujian);
         }else{
             zujian=(Zujian)convertView.getTag();
         }
-        //绑定数据
-//        zujian.image.setBackgroundResource((Integer)data.get(position).get("image"));
-        zujian.title.setText((String)data.get(position).get("title"));
+
+
+
+        zujian.title.setText((String) data.get(position).get("title"));
+        String url_image = (String) data.get(position).get("title_image");
+        zujian.isread = (int) data.get(position).get("isread");
+        if (zujian.isread != 0){
+            zujian.title.setTextColor(Color.parseColor("#666666"));
+        }
+
+        ImageLoader imageLoader = ImageLoader.getInstance();
+        imageLoader.init(ImageLoaderConfiguration.createDefault(ZhiHuFragment.activity));
+        ImageLoader.getInstance().displayImage(url_image ,zujian.image, AppConfig.imageOptions());
         return convertView;
     }
 

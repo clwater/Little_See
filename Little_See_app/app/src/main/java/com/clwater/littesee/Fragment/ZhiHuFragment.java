@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,8 @@ import android.widget.TextView;
 
 import com.clwater.littesee.Activity.ZhuHuInfoActivity;
 import com.clwater.littesee.Adapater.ListViewImageAdapter;
+import com.clwater.littesee.Utils.DBHelper.ZhiHu;
+import com.clwater.littesee.Utils.DBHelper.ZhiHuDaoOrm;
 import com.clwater.littesee.Utils.EventBus.Event_RunInBack;
 import com.clwater.littesee.Utils.EventBus.Event_RunInFront;
 import com.clwater.littesee.R;
@@ -53,8 +56,10 @@ public class ZhiHuFragment extends Fragment
     public TextView pro_text;
 
     public static Activity activity;
-
     private boolean precess_statu = true;
+
+    List<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
+    ZhiHuDaoOrm zhiHuDaoOrm;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,34 +71,33 @@ public class ZhiHuFragment extends Fragment
         showTopProcess();
         precess_statu = true;
 
-
         activity = getActivity();
 
-        //main_list.setAdapter(new ArrayAdapter<String>( getActivity(), android.R.layout.simple_list_item_1, strs));
+        initListview();
 
-        ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String,     Object>>();/*在数组中存放数据*/
-        for(int i=0;i<10;i++)
-        {
-            HashMap<String, Object> map = new HashMap<String, Object>();
-          //  map.put("ItemImage", R.drawable.ic_menu_back);
-            map.put("ItemText", "这是第"+i+"行");
-            listItem.add(map);
-        }
-
-        List<Map<String, Object>> list=getData();
-        main_list.setAdapter(new ListViewImageAdapter(getActivity(), list));
 
         EventBus.getDefault().register(this);
 
         return view;
     }
 
+    private void initListview() {
+        List<Map<String, Object>> list=getData();
+        main_list.setAdapter(new ListViewImageAdapter(getActivity(), list));
+    }
+
     public List<Map<String, Object>> getData(){
-        List<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
-        for (int i = 0; i < 10; i++) {
+
+        zhiHuDaoOrm = new ZhiHuDaoOrm(getActivity());
+        List<ZhiHu> zhihuList= zhiHuDaoOrm.select();
+        for (int i = 0 ; i < zhihuList.size() ; i++){
+            ZhiHu zhihu = zhihuList.get(i);
             Map<String, Object> map=new HashMap<String, Object>();
-          //  map.put("image", R.drawable.ic_menu_back);
-            map.put("title", "这是一个标题"+i);
+            map.put("id" , zhihu.getId());
+            map.put("title" , zhihu.getTitle());
+            map.put("address" , zhihu.getAddress());
+            map.put("title_image" , zhihu.getTitle_image());
+            map.put("isread" , zhihu.getIsRead());
             list.add(map);
         }
         return list;
@@ -133,10 +137,15 @@ public class ZhiHuFragment extends Fragment
             precess_statu = false;
         }
 
+        Map<String, Object> map= list.get(position);
+        ZhiHu zhihu = zhiHuDaoOrm.seleteZhiHu(Integer.valueOf( map.get("id").toString() ));
+        zhihu.setIsRead(1);
+        zhiHuDaoOrm.add(zhihu);
+
         Intent intent = new Intent(getActivity() , ZhuHuInfoActivity.class);
-        intent.putExtra("webImage" , "http://pic1.zhimg.com/d5a48ff99d7efe62c0ce4f2ae7c9c780.jpg");
-        intent.putExtra("webTitle" , "复活恐龙的希望，科学家们一直都没放弃");
-        intent.putExtra("webUrl" , "http://daily.zhihu.com/story/8874135");
+        intent.putExtra("webImage" , map.get("title_image").toString());
+        intent.putExtra("webTitle" , map.get("title").toString());
+        intent.putExtra("webUrl" , map.get("address").toString());
 
         startActivity(intent);
 

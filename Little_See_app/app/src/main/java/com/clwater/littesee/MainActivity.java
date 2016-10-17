@@ -3,6 +3,7 @@ package com.clwater.littesee;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,8 +22,10 @@ import com.clwater.littesee.Activity.BaseActivity;
 import com.clwater.littesee.Fragment.ImageFragment;
 import com.clwater.littesee.Fragment.WangyiFragment;
 import com.clwater.littesee.Fragment.ZhiHuFragment;
-import com.clwater.littesee.Utils.DBHelper.User1;
-import com.clwater.littesee.Utils.DBHelper.UserDaoOrm;
+import com.clwater.littesee.Utils.Analysis.ZhiHuAnalysis;
+import com.clwater.littesee.Utils.DBHelper.ZhiHu;
+import com.clwater.littesee.Utils.DBHelper.ZhiHuDaoOrm;
+import com.j256.ormlite.table.TableUtils;
 
 import java.util.List;
 
@@ -45,6 +48,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private ZhiHuFragment _zhihu;
     private ImageFragment _image;
 
+    public static Context context;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +60,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         initNavigationView();
         setDefaultFragment();
+
+
+        context = this;
         
         testSql();
 
@@ -62,40 +70,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     private void testSql() {
-        UserDaoOrm userDao=new UserDaoOrm(this);
-        User1 user1=new User1();
-        user1.setUserId("a1");
-        user1.setName("b1");
-        user1.setAge(11);
-        userDao.add(user1);
-
-        user1.setUserId("a2");
-        user1.setName("b2");
-        user1.setAge(22);
-        userDao.add(user1);
-
-        user1.setUserId("a3");
-        user1.setName("b3");
-        user1.setAge(33);
-        userDao.add(user1);
-
-        List<User1> list= userDao.select();
-        Log.d("gzb" , "1" +  list.toString());
-
-        User1 u = userDao.seleteUser("a2");
-        userDao.delete(u);
-
-        list= userDao.select();
-        Log.d("gzb" , "2" +  list.toString());
-
-        user1.setUserId("a3");
-        user1.setName("b3");
-        user1.setAge(34);
-        userDao.add(user1);
-
-
-        list= userDao.select();
-        Log.d("gzb" , "3" +  list.toString());
 
     }
 

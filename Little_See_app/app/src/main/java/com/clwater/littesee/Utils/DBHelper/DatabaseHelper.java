@@ -25,20 +25,24 @@ public  class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private DatabaseHelper(Context context) {
         super(context, TABLE_NAME, null, 1);
     }
+
+
+
     @Override
     public void onCreate(SQLiteDatabase database,
                          ConnectionSource connectionSource) {
         try {
-            TableUtils.createTable(connectionSource, User1.class);
+            TableUtils.createTable(connectionSource, ZhiHu.class);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
     @Override
     public void onUpgrade(SQLiteDatabase database,
                           ConnectionSource connectionSource, int oldVersion, int newVersion) {
         try {
-            TableUtils.dropTable(connectionSource, User1.class, true);
+            TableUtils.dropTable(connectionSource, ZhiHu.class, true);
             onCreate(database, connectionSource);
         } catch (SQLException e) {
             e.printStackTrace();

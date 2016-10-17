@@ -31,6 +31,7 @@ import com.clwater.littesee.Utils.OkHttp_LS;
 import com.clwater.littesee.Utils.WebUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.orhanobut.logger.Logger;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -65,7 +66,8 @@ public class ZhuHuInfoActivity  extends BaseWebActivity implements View.OnScroll
     private String webUrl;
     private int _yold = 0;
 
-    private  AlertDialog prcessDialog;
+    private AlertDialog prcessDialog;
+   // private static String _titile = "" ;
 
 
     @Override
@@ -74,12 +76,15 @@ public class ZhuHuInfoActivity  extends BaseWebActivity implements View.OnScroll
         setContentView(R.layout.activity_zhihuinfo);
         ButterKnife.inject(this);
 
+
+
         activity = this;
 
         Intent intent = this.getIntent();
         webImage = intent.getStringExtra("webImage");
         webTitle = intent.getStringExtra("webTitle");
         webUrl = intent.getStringExtra("webUrl");
+
 
         initTitle();
         initNavigation();
@@ -124,8 +129,7 @@ public class ZhuHuInfoActivity  extends BaseWebActivity implements View.OnScroll
 
     private void initWebViewInfo(String url) {
         String re = OkHttp_LS.okhttp_get(url);
-        Log.d("gzb" , "re" + re);
-        if ( (re != null) && (!re.equals("ok http  get error"))){
+        if ( (re != null) && (!re.equals("ok http  get error")) && (!re.equals(""))){
             webText = WebUtils.getWebText(re);
             webCss = WebUtils.getWebCss(re);
             prcessDialog.dismiss();
