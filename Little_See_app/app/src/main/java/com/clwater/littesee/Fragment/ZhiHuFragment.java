@@ -90,7 +90,7 @@ public class ZhiHuFragment extends Fragment
 
         zhiHuDaoOrm = new ZhiHuDaoOrm(getActivity());
         List<ZhiHu> zhihuList= zhiHuDaoOrm.select();
-        for (int i = 0 ; i < zhihuList.size() ; i++){
+        for (int i = zhihuList.size() - 1 ; i >= 0  ; i--){
             ZhiHu zhihu = zhihuList.get(i);
             Map<String, Object> map=new HashMap<String, Object>();
             map.put("id" , zhihu.getId());

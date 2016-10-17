@@ -67,7 +67,6 @@ public class ZhuHuInfoActivity  extends BaseWebActivity implements View.OnScroll
     private int _yold = 0;
 
     private AlertDialog prcessDialog;
-   // private static String _titile = "" ;
 
 
     @Override
