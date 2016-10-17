@@ -15,25 +15,30 @@
 # specific language governing permissions and limitations
 # under the License.
 
+import base64
 import hashlib
+import pkgutil
 import os
 import zipfile
-try:
-    from StringIO import StringIO as IOStream
-except ImportError:  # 3+
-    from io import BytesIO as IOStream
-import base64
 
 from .command import Command
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.utils import keys_to_typing
 
-
+# Python 3 imports
 try:
     str = basestring
 except NameError:
     pass
+
+try:
+    from StringIO import StringIO as IOStream
+except ImportError:  # 3+
+    from io import BytesIO as IOStream
+
+getAttribute_js = pkgutil.get_data(__package__, 'getAttribute.js').decode('utf8')
+isDisplayed_js = pkgutil.get_data(__package__, 'isDisplayed.js').decode('utf8')
 
 
 class WebElement(object):
@@ -86,6 +91,24 @@ class WebElement(object):
         """Clears the text if it's a text entry element."""
         self._execute(Command.CLEAR_ELEMENT)
 
+    def get_property(self, name):
+        """
+        Gets the given property of the element.
+
+        :Args:
+            - name - Name of the property to retrieve.
+
+        Example::
+
+            # Check if the "active" CSS class is applied to an element.
+            text_length = target_element.get_property("text_length")
+        """
+        try:
+            return self._execute(Command.GET_ELEMENT_PROPERTY, {"name": name})["value"]
+        except WebDriverException:
+            # if we hit an end point that doesnt understand getElementProperty lets fake it
+            self.parent.execute_script('return arguments[0][arguments[1]]', self, name)
+
     def get_attribute(self, name):
         """Gets the given attribute or property of the element.
 
@@ -108,14 +131,18 @@ class WebElement(object):
             is_active = "active" in target_element.get_attribute("class")
 
         """
-        resp = self._execute(Command.GET_ELEMENT_ATTRIBUTE, {'name': name})
+
         attributeValue = ''
-        if resp['value'] is None:
-            attributeValue = None
+        if self._w3c:
+            attributeValue = self.parent.execute_script(
+                "return (%s).apply(null, arguments);" % getAttribute_js,
+                self, name)
         else:
-            attributeValue = resp['value']
-            if name != 'value' and attributeValue.lower() in ('true', 'false'):
-                attributeValue = attributeValue.lower()
+            resp = self._execute(Command.GET_ELEMENT_ATTRIBUTE, {'name': name})
+            attributeValue = resp.get('value')
+            if attributeValue is not None:
+                if name != 'value' and attributeValue.lower() in ('true', 'false'):
+                    attributeValue = attributeValue.lower()
         return attributeValue
 
     def is_selected(self):
@@ -322,7 +349,13 @@ class WebElement(object):
     # RenderedWebElement Items
     def is_displayed(self):
         """Whether the element is visible to a user."""
-        return self._execute(Command.IS_ELEMENT_DISPLAYED)['value']
+        # Only go into this conditional for browsers that don't use the atom themselves
+        if self._w3c and self.parent.capabilities['browserName'] == 'safari':
+            return self.parent.execute_script(
+                "return (%s).apply(null, arguments);" % isDisplayed_js,
+                self)
+        else:
+            return self._execute(Command.IS_ELEMENT_DISPLAYED)['value']
 
     @property
     def location_once_scrolled_into_view(self):

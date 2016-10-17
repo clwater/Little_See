@@ -53,6 +53,8 @@ class WebDriver(object):
      - error_handler - errorhandler.ErrorHandler object used to handle errors.
     """
 
+    _web_element_cls = WebElement
+
     def __init__(self, command_executor='http://127.0.0.1:4444/wd/hub',
                  desired_capabilities=None, browser_profile=None, proxy=None,
                  keep_alive=False, file_detector=None):
@@ -179,7 +181,7 @@ class WebDriver(object):
         self.capabilities = response['value']
 
         # Quick check to see if we have a W3C Compliant browser
-        self.w3c = "specificationLevel" in self.capabilities
+        self.w3c = response.get('status') is None
 
     def _wrap_value(self, value):
         if isinstance(value, dict):
@@ -187,7 +189,7 @@ class WebDriver(object):
             for key, val in value.items():
                 converted[key] = self._wrap_value(val)
             return converted
-        elif isinstance(value, WebElement):
+        elif isinstance(value, self._web_element_cls):
             return {'ELEMENT': value.id, 'element-6066-11e4-a52e-4f735466cecf': value.id}
         elif isinstance(value, list):
             return list(self._wrap_value(item) for item in value)
@@ -195,10 +197,8 @@ class WebDriver(object):
             return value
 
     def create_web_element(self, element_id):
-        """
-        Creates a web element with the specified element_id.
-        """
-        return WebElement(self, element_id, w3c=self.w3c)
+        """Creates a web element with the specified `element_id`."""
+        return self._web_element_cls(self, element_id, w3c=self.w3c)
 
     def _unwrap_value(self, value):
         if isinstance(value, dict) and ('ELEMENT' in value or 'element-6066-11e4-a52e-4f735466cecf' in value):
@@ -873,10 +873,18 @@ class WebDriver(object):
         :Usage:
             driver.set_window_position(0,0)
         """
-        self.execute(Command.SET_WINDOW_POSITION, {
-            'x': int(x),
-            'y': int(y),
-            'windowHandle': windowHandle})
+        if self.w3c:
+            return self.execute(Command.W3C_SET_WINDOW_POSITION, {
+                                'x': int(x),
+                                'y': int(y)
+                                })
+        else:
+            self.execute(Command.SET_WINDOW_POSITION,
+                         {
+                             'x': int(x),
+                             'y': int(y),
+                             'windowHandle': windowHandle
+                         })
 
     def get_window_position(self, windowHandle='current'):
         """
@@ -885,8 +893,11 @@ class WebDriver(object):
         :Usage:
             driver.get_window_position()
         """
-        return self.execute(Command.GET_WINDOW_POSITION, {
-            'windowHandle': windowHandle})['value']
+        if self.w3c:
+            return self.execute(Command.W3C_GET_WINDOW_POSITION)
+        else:
+            return self.execute(Command.GET_WINDOW_POSITION, {
+                'windowHandle': windowHandle})['value']
 
     @property
     def file_detector(self):
