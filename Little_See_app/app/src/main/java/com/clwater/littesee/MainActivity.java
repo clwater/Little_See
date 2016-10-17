@@ -21,10 +21,8 @@ import com.clwater.littesee.Activity.BaseActivity;
 import com.clwater.littesee.Fragment.ImageFragment;
 import com.clwater.littesee.Fragment.WangyiFragment;
 import com.clwater.littesee.Fragment.ZhiHuFragment;
-import com.clwater.littesee.Utils.DBHelper.DBHelper;
-import com.clwater.littesee.Utils.DBHelper.PackageInfo;
-import com.clwater.littesee.Utils.DBHelper.PackageinfoDao;
-
+import com.clwater.littesee.Utils.DBHelper.User1;
+import com.clwater.littesee.Utils.DBHelper.UserDaoOrm;
 
 import java.util.List;
 
@@ -64,19 +62,40 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     private void testSql() {
-        //DBHelper.getHelper(this);
-        PackageInfo packageinfo = new PackageInfo();
-        packageinfo.id = 1 ;
-        packageinfo.pid = "1111";
-//        new PackageinfoDao(this).add(packageinfo);
-//
-//        PackageinfoDao pd = new PackageinfoDao(this);
-//        List<PackageInfo> list = pd.queryForAll();
-//        //PackageInfo mPackage = pd.queryForId();
-//        for (int i = 0 ; i < list.size() ; i++){
-//            PackageInfo p = list.get(i);
-//            Log.d("gzb" , " " + p.toString());
-//        }
+        UserDaoOrm userDao=new UserDaoOrm(this);
+        User1 user1=new User1();
+        user1.setUserId("a1");
+        user1.setName("b1");
+        user1.setAge(11);
+        userDao.add(user1);
+
+        user1.setUserId("a2");
+        user1.setName("b2");
+        user1.setAge(22);
+        userDao.add(user1);
+
+        user1.setUserId("a3");
+        user1.setName("b3");
+        user1.setAge(33);
+        userDao.add(user1);
+
+        List<User1> list= userDao.select();
+        Log.d("gzb" , "1" +  list.toString());
+
+        User1 u = userDao.seleteUser("a2");
+        userDao.delete(u);
+
+        list= userDao.select();
+        Log.d("gzb" , "2" +  list.toString());
+
+        user1.setUserId("a3");
+        user1.setName("b3");
+        user1.setAge(34);
+        userDao.add(user1);
+
+
+        list= userDao.select();
+        Log.d("gzb" , "3" +  list.toString());
 
     }
 
