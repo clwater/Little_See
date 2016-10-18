@@ -19,6 +19,7 @@ import android.view.MenuItem;
 
 import com.clwater.littesee.Activity.AboutActivity;
 import com.clwater.littesee.Activity.BaseActivity;
+import com.clwater.littesee.Fragment.HaoQiXinFragment;
 import com.clwater.littesee.Fragment.ImageFragment;
 import com.clwater.littesee.Fragment.WangyiFragment;
 import com.clwater.littesee.Fragment.ZhiHuFragment;
@@ -47,6 +48,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private WangyiFragment _wangyi;
     private ZhiHuFragment _zhihu;
     private ImageFragment _image;
+    private HaoQiXinFragment _haoqixin;
 
     public static Context context;
 
@@ -126,6 +128,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                     _image = new ImageFragment();
                 }
                 transaction.replace(R.id.id_content, _image);
+                transaction.commit();
+                drawerLayout.closeDrawers();
+                break;
+            case R.id.nav_haoqixin:
+                toolbar.setTitle("haoqixin");
+                if (_haoqixin == null){
+                    _haoqixin = new HaoQiXinFragment();
+                }
+                transaction.replace(R.id.id_content, _haoqixin);
                 transaction.commit();
                 drawerLayout.closeDrawers();
                 break;

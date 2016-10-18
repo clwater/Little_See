@@ -28,10 +28,5 @@ def main():
     for zhihu in zhihulist:
         print(zhihu)
 
-    # save()
-
-
-
-
 
 main()

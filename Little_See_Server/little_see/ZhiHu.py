@@ -8,7 +8,6 @@ zhihulist = []
 
 
 def main():
-    #driver = webdriver.PhantomJS(executable_path="/Users/haizhi/Desktop/MyPythonShell/phantomjs-2.1.1-macosx/bin/phantomjs")
     driver = webdriver.PhantomJS(executable_path="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_Server/phantomjs-2.1.1-macosx/bin/phantomjs")
     #driver = webdriver.PhantomJS(executable_path="/Users/yszsyf/Desktop/android/Little_See/Little_See_Server/phantomjs-2.1.1-macosx/bin/phantomjs")
     driver.get("http://daily.zhihu.com/")
@@ -28,11 +27,5 @@ def main():
 
     for zhihu in zhihulist:
         print(zhihu)
-
-    # save()
-
-
-
-
 
 main()
