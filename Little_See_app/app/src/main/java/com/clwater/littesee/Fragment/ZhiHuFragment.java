@@ -7,7 +7,9 @@ package com.clwater.littesee.Fragment;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +27,7 @@ import com.clwater.littesee.Utils.DBHelper.ZhiHuDaoOrm;
 import com.clwater.littesee.Utils.EventBus.Event_RunInBack;
 import com.clwater.littesee.Utils.EventBus.Event_RunInFront;
 import com.clwater.littesee.R;
+import com.orhanobut.logger.Logger;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import org.greenrobot.eventbus.EventBus;
@@ -149,8 +152,21 @@ public class ZhiHuFragment extends Fragment
 
         startActivity(intent);
 
+        upDateItemTextColor(position);
+
+
+
     }
 
+    private void upDateItemTextColor(int position) {
+        View childAt = main_list.getChildAt(position - main_list.getFirstVisiblePosition());
+        if (childAt != null) {
+            TextView listview_main_text = (TextView) childAt.findViewById(R.id.listview_main_text);
+            if (listview_main_text != null) {
+                listview_main_text.setTextColor(Color.parseColor("#666666"));
+            }
+        }
+    }
 
 
 }

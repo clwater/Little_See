@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="14ef362b-d74f-48bb-8d24-c177ea21ecc9" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ZhiHu.py" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="" />
@@ -164,6 +165,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pip-selfcheck.json" afterPath="$PROJECT_DIR$/pip-selfcheck.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.py" afterPath="$PROJECT_DIR$/test.py" />
     </list>
+=======
+    <list default="true" id="4384555e-6cb1-4c47-84c5-e68204fd345e" name="Default" comment="" />
+>>>>>>> Stashed changes
     <ignored path="little_see.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />

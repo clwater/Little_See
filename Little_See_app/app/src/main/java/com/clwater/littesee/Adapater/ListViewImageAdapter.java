@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.clwater.littesee.Activity.ZhuHuInfoActivity;
@@ -97,5 +98,8 @@ public class ListViewImageAdapter  extends BaseAdapter {
         ImageLoader.getInstance().displayImage(url_image ,zujian.image, AppConfig.imageOptions());
         return convertView;
     }
+
+
+
 
 }

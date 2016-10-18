@@ -64,12 +64,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         context = this;
         
-        testSql();
+        //testSql();
 
 
     }
 
     private void testSql() {
+        ZhiHuAnalysis.Analysis(context);
 
     }
 
