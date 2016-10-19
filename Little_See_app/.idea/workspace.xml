@@ -98,12 +98,12 @@
       <file leaf-file-name="WebUtils.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/clwater/littesee/Utils/WebUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="75" column="271" selection-start-line="75" selection-start-column="271" selection-end-line="75" selection-end-column="271" />
+            <state relative-caret-position="388">
+              <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3562#3563#0" expanded="true" />
-                <element signature="e#3587#3588#0" expanded="true" />
+                <element signature="e#3560#3561#0" expanded="true" />
+                <element signature="e#3585#3586#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2798,14 +2798,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/clwater/littesee/Utils/WebUtils.java</url>
-          <line>76</line>
-          <properties />
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="24" />
     </breakpoint-manager>
     <watches-manager />
@@ -3245,12 +3237,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/clwater/littesee/Utils/WebUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="75" column="271" selection-start-line="75" selection-start-column="271" selection-end-line="75" selection-end-column="271" />
+        <state relative-caret-position="388">
+          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3562#3563#0" expanded="true" />
-            <element signature="e#3587#3588#0" expanded="true" />
+            <element signature="e#3560#3561#0" expanded="true" />
+            <element signature="e#3585#3586#0" expanded="true" />
           </folding>
         </state>
       </provider>

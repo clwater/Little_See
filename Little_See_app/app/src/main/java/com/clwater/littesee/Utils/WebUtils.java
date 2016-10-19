@@ -73,7 +73,7 @@ public class WebUtils {
     public static String getWebText_haoqixin(String re){
 
         String text = "";
-        text = re.replace("<div class=\"banner\"><img src=\"http://img.qdaily.com/article/article_show/20161019002211QuiH4LosAhFd12zJ.png?imageMogr2/auto-orient/thumbnail/!580x344r/gravity/Center/crop/580x344/quality/85/format/jpg/ignore-error/1\" alt=\"\"></div>" , "'")
+        text = re.replace("<div class=\"banner\"><img src=\"http://img.qdaily.com/article/article_show/20161019002211QuiH4LosAhFd12zJ.png?imageMogr2/auto-orient/thumbnail/!580x344r/gravity/Center/crop/580x344/quality/85/format/jpg/ignore-error/1\" alt=\"\"></div>","");
 //        text = re.replace("<div class=\"com-insert-images\"><figure style=\"margin:0;\">" , "<div class=\"banner\">");
 //        text = text.replace("</figure></div>" , "</div>");
         return  text;
