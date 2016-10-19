@@ -32,10 +32,20 @@ public class WebUtils {
         return result.toString();
     }
 
-    public static String getWebText(String re){
+    public static String getWebText_zhihu(String re){
         return re.substring(re.indexOf("<div class=\"content-inner\">") , re.lastIndexOf("<div class=\"question\">"));
     }
-    public static String getWebCss(String _re){
+    public static String getWebCss_zhihu(String _re){
+        String link = _re.substring(_re.indexOf("/css/share.css?") , _re.lastIndexOf("<script src=\"http://static.daily.zhihu.com/js/modernizr"));
+        link = link.trim();
+        link = link.substring("/css/share.css?v=".length() , link.length() - "\">".length() );
+        return "http://news-at.zhihu.com/css/news_qa.auto.css?v=" + link;
+    }
+
+    public static String getWebText_haoqixin(String re){
+        return re.substring(re.indexOf("<div class=\"content-inner\">") , re.lastIndexOf("<div class=\"question\">"));
+    }
+    public static String getWebCss_haoqixin(String _re){
         String link = _re.substring(_re.indexOf("/css/share.css?") , _re.lastIndexOf("<script src=\"http://static.daily.zhihu.com/js/modernizr"));
         link = link.trim();
         link = link.substring("/css/share.css?v=".length() , link.length() - "\">".length() );

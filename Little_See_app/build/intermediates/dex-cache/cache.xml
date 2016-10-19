@@ -12,105 +12,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/libs/internal_impl-24.2.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="6e02e34594ebe9c0501ffda8dd48497f81b82977">
-        <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_9569c4ebabe76371046caed65c726541283f328c/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/exploded-aar/com.orhanobut/logger/1.15/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="2a156b99fc7cc034308f942906b09d32754a4470">
-        <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.orhanobut-logger-1.15_2904bc4d45f3a903603be04a88dba6724f270fc5/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="771b3cc0e597b54da25f8086ba73180c59c6bc71">
-        <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_4374db775b3d1ad549b6cf81bb83146ccad5836a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/haizhi/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.0/support-annotations-24.2.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="6be858a75633b1f0a2d24cad740db57775cb6871">
-        <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.2.0_85649892ef70ee333846cff9f3df7314f4155503/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/libs/internal_impl-24.2.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="60d7b23621d31e6f42f4f76f16af467e57a20cda">
-        <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_37663f6a1cc91d3ee42c1bf79efa0fa43807d84a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/haizhi/.gradle/caches/modules-2/files-2.1/org.greenrobot/eventbus/3.0.0/ddd99896e9569eaababbe81b35d80e1b91c4ad85/eventbus-3.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="ddd99896e9569eaababbe81b35d80e1b91c4ad85">
-        <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/eventbus-3.0.0_b7af551ce1cfd49b8f8fdb623cc61e015657b990/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/haizhi/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.4.1/c7c4f9e35c2fd5900da24f9872e3971801f08ce0/okhttp-3.4.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="c7c4f9e35c2fd5900da24f9872e3971801f08ce0">
-        <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.4.1_f0e41a9016475f411f6c5afdc7aa2f8d93733878/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="f9b41622897665678d31d78e57a361cb0cebcb0d">
-        <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-24.2.0_ebdc3ebe2b49c0b32dd97907645d24930ebae6a6/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="fcc945a86ebcbf527429acb8216ec7dae2c06417">
-        <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-24.2.0_9e16d45d9ec0f19e0809da82d193b12e4233d60d/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/haizhi/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.9.0/f824591a0016efbaeddb8300bee54832a1398cfa/okio-1.9.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
-        <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.9.0_84e9f7ab1454a4e294cb898c5a9c11aef46213d7/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="c84e216d9bf618464d6b9564d71d9a656433e7c4">
-        <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-24.2.0_695263c09904ec18b0b2d24effc7fbf24f7c1017/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/exploded-aar/com.android.support/design/24.2.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -142,7 +43,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="a0b7d7da0fb768cbd449d0c8f2b4b9605563f140">
+        sha1="e3b44dfbf502fbdc8d5c1e59d8767434f1618056">
         <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_19a380bcfdac216cabf512d0e7582a083b3ac538/classes.dex" />
     </item>
     <item
@@ -201,6 +102,33 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="6e02e34594ebe9c0501ffda8dd48497f81b82977">
+        <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_9569c4ebabe76371046caed65c726541283f328c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/exploded-aar/com.orhanobut/logger/1.15/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="2a156b99fc7cc034308f942906b09d32754a4470">
+        <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.orhanobut-logger-1.15_2904bc4d45f3a903603be04a88dba6724f270fc5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="771b3cc0e597b54da25f8086ba73180c59c6bc71">
+        <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_4374db775b3d1ad549b6cf81bb83146ccad5836a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -255,12 +183,75 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/haizhi/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.0/support-annotations-24.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="6be858a75633b1f0a2d24cad740db57775cb6871">
+        <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.2.0_85649892ef70ee333846cff9f3df7314f4155503/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="041fd86cfeb38f5009fa603358c8af2566d2b02b">
+        sha1="8890280615c382bd24eda4cf2dbb7aa6d7b39cea">
         <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_fb3e7e01233e9b505641f826fb7806bee8638d76/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="60d7b23621d31e6f42f4f76f16af467e57a20cda">
+        <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_37663f6a1cc91d3ee42c1bf79efa0fa43807d84a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/haizhi/.gradle/caches/modules-2/files-2.1/org.greenrobot/eventbus/3.0.0/ddd99896e9569eaababbe81b35d80e1b91c4ad85/eventbus-3.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="ddd99896e9569eaababbe81b35d80e1b91c4ad85">
+        <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/eventbus-3.0.0_b7af551ce1cfd49b8f8fdb623cc61e015657b990/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/haizhi/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.4.1/c7c4f9e35c2fd5900da24f9872e3971801f08ce0/okhttp-3.4.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="c7c4f9e35c2fd5900da24f9872e3971801f08ce0">
+        <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.4.1_f0e41a9016475f411f6c5afdc7aa2f8d93733878/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="f9b41622897665678d31d78e57a361cb0cebcb0d">
+        <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-24.2.0_ebdc3ebe2b49c0b32dd97907645d24930ebae6a6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="fcc945a86ebcbf527429acb8216ec7dae2c06417">
+        <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-24.2.0_9e16d45d9ec0f19e0809da82d193b12e4233d60d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/haizhi/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.9.0/f824591a0016efbaeddb8300bee54832a1398cfa/okio-1.9.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
+        <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.9.0_84e9f7ab1454a4e294cb898c5a9c11aef46213d7/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -270,6 +261,15 @@
         revision="24.0.2"
         sha1="f3ee23ef25c9a8fe3d40246d0b7097267963a612">
         <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-24.2.0_3766b980691bbbd4923ec756bca43aaa0d22c128/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="c84e216d9bf618464d6b9564d71d9a656433e7c4">
+        <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-24.2.0_695263c09904ec18b0b2d24effc7fbf24f7c1017/classes.dex" />
     </item>
 
 </items>

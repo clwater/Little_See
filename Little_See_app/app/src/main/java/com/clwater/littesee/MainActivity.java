@@ -66,7 +66,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         context = this;
         
-        //testSql();
+        testSql();
 
 
     }
@@ -81,9 +81,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         FragmentManager fm = getFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        _zhihu = new ZhiHuFragment();
+        //_zhihu = new ZhiHuFragment();
         //_image = new ImageFragment();
-        transaction.replace(R.id.id_content, _zhihu);
+        _haoqixin = new HaoQiXinFragment();
+        transaction.replace(R.id.id_content, _haoqixin);
         transaction.commit();
 
     }

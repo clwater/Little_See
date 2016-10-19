@@ -33,6 +33,7 @@ public  class DatabaseHelper extends OrmLiteSqliteOpenHelper {
                          ConnectionSource connectionSource) {
         try {
             TableUtils.createTable(connectionSource, ZhiHu.class);
+            TableUtils.createTable(connectionSource, HaoQiXin.class);
         } catch (SQLException e) {
             e.printStackTrace();
         }

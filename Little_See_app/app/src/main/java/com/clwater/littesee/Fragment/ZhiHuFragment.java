@@ -9,25 +9,21 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import com.clwater.littesee.Activity.ZhuHuInfoActivity;
+import com.clwater.littesee.Activity.TextInfoActivity;
 import com.clwater.littesee.Adapater.ListViewImageAdapter;
 import com.clwater.littesee.Utils.DBHelper.ZhiHu;
 import com.clwater.littesee.Utils.DBHelper.ZhiHuDaoOrm;
 import com.clwater.littesee.Utils.EventBus.Event_RunInBack;
 import com.clwater.littesee.Utils.EventBus.Event_RunInFront;
 import com.clwater.littesee.R;
-import com.orhanobut.logger.Logger;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import org.greenrobot.eventbus.EventBus;
@@ -51,11 +47,11 @@ public class ZhiHuFragment extends Fragment
 
     @InjectView(R.id.main_list)
     public ListView main_list;
-    @InjectView(R.id.zhihu_main_top_process)
+    @InjectView(R.id._main_top_process)
     public RelativeLayout relativeLayout;
-    @InjectView(R.id.zh_top_process)
+    @InjectView(R.id._top_process)
     public ProgressWheel progressWheel;
-    @InjectView(R.id.zh_top_pro_text)
+    @InjectView(R.id._top_pro_text)
     public TextView pro_text;
 
     public static Activity activity;
@@ -68,7 +64,7 @@ public class ZhiHuFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fragment_zhihu, container, false);
+        View view = inflater.inflate(R.layout.fragment_text, container, false);
         ButterKnife.inject(this , view);
 
         showTopProcess();
@@ -145,11 +141,11 @@ public class ZhiHuFragment extends Fragment
         zhihu.setIsRead(1);
         zhiHuDaoOrm.add(zhihu);
 
-        Intent intent = new Intent(getActivity() , ZhuHuInfoActivity.class);
+        Intent intent = new Intent(getActivity() , TextInfoActivity.class);
         intent.putExtra("webImage" , map.get("title_image").toString());
         intent.putExtra("webTitle" , map.get("title").toString());
         intent.putExtra("webUrl" , map.get("address").toString());
-
+        intent.putExtra("statu" , "zhihu");
         startActivity(intent);
 
         upDateItemTextColor(position);

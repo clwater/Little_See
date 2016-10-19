@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.clwater.littesee.Activity.ZhuHuInfoActivity;
 import com.clwater.littesee.Config.AppConfig;
 import com.clwater.littesee.Fragment.ZhiHuFragment;
 import com.clwater.littesee.MainActivity;
@@ -94,7 +93,7 @@ public class ListViewImageAdapter  extends BaseAdapter {
         }
 
         ImageLoader imageLoader = ImageLoader.getInstance();
-        imageLoader.init(ImageLoaderConfiguration.createDefault(ZhiHuFragment.activity));
+        imageLoader.init(ImageLoaderConfiguration.createDefault(MainActivity.context));
         ImageLoader.getInstance().displayImage(url_image ,zujian.image, AppConfig.imageOptions());
         return convertView;
     }

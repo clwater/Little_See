@@ -31,7 +31,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity"/>
         </activity>
-        <activity android:name=".Activity.ZhuHuInfoActivity"
+        <activity android:name=".Activity.TextInfoActivity"
             android:theme="@style/Theme.Design"/>
 
 
