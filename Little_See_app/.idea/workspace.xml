@@ -56,11 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TextInfoActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TextInfoActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/clwater/littesee/Activity/TextInfoActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="158" column="43" selection-start-line="158" selection-start-column="43" selection-end-line="158" selection-end-column="43" />
+            <state relative-caret-position="129">
+              <caret line="104" column="34" selection-start-line="104" selection-start-column="34" selection-end-line="104" selection-end-column="34" />
               <folding>
                 <element signature="e#6423#6624#0" expanded="true" />
                 <element signature="e#6623#6624#0" expanded="true" />
@@ -95,11 +95,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WebUtils.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WebUtils.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/clwater/littesee/Utils/WebUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="388">
-              <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+            <state relative-caret-position="836">
+              <caret line="75" column="86" selection-start-line="75" selection-start-column="86" selection-end-line="75" selection-end-column="86" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3560#3561#0" expanded="true" />
@@ -1987,8 +1987,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/clwater/littesee/Adapater/ListViewImageAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/clwater/littesee/Fragment/HaoQiXinFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/clwater/littesee/Utils/Analysis/ZhiHuAnalysis.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/clwater/littesee/Activity/TextInfoActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/clwater/littesee/Utils/WebUtils.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/clwater/littesee/Activity/TextInfoActivity.java" />
       </list>
     </option>
   </component>
@@ -3224,25 +3224,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/clwater/littesee/Activity/TextInfoActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="158" column="43" selection-start-line="158" selection-start-column="43" selection-end-line="158" selection-end-column="43" />
-          <folding>
-            <element signature="e#6423#6624#0" expanded="true" />
-            <element signature="e#6623#6624#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/clwater/littesee/Utils/WebUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+        <state relative-caret-position="836">
+          <caret line="75" column="86" selection-start-line="75" selection-start-column="86" selection-end-line="75" selection-end-column="86" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3560#3561#0" expanded="true" />
             <element signature="e#3585#3586#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/clwater/littesee/Activity/TextInfoActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="104" column="34" selection-start-line="104" selection-start-column="34" selection-end-line="104" selection-end-column="34" />
+          <folding>
+            <element signature="e#6423#6624#0" expanded="true" />
+            <element signature="e#6623#6624#0" expanded="true" />
           </folding>
         </state>
       </provider>
