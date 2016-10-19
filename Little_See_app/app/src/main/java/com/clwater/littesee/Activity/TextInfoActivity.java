@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -98,9 +99,15 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
                 webview.loadDataWithBaseURL(WebUtils.BASE_URL, data, WebUtils.MIME_TYPE, WebUtils.ENCODING, WebUtils.FAIL_URL);
             }
         }else if (statu.equals("haoqixin")){
+            //webview.loadUrl(webUrl);
             initWebViewInfo_haoqixin(webUrl);
-
-            webview.loadUrl(webUrl);
+            if (webText != null) {
+                String[] csss = new String[2];
+                csss[0] = "http://www.qdaily.com/assets/web/common-00f0d7820be08ae0412411cbc1507af2d1108137c48f2438a15a96cbd3ce0c3f.css";
+                csss[1] = "http://www.qdaily.com/assets/web/articles/show-fa79c1aa2219adb62679c5a16744b8e3d42c26a99fe5870342653e3264164fc0.css";
+                String data = WebUtils.buildHtmlWithCsss(webText, csss, false);
+                webview.loadDataWithBaseURL(WebUtils.BASE_URL, data, WebUtils.MIME_TYPE, WebUtils.ENCODING, WebUtils.FAIL_URL);
+            }
         }
 
 
@@ -136,7 +143,7 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
         if ( (re != null) && (!re.equals("ok http  get error")) && (!re.equals(""))){
             webText = WebUtils.getWebText_zhihu(re);
             webCss = WebUtils.getWebCss_zhihu(re);
-            prcessDialog.dismiss();
+//            prcessDialog.dismiss();
         }else {
             initWebViewInfo_zhihu(url);
         }
@@ -147,7 +154,7 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
         if ( (re != null) && (!re.equals("ok http  get error")) && (!re.equals(""))){
             webText = WebUtils.getWebText_haoqixin(re);
             webCss = WebUtils.getWebCss_haoqixin(re);
-            prcessDialog.dismiss();
+           // prcessDialog.dismiss();
         }else {
             initWebViewInfo_haoqixin(url);
         }
@@ -168,13 +175,6 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
         settings.setAppCacheEnabled(true);
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         settings.setDisplayZoomControls(false);
-        webview.setWebViewClient(new WebViewClient() {
-            public boolean shouldOverrideUrlLoading(WebView view, String url)
-            { //  重写此方法表明点击网页里面的链接还是在当前的webview里跳转，不跳到浏览器那边
-                view.loadUrl(url);
-                return true;
-            }
-        });
         webview.setWebChromeClient(new WebChromeClient());
     }
 

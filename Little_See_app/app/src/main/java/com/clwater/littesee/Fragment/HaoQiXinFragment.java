@@ -92,7 +92,7 @@ public class HaoQiXinFragment extends Fragment {
 
         haoQinXinDaoOrm = new HaoQiXinDaoOrm(getActivity());
         List<HaoQiXin> haoQiXinList= haoQinXinDaoOrm.select();
-        for (int i = haoQiXinList.size() - 1 ; i >= 0  ; i--){
+        for (int i = 0 ; i < haoQiXinList.size()   ; i++){
             HaoQiXin haoQiXin = haoQiXinList.get(i);
             Map<String, Object> map=new HashMap<String, Object>();
             map.put("id" , haoQiXin.getId());
@@ -160,7 +160,7 @@ public class HaoQiXinFragment extends Fragment {
     }
 
     private void upDateItemTextColor(int position) {
-        View childAt = main_list.getChildAt(position - main_list.getFirstVisiblePosition());
+        View childAt = main_list.getChildAt(position - main_list.getFirstVisiblePosition() + 1);
         if (childAt != null) {
             TextView listview_main_text = (TextView) childAt.findViewById(R.id.listview_main_text);
             if (listview_main_text != null) {
