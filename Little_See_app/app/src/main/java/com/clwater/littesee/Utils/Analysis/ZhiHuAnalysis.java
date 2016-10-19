@@ -17,8 +17,8 @@ import java.util.List;
 
 public class ZhiHuAnalysis {
     public static void Analysis(Context context){
-        test1();
-        test2();
+       // test1();
+       // test2();
     }
 
 
