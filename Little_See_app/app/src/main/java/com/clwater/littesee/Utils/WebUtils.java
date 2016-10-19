@@ -20,7 +20,8 @@ public class WebUtils {
     public static final String BASE_URL = "file:///android_asset/";
     public static final String MIME_TYPE = "text/html";
     public static final String ENCODING = "utf-8";
-    public static final String FAIL_URL = "http//:daily.zhihu.com/";
+    public static final String FAIL_URL_ZHIHU = "http//:daily.zhihu.com/";
+    public static final String FAIL_URL_HAOQIXIN = "http://m.qdaily.com/";
     private static final String CSS_LINK_PATTERN = " <link href=\"%s\" type=\"text/css\" rel=\"stylesheet\" />";
     private static final String NIGHT_DIV_TAG_START = "<div class=\"night\">";
     private static final String NIGHT_DIV_TAG_END = "</div>";
@@ -70,12 +71,13 @@ public class WebUtils {
     }
 
     public static String getWebText_haoqixin(String re){
-       // Log.d("gzb" , "re :\n" + re);
-//        String test = re.substring(re.indexOf(re.indexOf("<head>") , re.indexOf("</head>") + 7));
-       String test =  re.substring(re.indexOf("<div class=\"article-detail-bd\">") , re.lastIndexOf("<div class=\"article-detail-ft\">"));
-        Log.d("gzb" , test);
-        Log.d("gzb" , "aaa");
-        return re.substring(re.indexOf("<div class=\"article-detail-bd\">") , re.lastIndexOf("<div class=\"article-detail-ft\">"));
+
+        String text = "";
+        text = re.replace("<div class=\"banner\"><img src=\"http://img.qdaily.com/article/article_show/20161019002211QuiH4LosAhFd12zJ.png?imageMogr2/auto-orient/thumbnail/!580x344r/gravity/Center/crop/580x344/quality/85/format/jpg/ignore-error/1\" alt=\"\"></div>" , "'")
+//        text = re.replace("<div class=\"com-insert-images\"><figure style=\"margin:0;\">" , "<div class=\"banner\">");
+//        text = text.replace("</figure></div>" , "</div>");
+        return  text;
+        //return re.substring(re.indexOf("<div class=\"article-detail-bd\">") , re.lastIndexOf("<div class=\"article-detail-ft\">"));
     }
     public static String getWebCss_haoqixin(String _re){
         return "";

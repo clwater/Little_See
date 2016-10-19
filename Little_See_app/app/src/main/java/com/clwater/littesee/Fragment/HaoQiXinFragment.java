@@ -149,6 +149,8 @@ public class HaoQiXinFragment extends Fragment {
         intent.putExtra("webImage" , map.get("title_image").toString());
         intent.putExtra("webTitle" , map.get("title").toString());
         intent.putExtra("webUrl" , map.get("address").toString());
+        //intent.putExtra("webUrl" , "http://m.qdaily.com/mobile/articles/33458.html");
+
         intent.putExtra("statu" , "haoqixin");
 
         startActivity(intent);

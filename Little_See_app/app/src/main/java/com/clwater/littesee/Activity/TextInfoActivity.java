@@ -96,17 +96,20 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
             initWebViewInfo_zhihu(webUrl);
             if (webText != null) {
                 String data = WebUtils.buildHtmlWithCss(webText, webCss, false);
-                webview.loadDataWithBaseURL(WebUtils.BASE_URL, data, WebUtils.MIME_TYPE, WebUtils.ENCODING, WebUtils.FAIL_URL);
+                webview.loadDataWithBaseURL(WebUtils.BASE_URL, data, WebUtils.MIME_TYPE, WebUtils.ENCODING, WebUtils.FAIL_URL_ZHIHU);
             }
         }else if (statu.equals("haoqixin")){
             //webview.loadUrl(webUrl);
+         //   webview.loadUrl("javascript:e = document.evaluate(\"html/body/div[2]/div[1]/div[1]/div[1]\", document, null, XPathResult.ANY_TYPE, null);e.style.display=\"none\";");
             initWebViewInfo_haoqixin(webUrl);
+            Log.d("gzb" , webUrl);
             if (webText != null) {
+                String css = "";
                 String[] csss = new String[2];
-                csss[0] = "http://www.qdaily.com/assets/web/common-00f0d7820be08ae0412411cbc1507af2d1108137c48f2438a15a96cbd3ce0c3f.css";
-                csss[1] = "http://www.qdaily.com/assets/web/articles/show-fa79c1aa2219adb62679c5a16744b8e3d42c26a99fe5870342653e3264164fc0.css";
+                csss[0] = "http://m.qdaily.com/assets/mobile/common.css";
+                csss[1] = "http://m.qdaily.com/assets/mobile/articles/show.css";
                 String data = WebUtils.buildHtmlWithCsss(webText, csss, false);
-                webview.loadDataWithBaseURL(WebUtils.BASE_URL, data, WebUtils.MIME_TYPE, WebUtils.ENCODING, WebUtils.FAIL_URL);
+                webview.loadDataWithBaseURL(WebUtils.BASE_URL, data, WebUtils.MIME_TYPE, WebUtils.ENCODING, WebUtils.FAIL_URL_HAOQIXIN);
             }
         }
 
@@ -152,8 +155,9 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
     private void initWebViewInfo_haoqixin(String url) {
         String re = OkHttp_LS.okhttp_get(url);
         if ( (re != null) && (!re.equals("ok http  get error")) && (!re.equals(""))){
+            //webText = re;
             webText = WebUtils.getWebText_haoqixin(re);
-            webCss = WebUtils.getWebCss_haoqixin(re);
+           // webCss = WebUtils.getWebCss_haoqixin(re);
            // prcessDialog.dismiss();
         }else {
             initWebViewInfo_haoqixin(url);
@@ -175,6 +179,13 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
         settings.setAppCacheEnabled(true);
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         settings.setDisplayZoomControls(false);
+        webview.setWebViewClient(new WebViewClient() {
+            public boolean shouldOverrideUrlLoading(WebView view, String url)
+            {
+                view.loadUrl(url);
+                return true;
+            }
+        });
         webview.setWebChromeClient(new WebChromeClient());
     }
 
