@@ -111,7 +111,7 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
                 String data = WebUtils.buildHtmlWithCsss(webText, csss, false);
                 Log.d("gzb" , "vvvvv" + webText);
                 Log.d("gzb" , "aaaaa" + data);
-                //data.replace("article-detail-bd" , "");
+                data = data.replace("article-detail-bd" , "article-detail-hd");
                 webview.loadDataWithBaseURL(WebUtils.BASE_URL, data, WebUtils.MIME_TYPE, WebUtils.ENCODING, WebUtils.FAIL_URL_HAOQIXIN);
             }
         }

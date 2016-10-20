@@ -96,6 +96,7 @@ public class WebUtils {
 
        text = re.substring(re.indexOf("<body ") , re.lastIndexOf("</html>")  );
         text = text.replace("data-src" , "src");
+        text = text.replace("class=\"lazyload\"" , "class=\"lazyload\" style=\"max-width: 100%\"");
 
         Log.d("gzb" , text);
         return  text;
