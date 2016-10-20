@@ -24,20 +24,10 @@ def getIndexInfo(driver ,index):
     print("@@@@")
 
 def main():
-    driver = webdriver.PhantomJS(executable_path="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_Server/phantomjs-2.1.1-macosx/bin/phantomjs")
-    #driver = webdriver.PhantomJS(executable_path="/Users/yszsyf/Desktop/android/Little_See/Little_See_Server/phantomjs-2.1.1-macosx/bin/phantomjs")
+    #driver = webdriver.PhantomJS(executable_path="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_Server/phantomjs-2.1.1-macosx/bin/phantomjs")
+    driver = webdriver.PhantomJS(executable_path="/Users/yszsyf/Desktop/android/Little_See/Little_See_Server/phantomjs-2.1.1-macosx/bin/phantomjs")
     driver.get("http://www.qdaily.com/tags/29.html")
-    # print(driver.page_source)
-    #storelist = driver.find_elements_by_class_name("packery-item")
-    #linklist = driver.find_elements_by_class_name("com-grid-article")
-   # imagelist = driver.find_elements_by_class_name(" lazyloaded")
 
-
-    #
-    # _xpath = "/html/body/div[2]/div[1]/div[3]/a/div[1]/div/img"
-    # _test = driver.find_element_by_xpath(_xpath)
-    # print(_test.get_attribute("alt"))
-    # print(_test.get_attribute("src"))
 
     index = 1
     testindex = 1
@@ -55,18 +45,6 @@ def main():
         else:
             time.sleep(10)
 
-
-
-
-
-
-    # #print(driver.page_source)
-    #
-    # _path = "/html/body/div[2]/div[1]/div[40]/a/div[1]/div/img"
-    # ele = driver.find_element_by_xpath(_path)
-    # print(ele.get_attribute("alt"))
-    #
-    #
 
 
 
