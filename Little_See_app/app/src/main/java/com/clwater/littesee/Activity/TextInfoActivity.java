@@ -83,7 +83,7 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
         webTitle = intent.getStringExtra("webTitle");
         webUrl = intent.getStringExtra("webUrl");
         statu = intent.getStringExtra("statu");
-
+        Log.d("gzb" , "weburl" + webUrl);
 
         initTitle();
         initNavigation();
@@ -109,6 +109,9 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
                 csss[0] = "http://m.qdaily.com/assets/mobile/common.css";
                 csss[1] = "http://m.qdaily.com/assets/mobile/articles/show.css";
                 String data = WebUtils.buildHtmlWithCsss(webText, csss, false);
+                Log.d("gzb" , "vvvvv" + webText);
+                Log.d("gzb" , "aaaaa" + data);
+                //data.replace("article-detail-bd" , "");
                 webview.loadDataWithBaseURL(WebUtils.BASE_URL, data, WebUtils.MIME_TYPE, WebUtils.ENCODING, WebUtils.FAIL_URL_HAOQIXIN);
             }
         }

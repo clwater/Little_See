@@ -79,11 +79,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         context = this;
         
         //testSql();
-        testDom();
 
     }
 
-   
+
 
 
     private void testSql() {

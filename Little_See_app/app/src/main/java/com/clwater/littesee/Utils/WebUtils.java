@@ -6,6 +6,7 @@ import android.os.Environment;
 import android.util.Log;
 
 import com.clwater.littesee.MainActivity;
+import com.nostra13.universalimageloader.utils.L;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -72,10 +73,31 @@ public class WebUtils {
 
     public static String getWebText_haoqixin(String re){
 
-        String text = "";
-        text = re.replace("<div class=\"banner\"><img src=\"http://img.qdaily.com/article/article_show/20161019002211QuiH4LosAhFd12zJ.png?imageMogr2/auto-orient/thumbnail/!580x344r/gravity/Center/crop/580x344/quality/85/format/jpg/ignore-error/1\" alt=\"\"></div>","");
-//        text = re.replace("<div class=\"com-insert-images\"><figure style=\"margin:0;\">" , "<div class=\"banner\">");
+        String text = "<div style=\"margin:0;\">\n" +
+                "    <img alt=\"\" data-ratio=\"0.562500\" data-format=\"png\" class=\" lazyloaded\" data-src=\"http://img.qdaily.com/uploads/201610190020052s1UiLJSPtvNhxo3.png-WebpWebW640\" src=\"http://img.qdaily.com/uploads/201610190020052s1UiLJSPtvNhxo3.png-WebpWebW640\" style=\"height: 323.438px;\">\n" +
+                "</div>\n" +
+                "\n" +
+                "<img class=\"banner lazyloaded\" data-src=\"http://img.qdaily.com/article/article_show/20161019002211QuiH4LosAhFd12zJ.png?imageMogr2/auto-orient/thumbnail/!755x450r/gravity/Center/crop/755x450/quality/85/format/jpg/ignore-error/1\" alt=\"Google 出了个键盘应用，给 VR 用的\" src=\"http://img.qdaily.com/article/article_show/20161019002211QuiH4LosAhFd12zJ.png?imageMogr2/auto-orient/thumbnail/!755x450r/gravity/Center/crop/755x450/quality/85/format/jpg/ignore-error/1\">";
+        //text = re.replace("<div class=\"banner\"><img src=\"http://img.qdaily.com/article/article_show/20161019002211QuiH4LosAhFd12zJ.png?imageMogr2/auto-orient/thumbnail/!580x344r/gravity/Center/crop/580x344/quality/85/format/jpg/ignore-error/1\" alt=\"\"></div>","");
+//        text = re.replace("figure" , "div");
+//        Log.d("gzb" , "" + text);
+//        Log.d("gzb" , "" + text);
+//        text = re.replace("<div class=\"com-insert-images\"><figure style=\"margin:0;\">\n" +
+//                "    <img alt=\"\" data-ratio=\"0.562500\" data-format=\"png\" class=\" lazyloaded\" data-src=\"http://img.qdaily.com/uploads/201610190020052s1UiLJSPtvNhxo3.png-WebpMobileW750\" src=\"http://img.qdaily.com/uploads/201610190020052s1UiLJSPtvNhxo3.png-WebpMobileW750\" style=\"height: 725.625px;\">\n" +
+//                "</figure></div>" ,
+//                "<img alt=\"\" data-ratio=\"0.562500\" data-format=\"png\" class=\" lazyloaded\" data-src=\"http://img.qdaily.com/uploads/201610190020052s1UiLJSPtvNhxo3.png-WebpMobileW750\" src=\"http://img.qdaily.com/uploads/201610190020052s1UiLJSPtvNhxo3.png-WebpMobileW750\" style=\"height: 725.625px;\">\n");
+//        //text = re +  "<img alt=\"\" data-ratio=\"0.562500\" data-format=\"png\" class=\" lazyloaded\" data-src=\"http://img.qdaily.com/uploads/201610190020052s1UiLJSPtvNhxo3.png-WebpWebW640\" src=\"http://img.qdaily.com/uploads/201610190020052s1UiLJSPtvNhxo3.png-WebpWebW640\" style=\"height: 323.438px;\">";
+        //        text = re.replace("<div class=\"com-insert-images\"><figure style=\"margin:0;\">" , "<div class=\"banner\">");
 //        text = text.replace("</figure></div>" , "</div>");
+
+           //text = re.replace("<div class=\"com-insert-images\"><figure style=\"margin:0;\">" , "<div class=\"banner\">");
+       // text = re.substring(0 , re.indexOf("script") ) + re.substring(re.lastIndexOf("script") , re.length());
+       //     text = re.replace("figure" , "div");
+
+       text = re.substring(re.indexOf("<body ") , re.lastIndexOf("</html>")  );
+        text = text.replace("data-src" , "src");
+
+        Log.d("gzb" , text);
         return  text;
         //return re.substring(re.indexOf("<div class=\"article-detail-bd\">") , re.lastIndexOf("<div class=\"article-detail-ft\">"));
     }
