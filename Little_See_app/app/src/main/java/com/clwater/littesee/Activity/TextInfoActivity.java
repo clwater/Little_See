@@ -62,6 +62,7 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
     private String webTitle;
     private String webUrl;
     private int _yold = 0;
+    private String[] webCsss = new String [2];
 
     private AlertDialog prcessDialog;
 
@@ -99,19 +100,10 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
                 webview.loadDataWithBaseURL(WebUtils.BASE_URL, data, WebUtils.MIME_TYPE, WebUtils.ENCODING, WebUtils.FAIL_URL_ZHIHU);
             }
         }else if (statu.equals("haoqixin")){
-            //webview.loadUrl(webUrl);
-         //   webview.loadUrl("javascript:e = document.evaluate(\"html/body/div[2]/div[1]/div[1]/div[1]\", document, null, XPathResult.ANY_TYPE, null);e.style.display=\"none\";");
             initWebViewInfo_haoqixin(webUrl);
             Log.d("gzb" , webUrl);
             if (webText != null) {
-                String css = "";
-                String[] csss = new String[2];
-                csss[0] = "http://m.qdaily.com/assets/mobile/common.css";
-                csss[1] = "http://m.qdaily.com/assets/mobile/articles/show.css";
-                String data = WebUtils.buildHtmlWithCsss(webText, csss, false);
-                Log.d("gzb" , "vvvvv" + webText);
-                Log.d("gzb" , "aaaaa" + data);
-                data = data.replace("article-detail-bd" , "article-detail-hd");
+                String data = WebUtils.buildHtmlWithCsss(webText, webCsss, false);
                 webview.loadDataWithBaseURL(WebUtils.BASE_URL, data, WebUtils.MIME_TYPE, WebUtils.ENCODING, WebUtils.FAIL_URL_HAOQIXIN);
             }
         }
@@ -158,10 +150,9 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
     private void initWebViewInfo_haoqixin(String url) {
         String re = OkHttp_LS.okhttp_get(url);
         if ( (re != null) && (!re.equals("ok http  get error")) && (!re.equals(""))){
-            //webText = re;
             webText = WebUtils.getWebText_haoqixin(re);
-           // webCss = WebUtils.getWebCss_haoqixin(re);
-           // prcessDialog.dismiss();
+            webCsss[0] = "http://m.qdaily.com/assets/mobile/common.css";
+            webCsss[1] = "http://m.qdaily.com/assets/mobile/articles/show.css";
         }else {
             initWebViewInfo_haoqixin(url);
         }

@@ -73,37 +73,23 @@ public class WebUtils {
 
     public static String getWebText_haoqixin(String re){
 
-        String text = "<div style=\"margin:0;\">\n" +
-                "    <img alt=\"\" data-ratio=\"0.562500\" data-format=\"png\" class=\" lazyloaded\" data-src=\"http://img.qdaily.com/uploads/201610190020052s1UiLJSPtvNhxo3.png-WebpWebW640\" src=\"http://img.qdaily.com/uploads/201610190020052s1UiLJSPtvNhxo3.png-WebpWebW640\" style=\"height: 323.438px;\">\n" +
-                "</div>\n" +
-                "\n" +
-                "<img class=\"banner lazyloaded\" data-src=\"http://img.qdaily.com/article/article_show/20161019002211QuiH4LosAhFd12zJ.png?imageMogr2/auto-orient/thumbnail/!755x450r/gravity/Center/crop/755x450/quality/85/format/jpg/ignore-error/1\" alt=\"Google 出了个键盘应用，给 VR 用的\" src=\"http://img.qdaily.com/article/article_show/20161019002211QuiH4LosAhFd12zJ.png?imageMogr2/auto-orient/thumbnail/!755x450r/gravity/Center/crop/755x450/quality/85/format/jpg/ignore-error/1\">";
-        //text = re.replace("<div class=\"banner\"><img src=\"http://img.qdaily.com/article/article_show/20161019002211QuiH4LosAhFd12zJ.png?imageMogr2/auto-orient/thumbnail/!580x344r/gravity/Center/crop/580x344/quality/85/format/jpg/ignore-error/1\" alt=\"\"></div>","");
-//        text = re.replace("figure" , "div");
-//        Log.d("gzb" , "" + text);
-//        Log.d("gzb" , "" + text);
-//        text = re.replace("<div class=\"com-insert-images\"><figure style=\"margin:0;\">\n" +
-//                "    <img alt=\"\" data-ratio=\"0.562500\" data-format=\"png\" class=\" lazyloaded\" data-src=\"http://img.qdaily.com/uploads/201610190020052s1UiLJSPtvNhxo3.png-WebpMobileW750\" src=\"http://img.qdaily.com/uploads/201610190020052s1UiLJSPtvNhxo3.png-WebpMobileW750\" style=\"height: 725.625px;\">\n" +
-//                "</figure></div>" ,
-//                "<img alt=\"\" data-ratio=\"0.562500\" data-format=\"png\" class=\" lazyloaded\" data-src=\"http://img.qdaily.com/uploads/201610190020052s1UiLJSPtvNhxo3.png-WebpMobileW750\" src=\"http://img.qdaily.com/uploads/201610190020052s1UiLJSPtvNhxo3.png-WebpMobileW750\" style=\"height: 725.625px;\">\n");
-//        //text = re +  "<img alt=\"\" data-ratio=\"0.562500\" data-format=\"png\" class=\" lazyloaded\" data-src=\"http://img.qdaily.com/uploads/201610190020052s1UiLJSPtvNhxo3.png-WebpWebW640\" src=\"http://img.qdaily.com/uploads/201610190020052s1UiLJSPtvNhxo3.png-WebpWebW640\" style=\"height: 323.438px;\">";
-        //        text = re.replace("<div class=\"com-insert-images\"><figure style=\"margin:0;\">" , "<div class=\"banner\">");
-//        text = text.replace("</figure></div>" , "</div>");
-
-           //text = re.replace("<div class=\"com-insert-images\"><figure style=\"margin:0;\">" , "<div class=\"banner\">");
-       // text = re.substring(0 , re.indexOf("script") ) + re.substring(re.lastIndexOf("script") , re.length());
-       //     text = re.replace("figure" , "div");
-
-       text = re.substring(re.indexOf("<body ") , re.lastIndexOf("</html>")  );
+        String text = re.substring(re.indexOf("<div class=\"article-detail-bd\">") , re.lastIndexOf("article-detail-ft"));
+                //re.indexOf("<body ") , re.lastIndexOf("</html>")  );
         text = text.replace("data-src" , "src");
-        text = text.replace("class=\"lazyload\"" , "class=\"lazyload\" style=\"max-width: 100%\"");
-
-        Log.d("gzb" , text);
+        text = text.replace("class=\"lazyload\"" , "class=\"lazyload\" style=\"max-width: 96%\"");
+        text = text.replace("class=\"excerpt\"" , "style=\"\n" +
+                "    position: relative;\n" +
+                "    margin-top: 15px;\n" +
+                "    margin-top: .75rem;\n" +
+                "    padding: 25px 0;\n" +
+                "    padding: 1.25rem 0;\n" +
+                "    color: #9c9c9c;\n" +
+                "    text-align: center;\n" +
+                "\"");
+        text = text.replace("class=\"article-detail-bd\"" , "style=\"padding-left: 10px ;padding-top: 10px\"");
+        text = text.replace("题图来自" , "<b>题图来自</b>");
+        text = text.replace("<p" , "<p style=\"font-size: 20px\"");
         return  text;
-        //return re.substring(re.indexOf("<div class=\"article-detail-bd\">") , re.lastIndexOf("<div class=\"article-detail-ft\">"));
-    }
-    public static String getWebCss_haoqixin(String _re){
-        return "";
     }
 
 }
