@@ -23,23 +23,6 @@ import com.clwater.littesee.Fragment.ImageFragment;
 import com.clwater.littesee.Fragment.WangyiFragment;
 import com.clwater.littesee.Fragment.ZhiHuFragment;
 import com.clwater.littesee.Utils.Analysis.ZhiHuAnalysis;
-import com.clwater.littesee.Utils.DBHelper.ZhiHu;
-import com.clwater.littesee.Utils.DBHelper.ZhiHuDaoOrm;
-import com.j256.ormlite.table.TableUtils;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -62,9 +45,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     public static Context context;
 
-
-    private String result = "";
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,10 +76,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         FragmentManager fm = getFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        //_zhihu = new ZhiHuFragment();
+        _zhihu = new ZhiHuFragment();
         //_image = new ImageFragment();
         _haoqixin = new HaoQiXinFragment();
-        transaction.replace(R.id.id_content, _haoqixin);
+        transaction.replace(R.id.id_content, _zhihu);
         transaction.commit();
 
     }
