@@ -45,7 +45,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     public static Context context;
 
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,10 +76,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         FragmentManager fm = getFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        _zhihu = new ZhiHuFragment();
+        //_zhihu = new ZhiHuFragment();
         //_image = new ImageFragment();
-        _haoqixin = new HaoQiXinFragment();
-        transaction.replace(R.id.id_content, _zhihu);
+        //_haoqixin = new HaoQiXinFragment();
+        _wangyi = new WangyiFragment();
+        transaction.replace(R.id.id_content, _wangyi);
         transaction.commit();
 
     }
