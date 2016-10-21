@@ -11,39 +11,49 @@ wangyilist = []
 
 def getIndexInfo(driver ,index):
     #print(index)
-    xpath = "/html/body/div[2]/div[1]/div[" + str(index) + "]/a"
-    # xpath = "/html/body/div[2]/div[1]/div[" + str(index) + "]/a/div[1]/div/img"
+    xpath = "//*[@id=\"index2016_wrap\"]/div[2]/div[2]/div[3]/div[2]/div[5]/div/ul/li[1]/div/div[" + str(index) + "]/a"
+    #xpath = "//*[@id=\"index2016_wrap\"]/div[2]/div[2]/div[3]/div[2]/div[5]/div/ul/li[1]/div/div[1]/a"
     test = driver.find_element_by_xpath(xpath)
     print(test.get_attribute("href"))
     print("||||")
-    xpath = xpath + "/div[1]/div/img"
+    xpath = xpath + "/img"
     test = driver.find_element_by_xpath(xpath)
-    print(test.get_attribute("data-src"))
+    print(test.get_attribute("src"))
     print("||||")
     print(test.get_attribute("alt"))
     print("@@@@")
 
 def main():
-    #driver = webdriver.PhantomJS(executable_path="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_Server/phantomjs-2.1.1-macosx/bin/phantomjs")
-    driver = webdriver.PhantomJS(executable_path="/Users/yszsyf/Desktop/android/Little_See/Little_See_Server/phantomjs-2.1.1-macosx/bin/phantomjs")
+    driver = webdriver.PhantomJS(executable_path="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_Server/phantomjs-2.1.1-macosx/bin/phantomjs")
+    #driver = webdriver.PhantomJS(executable_path="/Users/yszsyf/Desktop/android/Little_See/Little_See_Server/phantomjs-2.1.1-macosx/bin/phantomjs")
     driver.get("http://news.163.com/")
-
+    time.sleep(5)
 
     index = 1
-    testindex = 1
-    while testindex < 11:
-        temp_index = index + 20
-        while index < temp_index:
-            getIndexInfo(driver, index)
+    while True:
+        try :
+            getIndexInfo(driver , index)
             index = index + 1
-        _path = "/html/body/div[2]/div[1]/div["+str(index - 1)+"]/a"
-        ele = driver.find_element_by_xpath(_path)
-        ActionChains(driver).move_to_element(ele).perform()
-        testindex = testindex + 1
-        if  testindex != 6:
-            time.sleep(3)
-        else:
-            time.sleep(10)
+        except Exception :
+            index = index - 1
+            _path = "//*[@id=\"index2016_wrap\"]/div[2]/div[2]/div[3]/div[2]/div[5]/div/ul/li[1]/div/div[" + str(index) + "]/a"
+            ele = driver.find_element_by_xpath(_path)
+            ActionChains(driver).move_to_element(ele).perform()
+            time.sleep(5)
+            index = index + 1
+
+
+
+
+
+
+
+    # xpath = "//*[@id=\"index2016_wrap\"]/div[2]/div[2]/div[3]/div[2]/div[5]/div/ul/li[1]/div/div[1]/div/div[1]"
+    # ele = driver.find_element_by_xpath(xpath)
+    # print(ele.text)
+
+   # print(driver.page_source)
+
 
 
 
