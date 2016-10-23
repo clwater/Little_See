@@ -6,6 +6,8 @@ import android.util.Log;
 import com.clwater.littesee.MainActivity;
 import com.clwater.littesee.Utils.DBHelper.HaoQiXin;
 import com.clwater.littesee.Utils.DBHelper.HaoQiXinDaoOrm;
+import com.clwater.littesee.Utils.DBHelper.WangYi;
+import com.clwater.littesee.Utils.DBHelper.WangYiDaoOrm;
 import com.clwater.littesee.Utils.DBHelper.ZhiHu;
 import com.clwater.littesee.Utils.DBHelper.ZhiHuDaoOrm;
 
@@ -17,12 +19,126 @@ import java.util.List;
 
 public class ZhiHuAnalysis {
     public static void Analysis(Context context){
-       test1();
-        test2();
+      // test1();
+      //  test2();
+        test3();
     }
 
 
-
+    private static  String testText3="http://news.163.com/16/1022/19/C40MJUH30001875P.html?f=bj_news#loc=1\n" +
+            "!!!!\n" +
+            "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/bd1236e59ec14fd2a7e82f1cd2b713c620161022193151.png_140x88x1x85.jpg\n" +
+            "!!!!\n" +
+            "24岁女孩裸死河中遗体已打捞 疑似生前被人殴打\n" +
+            "@@@@\n" +
+            "http://news.163.com/16/1022/19/C40L5SJD0001875P.html?f=bj_news#loc=2\n" +
+            "!!!!\n" +
+            "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/2f2ddfd5c75d4d77a065f2156ab6483620161022194723.jpeg_140x88x1x85.jpg\n" +
+            "!!!!\n" +
+            "跑马者:狂热时全国全世界去跑 都能拿出一把奖牌\n" +
+            "@@@@\n" +
+            "http://news.163.com/16/1022/18/C40KLG7K000187VE.html?f=bj_news#loc=3\n" +
+            "!!!!\n" +
+            "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/1674009d60324b338f6afc07c9ffe4e320161022191925.jpeg_140x88x1x85.jpg\n" +
+            "!!!!\n" +
+            "江苏盱眙县幼儿园一班级学生疑食物中毒 正在调查\n" +
+            "@@@@\n" +
+            "http://news.163.com/16/1022/19/C40LNL9I000156PO.html?f=bj_news#loc=4\n" +
+            "!!!!\n" +
+            "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/c5ddc03c7d654764bae1919a8e30086f20161022193421.jpeg_140x88x1x85.jpg\n" +
+            "!!!!\n" +
+            "中国海军护航编队访越 将开展足球友谊赛等活动\n" +
+            "@@@@\n" +
+            "http://money.163.com/?f=bj_news#loc=5\n" +
+            "!!!!\n" +
+            "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/7587659c3b7346879c6d0c1a2c736bf920161022110801.jpeg_140x88x1x85.jpg\n" +
+            "!!!!\n" +
+            "外媒看中国楼市:泡沫是误诊 土地供应失衡是病因\n" +
+            "@@@@\n" +
+            "http://news.163.com/16/1022/18/C40KVFOL00014JB5.html?f=bj_news#loc=6\n" +
+            "!!!!\n" +
+            "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/b67dbef0603a40b68e18949f08c369cd20161022191037.jpeg_140x88x1x85.jpg\n" +
+            "!!!!\n" +
+            "国家旅游局:各地景区科学配置坐蹲位男女厕位比例\n" +
+            "@@@@\n" +
+            "http://news.163.com/16/1022/18/C40HUK130001875O.html?f=bj_news#loc=7\n" +
+            "!!!!\n" +
+            "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/f0ff3c16ff004c8181ae396bb4a8d46f20161022180639.jpeg_140x88x1x85.jpg\n" +
+            "!!!!\n" +
+            "比利时一超市因出现一名持有武器男子被疏散\n" +
+            "@@@@\n" +
+            "http://news.163.com/16/1022/16/C40D6K0O0001875N.html?f=bj_news#loc=8\n" +
+            "!!!!\n" +
+            "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/9d16f21e965548c9952b1712a4151af920161022164523.jpeg_140x88x1x85.jpg\n" +
+            "!!!!\n" +
+            "安徽一核载19人中巴车挤进65人 超员242%\n" +
+            "@@@@\n" +
+            "http://news.163.com/16/1022/16/C40CJT66000187V5.html?f=bj_news#loc=9\n" +
+            "!!!!\n" +
+            "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/4615895177b242deac305b32368c62ff20161022164146.jpeg_140x88x1x85.jpg\n" +
+            "!!!!\n" +
+            "甘肃统战部原副部长涉非法吸存近6700万元受审\n" +
+            "@@@@\n" +
+            "http://tech.163.com/16/1022/08/C3VI9VEL00097U7H.html?f=bj_news#loc=10\n" +
+            "!!!!\n" +
+            "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/c92d2f55b65b43febe29a1c10ba1a58d20161022085149.png_140x88x1x85.jpg\n" +
+            "!!!!\n" +
+            "iPhone 7也引起汽车起火了？苹果正在调查\n" +
+            "@@@@\n" +
+            "http://news.163.com/16/1022/16/C40CFCQG000187VE.html?f=bj_news#loc=11\n" +
+            "!!!!\n" +
+            "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/53cb704473b54ad58a8627db0880e77620161022173315.jpeg_140x88x1x85.jpg\n" +
+            "!!!!\n" +
+            "16岁女生在男友央求下贩毒 经检察院建议被判缓刑\n" +
+            "@@@@\n" +
+            "http://news.163.com/16/1022/16/C40BASHR000187V9.html?f=bj_news#loc=12\n" +
+            "!!!!\n" +
+            "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/60724ccd20c9464f81b73d4020f4de2220161022162822.png_140x88x1x85.jpg\n" +
+            "!!!!\n" +
+            "中国＂慰安妇＂历史博物馆落成 学者呼吁珍爱和平\n" +
+            "@@@@\n" +
+            "http://news.163.com/16/1022/15/C40A8MET0001875N.html?f=bj_news#loc=13\n" +
+            "!!!!\n" +
+            "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/635b7d9299b24743bc9ecc8c871d438620161022155134.png_140x88x1x85.jpg\n" +
+            "!!!!\n" +
+            "福建安溪公开宣判11名电信诈骗嫌犯 上千人观看\n" +
+            "@@@@\n" +
+            "http://news.163.com/16/1022/15/C409QC9K000156PO.html?f=bj_news#loc=14\n" +
+            "!!!!\n" +
+            "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/1a207828dbef4593a187873ec376e41220161022155210.jpeg_140x88x1x85.jpg\n" +
+            "!!!!\n" +
+            " 湖南4官员＂雁过拔毛＂式腐败:冒领养老金近20万元\n" +
+            "@@@@\n" +
+            "http://sports.163.com/16/1022/19/C40N3OL700058780.html?f=bj_news#loc=15\n" +
+            "!!!!\n" +
+            "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/46f0fd64137a41199506250fdc93d48d20161022194442.jpeg_140x88x1x85.jpg\n" +
+            "!!!!\n" +
+            "里皮团队税前年薪近3000万欧 超瓜帅穆帅世界第1\n" +
+            "@@@@\n" +
+            "http://news.163.com/16/1022/15/C4083UM80001875P.html?f=bj_news#loc=16\n" +
+            "!!!!\n" +
+            "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/002361af6fc3403e86b90864c8d1fb0020161022151307.jpeg_140x88x1x85.jpg\n" +
+            "!!!!\n" +
+            "＂川师杀人案＂嫌犯已移交法院 申请再鉴定精神状况\n" +
+            "@@@@\n" +
+            "http://g.163.com/c?AID=242955&FlightID=3191&Values=49717716&Redirect=http://at.mct01.com/c.htm?pv=1&sp=0,3002002,3000308,3036831,0,1,1&wtu=CRAXGFNBTlkUGEMABxYaCEACQQ5BDg8-/cdx/special/index.html?utm_source=163%26utm_medium=news%26utm_term=top%26utm_content=text%26utm_campaign=Y16Q4M10_acura_013\n" +
+            "!!!!\n" +
+            "http://img1.126.net/channel8/025437_14088_1022.jpg\n" +
+            "!!!!\n" +
+            "广汽Acura CDX 四驱版激越上市\n" +
+            "@@@@\n" +
+            "http://news.163.com/16/1022/15/C4081Q8C000187VE.html?f=bj_news#loc=18\n" +
+            "!!!!\n" +
+            "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/ae084b44ef56423ba36563e681afe41e20161022152719.jpeg_140x88x1x85.jpg\n" +
+            "!!!!\n" +
+            "湖南浏阳回应养殖户服毒身亡:没强拆 将调查情况\n" +
+            "@@@@\n" +
+            "http://news.163.com/16/1022/15/C407IREN000187VE.html?f=bj_news#loc=19\n" +
+            "!!!!\n" +
+            "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/fa7cb57cdb384d43ad409fa59aaf37af20161022153258.jpeg_140x88x1x85.jpg\n" +
+            "!!!!\n" +
+            "山东推机关住房制度改革 清退整改多占住房286套\n" +
+            "@@@@";
 
     private static String testText2 = "http://m.qdaily.com/mobile/articles/33473.html\n" +
             "!!!!\n" +
@@ -1258,6 +1374,24 @@ public class ZhiHuAnalysis {
             "['很早以前，动画里的人物头发颜色还挺正常的，后来……', 'http://daily.zhihu.com/story/8865033', 'http://pic2.zhimg.com/7bf3f3b878b0c8d6d98db74e491356b9.jpg']";
 
 
+
+
+    private static void test3() {
+        WangYiDaoOrm wangyiDaoOrm = new WangYiDaoOrm(MainActivity.context);
+        testText3 = testText3.replace("\n" , "");
+        String[] list = testText3.split("@@@@");
+        for (int i = 0 ; i < list.length - 3 ; i++){
+            String[] l = list[i].split("!!!!");
+            WangYi wangyi = new WangYi();
+            wangyi.setTitle(l[2]);
+            wangyi.setAddress(l[0]);
+            wangyi.setTitle_image(l[1]);
+            wangyi.setIsRead(0);
+            wangyiDaoOrm.add(wangyi);
+        }
+    }
+
+
     private static void test2() {
         HaoQiXinDaoOrm haoQiXinDaoOrm = new HaoQiXinDaoOrm(MainActivity.context);
         testText2 = testText2.replace("\n" , "");
@@ -1292,4 +1426,6 @@ public class ZhiHuAnalysis {
         }
 
     }
+
+
 }

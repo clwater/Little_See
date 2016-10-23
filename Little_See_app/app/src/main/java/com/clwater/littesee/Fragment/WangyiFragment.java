@@ -17,6 +17,8 @@ import com.clwater.littesee.Adapater.ListViewImageAdapter;
 import com.clwater.littesee.R;
 import com.clwater.littesee.Utils.DBHelper.HaoQiXin;
 import com.clwater.littesee.Utils.DBHelper.HaoQiXinDaoOrm;
+import com.clwater.littesee.Utils.DBHelper.WangYi;
+import com.clwater.littesee.Utils.DBHelper.WangYiDaoOrm;
 import com.clwater.littesee.Utils.EventBus.Event_RunInBack;
 import com.clwater.littesee.Utils.EventBus.Event_RunInFront;
 import com.pnikosis.materialishprogress.ProgressWheel;
@@ -54,7 +56,7 @@ public class WangYiFragment extends Fragment {
     private boolean precess_statu = true;
 
     List<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
-   // HaoQiXinDaoOrm haoQinXinDaoOrm;
+    WangYiDaoOrm wangYiDaoOrm;
 
 
     @Override
@@ -84,28 +86,28 @@ public class WangYiFragment extends Fragment {
 
     public List<Map<String, Object>> getData(){
 
-//        haoQinXinDaoOrm = new HaoQiXinDaoOrm(getActivity());
-//        List<HaoQiXin> haoQiXinList= haoQinXinDaoOrm.select();
-//        for (int i = 0 ; i < haoQiXinList.size()   ; i++){
-//            HaoQiXin haoQiXin = haoQiXinList.get(i);
-//            Map<String, Object> map=new HashMap<String, Object>();
-//            map.put("id" , haoQiXin.getId());
-//            map.put("title" , haoQiXin.getTitle());
-//            map.put("address" , haoQiXin.getAddress());
-//            map.put("title_image" , haoQiXin.getTitle_image());
-//            map.put("isread" , haoQiXin.getIsRead());
-//            list.add(map);
-//        }
-
-        for (int i = 0 ; i < 10   ; i++){
+        wangYiDaoOrm = new WangYiDaoOrm(getActivity());
+        List<WangYi> wangYiList= wangYiDaoOrm.select();
+        for (int i = 0 ; i < wangYiList.size()   ; i++){
+            WangYi wangyi = wangYiList.get(i);
             Map<String, Object> map=new HashMap<String, Object>();
-            map.put("id" , "id:" + i);
-            map.put("title" , "title:" + i);
-            map.put("address" , "address:" + i);
-            map.put("title_image" , "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/31152e3fe3914d25b2b46407f5d0532020161021152016.jpeg_140x88x1x85.jpg");
-            map.put("isread" , 0);
+            map.put("id" , wangyi.getId());
+            map.put("title" , wangyi.getTitle());
+            map.put("address" , wangyi.getAddress());
+            map.put("title_image" , wangyi.getTitle_image());
+            map.put("isread" , wangyi.getIsRead());
             list.add(map);
         }
+
+//        for (int i = 0 ; i < 10   ; i++){
+//            Map<String, Object> map=new HashMap<String, Object>();
+//            map.put("id" , "id:" + i);
+//            map.put("title" , "title:" + i);
+//            map.put("address" , "address:" + i);
+//            map.put("title_image" , "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/31152e3fe3914d25b2b46407f5d0532020161021152016.jpeg_140x88x1x85.jpg");
+//            map.put("isread" , 0);
+//            list.add(map);
+//        }
 
 
         return list;
