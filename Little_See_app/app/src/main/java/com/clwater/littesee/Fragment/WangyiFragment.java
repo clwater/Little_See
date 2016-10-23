@@ -40,7 +40,7 @@ import static android.os.SystemClock.sleep;
  * Created by gengzhibo on 16/10/10.
  */
 
-public class WangyiFragment extends Fragment {
+public class WangYiFragment extends Fragment {
     @InjectView(R.id.main_list)
     public ListView main_list;
     @InjectView(R.id._main_top_process)

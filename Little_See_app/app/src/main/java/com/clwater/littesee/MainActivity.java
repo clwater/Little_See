@@ -20,7 +20,7 @@ import com.clwater.littesee.Activity.AboutActivity;
 import com.clwater.littesee.Activity.BaseActivity;
 import com.clwater.littesee.Fragment.HaoQiXinFragment;
 import com.clwater.littesee.Fragment.ImageFragment;
-import com.clwater.littesee.Fragment.WangyiFragment;
+import com.clwater.littesee.Fragment.WangYiFragment;
 import com.clwater.littesee.Fragment.ZhiHuFragment;
 import com.clwater.littesee.Utils.Analysis.ZhiHuAnalysis;
 import butterknife.ButterKnife;
@@ -38,7 +38,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public Toolbar toolbar;
 
 
-    private WangyiFragment _wangyi;
+    private WangYiFragment _wangyi;
     private ZhiHuFragment _zhihu;
     private ImageFragment _image;
     private HaoQiXinFragment _haoqixin;
@@ -79,7 +79,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         //_zhihu = new ZhiHuFragment();
         //_image = new ImageFragment();
         //_haoqixin = new HaoQiXinFragment();
-        _wangyi = new WangyiFragment();
+        _wangyi = new WangYiFragment();
         transaction.replace(R.id.id_content, _wangyi);
         transaction.commit();
 
@@ -113,7 +113,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             case R.id.nav_wangyi:
                 toolbar.setTitle("网易");
                 if (_wangyi == null){
-                    _wangyi = new WangyiFragment();
+                    _wangyi = new WangYiFragment();
                 }
                 transaction.replace(R.id.id_content, _wangyi);
                 transaction.commit();
