@@ -107,13 +107,13 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
                 webview.loadDataWithBaseURL(WebUtils.BASE_URL, data, WebUtils.MIME_TYPE, WebUtils.ENCODING, WebUtils.FAIL_URL_HAOQIXIN);
             }
         }else if (statu.equals("wangyi")){
-            //webview.loadUrl(webUrl);
-            initWebViewInfo_wangyi(webUrl);
+            webview.loadUrl(webUrl);
+           // initWebViewInfo_wangyi(webUrl);
             // Log.d("gzb" , webUrl);
-            if (webText != null) {
-               // String data = WebUtils.buildHtmlWithCsss(webText, webCsss, false);
-                webview.loadDataWithBaseURL(WebUtils.BASE_URL, webText, WebUtils.MIME_TYPE, WebUtils.ENCODING, WebUtils.FAIL_URL_HAOQIXIN);
-            }
+//            if (webText != null) {
+//               // String data = WebUtils.buildHtmlWithCsss(webText, webCsss, false);
+//                webview.loadDataWithBaseURL(WebUtils.BASE_URL, webText, WebUtils.MIME_TYPE, WebUtils.ENCODING, WebUtils.FAIL_URL_HAOQIXIN);
+//            }
         }
 
 
@@ -159,6 +159,7 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
     private void initWebViewInfo_wangyi(String url) {
         String re = OkHttp_LS.okhttp_get(url);
         if ( (re != null) && (!re.equals("ok http  get error")) && (!re.equals(""))){
+            webText = re;
             webText = WebUtils.getWebText_wangyi(re);
             //webCss = WebUtils.getWebCss_zhihu(re);
 //            prcessDialog.dismiss();
