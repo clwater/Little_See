@@ -59,6 +59,10 @@ public class HaoQiXinFragment extends Fragment {
     HaoQiXinDaoOrm haoQinXinDaoOrm;
 
 
+//    @InjectView(R.id.testText)
+//    TextView testText;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -77,6 +81,9 @@ public class HaoQiXinFragment extends Fragment {
 
 
         EventBus.getDefault().register(this);
+
+
+//        testText.setText("haoqixin");
 
         return view;
 

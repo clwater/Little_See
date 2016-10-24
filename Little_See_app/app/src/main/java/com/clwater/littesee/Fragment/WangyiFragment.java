@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +59,10 @@ public class WangYiFragment extends Fragment {
     List<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
     WangYiDaoOrm wangYiDaoOrm;
 
+//    @InjectView(R.id.testText)
+//    TextView testText;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,6 +81,9 @@ public class WangYiFragment extends Fragment {
 
         EventBus.getDefault().register(this);
 
+
+//        testText.setText("wangyi");
+
         return view;
     }
 
@@ -88,16 +96,17 @@ public class WangYiFragment extends Fragment {
 
         wangYiDaoOrm = new WangYiDaoOrm(getActivity());
         List<WangYi> wangYiList= wangYiDaoOrm.select();
-        for (int i = 0 ; i < wangYiList.size()   ; i++){
-            WangYi wangyi = wangYiList.get(i);
-            Map<String, Object> map=new HashMap<String, Object>();
-            map.put("id" , wangyi.getId());
-            map.put("title" , wangyi.getTitle());
-            map.put("address" , wangyi.getAddress());
-            map.put("title_image" , wangyi.getTitle_image());
-            map.put("isread" , wangyi.getIsRead());
-            list.add(map);
-        }
+        if (wangYiList != null)
+            for (int i = 0 ; i < wangYiList.size()   ; i++){
+                WangYi wangyi = wangYiList.get(i);
+                Map<String, Object> map=new HashMap<String, Object>();
+                map.put("id" , wangyi.getId());
+                map.put("title" , wangyi.getTitle());
+                map.put("address" , wangyi.getAddress());
+                map.put("title_image" , wangyi.getTitle_image());
+                map.put("isread" , wangyi.getIsRead());
+                list.add(map);
+            }
 
 //        for (int i = 0 ; i < 10   ; i++){
 //            Map<String, Object> map=new HashMap<String, Object>();

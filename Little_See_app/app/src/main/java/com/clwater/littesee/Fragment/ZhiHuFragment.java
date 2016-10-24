@@ -60,6 +60,10 @@ public class ZhiHuFragment extends Fragment
     List<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
     ZhiHuDaoOrm zhiHuDaoOrm;
 
+//    @InjectView(R.id.testText)
+//    TextView testText;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -76,6 +80,8 @@ public class ZhiHuFragment extends Fragment
 
 
         EventBus.getDefault().register(this);
+
+//        testText.setText("zhihu");
 
         return view;
     }

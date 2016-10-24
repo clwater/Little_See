@@ -19,18 +19,13 @@ import java.util.List;
 
 public class ZhiHuAnalysis {
     public static void Analysis(Context context){
-      // test1();
-      //  test2();
+       test1();
+        test2();
         test3();
     }
 
 
-    private static  String testText3="http://news.163.com/16/1022/19/C40MJUH30001875P.html?f=bj_news#loc=1\n" +
-            "!!!!\n" +
-            "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/bd1236e59ec14fd2a7e82f1cd2b713c620161022193151.png_140x88x1x85.jpg\n" +
-            "!!!!\n" +
-            "24岁女孩裸死河中遗体已打捞 疑似生前被人殴打\n" +
-            "@@@@\n" +
+    private static  String testText3=
             "http://news.163.com/16/1022/19/C40L5SJD0001875P.html?f=bj_news#loc=2\n" +
             "!!!!\n" +
             "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/2f2ddfd5c75d4d77a065f2156ab6483620161022194723.jpeg_140x88x1x85.jpg\n" +
@@ -1380,7 +1375,7 @@ public class ZhiHuAnalysis {
         WangYiDaoOrm wangyiDaoOrm = new WangYiDaoOrm(MainActivity.context);
         testText3 = testText3.replace("\n" , "");
         String[] list = testText3.split("@@@@");
-        for (int i = 0 ; i < list.length - 3 ; i++){
+        for (int i = 0 ; i < list.length - 1 ; i++){
             String[] l = list[i].split("!!!!");
             WangYi wangyi = new WangYi();
             wangyi.setTitle(l[2]);

@@ -5,7 +5,12 @@
     xmlns:wheel="http://schemas.android.com/apk/res-auto">
 
 
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/testText"
+        android:textSize="32sp"
+        />
 
     <RelativeLayout
         android:layout_width="match_parent"
