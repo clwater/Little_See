@@ -156,20 +156,18 @@ public class WangYiFragment extends Fragment {
             precess_statu = false;
         }
 
-//        Map<String, Object> map= list.get(position);
-//        HaoQiXin haoQiXin = haoQinXinDaoOrm.seleteHaoQinXin(Integer.valueOf( map.get("id").toString() ));
-//        haoQiXin.setIsRead(1);
-//        haoQinXinDaoOrm.add(haoQiXin);
-//
-//        Intent intent = new Intent(getActivity() , TextInfoActivity.class);
-//        intent.putExtra("webImage" , map.get("title_image").toString());
-//        intent.putExtra("webTitle" , map.get("title").toString());
-//        intent.putExtra("webUrl" , map.get("address").toString());
-//        //intent.putExtra("webUrl" , "http://m.qdaily.com/mobile/articles/33458.html");
-//
-//        intent.putExtra("statu" , "haoqixin");
-//
-//        startActivity(intent);
+        Map<String, Object> map= list.get(position);
+        WangYi wangyi = wangYiDaoOrm.seleteHaoQinXin(Integer.valueOf( map.get("id").toString() ));
+        wangyi.setIsRead(1);
+        wangYiDaoOrm.add(wangyi);
+
+        Intent intent = new Intent(getActivity() , TextInfoActivity.class);
+        intent.putExtra("webImage" , map.get("title_image").toString());
+        intent.putExtra("webTitle" , map.get("title").toString());
+        intent.putExtra("webUrl" , map.get("address").toString());
+        intent.putExtra("statu" , "wangyi");
+
+        startActivity(intent);
 
         upDateItemTextColor(position);
 

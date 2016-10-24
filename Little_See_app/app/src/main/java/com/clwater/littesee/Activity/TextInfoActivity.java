@@ -6,7 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+//import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.transition.TransitionManager;
@@ -70,7 +70,7 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
 
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text);
         ButterKnife.inject(this);
@@ -84,7 +84,7 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
         webTitle = intent.getStringExtra("webTitle");
         webUrl = intent.getStringExtra("webUrl");
         statu = intent.getStringExtra("statu");
-        Log.d("gzb" , "weburl" + webUrl);
+       //Log.d("gzb" , "weburl" + webUrl);
 
         initTitle();
         initNavigation();
@@ -101,10 +101,18 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
             }
         }else if (statu.equals("haoqixin")){
             initWebViewInfo_haoqixin(webUrl);
-            Log.d("gzb" , webUrl);
+           // Log.d("gzb" , webUrl);
             if (webText != null) {
                 String data = WebUtils.buildHtmlWithCsss(webText, webCsss, false);
                 webview.loadDataWithBaseURL(WebUtils.BASE_URL, data, WebUtils.MIME_TYPE, WebUtils.ENCODING, WebUtils.FAIL_URL_HAOQIXIN);
+            }
+        }else if (statu.equals("wangyi")){
+            //webview.loadUrl("http://3g.163.com/touch/article.html?channel=news&child=all&offset=2&docid=C45BB3MB000187VE&version=gll");
+            initWebViewInfo_wangyi("http://3g.163.com/touch/article.html?channel=news&child=all&offset=2&docid=C45BB3MB000187VE&version=gll");
+            // Log.d("gzb" , webUrl);
+            if (webText != null) {
+               // String data = WebUtils.buildHtmlWithCsss(webText, webCsss, false);
+                webview.loadDataWithBaseURL(WebUtils.BASE_URL, webText, WebUtils.MIME_TYPE, WebUtils.ENCODING, WebUtils.FAIL_URL_HAOQIXIN);
             }
         }
 
@@ -147,6 +155,18 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
         }
     }
 
+
+    private void initWebViewInfo_wangyi(String url) {
+        String re = OkHttp_LS.okhttp_get(url);
+        if ( (re != null) && (!re.equals("ok http  get error")) && (!re.equals(""))){
+            webText = WebUtils.getWebText_wangyi(re);
+            //webCss = WebUtils.getWebCss_zhihu(re);
+//            prcessDialog.dismiss();
+        }else {
+            initWebViewInfo_wangyi(url);
+        }
+    }
+
     private void initWebViewInfo_haoqixin(String url) {
         String re = OkHttp_LS.okhttp_get(url);
         if ( (re != null) && (!re.equals("ok http  get error")) && (!re.equals(""))){
@@ -172,7 +192,9 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
         settings.setAppCachePath(getCacheDir().getAbsolutePath() + "/webViewCache");
         settings.setAppCacheEnabled(true);
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        settings.setDisplayZoomControls(false);
+        if (!statu.equals("wangyi")) {
+            settings.setDisplayZoomControls(false);
+        }
         webview.setWebViewClient(new WebViewClient() {
             public boolean shouldOverrideUrlLoading(WebView view, String url)
             {
@@ -216,6 +238,8 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
             toolbar.setTitle("知乎日报");
         }else if(statu.equals("haoqixin")){
             toolbar.setTitle("好奇心日报");
+        }else if (statu.equals("wangyi")){
+            toolbar.setTitle("网易新闻");
         }
         setSupportActionBar(toolbar);
         final ActionBar ab = getSupportActionBar();
