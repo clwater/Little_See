@@ -56,13 +56,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:minHeight="500dp"
                 android:background="@color/_ffffff">
 
                 <WebView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:minHeight="500dp"
                     android:id="@+id/_info_web">
                 </WebView>
                 

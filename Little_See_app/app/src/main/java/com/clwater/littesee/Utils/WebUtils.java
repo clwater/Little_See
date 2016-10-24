@@ -69,10 +69,12 @@ public class WebUtils {
     public static String getWebText_wangyi(String re){
 
         String text = "";
-        text = re.substring( 0 , (re.indexOf("<header>") - "<header>".length() ) );
-        text = text + re.substring((re.indexOf("<header>") + "<header>".length() ) , re.length());
-        return text;
+        text = re.replace("class=\"topbar\"" , "class=\"topbar\" style=\"height: 0px\"");
+        text = re ;
+        return re;
     }
+
+
     public static String getWebCss_zhihu(String _re){
         String link = _re.substring(_re.indexOf("/css/share.css?") , _re.lastIndexOf("<script src=\"http://static.daily.zhihu.com/js/modernizr"));
         link = link.trim();

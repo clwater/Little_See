@@ -84,7 +84,7 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
         webTitle = intent.getStringExtra("webTitle");
         webUrl = intent.getStringExtra("webUrl");
         statu = intent.getStringExtra("statu");
-       //Log.d("gzb" , "weburl" + webUrl);
+        Log.d("gzb" , "weburl:  " + webUrl);
 
         initTitle();
         initNavigation();
@@ -107,8 +107,8 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
                 webview.loadDataWithBaseURL(WebUtils.BASE_URL, data, WebUtils.MIME_TYPE, WebUtils.ENCODING, WebUtils.FAIL_URL_HAOQIXIN);
             }
         }else if (statu.equals("wangyi")){
-            //webview.loadUrl("http://3g.163.com/touch/article.html?channel=news&child=all&offset=2&docid=C45BB3MB000187VE&version=gll");
-            initWebViewInfo_wangyi("http://3g.163.com/touch/article.html?channel=news&child=all&offset=2&docid=C45BB3MB000187VE&version=gll");
+            //webview.loadUrl(webUrl);
+            initWebViewInfo_wangyi(webUrl);
             // Log.d("gzb" , webUrl);
             if (webText != null) {
                // String data = WebUtils.buildHtmlWithCsss(webText, webCsss, false);
@@ -216,6 +216,12 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
         relativeParams = (RelativeLayout.LayoutParams) _SV_space.getLayoutParams();
         relativeParams.height = height * 4  / 10 - 20;
         _SV_space.setLayoutParams(relativeParams);
+//
+//        LinearLayout.LayoutParams linearParams = (LinearLayout.LayoutParams)  webview.getLayoutParams();
+//        if (linearParams.height < height * 6 / 10){
+//            linearParams.height = height * 6 / 10;
+//            webview.setLayoutParams(linearParams);
+//        }
 
         ImageLoader imageLoader = ImageLoader.getInstance();
         imageLoader.init(ImageLoaderConfiguration.createDefault(TextInfoActivity.this));
