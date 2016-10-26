@@ -26,114 +26,589 @@ public class ZhiHuAnalysis {
 
 
     private static  String testText3=
-                   "http://3g.163.com/touch/videoplay.html?channel=news&child=all&offset=19&offset=2&vid=VC37JMM49\n" +
-                   "!!!!\n" +
-                   "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/f9b799f775c740f5a42d888b1325bb7620161024153259.jpeg_220x165x1x45.jpg&enlarge=true\n" +
-                   "!!!!\n" +
-                   "都是影帝！小伙假装揉眼睛 神速挥拳打倒狱警\n" +
-                   "@@@@\n" +
-                   "http://3g.163.com/touch/article.html?channel=news&child=all&offset=3&docid=C45DQCGI0001875N\n" +
-                   "!!!!\n" +
-                   "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/eb1fe4026ee746cfb876e384b4e5a9bc20161024153019.jpeg_220x165x1x45.jpg&enlarge=true\n" +
-                   "!!!!\n" +
-                   "网曝陕西榆林府谷县一建筑发生爆炸 有人员伤亡\n" +
-                   "@@@@\n" +
-                   "http://3g.163.com/touch/article.html?channel=news&child=all&offset=5&docid=C45CUL1Q000187VE\n" +
-                   "!!!!\n" +
-                   "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/087a5d49621b490f92ca5a653148c77320161024153309.jpeg_220x165x1x45.jpg&enlarge=true\n" +
-                   "!!!!\n" +
-                   "四川42岁留守农妇遭奸杀焚尸 村民请愿严惩凶手\n" +
-                   "@@@@\n" +
-                   "http://3g.163.com/touch/videoplay.html?channel=news&child=all&offset=19&offset=6&vid=VC37IFKK4\n" +
-                   "!!!!\n" +
-                   "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/3e21922bcd804fea985465dbe09bb4f520161024150020.jpeg_220x165x1x45.jpg&enlarge=true\n" +
-                   "!!!!\n" +
-                   "大学生酒驾奔驰撞车 下车尿尿找女友顶包\n" +
-                   "@@@@\n" +
-                   "http://3g.163.com/touch/article.html?channel=news&child=all&offset=7&docid=C45BK5K50001899O\n" +
-                   "!!!!\n" +
-                   "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/958614ae605d4834a2f15c344617645420161024145045.jpeg_220x165x1x45.jpg&enlarge=true\n" +
-                   "!!!!\n" +
-                   "美国加州大学经济系教授:中国房价为什么失控?\n" +
-                   "@@@@\n" +
-                   "http://g.163.com/c?AID=242913&FlightID=2674&Values=587297988&Redirect=http://clickc.admaster.com.cn/c/a76246,b1348608,c3078,i0,m101,8a2,8b2,h\n" +
-                   "!!!!\n" +
-                   "http://img1.126.net/channel19/025347/270202_1024.jpg\n" +
-                   "!!!!\n" +
-                   "一汽-大众 全新高尔夫·嘉旅\n" +
-                   "@@@@\n" +
-                   "http://3g.163.com/touch/article.html?channel=news&child=all&offset=8&docid=C45B5QDM0001875P\n" +
-                   "!!!!\n" +
-                   "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/50ceaf2836044826bbcbbea872937c0920161024144253.jpeg_220x165x1x45.jpg&enlarge=true\n" +
-                   "!!!!\n" +
-                   "同伙被抓小偷吓得烧香拜佛 几小时后落网:太倒霉\n" +
-                   "@@@@\n" +
-                   "http://3g.163.com/touch/videoplay.html?channel=news&child=all&offset=19&offset=9&vid=VC37I87BH\n" +
-                   "!!!!\n" +
-                   "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/a95fe06300344e7fbc0d48edb4f184d620161024143945.jpeg_220x165x1x45.jpg&enlarge=true\n" +
-                   "!!!!\n" +
-                   "美国禽兽父亲强暴女儿数百次 被判刑1503年\n" +
-                   "@@@@\n" +
-                   "http://3g.163.com/touch/article.html?channel=news&child=all&offset=10&docid=C45BB3MB000187VE\n" +
-                   "!!!!\n" +
-                   "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/c1076a469f4948f1b1533d4a1c11247620161024145030.jpeg_220x165x1x45.jpg&enlarge=true\n" +
-                   "!!!!\n" +
-                   "天宫上的“自拍杆”拍出首批300多幅图像\n" +
-                   "@@@@\n" +
-                   "http://3g.163.com/touch/article.html?channel=news&child=all&offset=11&docid=C45AKJRT0001875P\n" +
-                   "!!!!\n" +
-                   "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/7b8e777108214146b7f2445eba3a33da20161024143425.jpeg_220x165x1x45.jpg&enlarge=true\n" +
-                   "!!!!\n" +
-                   "守规则的出租司机丧命 \"那条路\"的哥不敢再走\n" +
-                   "@@@@\n" +
-                   "http://3g.163.com/touch/article.html?channel=news&child=all&offset=12&docid=C45AIT64000146BE\n" +
-                   "!!!!\n" +
-                   "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/d5fc79e5b93f4031a39021d62390b77020161024143631.jpeg_220x165x1x45.jpg&enlarge=true\n" +
-                   "!!!!\n" +
-                   "湖北一男子购赃车 途中上演现实版“车在囧途”\n" +
-                   "@@@@\n" +
-                   "http://3g.163.com/touch/article.html?channel=news&child=all&offset=13&docid=C45AJ7FA000187VE\n" +
-                   "!!!!\n" +
-                   "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/5e7c44bc04924cee9d35919e9b05e16920161024143339.jpeg_220x165x1x45.jpg&enlarge=true\n" +
-                   "!!!!\n" +
-                   "故宫将建新博物院 新院距离故宫25公里近圆明园\n" +
-                   "@@@@\n" +
-                   "http://3g.163.com/touch/article.html?channel=news&child=all&offset=14&docid=C459PR9O000146BE\n" +
-                   "!!!!\n" +
-                   "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/e63c075907004aac8885384d3271c90820161024141936.jpeg_220x165x1x45.jpg&enlarge=true\n" +
-                   "!!!!\n" +
-                   "昆明一自媒体工作者冒充警察收集材料被拘十日\n" +
-                   "@@@@\n" +
-                   "http://3g.163.com/touch/article.html?channel=news&child=all&offset=15&docid=C459LKPH000187V5\n" +
-                   "!!!!\n" +
-                   "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/fb33bbfb5a6c4698a86c4396611bf8bc20161024142529.jpeg_220x165x1x45.jpg&enlarge=true\n" +
-                   "!!!!\n" +
-                   "湖北黄石五男女为讨债限制他人自由被处行政拘留\n" +
-                   "@@@@\n" +
-                   "http://3g.163.com/touch/article.html?channel=news&child=all&offset=16&docid=C459379T000187VE\n" +
-                   "!!!!\n" +
-                   "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/772f0b4ea85f40ce8e5ab8183167453820161024141929.jpeg_220x165x1x45.jpg&enlarge=true\n" +
-                   "!!!!\n" +
-                   "湖北一高校组织师生穿草鞋\"长征\" 女生脚底磨破\n" +
-                   "@@@@\n" +
-                   "http://3g.163.com/touch/article.html?channel=news&child=all&offset=17&docid=C458TK7J00014AEE\n" +
-                   "!!!!\n" +
-                   "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/d61d470b878d416dba7f467c7124098b20161024140632.jpeg_220x165x1x45.jpg&enlarge=true\n" +
-                   "!!!!\n" +
-                   "河南灵宝小伙阻碍执行 被依法拘留罚款一万\n" +
-                   "@@@@\n" +
-                   "http://3g.163.com/touch/article.html?channel=news&child=all&offset=18&docid=C4590C2L000146BE\n" +
-                   "!!!!\n" +
-                   "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/8c88ddf8330d444d80bfe07ab663c0e820161024140847.jpeg_220x165x1x45.jpg&enlarge=true\n" +
-                   "!!!!\n" +
-                   "台媒:大陆高校赴台\"挖墙脚\" 邀台教授赴陆任教\n" +
-                   "@@@@\n" +
-                   "http://3g.163.com/touch/article.html?channel=news&child=all&offset=19&docid=C4590ITA00014JB6\n" +
-                   "!!!!\n" +
-                   "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/887915cd8402493ba2b0d78aa539843220161024141500.jpeg_220x165x1x45.jpg&enlarge=true\n" +
-                   "!!!!\n" +
-                   "俄军工企业高管为拿到印度防务大单夸赞俄印关系\n" +
-                   "@@@@";
+                   "http://3g.163.com/touch/specail_view.html?channel=all&offset=0&sid=S1477051142478\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/ae5403a202974bb293d6128154fb938520161026152804.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "从严治党跟老百姓没关系?看到这些变化就明白了\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=1&docid=C4AC959K000380BQ\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/5f7e9444a8574bfeaa65e664b93f2ee420161026133832.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "张雨绮工作人员承认婚讯：过去的已经过去\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=2&docid=C4AHU7EC000380BQ\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/92a88bb03448490781c140779a12f70820161026151908.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "张雨绮新老公巨有钱？ 卓伟爆料其有妻有儿\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=3&docid=C4AEPLVF000380BQ\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/b62e385c5ea04059b9c491753489243b20161026142249.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "张雨绮闪电再婚 22岁出道至今情史丰富\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=4&docid=C4A5MO2M0001875N\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/f376489b5115407a844db9407c9082ef20161026114408.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "28省市前三季GDP成绩单出炉 24省增速跑赢全国\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=5&docid=C4AKHV3D000187VE\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/b03cf214ab794607b31a76026aa657b620161026162613.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "外籍人质回忆被劫持日子:中国船员给我坚持的动力\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=10&docid=C4AF48HU000187VE\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/ab1e1b7c848f4b8e8fa4d0125280c60320161026161417.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "\"川师大杀人案\"死者家属向法院申请重做精神鉴定\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=11&docid=C4AJPCOH000187VE\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/010037b073ab4107880200df75c8be3820161026160138.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "俄媒:吉尔吉斯斯坦总统签署命令解散本国政府\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=12&docid=C4AJJMN7000187V5\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/26b1ef59e7d2453f8527235779d4935c20161026161119.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "男子和家人驾驶挖掘机盗窃价值10万桂花古树被抓\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=13&docid=C4AISI0Q000187V9\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/af813b6b5b6c4d6e8a2c7384550ef2bd20161026162017.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "女子嫉妒邻居男童比孙子聪明将其杀害 被执行死刑\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/live.html?channel=all&rec=i.exc&offset=15&roomid=101817\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/e9c1f4dacc7943d092b7d26f603af07b20161025165127.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "万圣美食节？萌妹子试吃“爆浆眼球”\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=16&docid=C4AFA8V60001875P\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/88624c39b0bb4de6813c78a6aea03cff20161026143225.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "一家四口两人重病 患癌父亲为救幼子欲放弃治疗\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=17&docid=C4AEAH9B0001875N\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/057bf12a38a04598866bd8a73ac3a87f20161026141414.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "高校原校长涉受贿被捕 曾反问:有问题省里不查?\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=20&docid=C4AEGAA200014SEH\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/c09bec2e66c54bf597e84c8ef7f0e41720161026142430.png_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "河南男子银行内行凶并砍伤警察 警方开枪将其擒获\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/ntes/special/00342G8T/touch_question.html?channel=all&rec=i.exp&offset=21&exid=EX0674433192046254534\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/8b033055d101490c8bc1f851de82eef620161026163524.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "航天人海洋知心带您了解天宫二号\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=23&docid=C4ADU35J000187VE\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/c22cb71bb0d145228037a77b12fdca3f20161026154110.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "评论员列\"十大最无前途城市\" 温州媒体指其武断\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=24&docid=C4AGV13A000187V5\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/87940ecfc71744e18b7e72196e3aae0f20161026154112.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "男子为跟前妻抢房将不满周岁女儿扔法院 被拘15日\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=25&docid=C4ABV5EN00038793\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/233f99dd567d4935a8aa2a91214003fb20161026133247.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "张雨绮公开婚讯 感恩外界关心收获网友祝福\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/photoview.html?channel=all&rec=i.bea&offset=26&setid=90260&channelid=0031\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://img3.cache.netease.com/photo/0031/2016-10-26/C491P1K26LRK0031.jpg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "日本美模玩另类cosplay 紧身制服好诱人\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=27&docid=C4A795S90001875O\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/cb88ece662be4f10a69a75d37d97147720161026121130.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "因为患上抑郁症？日本爱子公主已休学一个月\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=30&docid=C4A59MC7000187VE\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/b6fa6b37d1d84178a13b1e22235edad420161026114921.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "柬埔寨通讯诈骗案:每晚开总结会 有人1天提成14万\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=32&docid=C4AKEHD600058780\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/fcc245fda3c2420f8378965078578cac20161026160200.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "许家印:出让里皮有条件 足协必须给他最大自主权\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=34&docid=C4AHRNIT000187VE\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/8aaeaa0d945549f0b3c855dfd7aeed1920161026152241.jpeg_690x230x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "四川一商城保安死亡 家属在商城设灵堂7人被刑拘\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=35&docid=C4ADL4AE00014SEH\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/4a5660a7e73c413daa03d52d467e7d0520161026141529.jpeg_690x230x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "山西一副镇长聚众赌博被拘15天 纪委:将严肃处理\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=36&docid=C4ABHEAV000187VE\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/3813dfb8c4584ca6b85bc37f56f3334c20161026142601.jpeg_690x230x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "河南鼓励农民举家进城镇：有固定租房就可落户\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=37&docid=C4A965FB000187VE\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/6cbff7bdca614f22b161756ca7b797aa20161026130826.jpeg_690x230x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "患癌民警被男子拍视频称系假警察 警方：诽谤\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=40&docid=C4AI7SMF000187VE\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/da43ce7b553349619d411a6eef315c3920161026154924.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "成都被列入中国\"十大古都\" 与北京西安洛阳等齐名\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=41&docid=C4A965RV000187VE\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/1cba725151574a9c8692e2408748642320161026130330.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "百亿湿地公园成垃圾场？官方:8月已清理 配图存疑\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=42&docid=C4A69SQB00058780\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/a97fb13e0685489480cf45031099136720161026115436.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "曝里皮首期集训名单超40人 郑智领衔恒大11人\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=43&docid=C4A2NBDR0001875N\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/d7a1b055ee9a400aa5102a81dcf3cc1420161026105242.png_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "台高官称两岸是\"特殊国与国关系\" 国台办回应\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=44&docid=C49UAQMN00014AEE\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/f7bf8dd45bfa482db48a45dc99c67f9720161026142245.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "台湾一500多公斤水牛被虎头蜂活活螫死\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=45&docid=C4AKF535000380BQ\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/14153ca8651e42689da4cff000eda39520161026160230.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "传张雨绮老公是二婚！曾与上海女主播结婚生子\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/specail_view.html?channel=all&offset=46&sid=S1426598437297\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/188ab8f53eea4f5288480acc66e24e0320161026132352.png_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "张雨绮再婚！自曝相识70天领证:恰到好处的相遇\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=48&docid=C4ACD8V60001875P\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/9b43d6d86da74330bc02705317440fd920161026134030.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "罐装车突然下滑 奶奶推开婴儿车后自己被撞身亡\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=49&docid=C4A4VMUS0001875N\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/71e25d7596a0455991de152554822d0420161026113234.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "福建宁化撤销对在占道摊点买菜教师等人员通报\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=50&docid=C4A0TKJ20001875N\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/04fb7897742e404b8353f7e93b8660b020161026101922.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "被索马里海盗劫持的四川小伙:亲眼目睹船长被杀\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=52&docid=C4ABV9PA00014SEH\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/7922be701fad4afd82000585728149d920161026140423.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "未来三天冷空气席卷全国 华北雾霾逐渐消散\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=53&docid=C4A5AB7F00014SEH\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/72175b5dc5044ff09c568d1127a8c64020161026113804.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "大雾黄色预警解除:京津冀等地大雾范围明显缩小\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=54&docid=C4A08R7C000187VE\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/d0aad94bb4ab4c70a46a854f116788b520161026101304.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "河南通报中学生校内身亡:嬉闹拉扯中倒地 将尸检\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=55&docid=C49VR3A0000187VE\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/e296b94d22f8449cb54d1d9ea24deae720161026101233.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "济南病床\"最资深钉子户\":近20年不出院被亲属遗弃\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=56&docid=C49TUCNI0001875N\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/532dc31d14304c1298e0a45c721ba30d20161026092843.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "航天员天宫生活一周多了 他们到底经历了什么？\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=57&docid=C49TRR5K0001875P\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/1fe175140c4b4f82841faec4d35c3c9720161026092605.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "女教师用擀面杖打学生致1死3伤 被鉴定为抑郁症\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=59&docid=C4A5AA76000187V5\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/966b8672a73b4081b8039177b3edb30220161026133639.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "四川一男子纵火报复前女友 被擒时称不后悔\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=60&docid=C4A4N6GH0001875P\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/c96bc62dbaba4c3a8d4d1cb68065a34620161026112612.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "男子用不锈钢桶消磁偷超市 网友:诺贝尔欠你个奖\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=61&docid=C4A41BR80001875P\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/e6583319479644438d8e18c375366c6e20161026111502.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "男子七年内多次强奸不满14岁继女 致其两次流产\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=62&docid=C4A1QUEV000187VE\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/792027a9996945ceaa96ee4f697fedff20161026104254.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "三星韩国送大礼挽留Note7用户:可以半价买Note8\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=63&docid=C49C0KVS00014AED\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/7898ae75172e4e73a6858a4a7f69277420161026114602.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "年轻女子浑身是血倒在电梯里 嫌疑人昨晚已抓获\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=65&docid=C4A9PSDR000146BE\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/9a0fa2d1861648a39c8aa982052a864920161026130737.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "日本自民党召开会议 确定总裁任期延长至3届共9年\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=66&docid=C4A5BHD50001875P\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/f8c583c2b7c342a0adf3a5892312856e20161026113657.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "文盲男“买断”投资公司 4个月骗390万全花光\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=67&docid=C4A4H8BG000187VE\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/40f4dd258a1b414aa1f54c563cf0652f20161026135347.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "中石油重庆分公司原党委书记涉嫌贪污被检方公诉\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=68&docid=C4A3VU0G0001875P\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/436e0d857f354930b90c3e49223a3c1720161026111339.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "减肥惹的祸？老人瘦身7.5公斤被要求证明\"我是我\"\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=69&docid=C4A0LOCJ00014SEH\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/e8c8c8f5f31e4e9d8f464f06020febde20161026104530.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "小女孩乞讨裹棉被写作业 父亲：她是最好卖点\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=70&docid=C49PC3DU0001875O\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/61f334eec8ed475a8b61524e11a637ec20161026081225.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "宫颈癌疫苗在华刚获批已过时？产品退出美国市场\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=72&docid=C4AAB30E0001875O\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/4ddba8b85edb4b6a8156eca207a5e21f20161026130503.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "杜特尔特访日不忘批美：不要把我们当成你们的狗\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=73&docid=C4A01DDN0001875N\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/05ba2254313b4bc8871bd53312681fd320161026100421.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "同门师弟怒批林毅夫:中国市场化不是过了而是不足\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=74&docid=C49UAQMH00014AEE\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/036bd5efdd48435f9c43a2d4cbb9e2b220161026100716.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "马英九：大陆诈骗犯其实都是台湾“训练”出来的\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=75&docid=C4A72RD3000187V8\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/142ae6f21f914b6580f0a54130a98f6020161026121033.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "内蒙古数百只天鹅死亡 初步认定为偷猎投毒所致\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=76&docid=C490V36F00014Q4P\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/a2a206c9058d4bfcbf4e77c53679d27120161026094911.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "男子逼妻子情人离婚娶自己老婆 对方自杀\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=77&docid=C48U9VOJ00014AED\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/06668d540d984eae8d14d4fb0e11407620161026093505.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "北京等地医保基金结余不足半年支付?人社部:误读\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=79&docid=C4A8OTJJ000187VE\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/52d46611ee424f16a6edd9e7ee29ff9b20161026133030.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "山东一学校发生斗殴事件致2人死亡 3名嫌犯被抓获\n" +
+                           "@@@@\n" +
+                           "\n" +
+                           "http://3g.163.com/touch/specail_view.html?channel=all&offset=0&sid=S1477051142478\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/4ae4c93c58fa4111974b47fd0665c58f20161026095829.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "强化党内监督，听听习近平怎么说\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/specail_view.html?channel=all&offset=0&sid=S1477051142478\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/ae5403a202974bb293d6128154fb938520161026152804.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "从严治党跟老百姓没关系?看到这些变化就明白了\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=1&docid=C4AC959K000380BQ\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/5f7e9444a8574bfeaa65e664b93f2ee420161026133832.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "张雨绮工作人员承认婚讯：过去的已经过去\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=2&docid=C4AEPLVF000380BQ\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/b62e385c5ea04059b9c491753489243b20161026142249.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "张雨绮闪电再婚 22岁出道至今情史丰富\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/specail_view.html?channel=all&offset=3&sid=S1426598437297\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/188ab8f53eea4f5288480acc66e24e0320161026132352.png_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "张雨绮再婚！自曝相识70天领证:恰到好处的相遇\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=4&docid=C4A5MO2M0001875N\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/f376489b5115407a844db9407c9082ef20161026114408.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "28省市前三季GDP成绩单出炉 24省增速跑赢全国\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=6&docid=C4AFA8V60001875P\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/88624c39b0bb4de6813c78a6aea03cff20161026143225.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "一家四口两人重病 患癌父亲为救幼子欲放弃治疗\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=7&docid=C4AEAH9B0001875N\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/057bf12a38a04598866bd8a73ac3a87f20161026141414.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "高校原校长涉受贿被捕 曾反问:有问题省里不查?\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=10&docid=C4AEGAA200014SEH\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/c09bec2e66c54bf597e84c8ef7f0e41720161026142430.png_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "河南男子银行内行凶并砍伤警察 警方开枪将其擒获\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=12&docid=C4ABV5EN00038793\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/233f99dd567d4935a8aa2a91214003fb20161026133247.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "张雨绮公开婚讯 感恩外界关心收获网友祝福\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=13&docid=C4A795S90001875O\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/cb88ece662be4f10a69a75d37d97147720161026121130.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "因为患上抑郁症？日本爱子公主已休学一个月\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/live.html?channel=all&rec=i.exc&offset=14&roomid=101817\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/e9c1f4dacc7943d092b7d26f603af07b20161025165127.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "万圣美食节？萌妹子试吃“爆浆眼球”\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=15&docid=C4A59MC7000187VE\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/b6fa6b37d1d84178a13b1e22235edad420161026114921.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "柬埔寨通讯诈骗案:每晚开总结会 有人1天提成14万\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=17&docid=C4AHRNIT000187VE\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/8aaeaa0d945549f0b3c855dfd7aeed1920161026152241.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "四川一商城保安死亡 家属在商城设灵堂7人被刑拘\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/specail_view.html?channel=all&offset=3&sid=S1426598437297\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/188ab8f53eea4f5288480acc66e24e0320161026132352.png_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "张雨绮再婚！自曝相识70天领证:恰到好处的相遇\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=4&docid=C4A5MO2M0001875N\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/f376489b5115407a844db9407c9082ef20161026114408.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "28省市前三季GDP成绩单出炉 24省增速跑赢全国\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=6&docid=C4AFA8V60001875P\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/88624c39b0bb4de6813c78a6aea03cff20161026143225.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "一家四口两人重病 患癌父亲为救幼子欲放弃治疗\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=7&docid=C4AEAH9B0001875N\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/057bf12a38a04598866bd8a73ac3a87f20161026141414.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "高校原校长涉受贿被捕 曾反问:有问题省里不查?\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=10&docid=C4AEGAA200014SEH\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/c09bec2e66c54bf597e84c8ef7f0e41720161026142430.png_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "河南男子银行内行凶并砍伤警察 警方开枪将其擒获\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/live.html?channel=all&rec=i.exc&offset=12&roomid=101817\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/e9c1f4dacc7943d092b7d26f603af07b20161025165127.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "万圣美食节？萌妹子试吃“爆浆眼球”\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=13&docid=C4ABV5EN00038793\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/233f99dd567d4935a8aa2a91214003fb20161026133247.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "张雨绮公开婚讯 感恩外界关心收获网友祝福\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=14&docid=C4A795S90001875O\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/cb88ece662be4f10a69a75d37d97147720161026121130.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "因为患上抑郁症？日本爱子公主已休学一个月\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=15&docid=C4A59MC7000187VE\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/b6fa6b37d1d84178a13b1e22235edad420161026114921.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "柬埔寨通讯诈骗案:每晚开总结会 有人1天提成14万\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=17&docid=C4ADL4AE00014SEH\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/4a5660a7e73c413daa03d52d467e7d0520161026141529.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "山西一副镇长聚众赌博被拘15天 纪委:将严肃处理\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=20&docid=C4ABHEAV000187VE\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/3813dfb8c4584ca6b85bc37f56f3334c20161026142601.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "河南鼓励农民举家进城镇：有固定租房就可落户\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/ntes/special/00342G8T/touch_question.html?channel=all&rec=i.exp&offset=21&exid=EX08814484397835394089\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/ecae0a76d528426483308c11945772b820161026115614.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "北大免疫学博导王月丹与您畅谈宫颈癌疫苗\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=22&docid=C4A965FB000187VE\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/6cbff7bdca614f22b161756ca7b797aa20161026130826.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "患癌民警被男子拍视频称系假警察 警方：诽谤\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/photoview.html?channel=all&rec=i.bea&offset=24&setid=90260&channelid=0031\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://img4.cache.netease.com/photo/0031/2016-10-26/C491P1K26LRK0031.jpg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "日本美模玩另类cosplay 紧身制服好诱人\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=25&docid=C4A965RV000187VE\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/1cba725151574a9c8692e2408748642320161026130330.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "百亿湿地公园成垃圾场？官方:8月已清理 配图存疑\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=26&docid=C4A69SQB00058780\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/a97fb13e0685489480cf45031099136720161026115436.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "曝里皮首期集训名单超40人 郑智领衔恒大11人\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=27&docid=C4A2NBDR0001875N\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/d7a1b055ee9a400aa5102a81dcf3cc1420161026105242.png_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "台高官称两岸是\"特殊国与国关系\" 国台办回应\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=30&docid=C49UAQMN00014AEE\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/f7bf8dd45bfa482db48a45dc99c67f9720161026142245.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "台湾一500多公斤水牛被虎头蜂活活螫死\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=32&docid=C4ACD8V60001875P\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/9b43d6d86da74330bc02705317440fd920161026134030.jpeg_220x165x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "罐装车突然下滑 奶奶推开婴儿车后自己被撞身亡\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=34&docid=C4A4VMUS0001875N\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/71e25d7596a0455991de152554822d0420161026113234.jpeg_690x230x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "福建宁化撤销对在占道摊点买菜教师等人员通报\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=35&docid=C4A0TKJ20001875N\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/04fb7897742e404b8353f7e93b8660b020161026101922.jpeg_690x230x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "被索马里海盗劫持的四川小伙:亲眼目睹船长被杀\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=37&docid=C4ABV9PA00014SEH\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/7922be701fad4afd82000585728149d920161026140423.jpeg_690x230x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "未来三天冷空气席卷全国 华北雾霾逐渐消散\n" +
+                           "@@@@\n" +
+                           "http://3g.163.com/touch/article.html?channel=all&offset=38&docid=C4A5AB7F00014SEH\n" +
+                           "!!!!\n" +
+                           "http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/72175b5dc5044ff09c568d1127a8c64020161026113804.jpeg_690x230x1x45.jpg&enlarge=true\n" +
+                           "!!!!\n" +
+                           "大雾黄色预警解除:京津冀等地大雾范围明显缩小\n" +
+                           "@@@@";
 
 
     private static String testText2 = "http://m.qdaily.com/mobile/articles/33473.html\n" +
