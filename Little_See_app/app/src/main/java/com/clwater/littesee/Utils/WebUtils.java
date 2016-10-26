@@ -65,16 +65,6 @@ public class WebUtils {
         return re.substring(re.indexOf("<div class=\"content-inner\">") , re.lastIndexOf("<div class=\"question\">"));
 
     }
-
-    public static String getWebText_wangyi(String re){
-
-        String text = "";
-        text = re.replace("class=\"topbar\"" , "class=\"topbar\" style=\"height: 0px\"");
-        text = re ;
-        return re;
-    }
-
-
     public static String getWebCss_zhihu(String _re){
         String link = _re.substring(_re.indexOf("/css/share.css?") , _re.lastIndexOf("<script src=\"http://static.daily.zhihu.com/js/modernizr"));
         link = link.trim();
