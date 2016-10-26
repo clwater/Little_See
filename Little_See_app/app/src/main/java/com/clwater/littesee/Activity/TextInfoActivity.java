@@ -193,16 +193,18 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
         settings.setAppCachePath(getCacheDir().getAbsolutePath() + "/webViewCache");
         settings.setAppCacheEnabled(true);
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        if (!statu.equals("wangyi")) {
+       // if (statu.equals("wangyi")) {
+            settings.setDisplayZoomControls(true);
+        //}else {
             settings.setDisplayZoomControls(false);
-        }
-        webview.setWebViewClient(new WebViewClient() {
-            public boolean shouldOverrideUrlLoading(WebView view, String url)
-            {
-                view.loadUrl(url);
-                return true;
-            }
-        });
+        //}
+//        webview.setWebViewClient(new WebViewClient() {
+//            public boolean shouldOverrideUrlLoading(WebView view, String url)
+//            {
+//                view.loadUrl(url);
+//                return true;
+//            }
+//        });
         webview.setWebChromeClient(new WebChromeClient());
     }
 
