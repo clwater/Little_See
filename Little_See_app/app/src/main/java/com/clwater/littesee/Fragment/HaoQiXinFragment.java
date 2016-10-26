@@ -5,10 +5,14 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ListView;
+import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -55,6 +59,8 @@ public class HaoQiXinFragment extends Fragment {
     public static Activity activity;
     private boolean precess_statu = true;
 
+    int lastItem;
+
     List<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
     HaoQiXinDaoOrm haoQinXinDaoOrm;
 
@@ -83,11 +89,29 @@ public class HaoQiXinFragment extends Fragment {
         EventBus.getDefault().register(this);
 
 
+        main_list.setOnScrollListener(new AbsListView.OnScrollListener(){
+            public void onScrollStateChanged(AbsListView view, int scrollState){
+                // 当不滚动时
+                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+                    // 判断是否滚动到底部
+                    if (view.getLastVisiblePosition() == view.getCount() - 1) {
+                       Log.d("gzb" , "aaaa");
+                    }
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            }
+        });
+
 //        testText.setText("haoqixin");
 
         return view;
 
     }
+
+
 
 
     private void initListview() {
