@@ -9,6 +9,8 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +28,7 @@ import com.clwater.littesee.Utils.DBHelper.ZhiHuDaoOrm;
 import com.clwater.littesee.Utils.EventBus.Event_RunInBack;
 import com.clwater.littesee.Utils.EventBus.Event_RunInFront;
 import com.clwater.littesee.R;
+import com.clwater.littesee.Utils.MyRecyclerAdapter;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import org.greenrobot.eventbus.EventBus;
@@ -48,7 +51,7 @@ public class ZhiHuFragment extends Fragment
 {
 
     @InjectView(R.id.main_list)
-    public ListView main_list;
+    public RecyclerView main_list;
     @InjectView(R.id._main_top_process)
     public RelativeLayout relativeLayout;
     @InjectView(R.id._top_process)
@@ -83,21 +86,26 @@ public class ZhiHuFragment extends Fragment
 
         EventBus.getDefault().register(this);
 
-        main_list.setOnScrollListener(new AbsListView.OnScrollListener(){
-            public void onScrollStateChanged(AbsListView view, int scrollState){
-                // 当不滚动时
-                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
-                    // 判断是否滚动到底部
-                    if (view.getLastVisiblePosition() == view.getCount() - 1) {
-                        Log.d("gzb" , "aaaa");
-                    }
-                }
-            }
 
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-            }
-        });
+        main_list.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        main_list.setLayoutManager(layoutManager);
+
+//        main_list.setOnScrollListener(new AbsListView.OnScrollListener(){
+//            public void onScrollStateChanged(AbsListView view, int scrollState){
+//                // 当不滚动时
+//                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+//                    // 判断是否滚动到底部
+//                    if (view.getLastVisiblePosition() == view.getCount() - 1) {
+//                        Log.d("gzb" , "aaaa");
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+//            }
+//        });
 
 //        testText.setText("zhihu");
 
@@ -105,8 +113,12 @@ public class ZhiHuFragment extends Fragment
     }
 
     private void initListview() {
-        List<Map<String, Object>> list=getData();
-        main_list.setAdapter(new ListViewImageAdapter(getActivity(), list));
+
+        MyRecyclerAdapter recycleAdapter= new MyRecyclerAdapter(getActivity(), list))
+       // main_list.setAdapter(new ListViewImageAdapter(getActivity(), list));
+
+        recycleAdapter.setOnRecyclerViewListener(this);
+        main_list.setAdapter(recycleAdapter);
     }
 
     public List<Map<String, Object>> getData(){
