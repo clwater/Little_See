@@ -48,7 +48,7 @@ public class ZhiHuFragment extends Fragment
 {
 
     @InjectView(R.id.main_list)
-    public ListView main_list;
+    public WaterDropListView main_list;
     @InjectView(R.id._main_top_process)
     public RelativeLayout relativeLayout;
     @InjectView(R.id._top_process)
@@ -61,9 +61,6 @@ public class ZhiHuFragment extends Fragment
 
     List<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
     ZhiHuDaoOrm zhiHuDaoOrm;
-
-//    @InjectView(R.id.testText)
-//    TextView testText;
 
 
     @Override
