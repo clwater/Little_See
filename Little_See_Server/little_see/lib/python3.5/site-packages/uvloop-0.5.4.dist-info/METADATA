@@ -1,0 +1,20 @@
+Metadata-Version: 2.0
+Name: uvloop
+Version: 0.5.4
+Summary: Fast implementation of asyncio event loop on top of libuv
+Home-page: http://github.com/MagicStack/uvloop
+Author: Yury Selivanov
+Author-email: yury@magic.io
+License: MIT
+Platform: *nix
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.5
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Developers
+Provides: uvloop
+
+UNKNOWN
+
+
