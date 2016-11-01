@@ -25,10 +25,11 @@ import java.util.Map;
 
 
 
-public  class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ListViewHolder> {
+public  class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ListViewHolder> implements View.OnClickListener {
 
-    List<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
+    private List<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
     private Context mContext;
+    private OnRecyclerViewItemClickListener mOnItemClickListener = null;
 
     public RecyclerAdapter(Context context, List<Map<String, Object>> list){
         this.mContext = context;
@@ -37,12 +38,21 @@ public  class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ListV
 
     @Override
     public ListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        ListViewHolder holder = new ListViewHolder(LayoutInflater.from(mContext).inflate(R.layout.listview_main_image_title, parent, false));
+        View view = LayoutInflater.from(mContext).inflate(R.layout.listview_main_image_title, parent, false);
+        ListViewHolder holder = new ListViewHolder(view);
+        view.setOnClickListener(this);
         return holder;
     }
 
+    @Override
+    public void onClick(View v) {
+        if (mOnItemClickListener != null) {
+            mOnItemClickListener.onItemClick(v,(String)v.getTag());
+        }
+    }
+
     public void onBindViewHolder(ListViewHolder holder, int position) {
-        holder.title.setText("" + list.get(position).get("title"));
+        holder.title.setText(list.get(position).get("title").toString());
         String url_image = (String) list.get(position).get("title_image");
         holder.isread = (int) list.get(position).get("isread");
         if (holder.isread != 0) {
@@ -52,6 +62,8 @@ public  class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ListV
         ImageLoader imageLoader = ImageLoader.getInstance();
         imageLoader.init(ImageLoaderConfiguration.createDefault(MainActivity.context));
         ImageLoader.getInstance().displayImage(url_image, holder.image, AppConfig.imageOptions());
+
+        holder.itemView.setTag(list.get(position).get("id").toString());
     }
 
     @Override
@@ -70,5 +82,13 @@ public  class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ListV
             title = (TextView) view.findViewById(R.id.listview_main_text);
             image = (ImageView) view.findViewById(R.id.listview_main_image);
         }
+    }
+
+    public static interface OnRecyclerViewItemClickListener {
+        void onItemClick(View view , String data);
+    }
+
+    public void setOnItemClickListener(OnRecyclerViewItemClickListener listener) {
+        this.mOnItemClickListener = listener;
     }
 }

@@ -193,13 +193,15 @@ public class HaoQiXinFragment extends Fragment {
     }
 
     private void upDateItemTextColor(int position) {
-        View childAt = main_list.getChildAt(position - main_list.getFirstVisiblePosition());
-        if (childAt != null) {
-            TextView listview_main_text = (TextView) childAt.findViewById(R.id.listview_main_text);
-            if (listview_main_text != null) {
-                listview_main_text.setTextColor(Color.parseColor("#666666"));
-            }
-        }
+//        View childAt = main_list.getChildAt(position - main_list.getFirstVisiblePosition());
+//        if (childAt != null) {
+//            TextView listview_main_text = (TextView) childAt.findViewById(R.id.listview_main_text);
+//            if (listview_main_text != null) {
+//                listview_main_text.setTextColor(Color.parseColor("#666666"));
+//            }
+//        }
+
+
     }
 
 }

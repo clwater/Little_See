@@ -21,8 +21,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import com.clwater.littesee.Activity.TextInfoActivity;
 import com.clwater.littesee.Adapater.DividerItemDecoration;
 import com.clwater.littesee.Config.AppConfig;
 import com.clwater.littesee.MainActivity;
@@ -70,7 +72,6 @@ public class ZhiHuFragment extends Fragment
     ZhiHuDaoOrm zhiHuDaoOrm;
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -110,13 +111,36 @@ public class ZhiHuFragment extends Fragment
     }
 
     private void initListview() {
-        List<Map<String, Object>> list=getData();
+        list = getData();
 
 
         main_list.setLayoutManager(new LinearLayoutManager(getActivity()));
-        main_list.setAdapter(new RecyclerAdapter(getActivity() , list));
+        final RecyclerAdapter adapter = new RecyclerAdapter(getActivity() , list);
+        main_list.setAdapter(adapter);
         main_list.addItemDecoration(new DividerItemDecoration(getActivity() , 1));
+        adapter.setOnItemClickListener(new RecyclerAdapter.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View view, String data) {
+                int index = Integer.valueOf(data) - 1;
+                Map<String, Object> map= list.get(index);
+                ZhiHu zhihu = zhiHuDaoOrm.seleteZhiHu(Integer.valueOf( map.get("id").toString() ));
+                zhihu.setIsRead(1);
+                zhiHuDaoOrm.add(zhihu);
 
+                //upDateItemTextColor(index);
+                list.clear();
+                list = getData();
+
+                adapter.notifyDataSetChanged();
+
+                Intent intent = new Intent(getActivity() , TextInfoActivity.class);
+                intent.putExtra("webImage" , map.get("title_image").toString());
+                intent.putExtra("webTitle" , map.get("title").toString());
+                intent.putExtra("webUrl" , map.get("address").toString());
+                intent.putExtra("statu" , "zhihu");
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -125,7 +149,7 @@ public class ZhiHuFragment extends Fragment
 
         zhiHuDaoOrm = new ZhiHuDaoOrm(getActivity());
         List<ZhiHu> zhihuList= zhiHuDaoOrm.select();
-        for (int i = zhihuList.size() - 1 ; i >= 0  ; i--){
+        for (int i = 0 ; i < zhihuList.size()  ; i++){
             ZhiHu zhihu = zhihuList.get(i);
             Map<String, Object> map=new HashMap<String, Object>();
             map.put("id" , zhihu.getId());
@@ -165,12 +189,11 @@ public class ZhiHuFragment extends Fragment
         EventBus.getDefault().unregister(this);
     }
 
+
+
 //    @OnItemClick(R.id.main_list)
 //    public void itemClick(int position , View view){
-//        if (precess_statu) {
-//            stopTopProsess();
-//            precess_statu = false;
-//        }
+//
 //
 //        Map<String, Object> map= list.get(position);
 //        ZhiHu zhihu = zhiHuDaoOrm.seleteZhiHu(Integer.valueOf( map.get("id").toString() ));
@@ -187,16 +210,16 @@ public class ZhiHuFragment extends Fragment
 //        //upDateItemTextColor(position);
 //
 //    }
-//
+
 
     private void upDateItemTextColor(int position) {
-//        View childAt = main_list.getChildAt(position - main_list.getFirstVisiblePosition());
-//        if (childAt != null) {
-//            TextView listview_main_text = (TextView) childAt.findViewById(R.id.listview_main_text);
-//            if (listview_main_text != null) {
-//                listview_main_text.setTextColor(Color.parseColor("#666666"));
-//            }
-//        }
+        View childAt = main_list.getChildAt(position + 1);
+        if (childAt != null) {
+            TextView listview_main_text = (TextView) childAt.findViewById(R.id.listview_main_text);
+            if (listview_main_text != null) {
+                listview_main_text.setTextColor(Color.parseColor("#666666"));
+            }
+        }
     }
 
 
