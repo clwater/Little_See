@@ -75,7 +75,7 @@ public class HaoQiXinFragment extends Fragment {
                              Bundle savedInstanceState)
     {
 
-        View view = inflater.inflate(R.layout.fragment_text, container, false);
+        View view = inflater.inflate(R.layout.fragment_text_list, container, false);
         ButterKnife.inject(this , view);
 
         showTopProcess();
