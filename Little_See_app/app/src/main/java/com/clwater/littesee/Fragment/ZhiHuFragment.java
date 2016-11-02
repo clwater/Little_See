@@ -89,23 +89,6 @@ public class ZhiHuFragment extends Fragment
 
         EventBus.getDefault().register(this);
 
-//        main_list.setOnScrollListener(new AbsListView.OnScrollListener(){
-//            public void onScrollStateChanged(AbsListView view, int scrollState){
-//                // 当不滚动时
-//                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
-//                    // 判断是否滚动到底部
-//                    if (view.getLastVisiblePosition() == view.getCount() - 1) {
-//                        Log.d("gzb" , "aaaa");
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-//            }
-//        });
-
-//        testText.setText("zhihu");
 
         return view;
     }
@@ -191,36 +174,6 @@ public class ZhiHuFragment extends Fragment
 
 
 
-//    @OnItemClick(R.id.main_list)
-//    public void itemClick(int position , View view){
-//
-//
-//        Map<String, Object> map= list.get(position);
-//        ZhiHu zhihu = zhiHuDaoOrm.seleteZhiHu(Integer.valueOf( map.get("id").toString() ));
-//        zhihu.setIsRead(1);
-//        zhiHuDaoOrm.add(zhihu);
-//
-//        Intent intent = new Intent(getActivity() , TextInfoActivity.class);
-//        intent.putExtra("webImage" , map.get("title_image").toString());
-//        intent.putExtra("webTitle" , map.get("title").toString());
-//        intent.putExtra("webUrl" , map.get("address").toString());
-//        intent.putExtra("statu" , "zhihu");
-//        startActivity(intent);
-//
-//        //upDateItemTextColor(position);
-//
-//    }
-
-
-    private void upDateItemTextColor(int position) {
-        View childAt = main_list.getChildAt(position + 1);
-        if (childAt != null) {
-            TextView listview_main_text = (TextView) childAt.findViewById(R.id.listview_main_text);
-            if (listview_main_text != null) {
-                listview_main_text.setTextColor(Color.parseColor("#666666"));
-            }
-        }
-    }
 
 
 }

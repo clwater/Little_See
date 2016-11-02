@@ -101,13 +101,12 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
             }
         }else if (statu.equals("haoqixin")){
             initWebViewInfo_haoqixin(webUrl);
-           // Log.d("gzb" , webUrl);
             if (webText != null) {
                 String data = WebUtils.buildHtmlWithCsss(webText, webCsss, false);
                 webview.loadDataWithBaseURL(WebUtils.BASE_URL, data, WebUtils.MIME_TYPE, WebUtils.ENCODING, WebUtils.FAIL_URL_HAOQIXIN);
             }
         }else if (statu.equals("wangyi")){
-           webview.loadUrl(webUrl);
+            webview.loadUrl(webUrl);
         }
 
 
@@ -176,19 +175,12 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
         settings.setAppCachePath(getCacheDir().getAbsolutePath() + "/webViewCache");
         settings.setAppCacheEnabled(true);
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-       // if (statu.equals("wangyi")) {
-            settings.setDisplayZoomControls(true);
-        //}else {
-            settings.setDisplayZoomControls(false);
-        //}
-//        webview.setWebViewClient(new WebViewClient() {
-//            public boolean shouldOverrideUrlLoading(WebView view, String url)
-//            {
-//                view.loadUrl(url);
-//                return true;
-//            }
-//        });
+        settings.setDisplayZoomControls(true);
+        settings.setUseWideViewPort(true);
+
+
         webview.setWebChromeClient(new WebChromeClient());
+
     }
 
 
