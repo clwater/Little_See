@@ -176,8 +176,12 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
         settings.setAppCacheEnabled(true);
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         settings.setDisplayZoomControls(true);
-        settings.setUseWideViewPort(true);
-
+        if (statu.equals("wangyi")) {
+            settings.setUseWideViewPort(true);
+        }
+        else {
+            settings.setUseWideViewPort(false);
+        }
 
         webview.setWebChromeClient(new WebChromeClient());
 
