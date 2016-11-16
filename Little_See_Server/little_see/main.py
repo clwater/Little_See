@@ -4,5 +4,3 @@
 from server.server import runServer
 
 runServer()
-
-
