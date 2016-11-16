@@ -9,23 +9,32 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.AbsListView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 
 import com.clwater.littesee.Activity.TextInfoActivity;
-import com.clwater.littesee.Adapater.ListViewImageAdapter;
+import com.clwater.littesee.Adapater.DividerItemDecoration;
+import com.clwater.littesee.Config.AppConfig;
+import com.clwater.littesee.MainActivity;
 import com.clwater.littesee.Utils.DBHelper.ZhiHu;
 import com.clwater.littesee.Utils.DBHelper.ZhiHuDaoOrm;
 import com.clwater.littesee.Utils.EventBus.Event_RunInBack;
 import com.clwater.littesee.Utils.EventBus.Event_RunInFront;
 import com.clwater.littesee.R;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import org.greenrobot.eventbus.EventBus;
@@ -42,13 +51,13 @@ import butterknife.InjectView;
 import butterknife.OnItemClick;
 
 import static android.os.SystemClock.sleep;
-
+import com.clwater.littesee.Adapater.RecyclerAdapter;
 
 public class ZhiHuFragment extends Fragment
 {
 
     @InjectView(R.id.main_list)
-    public WaterDropListView main_list;
+    public RecyclerView main_list;
     @InjectView(R.id._main_top_process)
     public RelativeLayout relativeLayout;
     @InjectView(R.id._top_process)
@@ -70,7 +79,7 @@ public class ZhiHuFragment extends Fragment
         View view = inflater.inflate(R.layout.fragment_text, container, false);
         ButterKnife.inject(this , view);
 
-        showTopProcess();
+       // showTopProcess();
         precess_statu = true;
 
         activity = getActivity();
@@ -80,37 +89,50 @@ public class ZhiHuFragment extends Fragment
 
         EventBus.getDefault().register(this);
 
-        main_list.setOnScrollListener(new AbsListView.OnScrollListener(){
-            public void onScrollStateChanged(AbsListView view, int scrollState){
-                // 当不滚动时
-                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
-                    // 判断是否滚动到底部
-                    if (view.getLastVisiblePosition() == view.getCount() - 1) {
-                        Log.d("gzb" , "aaaa");
-                    }
-                }
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-            }
-        });
-
-//        testText.setText("zhihu");
 
         return view;
     }
 
     private void initListview() {
-        List<Map<String, Object>> list=getData();
-        main_list.setAdapter(new ListViewImageAdapter(getActivity(), list));
+        list = getData();
+
+
+        main_list.setLayoutManager(new LinearLayoutManager(getActivity()));
+        final RecyclerAdapter adapter = new RecyclerAdapter(getActivity() , list);
+        main_list.setAdapter(adapter);
+        main_list.addItemDecoration(new DividerItemDecoration(getActivity() , 1));
+        adapter.setOnItemClickListener(new RecyclerAdapter.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View view, String data) {
+                int index = Integer.valueOf(data) - 1;
+                Map<String, Object> map= list.get(index);
+                ZhiHu zhihu = zhiHuDaoOrm.seleteZhiHu(Integer.valueOf( map.get("id").toString() ));
+                zhihu.setIsRead(1);
+                zhiHuDaoOrm.add(zhihu);
+
+                //upDateItemTextColor(index);
+                list.clear();
+                list = getData();
+
+                adapter.notifyDataSetChanged();
+
+                Intent intent = new Intent(getActivity() , TextInfoActivity.class);
+                intent.putExtra("webImage" , map.get("title_image").toString());
+                intent.putExtra("webTitle" , map.get("title").toString());
+                intent.putExtra("webUrl" , map.get("address").toString());
+                intent.putExtra("statu" , "zhihu");
+                startActivity(intent);
+            }
+        });
     }
+
+
 
     public List<Map<String, Object>> getData(){
 
         zhiHuDaoOrm = new ZhiHuDaoOrm(getActivity());
         List<ZhiHu> zhihuList= zhiHuDaoOrm.select();
-        for (int i = zhihuList.size() - 1 ; i >= 0  ; i--){
+        for (int i = 0 ; i < zhihuList.size()  ; i++){
             ZhiHu zhihu = zhihuList.get(i);
             Map<String, Object> map=new HashMap<String, Object>();
             map.put("id" , zhihu.getId());
@@ -150,40 +172,8 @@ public class ZhiHuFragment extends Fragment
         EventBus.getDefault().unregister(this);
     }
 
-    @OnItemClick(R.id.main_list)
-    public void itemClick(int position , View view){
-        if (precess_statu) {
-            stopTopProsess();
-            precess_statu = false;
-        }
-
-        Map<String, Object> map= list.get(position);
-        ZhiHu zhihu = zhiHuDaoOrm.seleteZhiHu(Integer.valueOf( map.get("id").toString() ));
-        zhihu.setIsRead(1);
-        zhiHuDaoOrm.add(zhihu);
-
-        Intent intent = new Intent(getActivity() , TextInfoActivity.class);
-        intent.putExtra("webImage" , map.get("title_image").toString());
-        intent.putExtra("webTitle" , map.get("title").toString());
-        intent.putExtra("webUrl" , map.get("address").toString());
-        intent.putExtra("statu" , "zhihu");
-        startActivity(intent);
-
-        upDateItemTextColor(position);
 
 
-
-    }
-
-    private void upDateItemTextColor(int position) {
-        View childAt = main_list.getChildAt(position - main_list.getFirstVisiblePosition());
-        if (childAt != null) {
-            TextView listview_main_text = (TextView) childAt.findViewById(R.id.listview_main_text);
-            if (listview_main_text != null) {
-                listview_main_text.setTextColor(Color.parseColor("#666666"));
-            }
-        }
-    }
 
 
 }

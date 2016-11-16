@@ -10,7 +10,7 @@
         android:layout_width="80dip"
         android:layout_height="80dip"
         android:scaleType="fitXY"
-        android:padding="5dp"
+        android:padding="2dp"
         />
 
     <TextView

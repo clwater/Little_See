@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,7 +18,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.clwater.littesee.Activity.TextInfoActivity;
+import com.clwater.littesee.Adapater.DividerItemDecoration;
 import com.clwater.littesee.Adapater.ListViewImageAdapter;
+import com.clwater.littesee.Adapater.RecyclerAdapter;
 import com.clwater.littesee.R;
 import com.clwater.littesee.Utils.DBHelper.HaoQiXin;
 import com.clwater.littesee.Utils.DBHelper.HaoQiXinDaoOrm;
@@ -47,8 +50,9 @@ import static android.os.SystemClock.sleep;
  */
 
 public class HaoQiXinFragment extends Fragment {
+
     @InjectView(R.id.main_list)
-    public ListView main_list;
+    public RecyclerView main_list;
     @InjectView(R.id._main_top_process)
     public RelativeLayout relativeLayout;
     @InjectView(R.id._top_process)
@@ -59,26 +63,18 @@ public class HaoQiXinFragment extends Fragment {
     public static Activity activity;
     private boolean precess_statu = true;
 
-    int lastItem;
-
     List<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
     HaoQiXinDaoOrm haoQinXinDaoOrm;
-
-
-//    @InjectView(R.id.testText)
-//    TextView testText;
-
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-
         View view = inflater.inflate(R.layout.fragment_text, container, false);
         ButterKnife.inject(this , view);
 
-        showTopProcess();
+        // showTopProcess();
         precess_statu = true;
 
         activity = getActivity();
@@ -89,42 +85,50 @@ public class HaoQiXinFragment extends Fragment {
         EventBus.getDefault().register(this);
 
 
-        main_list.setOnScrollListener(new AbsListView.OnScrollListener(){
-            public void onScrollStateChanged(AbsListView view, int scrollState){
-                // 当不滚动时
-                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
-                    // 判断是否滚动到底部
-                    if (view.getLastVisiblePosition() == view.getCount() - 1) {
-                       Log.d("gzb" , "aaaa");
-                    }
-                }
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-            }
-        });
-
-//        testText.setText("haoqixin");
-
         return view;
-
     }
-
-
-
 
     private void initListview() {
-        List<Map<String, Object>> list=getData();
-        main_list.setAdapter(new ListViewImageAdapter(getActivity(), list));
+        list = getData();
+
+
+        main_list.setLayoutManager(new LinearLayoutManager(getActivity()));
+        final RecyclerAdapter adapter = new RecyclerAdapter(getActivity() , list);
+        main_list.setAdapter(adapter);
+        main_list.addItemDecoration(new DividerItemDecoration(getActivity() , 1));
+        adapter.setOnItemClickListener(new RecyclerAdapter.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View view, String data) {
+                int index = Integer.valueOf(data) - 1;
+                Map<String, Object> map= list.get(index);
+                HaoQiXin haoqixin = haoQinXinDaoOrm.seleteHaoQinXin(Integer.valueOf( map.get("id").toString() ));
+                haoqixin.setIsRead(1);
+                haoQinXinDaoOrm.add(haoqixin);
+
+                //upDateItemTextColor(index);
+                list.clear();
+                list = getData();
+
+                adapter.notifyDataSetChanged();
+
+                Intent intent = new Intent(getActivity() , TextInfoActivity.class);
+                intent.putExtra("webImage" , map.get("title_image").toString());
+                intent.putExtra("webTitle" , map.get("title").toString());
+                intent.putExtra("webUrl" , map.get("address").toString());
+                intent.putExtra("statu" , "haoqixin");
+                startActivity(intent);
+            }
+        });
     }
+
+
 
     public List<Map<String, Object>> getData(){
 
         haoQinXinDaoOrm = new HaoQiXinDaoOrm(getActivity());
-        List<HaoQiXin> haoQiXinList= haoQinXinDaoOrm.select();
-        for (int i = 0 ; i < haoQiXinList.size()   ; i++){
-            HaoQiXin haoQiXin = haoQiXinList.get(i);
+        List<HaoQiXin> haoqixinList= haoQinXinDaoOrm.select();
+        for (int i = 0 ; i < haoqixinList.size()  ; i++){
+            HaoQiXin haoQiXin = haoqixinList.get(i);
             Map<String, Object> map=new HashMap<String, Object>();
             map.put("id" , haoQiXin.getId());
             map.put("title" , haoQiXin.getTitle());
@@ -133,7 +137,6 @@ public class HaoQiXinFragment extends Fragment {
             map.put("isread" , haoQiXin.getIsRead());
             list.add(map);
         }
-
         return list;
     }
 
@@ -164,42 +167,8 @@ public class HaoQiXinFragment extends Fragment {
         EventBus.getDefault().unregister(this);
     }
 
-    @OnItemClick(R.id.main_list)
-    public void itemClick(int position , View view){
-        if (precess_statu) {
-            stopTopProsess();
-            precess_statu = false;
-        }
-
-        Map<String, Object> map= list.get(position);
-        HaoQiXin haoQiXin = haoQinXinDaoOrm.seleteHaoQinXin(Integer.valueOf( map.get("id").toString() ));
-        haoQiXin.setIsRead(1);
-        haoQinXinDaoOrm.add(haoQiXin);
-
-        Intent intent = new Intent(getActivity() , TextInfoActivity.class);
-        intent.putExtra("webImage" , map.get("title_image").toString());
-        intent.putExtra("webTitle" , map.get("title").toString());
-        intent.putExtra("webUrl" , map.get("address").toString());
-        //intent.putExtra("webUrl" , "http://m.qdaily.com/mobile/articles/33458.html");
-
-        intent.putExtra("statu" , "haoqixin");
-
-        startActivity(intent);
-
-        upDateItemTextColor(position);
 
 
 
-    }
-
-    private void upDateItemTextColor(int position) {
-        View childAt = main_list.getChildAt(position - main_list.getFirstVisiblePosition());
-        if (childAt != null) {
-            TextView listview_main_text = (TextView) childAt.findViewById(R.id.listview_main_text);
-            if (listview_main_text != null) {
-                listview_main_text.setTextColor(Color.parseColor("#666666"));
-            }
-        }
-    }
 
 }

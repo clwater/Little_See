@@ -52,7 +52,7 @@ public class WangYiDaoOrm {
     }
 
     //查询一条数据
-    public WangYi seleteHaoQinXin(int id){
+    public WangYi seleteWangYi(int id){
         try {
             return wangyiDao.queryBuilder()
                     .where()
