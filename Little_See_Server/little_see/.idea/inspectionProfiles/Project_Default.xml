@@ -19,6 +19,7 @@
       <option name="ignoredIdentifiers">
         <list>
           <option value="GetZhiHu.*" />
+          <option value="test.*" />
         </list>
       </option>
     </inspection_tool>
