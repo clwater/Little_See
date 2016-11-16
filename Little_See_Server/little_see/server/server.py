@@ -27,5 +27,5 @@ def runServer():
     application.listen(port)
 
     localIP = socket.gethostbyname(socket.gethostname())
-    print("run in %s:%s"%(localIP  ,port))
+    print("run in %s:%s"%(localIP,port))
     tornado.ioloop.IOLoop.instance().start()
