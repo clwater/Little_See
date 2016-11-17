@@ -33,7 +33,7 @@ import com.clwater.littesee.Utils.DBHelper.ZhiHu;
 import com.clwater.littesee.Utils.DBHelper.ZhiHuDaoOrm;
 import com.clwater.littesee.Utils.EventBus.Event_RunInBack;
 import com.clwater.littesee.Utils.EventBus.Event_RunInFront;
-import com.clwater.littesee.Utils.OkHttp_LS;
+import com.clwater.littesee.Utils.HttpUtils.OkHttp_LS;
 import com.lhh.ptrrv.library.PullToRefreshRecyclerView;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
@@ -123,10 +123,11 @@ public class HaoQiXinFragment extends Fragment {
         main_list.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Log.d("gzb" , "onRefresh");
                 Event_RunInBack event_RunInBack = new Event_RunInBack();
                 event_RunInBack.setValue("onRefresh");
                 EventBus.getDefault().post(event_RunInBack);
+
+
             }
         });
 
@@ -158,13 +159,15 @@ public class HaoQiXinFragment extends Fragment {
             }
         });
 
-        main_list.onFinishLoading(true, false);
+        //main_list.onFinishLoading(true, false);
+    }
+
+    private void saveNewDate() {
     }
 
 
-
     public List<Map<String, Object>> getData(){
-
+        list.clear();
         haoQinXinDaoOrm = new HaoQiXinDaoOrm(getActivity());
         List<HaoQiXin> haoqixinList= haoQinXinDaoOrm.select();
         for (int i = 0 ; i < _index  ; i++){
@@ -186,6 +189,7 @@ public class HaoQiXinFragment extends Fragment {
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void BackEventBus(Event_RunInBack e){
         sleep(3000);
+
         if (e.getValue().equals("onRefresh")){
             getNewDate();
         }
@@ -196,15 +200,21 @@ public class HaoQiXinFragment extends Fragment {
     }
 
     private void getNewDate() {
-        String date =  OkHttp_LS.okhttp_get("http://115.159.123.41:8001/zhihu");
-        if (date.equals("no new date")){
 
-        }else if (date.equals("ok http  get error")){
-            Toast.makeText(getActivity() , "获取请求失败,请检查网络后重试" , Toast.LENGTH_SHORT).show();
-        }else {
-            Log.d("gzb" , "getNewDate: " + date );
+        String date = OkHttp_LS.okhttp_get("http://115.159.123.41:8001/zhihu");
+        if (date.equals("no new date")) {
+            Toast.makeText(getActivity(), "没有更新的了", Toast.LENGTH_SHORT).show();
+        } else if (date.equals("http get error")) {
+            Toast.makeText(getActivity(), "获取请求失败,请检查网络后重试", Toast.LENGTH_SHORT).show();
+        } else {
+            saveNewDate();
+            Log.d("gzb", "getNewDate: " + date);
+
         }
+
+
     }
+
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void FrontEventBus(Event_RunInFront e){

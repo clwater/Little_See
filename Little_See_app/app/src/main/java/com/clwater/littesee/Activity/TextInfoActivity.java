@@ -27,7 +27,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.clwater.littesee.Config.AppConfig;
 import com.clwater.littesee.R;
-import com.clwater.littesee.Utils.OkHttp_LS;
+import com.clwater.littesee.Utils.HttpUtils.OkHttp_LS;
 import com.clwater.littesee.Utils.WebUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
