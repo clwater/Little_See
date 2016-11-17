@@ -45,12 +45,20 @@
         <!--android:layout_height="match_parent"-->
         <!--android:layout_below="@id/_main_top_process"/>-->
 
-    <android.support.v7.widget.RecyclerView
+    <com.lhh.ptrrv.library.PullToRefreshRecyclerView
         android:id="@+id/main_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingRight="10dp">
-    </android.support.v7.widget.RecyclerView>
+    </com.lhh.ptrrv.library.PullToRefreshRecyclerView>
+
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/main_list"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:paddingefreshRecyclerView>-->
+
+    <!--<android.support.v7ecyclerView>-->
 
 
 

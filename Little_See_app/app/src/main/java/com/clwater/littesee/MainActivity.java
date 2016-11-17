@@ -77,10 +77,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         FragmentManager fm = getFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         //_zhihu = new ZhiHuFragment();
-        _image = new ImageFragment();
-        //_haoqixin = new HaoQiXinFragment();
+       // _image = new ImageFragment();
+        _haoqixin = new HaoQiXinFragment();
         //_wangyi = new WangYiFragment();
-        transaction.replace(R.id.id_content, _image);
+        transaction.replace(R.id.id_content, _haoqixin);
         transaction.commit();
 
     }
@@ -129,7 +129,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 drawerLayout.closeDrawers();
                 break;
             case R.id.nav_haoqixin:
-                toolbar.setTitle("haoqixin");
+                toolbar.setTitle("好奇心");
                 if (_haoqixin == null){
                     _haoqixin = new HaoQiXinFragment();
                 }

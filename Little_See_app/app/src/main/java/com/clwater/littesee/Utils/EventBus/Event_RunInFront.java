@@ -5,4 +5,13 @@ package com.clwater.littesee.Utils.EventBus;
  */
 
 public class Event_RunInFront {
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public String value;
 }

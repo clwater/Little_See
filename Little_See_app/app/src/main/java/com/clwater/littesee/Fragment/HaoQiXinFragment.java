@@ -5,6 +5,10 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -16,6 +20,7 @@ import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.clwater.littesee.Activity.TextInfoActivity;
 import com.clwater.littesee.Adapater.DividerItemDecoration;
@@ -28,6 +33,8 @@ import com.clwater.littesee.Utils.DBHelper.ZhiHu;
 import com.clwater.littesee.Utils.DBHelper.ZhiHuDaoOrm;
 import com.clwater.littesee.Utils.EventBus.Event_RunInBack;
 import com.clwater.littesee.Utils.EventBus.Event_RunInFront;
+import com.clwater.littesee.Utils.OkHttp_LS;
+import com.lhh.ptrrv.library.PullToRefreshRecyclerView;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import org.greenrobot.eventbus.EventBus;
@@ -52,7 +59,7 @@ import static android.os.SystemClock.sleep;
 public class HaoQiXinFragment extends Fragment {
 
     @InjectView(R.id.main_list)
-    public RecyclerView main_list;
+    public com.lhh.ptrrv.library.PullToRefreshRecyclerView main_list;
     @InjectView(R.id._main_top_process)
     public RelativeLayout relativeLayout;
     @InjectView(R.id._top_process)
@@ -65,6 +72,10 @@ public class HaoQiXinFragment extends Fragment {
 
     List<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
     HaoQiXinDaoOrm haoQinXinDaoOrm;
+    RecyclerAdapter adapter;
+
+
+    int _index = 10;
 
 
     @Override
@@ -92,10 +103,37 @@ public class HaoQiXinFragment extends Fragment {
         list = getData();
 
 
+
+
+        main_list.setSwipeEnable(true);//open swipe
+        main_list.getRecyclerView().addItemDecoration(new DividerItemDecoration(getActivity() , 1));
+
+
+        main_list.setPagingableListener(new PullToRefreshRecyclerView.PagingableListener() {
+            @Override
+            public void onLoadMoreItems() {
+                Log.d("gzb" , "onLoadMoreItems");
+                Event_RunInBack event_RunInBack = new Event_RunInBack();
+                event_RunInBack.setValue("onLoadMoreItems");
+                EventBus.getDefault().post(event_RunInBack);
+
+
+            }
+        });
+        main_list.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Log.d("gzb" , "onRefresh");
+                Event_RunInBack event_RunInBack = new Event_RunInBack();
+                event_RunInBack.setValue("onRefresh");
+                EventBus.getDefault().post(event_RunInBack);
+            }
+        });
+
+
         main_list.setLayoutManager(new LinearLayoutManager(getActivity()));
-        final RecyclerAdapter adapter = new RecyclerAdapter(getActivity() , list);
+        adapter = new RecyclerAdapter(getActivity() , list);
         main_list.setAdapter(adapter);
-        main_list.addItemDecoration(new DividerItemDecoration(getActivity() , 1));
         adapter.setOnItemClickListener(new RecyclerAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, String data) {
@@ -119,6 +157,8 @@ public class HaoQiXinFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        main_list.onFinishLoading(true, false);
     }
 
 
@@ -127,7 +167,8 @@ public class HaoQiXinFragment extends Fragment {
 
         haoQinXinDaoOrm = new HaoQiXinDaoOrm(getActivity());
         List<HaoQiXin> haoqixinList= haoQinXinDaoOrm.select();
-        for (int i = 0 ; i < haoqixinList.size()  ; i++){
+        for (int i = 0 ; i < _index  ; i++){
+        //for (int i = 0 ; i < haoqixinList.size()  ; i++){
             HaoQiXin haoQiXin = haoqixinList.get(i);
             Map<String, Object> map=new HashMap<String, Object>();
             map.put("id" , haoQiXin.getId());
@@ -141,23 +182,43 @@ public class HaoQiXinFragment extends Fragment {
     }
 
 
-    private void showTopProcess() {
-        progressWheel.setVisibility(View.VISIBLE);
-    }
-    private void stopTopProsess(){
-        progressWheel.setVisibility(View.GONE);
-        pro_text.setVisibility(View.VISIBLE);
-        EventBus.getDefault().post(new Event_RunInBack());
-    }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
-    public void backEventBus(Event_RunInBack e){
-        sleep(700);
-        EventBus.getDefault().post(new Event_RunInFront());
+    public void BackEventBus(Event_RunInBack e){
+        sleep(3000);
+        if (e.getValue().equals("onRefresh")){
+            getNewDate();
+        }
+
+        Event_RunInFront event_RunInFront = new  Event_RunInFront();
+        event_RunInFront.setValue(e.getValue());
+        EventBus.getDefault().post(event_RunInFront);
     }
+
+    private void getNewDate() {
+        String date =  OkHttp_LS.okhttp_get("http://115.159.123.41:8001/zhihu");
+        if (date.equals("no new date")){
+
+        }else if (date.equals("ok http  get error")){
+            Toast.makeText(getActivity() , "获取请求失败,请检查网络后重试" , Toast.LENGTH_SHORT).show();
+        }else {
+            Log.d("gzb" , "getNewDate: " + date );
+        }
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void FrontEvent(Event_RunInFront e){
-        pro_text.setVisibility(View.GONE);
+    public void FrontEventBus(Event_RunInFront e){
+        String value = e.getValue();
+        if (value.equals("onRefresh")){
+            adapter.notifyDataSetChanged();
+            main_list.setOnRefreshComplete();
+            main_list.onFinishLoading(true, false);
+        }else if (value.equals("onLoadMoreItems")){
+            _index += 10;
+            list = getData();
+            adapter.notifyDataSetChanged();
+            main_list.onFinishLoading(true, false);
+        }
     }
 
 
@@ -166,8 +227,6 @@ public class HaoQiXinFragment extends Fragment {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
-
-
 
 
 
