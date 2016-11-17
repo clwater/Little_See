@@ -3,11 +3,6 @@
 
 from server.server import runServer
 
-
-
-
-
-
 import time, threading
 from colorama import init,Fore
 
@@ -18,6 +13,7 @@ def getInfoDate():
         local_time = time.strftime('%Y-%m-%d %H:%M',time.localtime(time.time()))
         local_hours = time.strftime('%H',time.localtime(time.time()))
         local_minute = time.strftime('%M',time.localtime(time.time()))
+        print("time : " , local_time)
         print("" , local_hours , ":" , local_minute)
 
         if local_hours == 6 and local_minute < 30:

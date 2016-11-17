@@ -9,7 +9,8 @@ class ParentRequesyHandler(tornado.web.RequestHandler):
 class Handler_ZhiHu(ParentRequesyHandler):
     def get(self):
         ParentRequesyHandler.showInfo(self)
-        self.write("zhihu")
+        message = self.get_argument("date", None)
+        self.write("zhihu:%s"%(message))
 
 class Main(ParentRequesyHandler):
     def get(self, *args, **kwargs):
@@ -23,7 +24,7 @@ application = tornado.web.Application([
 ])
 
 def runServer():
-    port = 8001
+    port = 9001
     application.listen(port)
 
     localIP = socket.gethostbyname(socket.gethostname())
