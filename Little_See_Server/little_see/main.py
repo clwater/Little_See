@@ -16,9 +16,12 @@ def getInfoDate():
         print("time : " , local_time)
         print("" , local_hours , ":" , local_minute)
 
+
+
         if local_hours == 6 and local_minute < 30:
             #每天6点 更新所有知乎日报 好奇心日报 图片 数据
-            pass
+            from getdate.ZhiHu import getZhihu
+            getZhihu()
 
         #每小时更新网易新闻数据
 

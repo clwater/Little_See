@@ -10,7 +10,9 @@ class Handler_ZhiHu(ParentRequesyHandler):
     def get(self):
         ParentRequesyHandler.showInfo(self)
         message = self.get_argument("date", None)
-        self.write("zhihu:%s"%(message))
+        from server.server_zhihu import re_data_zhihu
+        json = re_data_zhihu(message)
+        self.write(json)
 
 class Main(ParentRequesyHandler):
     def get(self, *args, **kwargs):
@@ -24,7 +26,7 @@ application = tornado.web.Application([
 ])
 
 def runServer():
-    port = 9001
+    port = 9005
     application.listen(port)
 
     localIP = socket.gethostbyname(socket.gethostname())

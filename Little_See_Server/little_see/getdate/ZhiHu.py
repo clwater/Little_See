@@ -1,13 +1,18 @@
 # !/usr/bin/python3
 # -*- coding: UTF-8 -*-
-
+from colorama import Fore
 
 from selenium import webdriver
+from database.zhihu_sql import save_sql
+
 zhihulist = []
 
 
 
-def main():
+
+
+def getZhihu():
+    print(Fore.GREEN + 'getZhihu')
     driver = webdriver.PhantomJS(executable_path="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_Server/phantomjs-2.1.1-macosx/bin/phantomjs")
     #driver = webdriver.PhantomJS(executable_path="/Users/yszsyf/Desktop/android/Little_See/Little_See_Server/phantomjs-2.1.1-macosx/bin/phantomjs")
     driver.get("http://daily.zhihu.com/")
@@ -25,7 +30,9 @@ def main():
         zhihu.insert(2, imagelist[index].get_attribute("src"))
         zhihulist.append(zhihu)
 
-    for zhihu in zhihulist:
-        print(zhihu)
+    save_sql(zhihulist)
 
-main()
+
+getZhihu()
+
+
