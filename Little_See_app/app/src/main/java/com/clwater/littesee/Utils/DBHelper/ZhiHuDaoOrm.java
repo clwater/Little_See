@@ -36,7 +36,8 @@ public class ZhiHuDaoOrm {
     //查询所有
     public List<ZhiHu> select(){
         try {
-            return zhihuDao.queryForAll();
+            return zhihuDao.queryBuilder().orderBy("id" , false).query();
+            //return zhihuDao.queryForAll();
         } catch (SQLException e) {
             e.printStackTrace();
         }

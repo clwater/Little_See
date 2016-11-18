@@ -36,7 +36,8 @@ public class HaoQiXinDaoOrm {
     //查询所有
     public List<HaoQiXin> select(){
         try {
-            return haoqixinDao.queryForAll();
+            return haoqixinDao.queryBuilder().orderBy("id" , false).query();
+            //return haoqixinDao.queryForAll();
         } catch (SQLException e) {
             e.printStackTrace();
         }

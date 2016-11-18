@@ -76,6 +76,7 @@ public class HaoQiXinFragment extends Fragment {
 
 
     int _index = 10;
+    int index_size = 0 ;
 
 
     @Override
@@ -138,7 +139,9 @@ public class HaoQiXinFragment extends Fragment {
         adapter.setOnItemClickListener(new RecyclerAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, String data) {
-                int index = Integer.valueOf(data) - 1;
+                int index = Integer.valueOf(data);
+                Log.d("gzb" , "index :" + index);
+                index = index_size - index;
                 Map<String, Object> map= list.get(index);
                 HaoQiXin haoqixin = haoQinXinDaoOrm.seleteHaoQinXin(Integer.valueOf( map.get("id").toString() ));
                 haoqixin.setIsRead(1);
@@ -170,16 +173,18 @@ public class HaoQiXinFragment extends Fragment {
         list.clear();
         haoQinXinDaoOrm = new HaoQiXinDaoOrm(getActivity());
         List<HaoQiXin> haoqixinList= haoQinXinDaoOrm.select();
+        index_size = haoqixinList.size();
         for (int i = 0 ; i < _index  ; i++){
-        //for (int i = 0 ; i < haoqixinList.size()  ; i++){
-            HaoQiXin haoQiXin = haoqixinList.get(i);
-            Map<String, Object> map=new HashMap<String, Object>();
-            map.put("id" , haoQiXin.getId());
-            map.put("title" , haoQiXin.getTitle());
-            map.put("address" , haoQiXin.getAddress());
-            map.put("title_image" , haoQiXin.getTitle_image());
-            map.put("isread" , haoQiXin.getIsRead());
-            list.add(map);
+            if (i < index_size) {
+                HaoQiXin haoQiXin = haoqixinList.get(i);
+                Map<String, Object> map = new HashMap<String, Object>();
+                map.put("id", haoQiXin.getId());
+                map.put("title", haoQiXin.getTitle());
+                map.put("address", haoQiXin.getAddress());
+                map.put("title_image", haoQiXin.getTitle_image());
+                map.put("isread", haoQiXin.getIsRead());
+                list.add(map);
+            }
         }
         return list;
     }
@@ -188,20 +193,31 @@ public class HaoQiXinFragment extends Fragment {
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void BackEventBus(Event_RunInBack e){
-        sleep(3000);
-
-        if (e.getValue().equals("onRefresh")){
-            getNewDate();
-        }
+        //sleep(3000);
 
         Event_RunInFront event_RunInFront = new  Event_RunInFront();
         event_RunInFront.setValue(e.getValue());
+
+        if (e.getValue().equals("onRefresh")){
+            getNewDate();
+        }else if (e.getValue().equals("onLoadMoreItems")){
+            Log.d("gzb" , "_index : " + _index + "index_size : " + index_size  +  "_index > index_size" + (_index - index_size) );
+            if (_index - index_size >= 0){
+                event_RunInFront.setValue2("finash");
+            }else {
+                event_RunInFront.setValue2("unfinash");
+                _index += 10;
+                list = getData();
+            }
+
+
+        }
         EventBus.getDefault().post(event_RunInFront);
     }
 
     private void getNewDate() {
 
-        String date = OkHttp_LS.okhttp_get("http://115.159.123.41:8001/zhihu");
+        String date = OkHttp_LS.okhttp_get("http://115.159.123.41:8001/zhihu?date=17");
         if (date.equals("no new date")) {
             Toast.makeText(getActivity(), "没有更新的了", Toast.LENGTH_SHORT).show();
         } else if (date.equals("http get error")) {
@@ -223,12 +239,18 @@ public class HaoQiXinFragment extends Fragment {
             adapter.notifyDataSetChanged();
             main_list.setOnRefreshComplete();
             main_list.onFinishLoading(true, false);
-        }else if (value.equals("onLoadMoreItems")){
-            _index += 10;
-            list = getData();
-            adapter.notifyDataSetChanged();
-            main_list.onFinishLoading(true, false);
+        }else if(value.equals("onLoadMoreItems")){
+
+            if (e.getValue2().equals("finash")) {
+                Toast.makeText(getActivity(), "没有更多了", Toast.LENGTH_SHORT).show();
+                main_list.onFinishLoading(false, false);
+            }else {
+                adapter.notifyDataSetChanged();
+                main_list.onFinishLoading(true, false);
+            }
         }
+
+
     }
 
 

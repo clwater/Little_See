@@ -9,6 +9,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -28,11 +29,15 @@ import com.clwater.littesee.Activity.TextInfoActivity;
 import com.clwater.littesee.Adapater.DividerItemDecoration;
 import com.clwater.littesee.Config.AppConfig;
 import com.clwater.littesee.MainActivity;
+import com.clwater.littesee.Utils.DBHelper.HaoQiXin;
+import com.clwater.littesee.Utils.DBHelper.HaoQiXinDaoOrm;
 import com.clwater.littesee.Utils.DBHelper.ZhiHu;
 import com.clwater.littesee.Utils.DBHelper.ZhiHuDaoOrm;
 import com.clwater.littesee.Utils.EventBus.Event_RunInBack;
 import com.clwater.littesee.Utils.EventBus.Event_RunInFront;
 import com.clwater.littesee.R;
+import com.clwater.littesee.Utils.HttpUtils.OkHttp_LS;
+import com.lhh.ptrrv.library.PullToRefreshRecyclerView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.pnikosis.materialishprogress.ProgressWheel;
@@ -53,11 +58,134 @@ import butterknife.OnItemClick;
 import static android.os.SystemClock.sleep;
 import com.clwater.littesee.Adapater.RecyclerAdapter;
 
-public class ZhiHuFragment extends Fragment
-{
+public class ZhiHuFragment extends Fragment {
+//
+//    @InjectView(R.id.main_list)
+//    public RecyclerView main_list;
+//    @InjectView(R.id._main_top_process)
+//    public RelativeLayout relativeLayout;
+//    @InjectView(R.id._top_process)
+//    public ProgressWheel progressWheel;
+//    @InjectView(R.id._top_pro_text)
+//    public TextView pro_text;
+//
+//    public static Activity activity;
+//    private boolean precess_statu = true;
+//
+//    List<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
+//    ZhiHuDaoOrm zhiHuDaoOrm;
+//
+//
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                             Bundle savedInstanceState)
+//    {
+//        View view = inflater.inflate(R.layout.fragment_text, container, false);
+//        ButterKnife.inject(this , view);
+//
+//       // showTopProcess();
+//        precess_statu = true;
+//
+//        activity = getActivity();
+//
+//        initListview();
+//
+//
+//        EventBus.getDefault().register(this);
+//
+//
+//        return view;
+//    }
+//
+//    private void initListview() {
+//        list = getData();
+//
+//
+//        main_list.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        final RecyclerAdapter adapter = new RecyclerAdapter(getActivity() , list);
+//        main_list.setAdapter(adapter);
+//        main_list.addItemDecoration(new DividerItemDecoration(getActivity() , 1));
+//        adapter.setOnItemClickListener(new RecyclerAdapter.OnRecyclerViewItemClickListener() {
+//            @Override
+//            public void onItemClick(View view, String data) {
+//                int index = Integer.valueOf(data) - 1;
+//                Map<String, Object> map= list.get(index);
+//                ZhiHu zhihu = zhiHuDaoOrm.seleteZhiHu(Integer.valueOf( map.get("id").toString() ));
+//                zhihu.setIsRead(1);
+//                zhiHuDaoOrm.add(zhihu);
+//
+//                //upDateItemTextColor(index);
+//                list.clear();
+//                list = getData();
+//
+//                adapter.notifyDataSetChanged();
+//
+//                Intent intent = new Intent(getActivity() , TextInfoActivity.class);
+//                intent.putExtra("webImage" , map.get("title_image").toString());
+//                intent.putExtra("webTitle" , map.get("title").toString());
+//                intent.putExtra("webUrl" , map.get("address").toString());
+//                intent.putExtra("statu" , "zhihu");
+//                startActivity(intent);
+//            }
+//        });
+//    }
+//
+//
+//
+//    public List<Map<String, Object>> getData(){
+//
+//        zhiHuDaoOrm = new ZhiHuDaoOrm(getActivity());
+//        List<ZhiHu> zhihuList= zhiHuDaoOrm.select();
+//        for (int i = 0 ; i < zhihuList.size()  ; i++){
+//            ZhiHu zhihu = zhihuList.get(i);
+//            Map<String, Object> map=new HashMap<String, Object>();
+//            map.put("id" , zhihu.getId());
+//            map.put("title" , zhihu.getTitle());
+//            map.put("address" , zhihu.getAddress());
+//            map.put("title_image" , zhihu.getTitle_image());
+//            map.put("isread" , zhihu.getIsRead());
+//            list.add(map);
+//        }
+//        return list;
+//    }
+//
+//
+//    private void showTopProcess() {
+//        progressWheel.setVisibility(View.VISIBLE);
+//    }
+//    private void stopTopProsess(){
+//        progressWheel.setVisibility(View.GONE);
+//        pro_text.setVisibility(View.VISIBLE);
+//        EventBus.getDefault().post(new Event_RunInBack());
+//    }
+//
+//    @Subscribe(threadMode = ThreadMode.BACKGROUND)
+//    public void backEventBus(Event_RunInBack e){
+//        sleep(700);
+//        EventBus.getDefault().post(new Event_RunInFront());
+//    }
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    public void FrontEvent(Event_RunInFront e){
+//        pro_text.setVisibility(View.GONE);
+//    }
+//
+//
+//    @Override
+//    public void onDestroy() {
+//        super.onDestroy();
+//        EventBus.getDefault().unregister(this);
+//    }
+//
+//
+//
+//
+//
+//}
+
+
 
     @InjectView(R.id.main_list)
-    public RecyclerView main_list;
+    public com.lhh.ptrrv.library.PullToRefreshRecyclerView main_list;
     @InjectView(R.id._main_top_process)
     public RelativeLayout relativeLayout;
     @InjectView(R.id._top_process)
@@ -70,6 +198,11 @@ public class ZhiHuFragment extends Fragment
 
     List<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
     ZhiHuDaoOrm zhiHuDaoOrm;
+    RecyclerAdapter adapter;
+
+
+    int _index = 10;
+    int index_size = 0 ;
 
 
     @Override
@@ -79,7 +212,7 @@ public class ZhiHuFragment extends Fragment
         View view = inflater.inflate(R.layout.fragment_text, container, false);
         ButterKnife.inject(this , view);
 
-       // showTopProcess();
+        // showTopProcess();
         precess_statu = true;
 
         activity = getActivity();
@@ -97,14 +230,44 @@ public class ZhiHuFragment extends Fragment
         list = getData();
 
 
+
+
+        main_list.setSwipeEnable(true);//open swipe
+        main_list.getRecyclerView().addItemDecoration(new DividerItemDecoration(getActivity() , 1));
+
+
+        main_list.setPagingableListener(new PullToRefreshRecyclerView.PagingableListener() {
+            @Override
+            public void onLoadMoreItems() {
+
+                Event_RunInBack event_RunInBack = new Event_RunInBack();
+                event_RunInBack.setValue("onLoadMoreItems");
+                EventBus.getDefault().post(event_RunInBack);
+
+
+            }
+        });
+        main_list.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Event_RunInBack event_RunInBack = new Event_RunInBack();
+                event_RunInBack.setValue("onRefresh");
+                EventBus.getDefault().post(event_RunInBack);
+
+
+            }
+        });
+
+
         main_list.setLayoutManager(new LinearLayoutManager(getActivity()));
-        final RecyclerAdapter adapter = new RecyclerAdapter(getActivity() , list);
+        adapter = new RecyclerAdapter(getActivity() , list);
         main_list.setAdapter(adapter);
-        main_list.addItemDecoration(new DividerItemDecoration(getActivity() , 1));
         adapter.setOnItemClickListener(new RecyclerAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, String data) {
-                int index = Integer.valueOf(data) - 1;
+                int index = Integer.valueOf(data);
+                Log.d("gzb" , "index :" + index);
+                index = index_size - index;
                 Map<String, Object> map= list.get(index);
                 ZhiHu zhihu = zhiHuDaoOrm.seleteZhiHu(Integer.valueOf( map.get("id").toString() ));
                 zhihu.setIsRead(1);
@@ -124,45 +287,98 @@ public class ZhiHuFragment extends Fragment
                 startActivity(intent);
             }
         });
+
+        main_list.onFinishLoading(true, false);
+    }
+
+    private void saveNewDate() {
     }
 
 
-
     public List<Map<String, Object>> getData(){
-
+        list.clear();
         zhiHuDaoOrm = new ZhiHuDaoOrm(getActivity());
         List<ZhiHu> zhihuList= zhiHuDaoOrm.select();
-        for (int i = 0 ; i < zhihuList.size()  ; i++){
-            ZhiHu zhihu = zhihuList.get(i);
-            Map<String, Object> map=new HashMap<String, Object>();
-            map.put("id" , zhihu.getId());
-            map.put("title" , zhihu.getTitle());
-            map.put("address" , zhihu.getAddress());
-            map.put("title_image" , zhihu.getTitle_image());
-            map.put("isread" , zhihu.getIsRead());
-            list.add(map);
+        index_size = zhihuList.size();
+        for (int i = 0 ; i < _index  ; i++){
+            if (i < index_size) {
+                ZhiHu zhiHu = zhihuList.get(i);
+                Map<String, Object> map = new HashMap<String, Object>();
+                map.put("id", zhiHu.getId());
+                map.put("title", zhiHu.getTitle());
+                map.put("address", zhiHu.getAddress());
+                map.put("title_image", zhiHu.getTitle_image());
+                map.put("isread", zhiHu.getIsRead());
+                list.add(map);
+            }
         }
         return list;
     }
 
 
-    private void showTopProcess() {
-        progressWheel.setVisibility(View.VISIBLE);
-    }
-    private void stopTopProsess(){
-        progressWheel.setVisibility(View.GONE);
-        pro_text.setVisibility(View.VISIBLE);
-        EventBus.getDefault().post(new Event_RunInBack());
-    }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
-    public void backEventBus(Event_RunInBack e){
-        sleep(700);
-        EventBus.getDefault().post(new Event_RunInFront());
+    public void BackEventBus(Event_RunInBack e){
+        //sleep(3000);
+
+        Event_RunInFront event_RunInFront = new  Event_RunInFront();
+        event_RunInFront.setValue(e.getValue());
+
+        if (e.getValue().equals("onRefresh")){
+            getNewDate();
+        }else if (e.getValue().equals("onLoadMoreItems")){
+            Log.d("gzb" , "_index : " + _index + "index_size : " + index_size  +  "_index > index_size" + (_index - index_size) );
+            if (_index - index_size >= 0){
+                event_RunInFront.setValue2("finash");
+            }else {
+                event_RunInFront.setValue2("unfinash");
+                _index += 10;
+                list = getData();
+            }
+
+
+        }
+
+
+        EventBus.getDefault().post(event_RunInFront);
     }
+
+    private void getNewDate() {
+
+        String date = OkHttp_LS.okhttp_get("http://115.159.123.41:8001/zhihu?date=17");
+        if (date.equals("no new date")) {
+            Toast.makeText(getActivity(), "没有更新的了", Toast.LENGTH_SHORT).show();
+        } else if (date.equals("http get error")) {
+            Toast.makeText(getActivity(), "获取请求失败,请检查网络后重试", Toast.LENGTH_SHORT).show();
+        } else {
+            saveNewDate();
+            Log.d("gzb", "getNewDate: " + date);
+
+        }
+
+
+    }
+
+
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void FrontEvent(Event_RunInFront e){
-        pro_text.setVisibility(View.GONE);
+    public void FrontEventBus(Event_RunInFront e){
+        String value = e.getValue();
+        if (value.equals("onRefresh")){
+            adapter.notifyDataSetChanged();
+            main_list.setOnRefreshComplete();
+            main_list.onFinishLoading(true, false);
+        }else if(value.equals("onLoadMoreItems")){
+
+            if (e.getValue2().equals("finash")) {
+                Toast.makeText(getActivity(), "没有更多了", Toast.LENGTH_SHORT).show();
+                main_list.onFinishLoading(false, false);
+            }else {
+                adapter.notifyDataSetChanged();
+                main_list.onFinishLoading(true, false);
+            }
+        }
+
+
     }
 
 
@@ -171,8 +387,6 @@ public class ZhiHuFragment extends Fragment
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
-
-
 
 
 
