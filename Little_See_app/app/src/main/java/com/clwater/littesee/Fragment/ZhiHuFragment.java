@@ -59,129 +59,6 @@ import static android.os.SystemClock.sleep;
 import com.clwater.littesee.Adapater.RecyclerAdapter;
 
 public class ZhiHuFragment extends Fragment {
-//
-//    @InjectView(R.id.main_list)
-//    public RecyclerView main_list;
-//    @InjectView(R.id._main_top_process)
-//    public RelativeLayout relativeLayout;
-//    @InjectView(R.id._top_process)
-//    public ProgressWheel progressWheel;
-//    @InjectView(R.id._top_pro_text)
-//    public TextView pro_text;
-//
-//    public static Activity activity;
-//    private boolean precess_statu = true;
-//
-//    List<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
-//    ZhiHuDaoOrm zhiHuDaoOrm;
-//
-//
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState)
-//    {
-//        View view = inflater.inflate(R.layout.fragment_text, container, false);
-//        ButterKnife.inject(this , view);
-//
-//       // showTopProcess();
-//        precess_statu = true;
-//
-//        activity = getActivity();
-//
-//        initListview();
-//
-//
-//        EventBus.getDefault().register(this);
-//
-//
-//        return view;
-//    }
-//
-//    private void initListview() {
-//        list = getData();
-//
-//
-//        main_list.setLayoutManager(new LinearLayoutManager(getActivity()));
-//        final RecyclerAdapter adapter = new RecyclerAdapter(getActivity() , list);
-//        main_list.setAdapter(adapter);
-//        main_list.addItemDecoration(new DividerItemDecoration(getActivity() , 1));
-//        adapter.setOnItemClickListener(new RecyclerAdapter.OnRecyclerViewItemClickListener() {
-//            @Override
-//            public void onItemClick(View view, String data) {
-//                int index = Integer.valueOf(data) - 1;
-//                Map<String, Object> map= list.get(index);
-//                ZhiHu zhihu = zhiHuDaoOrm.seleteZhiHu(Integer.valueOf( map.get("id").toString() ));
-//                zhihu.setIsRead(1);
-//                zhiHuDaoOrm.add(zhihu);
-//
-//                //upDateItemTextColor(index);
-//                list.clear();
-//                list = getData();
-//
-//                adapter.notifyDataSetChanged();
-//
-//                Intent intent = new Intent(getActivity() , TextInfoActivity.class);
-//                intent.putExtra("webImage" , map.get("title_image").toString());
-//                intent.putExtra("webTitle" , map.get("title").toString());
-//                intent.putExtra("webUrl" , map.get("address").toString());
-//                intent.putExtra("statu" , "zhihu");
-//                startActivity(intent);
-//            }
-//        });
-//    }
-//
-//
-//
-//    public List<Map<String, Object>> getData(){
-//
-//        zhiHuDaoOrm = new ZhiHuDaoOrm(getActivity());
-//        List<ZhiHu> zhihuList= zhiHuDaoOrm.select();
-//        for (int i = 0 ; i < zhihuList.size()  ; i++){
-//            ZhiHu zhihu = zhihuList.get(i);
-//            Map<String, Object> map=new HashMap<String, Object>();
-//            map.put("id" , zhihu.getId());
-//            map.put("title" , zhihu.getTitle());
-//            map.put("address" , zhihu.getAddress());
-//            map.put("title_image" , zhihu.getTitle_image());
-//            map.put("isread" , zhihu.getIsRead());
-//            list.add(map);
-//        }
-//        return list;
-//    }
-//
-//
-//    private void showTopProcess() {
-//        progressWheel.setVisibility(View.VISIBLE);
-//    }
-//    private void stopTopProsess(){
-//        progressWheel.setVisibility(View.GONE);
-//        pro_text.setVisibility(View.VISIBLE);
-//        EventBus.getDefault().post(new Event_RunInBack());
-//    }
-//
-//    @Subscribe(threadMode = ThreadMode.BACKGROUND)
-//    public void backEventBus(Event_RunInBack e){
-//        sleep(700);
-//        EventBus.getDefault().post(new Event_RunInFront());
-//    }
-//    @Subscribe(threadMode = ThreadMode.MAIN)
-//    public void FrontEvent(Event_RunInFront e){
-//        pro_text.setVisibility(View.GONE);
-//    }
-//
-//
-//    @Override
-//    public void onDestroy() {
-//        super.onDestroy();
-//        EventBus.getDefault().unregister(this);
-//    }
-//
-//
-//
-//
-//
-//}
-
 
 
     @InjectView(R.id.main_list)
@@ -327,7 +204,6 @@ public class ZhiHuFragment extends Fragment {
         if (e.getValue().equals("onRefresh")){
             getNewDate();
         }else if (e.getValue().equals("onLoadMoreItems")){
-            Log.d("gzb" , "_index : " + _index + "index_size : " + index_size  +  "_index > index_size" + (_index - index_size) );
             if (_index - index_size >= 0){
                 event_RunInFront.setValue2("finash");
             }else {

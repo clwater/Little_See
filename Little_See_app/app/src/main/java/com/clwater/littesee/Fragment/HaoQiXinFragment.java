@@ -201,7 +201,6 @@ public class HaoQiXinFragment extends Fragment {
         if (e.getValue().equals("onRefresh")){
             getNewDate();
         }else if (e.getValue().equals("onLoadMoreItems")){
-            Log.d("gzb" , "_index : " + _index + "index_size : " + index_size  +  "_index > index_size" + (_index - index_size) );
             if (_index - index_size >= 0){
                 event_RunInFront.setValue2("finash");
             }else {
