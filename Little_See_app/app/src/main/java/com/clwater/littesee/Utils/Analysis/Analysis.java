@@ -26,6 +26,7 @@ public class Analysis {
         TextBean textBean = new Gson().fromJson(_date , TextBean.class);
 //
 
+        
         Log.d("gzb" , "textBean.statu:" + textBean.statu);
 //       // Log.d("gzb" , "" + foos[1].text_date.title);
 //
