@@ -48,6 +48,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/haizhi/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.0/c4ba5371a29ac9b2ad6129b1d39ea38750043eff/gson-2.8.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="c4ba5371a29ac9b2ad6129b1d39ea38750043eff">
+        <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.8.0_4e84f30b976d763d15c19c93c931907cb1f9aaf9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/haizhi/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.0/support-annotations-24.2.0.jar"
         jumboMode="true"
         optimize="true"

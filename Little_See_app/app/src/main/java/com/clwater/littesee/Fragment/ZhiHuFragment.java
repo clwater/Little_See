@@ -29,6 +29,7 @@ import com.clwater.littesee.Activity.TextInfoActivity;
 import com.clwater.littesee.Adapater.DividerItemDecoration;
 import com.clwater.littesee.Config.AppConfig;
 import com.clwater.littesee.MainActivity;
+import com.clwater.littesee.Utils.Analysis.Analysis;
 import com.clwater.littesee.Utils.DBHelper.HaoQiXin;
 import com.clwater.littesee.Utils.DBHelper.HaoQiXinDaoOrm;
 import com.clwater.littesee.Utils.DBHelper.ZhiHu;
@@ -168,7 +169,12 @@ public class ZhiHuFragment extends Fragment {
         main_list.onFinishLoading(true, false);
     }
 
-    private void saveNewDate() {
+    private void saveNewDate(String date) {
+        List<ZhiHu> _zhihu = Analysis.AnalysisZhiHU(date);
+
+
+        Log.d("gzb", "getNewDate: " + date);
+
     }
 
 
@@ -227,8 +233,9 @@ public class ZhiHuFragment extends Fragment {
         } else if (date.equals("http get error")) {
             Toast.makeText(getActivity(), "获取请求失败,请检查网络后重试", Toast.LENGTH_SHORT).show();
         } else {
-            saveNewDate();
-            Log.d("gzb", "getNewDate: " + date);
+
+
+            saveNewDate(date);
 
         }
 
