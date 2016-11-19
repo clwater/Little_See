@@ -65,4 +65,16 @@ public class ZhiHuDaoOrm {
         return null;
     }
 
+    public ZhiHu seleteZhiHu(String title){
+        try {
+            return zhihuDao.queryBuilder()
+                    .where()
+                    .eq("title", title)
+                    .queryForFirst();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

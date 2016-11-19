@@ -2,10 +2,12 @@ package com.clwater.littesee.Utils.Analysis;
 
 import android.util.Log;
 
+import com.clwater.littesee.Utils.Analysis.Bean.HttpTextBean;
 import com.clwater.littesee.Utils.DBHelper.ZhiHu;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,35 +16,23 @@ import java.util.List;
 
 public class Analysis {
     public static List<ZhiHu> AnalysisZhiHU(String _date){
-        List<ZhiHu> zhiHuList = null;
+        List<ZhiHu> zhiHuList = new ArrayList<ZhiHu>();
 
-//        String JSON_DATA = "{\n" +
-//                "    \"id\": 100,\n" +
-//                "    \"body\": \"It is my post\",\n" +
-//                "    \"number\": 0.13,\n" +
-//                "    \"created_at\": \"2014-05-22 19:12:38\"\n" +
-//                "}";
-        TextBean textBean = new Gson().fromJson(_date , TextBean.class);
-//
-        Log.d("gzb" , "textBean.statu:" + textBean.date);
-//       // Log.d("gzb" , "" + foos[1].text_date.title);
-//
-//        Text_date[] t = new Gson().fromJson(String.valueOf(textBean.date), Text_date[].class);
-//
-//        Log.d("gzb" , "" + t[1].title);
+        HttpTextBean textBean = new Gson().fromJson(_date , HttpTextBean.class);
+        List<HttpTextBean.DateBean> infoList = textBean.getDate();
+
+        for (int i = 0 ; i < infoList.size() ; i ++){
+            HttpTextBean.DateBean dateBean = infoList.get(i);
+            ZhiHu zhihu = new ZhiHu();
+            zhihu.setTitle(dateBean.getTitle());
+            zhihu.setTitle_image(dateBean.getTitle_image());
+            zhihu.setAddress(dateBean.getAddress());
+            zhihu.setIsRead(0);
+            zhiHuList.add(zhihu);
+        }
+
+
         return zhiHuList;
-    }
-}
-
-
-class TextBean {
-    public String statu;
-    public Text_date date;
-
-    public class Text_date{
-        public String title;
-        public String title_image;
-        public String address;
     }
 }
 

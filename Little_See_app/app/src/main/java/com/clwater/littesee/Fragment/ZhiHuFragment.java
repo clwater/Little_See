@@ -30,6 +30,7 @@ import com.clwater.littesee.Adapater.DividerItemDecoration;
 import com.clwater.littesee.Config.AppConfig;
 import com.clwater.littesee.MainActivity;
 import com.clwater.littesee.Utils.Analysis.Analysis;
+import com.clwater.littesee.Utils.Analysis.SaveDate;
 import com.clwater.littesee.Utils.DBHelper.HaoQiXin;
 import com.clwater.littesee.Utils.DBHelper.HaoQiXinDaoOrm;
 import com.clwater.littesee.Utils.DBHelper.ZhiHu;
@@ -78,7 +79,7 @@ public class ZhiHuFragment extends Fragment {
     ZhiHuDaoOrm zhiHuDaoOrm;
     RecyclerAdapter adapter;
 
-
+    boolean _chageDate = false;
     int _index = 10;
     int index_size = 0 ;
 
@@ -171,9 +172,15 @@ public class ZhiHuFragment extends Fragment {
 
     private void saveNewDate(String date) {
         List<ZhiHu> _zhihu = Analysis.AnalysisZhiHU(date);
+        int changeDate = SaveDate.zhihuDateSave(_zhihu);
 
+        if (changeDate > 0) {
+            list = getData();
+            _chageDate = true;
+        } else {
+            _chageDate = false;
+        }
 
-        Log.d("gzb", "getNewDate: " + date);
 
     }
 
@@ -209,6 +216,11 @@ public class ZhiHuFragment extends Fragment {
 
         if (e.getValue().equals("onRefresh")){
             getNewDate();
+            if (_chageDate == true){
+                event_RunInFront.setValue2("new");
+            }else {
+                event_RunInFront.setValue2("unnew");
+            }
         }else if (e.getValue().equals("onLoadMoreItems")){
             if (_index - index_size >= 0){
                 event_RunInFront.setValue2("finash");
@@ -222,6 +234,8 @@ public class ZhiHuFragment extends Fragment {
         }
 
 
+
+
         EventBus.getDefault().post(event_RunInFront);
     }
 
@@ -233,8 +247,6 @@ public class ZhiHuFragment extends Fragment {
         } else if (date.equals("http get error")) {
             Toast.makeText(getActivity(), "获取请求失败,请检查网络后重试", Toast.LENGTH_SHORT).show();
         } else {
-
-
             saveNewDate(date);
 
         }
@@ -247,7 +259,11 @@ public class ZhiHuFragment extends Fragment {
     public void FrontEventBus(Event_RunInFront e){
         String value = e.getValue();
         if (value.equals("onRefresh")){
-            adapter.notifyDataSetChanged();
+            if (e.getValue2().equals("new")) {
+                adapter.notifyDataSetChanged();
+            }else {
+                Toast.makeText(getActivity(), "已获得最新数据", Toast.LENGTH_SHORT).show();
+            }
             main_list.setOnRefreshComplete();
             main_list.onFinishLoading(true, false);
         }else if(value.equals("onLoadMoreItems")){
