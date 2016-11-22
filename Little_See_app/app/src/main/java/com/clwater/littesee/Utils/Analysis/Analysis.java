@@ -18,6 +18,8 @@ public class Analysis {
     public static List<ZhiHu> AnalysisZhiHU(String _date){
         List<ZhiHu> zhiHuList = new ArrayList<ZhiHu>();
 
+        Log.d("gzb" ,  _date);
+
         HttpTextBean textBean = new Gson().fromJson(_date , HttpTextBean.class);
         List<HttpTextBean.DateBean> infoList = textBean.getDate();
 

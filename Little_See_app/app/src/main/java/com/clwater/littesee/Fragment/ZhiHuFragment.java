@@ -35,6 +35,7 @@ import com.clwater.littesee.Utils.DBHelper.HaoQiXin;
 import com.clwater.littesee.Utils.DBHelper.HaoQiXinDaoOrm;
 import com.clwater.littesee.Utils.DBHelper.ZhiHu;
 import com.clwater.littesee.Utils.DBHelper.ZhiHuDaoOrm;
+import com.clwater.littesee.Utils.DateUtils;
 import com.clwater.littesee.Utils.EventBus.Event_RunInBack;
 import com.clwater.littesee.Utils.EventBus.Event_RunInFront;
 import com.clwater.littesee.R;
@@ -48,6 +49,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -240,14 +242,20 @@ public class ZhiHuFragment extends Fragment {
     }
 
     private void getNewDate() {
-
-        String date = OkHttp_LS.okhttp_get("http://115.159.123.41:8001/zhihu?date=17");
+        int bewdate = 0 ;
+        try {
+            bewdate = DateUtils.checkDate();
+        } catch (ParseException e) {}
+        String url = "http://115.159.123.41:8001/zhihu?date=" + bewdate;
+        String date = OkHttp_LS.okhttp_get(url);
         if (date.equals("no new date")) {
             Toast.makeText(getActivity(), "没有更新的了", Toast.LENGTH_SHORT).show();
         } else if (date.equals("http get error")) {
             Toast.makeText(getActivity(), "获取请求失败,请检查网络后重试", Toast.LENGTH_SHORT).show();
         } else {
-            saveNewDate(date);
+            if (date.length() > 2) {
+                saveNewDate(date);
+            }
 
         }
 
