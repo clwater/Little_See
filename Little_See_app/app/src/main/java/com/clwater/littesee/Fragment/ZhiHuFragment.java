@@ -111,11 +111,6 @@ public class ZhiHuFragment extends Fragment {
 
     private void initListview() {
         list = getData();
-        if (list.size() < 1){
-            empty_list.setVisibility(View.VISIBLE);
-        }else {
-            empty_list.setVisibility(View.GONE);
-        }
 
 
         main_list.setSwipeEnable(true);
@@ -209,6 +204,14 @@ public class ZhiHuFragment extends Fragment {
                 list.add(map);
             }
         }
+
+        if (list.size() < 1){
+            empty_list.setVisibility(View.VISIBLE);
+        }else {
+            empty_list.setVisibility(View.GONE);
+        }
+
+
         return list;
     }
 
