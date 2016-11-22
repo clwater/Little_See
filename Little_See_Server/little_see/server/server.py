@@ -14,6 +14,14 @@ class Handler_ZhiHu(ParentRequesyHandler):
         json = re_data_zhihu(message)
         self.write(json)
 
+class Handler_HaoQiXin(ParentRequesyHandler):
+    def get(self):
+        ParentRequesyHandler.showInfo(self)
+        message = self.get_argument("date", None)
+        from server.server_haoqixin import re_data_haoqixin
+        json = re_data_haoqixin(message)
+        self.write(json)
+
 class Main(ParentRequesyHandler):
     def get(self, *args, **kwargs):
         ParentRequesyHandler.showInfo(self)
@@ -23,10 +31,12 @@ class Main(ParentRequesyHandler):
 application = tornado.web.Application([
     (r"/" , Main ),
     (r"/zhihu" , Handler_ZhiHu),
+    (r"/haoqixin" , Handler_HaoQiXin)
+
 ])
 
 def runServer():
-    port = 9005
+    port = 9006
     application.listen(port)
 
     localIP = socket.gethostbyname(socket.gethostname())

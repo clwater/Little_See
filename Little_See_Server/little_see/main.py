@@ -17,6 +17,8 @@ def getInfoDate():
         print("" , local_hours , ":" , local_minute)
 
 
+        from getdate.HaoQiXin import getHaoQiXin
+        getHaoQiXin()
 
         if local_hours == 6 and local_minute < 30:
             #每天6点 更新所有知乎日报 好奇心日报 图片 数据

@@ -10,22 +10,25 @@ haoqixinlist = []
 
 
 def getIndexInfo(driver ,index):
+    haoqixin = []
     #print(index)
     xpath = "/html/body/div[2]/div[1]/div[" + str(index) + "]/a"
     # xpath = "/html/body/div[2]/div[1]/div[" + str(index) + "]/a/div[1]/div/img"
     test = driver.find_element_by_xpath(xpath)
-    print(test.get_attribute("href"))
-    print("||||")
+    text_href = test.get_attribute("href")
+    haoqixin.insert(1 , text_href)
     xpath = xpath + "/div[1]/div/img"
     test = driver.find_element_by_xpath(xpath)
-    print(test.get_attribute("data-src"))
-    print("||||")
-    print(test.get_attribute("alt"))
-    print("@@@@")
+    text_src = test.get_attribute("data-src")
+    haoqixin.insert(2 , text_src)
+    text_text = test.get_attribute("alt")
+    haoqixin.insert(0 , text_text)
+    haoqixinlist.append(haoqixin)
 
-def main():
-    #driver = webdriver.PhantomJS(executable_path="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_Server/phantomjs-2.1.1-macosx/bin/phantomjs")
-    driver = webdriver.PhantomJS(executable_path="/Users/yszsyf/Desktop/android/Little_See/Little_See_Server/phantomjs-2.1.1-macosx/bin/phantomjs")
+
+def getHaoQiXin():
+    driver = webdriver.PhantomJS(executable_path="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_Server/phantomjs-2.1.1-macosx/bin/phantomjs")
+    #driver = webdriver.PhantomJS(executable_path="/Users/yszsyf/Desktop/android/Little_See/Little_See_Server/phantomjs-2.1.1-macosx/bin/phantomjs")
     driver.get("http://www.qdaily.com/tags/29.html")
 
 
@@ -45,7 +48,8 @@ def main():
         else:
             time.sleep(10)
 
+    from database.haoqixin_sql import save_sql
+    save_sql(haoqixinlist)
 
 
-
-main()
+getHaoQiXin()
