@@ -73,6 +73,8 @@ public class ZhiHuFragment extends Fragment {
     public ProgressWheel progressWheel;
     @InjectView(R.id._top_pro_text)
     public TextView pro_text;
+    @InjectView(R.id.empty_list)
+    public TextView empty_list;
 
     public static Activity activity;
     private boolean precess_statu = true;
@@ -109,11 +111,14 @@ public class ZhiHuFragment extends Fragment {
 
     private void initListview() {
         list = getData();
+        if (list.size() < 1){
+            empty_list.setVisibility(View.VISIBLE);
+        }else {
+            empty_list.setVisibility(View.GONE);
+        }
 
 
-
-
-        main_list.setSwipeEnable(true);//open swipe
+        main_list.setSwipeEnable(true);
         main_list.getRecyclerView().addItemDecoration(new DividerItemDecoration(getActivity() , 1));
 
 
@@ -243,9 +248,8 @@ public class ZhiHuFragment extends Fragment {
 
     private void getNewDate() {
         int bewdate = 0 ;
-        try {
-            bewdate = DateUtils.checkDate();
-        } catch (ParseException e) {}
+
+        bewdate = DateUtils.checkDate();
         String url = "http://115.159.123.41:8001/zhihu?date=" + bewdate;
         String date = OkHttp_LS.okhttp_get(url);
         if (date.equals("no new date")) {

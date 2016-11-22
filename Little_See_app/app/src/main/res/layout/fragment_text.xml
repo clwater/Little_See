@@ -12,6 +12,15 @@
         android:textSize="32sp"
         />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="没有数据,请下拉刷新"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:id="@+id/empty_list"
+       />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

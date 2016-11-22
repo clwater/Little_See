@@ -12,17 +12,24 @@ import java.util.Date;
 
 public class DateUtils {
 
-    public static int checkDate() throws ParseException {
+    public static int checkDate() {
         Date curDate = new Date(System.currentTimeMillis());
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
         String today = df.format(curDate);
 
-        long to = df.parse(today).getTime();
-        long from = df.parse("2016-11-1").getTime();
-        long betweendate =  (to - from) / (1000 * 60 * 60 * 24) ;
-        int _betweendate = (int) betweendate;
-        Log.d("gzb" , "_betweendate:" + _betweendate );
-        return _betweendate;
+        long to = 0;
+        long from = 0;
+        int betweendate = 0;
+        try {
+            to = df.parse(today).getTime();
+            from = df.parse("2016-11-1").getTime();
+            betweendate = (int) (to - from) / (1000 * 60 * 60 * 24) ;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        return betweendate;
     }
 }
