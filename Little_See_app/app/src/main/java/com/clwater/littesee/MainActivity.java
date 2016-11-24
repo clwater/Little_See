@@ -76,11 +76,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         FragmentManager fm = getFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        _zhihu = new ZhiHuFragment();
+        //_zhihu = new ZhiHuFragment();
        // _image = new ImageFragment();
-        //_haoqixin = new HaoQiXinFragment();
+        _haoqixin = new HaoQiXinFragment();
         //_wangyi = new WangYiFragment();
-        transaction.replace(R.id.id_content, _zhihu);
+        transaction.replace(R.id.id_content, _haoqixin);
         transaction.commit();
 
     }
