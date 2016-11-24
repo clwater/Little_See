@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
@@ -27,10 +28,13 @@ import com.clwater.littesee.Adapater.DividerItemDecoration;
 import com.clwater.littesee.Adapater.ListViewImageAdapter;
 import com.clwater.littesee.Adapater.RecyclerAdapter;
 import com.clwater.littesee.R;
+import com.clwater.littesee.Utils.Analysis.Analysis;
+import com.clwater.littesee.Utils.Analysis.SaveDate;
 import com.clwater.littesee.Utils.DBHelper.HaoQiXin;
 import com.clwater.littesee.Utils.DBHelper.HaoQiXinDaoOrm;
 import com.clwater.littesee.Utils.DBHelper.ZhiHu;
 import com.clwater.littesee.Utils.DBHelper.ZhiHuDaoOrm;
+import com.clwater.littesee.Utils.DateUtils;
 import com.clwater.littesee.Utils.EventBus.Event_RunInBack;
 import com.clwater.littesee.Utils.EventBus.Event_RunInFront;
 import com.clwater.littesee.Utils.HttpUtils.OkHttp_LS;
@@ -60,7 +64,10 @@ public class HaoQiXinFragment extends Fragment {
 
     @InjectView(R.id.main_list)
     public com.lhh.ptrrv.library.PullToRefreshRecyclerView main_list;
-
+    @InjectView(R.id.empty_list)
+    public TextView empty_list;
+    @InjectView(R.id.main_bottom_loading)
+    public LinearLayout main_bottom_loading;
 
     public static Activity activity;
     private boolean precess_statu = true;
@@ -69,7 +76,7 @@ public class HaoQiXinFragment extends Fragment {
     HaoQiXinDaoOrm haoQinXinDaoOrm;
     RecyclerAdapter adapter;
 
-
+    boolean _chageDate = false;
     int _index = 10;
     int index_size = 0 ;
 
@@ -87,7 +94,7 @@ public class HaoQiXinFragment extends Fragment {
         activity = getActivity();
 
         initListview();
-
+        main_bottom_loading.setVisibility(View.GONE);
 
         EventBus.getDefault().register(this);
 
@@ -108,7 +115,7 @@ public class HaoQiXinFragment extends Fragment {
         main_list.setPagingableListener(new PullToRefreshRecyclerView.PagingableListener() {
             @Override
             public void onLoadMoreItems() {
-                Log.d("gzb" , "onLoadMoreItems");
+                main_bottom_loading.setVisibility(View.VISIBLE);
                 Event_RunInBack event_RunInBack = new Event_RunInBack();
                 event_RunInBack.setValue("onLoadMoreItems");
                 EventBus.getDefault().post(event_RunInBack);
@@ -157,10 +164,20 @@ public class HaoQiXinFragment extends Fragment {
             }
         });
 
-        //main_list.onFinishLoading(true, false);
+        main_list.onFinishLoading(true, false);
     }
 
-    private void saveNewDate() {
+    private void saveNewDate(String date) {
+        List<HaoQiXin> _haoqixin = Analysis.AnalysisHaoQiXin(date);
+        int changeDate = SaveDate.haoqixinDateSave(_haoqixin);
+
+        if (changeDate > 0) {
+            list = getData();
+            _chageDate = true;
+        } else {
+            _chageDate = false;
+        }
+
     }
 
 
@@ -181,6 +198,12 @@ public class HaoQiXinFragment extends Fragment {
                 list.add(map);
             }
         }
+        if (list.size() < 1){
+            empty_list.setVisibility(View.VISIBLE);
+        }else {
+            empty_list.setVisibility(View.GONE);
+        }
+
         return list;
     }
 
@@ -188,14 +211,22 @@ public class HaoQiXinFragment extends Fragment {
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void BackEventBus(Event_RunInBack e){
-        //sleep(3000);
+
+        sleep(1000);
 
         Event_RunInFront event_RunInFront = new  Event_RunInFront();
         event_RunInFront.setValue(e.getValue());
 
         if (e.getValue().equals("onRefresh")){
             getNewDate();
+            if (_chageDate == true){
+                event_RunInFront.setValue2("new");
+            }else {
+                event_RunInFront.setValue2("unnew");
+            }
         }else if (e.getValue().equals("onLoadMoreItems")){
+
+
             if (_index - index_size >= 0){
                 event_RunInFront.setValue2("finash");
             }else {
@@ -203,26 +234,26 @@ public class HaoQiXinFragment extends Fragment {
                 _index += 10;
                 list = getData();
             }
-
-
         }
         EventBus.getDefault().post(event_RunInFront);
     }
 
     private void getNewDate() {
+        int bewdate = 0 ;
 
-        String date = OkHttp_LS.okhttp_get("http://115.159.123.41:8001/zhihu?date=17");
+        bewdate = DateUtils.checkDate();
+        String url = "http://115.159.123.41:8001/haoqixin?date=" + bewdate;
+        String date = OkHttp_LS.okhttp_get(url);
+        Log.d("gzb" , "date:" + date);
         if (date.equals("no new date")) {
             Toast.makeText(getActivity(), "没有更新的了", Toast.LENGTH_SHORT).show();
         } else if (date.equals("http get error")) {
             Toast.makeText(getActivity(), "获取请求失败,请检查网络后重试", Toast.LENGTH_SHORT).show();
         } else {
-            saveNewDate();
-            Log.d("gzb", "getNewDate: " + date);
-
+            if (date.length() > 200) {
+                saveNewDate(date);
+            }
         }
-
-
     }
 
 
@@ -230,11 +261,15 @@ public class HaoQiXinFragment extends Fragment {
     public void FrontEventBus(Event_RunInFront e){
         String value = e.getValue();
         if (value.equals("onRefresh")){
-            adapter.notifyDataSetChanged();
+            if (e.getValue2().equals("new")) {
+                adapter.notifyDataSetChanged();
+            }else {
+                Toast.makeText(getActivity(), "已获得最新数据", Toast.LENGTH_SHORT).show();
+            }
             main_list.setOnRefreshComplete();
             main_list.onFinishLoading(true, false);
         }else if(value.equals("onLoadMoreItems")){
-
+            main_bottom_loading.setVisibility(View.GONE);
             if (e.getValue2().equals("finash")) {
                 Toast.makeText(getActivity(), "没有更多了", Toast.LENGTH_SHORT).show();
                 main_list.onFinishLoading(false, false);
@@ -243,7 +278,6 @@ public class HaoQiXinFragment extends Fragment {
                 main_list.onFinishLoading(true, false);
             }
         }
-
 
     }
 

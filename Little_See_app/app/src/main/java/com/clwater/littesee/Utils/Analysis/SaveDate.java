@@ -1,6 +1,8 @@
 package com.clwater.littesee.Utils.Analysis;
 
 import com.clwater.littesee.MainActivity;
+import com.clwater.littesee.Utils.DBHelper.HaoQiXin;
+import com.clwater.littesee.Utils.DBHelper.HaoQiXinDaoOrm;
 import com.clwater.littesee.Utils.DBHelper.ZhiHu;
 import com.clwater.littesee.Utils.DBHelper.ZhiHuDaoOrm;
 
@@ -22,6 +24,22 @@ public class SaveDate {
             if (check == null) {
                 changeDate++;
                 zhiHuDaoOrm.add(zhihu);
+            }
+        }
+        return changeDate;
+    }
+
+    public static int haoqixinDateSave(List<HaoQiXin> haoQiXinList){
+        HaoQiXinDaoOrm haoQiXinDaoOrm = new HaoQiXinDaoOrm(MainActivity.context);
+        int changeDate = 0;
+
+        for (int i = 0 ; i < haoQiXinList.size(); i++ ){
+            HaoQiXin haoQiXin = haoQiXinList.get(i);
+
+            HaoQiXin check = haoQiXinDaoOrm.seleteHaoQinXin(haoQiXin.getTitle());
+            if (check == null) {
+                changeDate++;
+                haoQiXinDaoOrm.add(haoQiXin);
             }
         }
         return changeDate;

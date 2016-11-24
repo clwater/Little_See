@@ -110,15 +110,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 transaction.commit();
                 drawerLayout.closeDrawers();
                 break;
-            case R.id.nav_wangyi:
-                toolbar.setTitle("网易");
-                if (_wangyi == null){
-                    _wangyi = new WangYiFragment();
-                }
-                transaction.replace(R.id.id_content, _wangyi);
-                transaction.commit();
-                drawerLayout.closeDrawers();
-                break;
+//            case R.id.nav_wangyi:
+//                toolbar.setTitle("网易");
+//                if (_wangyi == null){
+//                    _wangyi = new WangYiFragment();
+//                }
+//                transaction.replace(R.id.id_content, _wangyi);
+//                transaction.commit();
+//                drawerLayout.closeDrawers();
+//                break;
             case R.id.nav_image:
                 toolbar.setTitle("图片");
                 if (_image == null){

@@ -68,7 +68,6 @@ public class ZhiHuFragment extends Fragment {
 
     @InjectView(R.id.main_list)
     public com.lhh.ptrrv.library.PullToRefreshRecyclerView main_list;
-
     @InjectView(R.id.empty_list)
     public TextView empty_list;
     @InjectView(R.id.main_bottom_loading)
@@ -137,8 +136,6 @@ public class ZhiHuFragment extends Fragment {
             }
         });
 
-//        main_list.setLoadmoreString("");
-        main_list.setLoadmoreString("aaa");
 
 
         main_list.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -243,13 +240,7 @@ public class ZhiHuFragment extends Fragment {
                 _index += 10;
                 list = getData();
             }
-
-
         }
-
-
-
-
         EventBus.getDefault().post(event_RunInFront);
     }
 
@@ -267,10 +258,7 @@ public class ZhiHuFragment extends Fragment {
             if (date.length() > 2) {
                 saveNewDate(date);
             }
-
         }
-
-
     }
 
 
@@ -295,7 +283,6 @@ public class ZhiHuFragment extends Fragment {
                 main_list.onFinishLoading(true, false);
             }
         }
-
 
     }
 

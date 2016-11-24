@@ -65,4 +65,18 @@ public class HaoQiXinDaoOrm {
         return null;
     }
 
+    public HaoQiXin seleteHaoQinXin(String title){
+        try {
+            return haoqixinDao.queryBuilder()
+                    .where()
+                    .eq("title", title)
+                    .queryForFirst();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+
 }
