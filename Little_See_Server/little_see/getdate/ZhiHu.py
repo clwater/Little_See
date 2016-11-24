@@ -37,8 +37,9 @@ def getZhihu():
         zhihulist.append(zhihu)
         print(zhihu)
 
-    driver.quit()
+
     driver.close()
+    driver.quit()
     save_sql(zhihulist)
 
 

@@ -55,8 +55,9 @@ def getHaoQiXin():
         else:
             time.sleep(10)
 
-    driver.quit()
+
     driver.close()
+    driver.quit()
 
     from database.haoqixin_sql import save_sql
     save_sql(haoqixinlist)

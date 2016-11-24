@@ -14,7 +14,7 @@ def re_data_haoqixin(betweendate):
 
 
     for haoqixin in haoqixinlist:
-        json = json + '{ "title":"%s" , "title_image" : "%s" , "address" : "%s"},'%(haoqixin[1] , haoqixin[2] , haoqixin[3])
+        json = json + '{ "title":"%s" , "title_image" : "%s" , "address" : "%s"},'%(haoqixin[4] , haoqixin[1] , haoqixin[2])
 
     json = json[0:len(json) - 1]
 
