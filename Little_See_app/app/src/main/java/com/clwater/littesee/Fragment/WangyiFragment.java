@@ -50,12 +50,6 @@ import static android.os.SystemClock.sleep;
 public class WangYiFragment extends Fragment {
     @InjectView(R.id.main_list)
     public RecyclerView main_list;
-    @InjectView(R.id._main_top_process)
-    public RelativeLayout relativeLayout;
-    @InjectView(R.id._top_process)
-    public ProgressWheel progressWheel;
-    @InjectView(R.id._top_pro_text)
-    public TextView pro_text;
 
     public static Activity activity;
     private boolean precess_statu = true;
@@ -138,14 +132,6 @@ public class WangYiFragment extends Fragment {
     }
 
 
-    private void showTopProcess() {
-        progressWheel.setVisibility(View.VISIBLE);
-    }
-    private void stopTopProsess(){
-        progressWheel.setVisibility(View.GONE);
-        pro_text.setVisibility(View.VISIBLE);
-        EventBus.getDefault().post(new Event_RunInBack());
-    }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void backEventBus(Event_RunInBack e){
@@ -154,7 +140,7 @@ public class WangYiFragment extends Fragment {
     }
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void FrontEvent(Event_RunInFront e){
-        pro_text.setVisibility(View.GONE);
+
     }
 
 

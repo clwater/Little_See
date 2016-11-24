@@ -60,12 +60,7 @@ public class HaoQiXinFragment extends Fragment {
 
     @InjectView(R.id.main_list)
     public com.lhh.ptrrv.library.PullToRefreshRecyclerView main_list;
-    @InjectView(R.id._main_top_process)
-    public RelativeLayout relativeLayout;
-    @InjectView(R.id._top_process)
-    public ProgressWheel progressWheel;
-    @InjectView(R.id._top_pro_text)
-    public TextView pro_text;
+
 
     public static Activity activity;
     private boolean precess_statu = true;

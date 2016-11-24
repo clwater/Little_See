@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 
 import android.widget.AbsListView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -67,14 +68,11 @@ public class ZhiHuFragment extends Fragment {
 
     @InjectView(R.id.main_list)
     public com.lhh.ptrrv.library.PullToRefreshRecyclerView main_list;
-    @InjectView(R.id._main_top_process)
-    public RelativeLayout relativeLayout;
-    @InjectView(R.id._top_process)
-    public ProgressWheel progressWheel;
-    @InjectView(R.id._top_pro_text)
-    public TextView pro_text;
+
     @InjectView(R.id.empty_list)
     public TextView empty_list;
+    @InjectView(R.id.main_bottom_loading)
+    public LinearLayout main_bottom_loading;
 
     public static Activity activity;
     private boolean precess_statu = true;
@@ -101,7 +99,7 @@ public class ZhiHuFragment extends Fragment {
         activity = getActivity();
 
         initListview();
-
+        main_bottom_loading.setVisibility(View.GONE);
 
         EventBus.getDefault().register(this);
 
@@ -120,7 +118,7 @@ public class ZhiHuFragment extends Fragment {
         main_list.setPagingableListener(new PullToRefreshRecyclerView.PagingableListener() {
             @Override
             public void onLoadMoreItems() {
-
+                main_bottom_loading.setVisibility(View.VISIBLE);
                 Event_RunInBack event_RunInBack = new Event_RunInBack();
                 event_RunInBack.setValue("onLoadMoreItems");
                 EventBus.getDefault().post(event_RunInBack);
@@ -138,6 +136,9 @@ public class ZhiHuFragment extends Fragment {
 
             }
         });
+
+//        main_list.setLoadmoreString("");
+        main_list.setLoadmoreString("aaa");
 
 
         main_list.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -219,7 +220,8 @@ public class ZhiHuFragment extends Fragment {
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void BackEventBus(Event_RunInBack e){
-        //sleep(3000);
+
+        sleep(1000);
 
         Event_RunInFront event_RunInFront = new  Event_RunInFront();
         event_RunInFront.setValue(e.getValue());
@@ -232,6 +234,8 @@ public class ZhiHuFragment extends Fragment {
                 event_RunInFront.setValue2("unnew");
             }
         }else if (e.getValue().equals("onLoadMoreItems")){
+
+
             if (_index - index_size >= 0){
                 event_RunInFront.setValue2("finash");
             }else {
@@ -282,7 +286,7 @@ public class ZhiHuFragment extends Fragment {
             main_list.setOnRefreshComplete();
             main_list.onFinishLoading(true, false);
         }else if(value.equals("onLoadMoreItems")){
-
+            main_bottom_loading.setVisibility(View.GONE);
             if (e.getValue2().equals("finash")) {
                 Toast.makeText(getActivity(), "没有更多了", Toast.LENGTH_SHORT).show();
                 main_list.onFinishLoading(false, false);

@@ -36,7 +36,6 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="2"
-
         android:id="@+id/textView3"
         android:textColor="@color/email"
         android:layout_margin="5dp"
