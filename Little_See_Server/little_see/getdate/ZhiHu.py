@@ -10,18 +10,16 @@ import os
 
 
 
-
+zhihulist = []
 
 def getZhihu():
     print(Fore.GREEN + 'getZhihu')
-    zhihulist = []
-    chrome_driver = os.path.abspath(
-        r"/Users/haizhi/Desktop/chromedriver")
+
+    chrome_driver = os.path.abspath(r"C:\ftp\chromedriver\chromedriver.exe")
     os.environ["webdriver.chrome.driver"] = chrome_driver
 
     #driver = webdriver.Chrome(chrome_driver)
-    driver = webdriver.PhantomJS(
-        executable_path="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_Server/phantomjs-2.1.1-macosx/bin/phantomjs")
+    driver = webdriver.PhantomJS(executable_path="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_Server/phantomjs-2.1.1-macosx/bin/phantomjs")
 
     driver.get("http://daily.zhihu.com/")
     #print(driver.page_source)
@@ -37,10 +35,11 @@ def getZhihu():
         zhihu.insert(1, linklist[index].get_attribute("href"))
         zhihu.insert(2, imagelist[index].get_attribute("src"))
         zhihulist.append(zhihu)
+        print(zhihu)
 
     driver.quit()
     driver.close()
-    #save_sql(zhihulist)
+    save_sql(zhihulist)
 
 
 getZhihu()

@@ -17,15 +17,19 @@ def getInfoDate():
         print("" , local_hours , ":" , local_minute)
 
 
-        from getdate.HaoQiXin import getHaoQiXin
-        getHaoQiXin()
+        # from getdate.HaoQiXin import getHaoQiXin
+        # getHaoQiXin()
+        # from getdate.ZhiHu import getZhihu
+        # getZhihu()
 
-        if local_hours == 6 and local_minute < 30:
+        if local_hours == 6 and local_minute < 51:
             #每天6点 更新所有知乎日报 好奇心日报 图片 数据
             from getdate.ZhiHu import getZhihu
             getZhihu()
+            from getdate.HaoQiXin import getHaoQiXin
+            getHaoQiXin()
 
-        #每小时更新网易新闻数据
+
 
 
         time.sleep(60 * 50)
