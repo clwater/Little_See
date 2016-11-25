@@ -22,6 +22,14 @@ class Handler_HaoQiXin(ParentRequesyHandler):
         json = re_data_haoqixin(message)
         self.write(json)
 
+class Handler_TuPian_MeiZi(ParentRequesyHandler):
+    def get(self):
+        ParentRequesyHandler.showInfo(self)
+        message = self.get_argument("date", None)
+        from server.server_haoqixin import re_data_haoqixin
+        json = re_data_haoqixin(message)
+        self.write(json)
+
 class Main(ParentRequesyHandler):
     def get(self, *args, **kwargs):
         ParentRequesyHandler.showInfo(self)
