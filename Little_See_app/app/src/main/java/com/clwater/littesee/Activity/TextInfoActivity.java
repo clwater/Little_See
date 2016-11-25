@@ -100,6 +100,9 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
                 webview.loadDataWithBaseURL(WebUtils.BASE_URL, data, WebUtils.MIME_TYPE, WebUtils.ENCODING, WebUtils.FAIL_URL_ZHIHU);
             }
         }else if (statu.equals("haoqixin")){
+
+            webUrl = webUrl.replace("www.qdaily.com" , "m.qdaily.com/mobile");
+
             initWebViewInfo_haoqixin(webUrl);
             if (webText != null) {
                 String data = WebUtils.buildHtmlWithCsss(webText, webCsss, false);
