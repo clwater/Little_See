@@ -23,7 +23,7 @@ def getInfoDate():
         # getZhihu()
 
         # if local_hours == 6 and local_minute < 51:
-        if True:
+        if False:
             #每天6点 更新所有知乎日报 好奇心日报 图片 数据
             from getdate.ZhiHu import getZhihu
             getZhihu()
