@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.clwater.littesee.Utils.Analysis.Bean.HttpTextBean;
 import com.clwater.littesee.Utils.DBHelper.HaoQiXin;
+import com.clwater.littesee.Utils.DBHelper.Image_me;
 import com.clwater.littesee.Utils.DBHelper.ZhiHu;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -54,6 +55,12 @@ public class Analysis {
         }
 
         return haoQinXinList;
+    }
+
+    public static List<Image_me> AnalysisImage_me(String _date){
+        List<Image_me> image_meList = new ArrayList<Image_me>();
+
+        return image_meList;
     }
 }
 

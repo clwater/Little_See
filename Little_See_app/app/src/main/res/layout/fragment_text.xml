@@ -14,10 +14,6 @@
        />
 
 
-
-
-
-
     <com.lhh.ptrrv.library.PullToRefreshRecyclerView
         android:id="@+id/main_list"
         android:layout_width="match_parent"

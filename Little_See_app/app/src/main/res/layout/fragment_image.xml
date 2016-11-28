@@ -2,16 +2,56 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="45dp"
-   >
-
+    xmlns:wheel="http://schemas.android.com/apk/res-auto">
 
 
     <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="没有数据,请下拉刷新"
+        android:textSize="24sp"
         android:gravity="center"
-        android:text="image"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:id="@+id/empty_list"
+        />
+
+
+    <com.lhh.ptrrv.library.PullToRefreshRecyclerView
+        android:id="@+id/main_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingRight="10dp">
+    </com.lhh.ptrrv.library.PullToRefreshRecyclerView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:paddingBottom="10dp"
+        android:textColor="@color/_cccccc"
+        android:id="@+id/main_bottom_loading"
+        android:background="@color/_ffffff"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="载入中..."
+            android:textSize="16sp"
+            android:gravity="center"
+            />
+
+        <com.pnikosis.materialishprogress.ProgressWheel
+            android:id="@+id/_top_process"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            wheel:matProg_barColor="#5588FF"
+            wheel:matProg_progressIndeterminate="true" />
+    </LinearLayout>
 
 </RelativeLayout>

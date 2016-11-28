@@ -3,6 +3,7 @@ package com.clwater.littesee.Utils.Analysis;
 import com.clwater.littesee.MainActivity;
 import com.clwater.littesee.Utils.DBHelper.HaoQiXin;
 import com.clwater.littesee.Utils.DBHelper.HaoQiXinDaoOrm;
+import com.clwater.littesee.Utils.DBHelper.Image_me;
 import com.clwater.littesee.Utils.DBHelper.ZhiHu;
 import com.clwater.littesee.Utils.DBHelper.ZhiHuDaoOrm;
 
@@ -43,5 +44,11 @@ public class SaveDate {
             }
         }
         return changeDate;
+    }
+
+
+    public static int imageDateSave(List<Image_me> imageList){
+
+        return 0;
     }
 }

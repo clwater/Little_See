@@ -25,7 +25,6 @@ import android.widget.Toast;
 
 import com.clwater.littesee.Activity.TextInfoActivity;
 import com.clwater.littesee.Adapater.DividerItemDecoration;
-import com.clwater.littesee.Adapater.ListViewImageAdapter;
 import com.clwater.littesee.Adapater.RecyclerAdapter;
 import com.clwater.littesee.R;
 import com.clwater.littesee.Utils.Analysis.Analysis;
