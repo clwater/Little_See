@@ -22,7 +22,7 @@ def re_data_image(betweendate ,statu):
 def re_data_image_old(betweendate ,statu):
     conn = mysql.connector.connect(user='root', password='', database='little_see')
     cursor = conn.cursor()
-    betweendate = int(betweendate) -50
+    #betweendate = int(betweendate) -50
     #sql = 'select * from image where dateid = %s and statu = \'%s\''%(betweendate,statu)
     sql = 'select * from image where dateid > %s and statu = \'%s\'' % (betweendate , statu)
     cursor.execute(sql)

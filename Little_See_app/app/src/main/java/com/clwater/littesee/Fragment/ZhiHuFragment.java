@@ -249,6 +249,7 @@ public class ZhiHuFragment extends Fragment {
 
         bewdate = DateUtils.checkDate();
         String url = "http://115.159.123.41:8001/zhihu?date=" + bewdate;
+        //Log.d("gzb" , "url: " + url);
         String date = OkHttp_LS.okhttp_get(url);
         if (date.equals("no new date")) {
             Toast.makeText(getActivity(), "没有更新的了", Toast.LENGTH_SHORT).show();

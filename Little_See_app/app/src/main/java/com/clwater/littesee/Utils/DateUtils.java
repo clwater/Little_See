@@ -24,7 +24,8 @@ public class DateUtils {
         try {
             to = df.parse(today).getTime();
             from = df.parse("2016-11-1").getTime();
-            betweendate = (int) (to - from) / (1000 * 60 * 60 * 24) ;
+            long _betweendate =  (to - from) / (1000 * 60 * 60 * 24) ;
+            betweendate = (int) _betweendate;
         } catch (ParseException e) {
             e.printStackTrace();
         }

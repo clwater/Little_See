@@ -19,4 +19,3 @@ def getBetweenDate_image():
     d2 = datetime.date(int(year) , int(mouth) , int(day) )
 
     return ((d2 - d1).days)
-

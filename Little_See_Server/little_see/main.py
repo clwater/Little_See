@@ -22,6 +22,9 @@ def getInfoDate():
         # from getdate.ZhiHu import getZhihu
         # getZhihu()
 
+        from getdate.Image_me import getImageBing
+        getImageBing()
+
         # if local_hours == 6 and local_minute < 51:
         if False:
             #每天6点 更新所有知乎日报 好奇心日报 图片 数据
@@ -29,6 +32,8 @@ def getInfoDate():
             getZhihu()
             from getdate.HaoQiXin import getHaoQiXin
             getHaoQiXin()
+            from getdate.Image_me import getImageBing
+            getImageBing()
 
 
 
