@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2016-11-25 11:29:25
+-- Generation Time: 2016-11-28 08:47:22
 -- 服务器版本： 10.1.10-MariaDB
 -- PHP Version: 7.0.2
 
@@ -247,7 +247,10 @@ INSERT INTO `image` (`id`, `href`, `statu`, `dateid`) VALUES
 (628, 'http://images.ioliu.cn/bing/KuanmiaoNoodles_ZH-CN11859888841_1920x1080.jpg\n', 'bing', '206'),
 (629, 'http://images.ioliu.cn/bing/CalbucoVolcano_ZH-CN7246641564_1920x1080.jpg\n', 'bing', '207'),
 (630, 'http://images.ioliu.cn/bing/BlackchurchRock_ZH-CN9991716795_1920x1080.jpg\n', 'bing', '208'),
-(631, 'http://images.ioliu.cn/bing/RissaTridactyla_ZH-CN9552683179_1920x1080.jpg', 'bing', '209');
+(631, 'http://images.ioliu.cn/bing/RissaTridactyla_ZH-CN9552683179_1920x1080.jpg', 'bing', '209'),
+(632, 'http://images.ioliu.cn/bing/ThailandWaterfall_ZH-CN7044305410_1920x1080.jpg', 'bing', '210'),
+(633, 'http://images.ioliu.cn/bing/VictoriaTower_ZH-CN13097406171_1920x1080.jpg', 'bing', '211'),
+(636, 'http://images.ioliu.cn/bing/LondonRadiometers_ZH-CN12114654989_1920x1080.jpg', 'bing', '212');
 
 --
 -- Indexes for dumped tables
@@ -267,7 +270,7 @@ ALTER TABLE `image`
 -- 使用表AUTO_INCREMENT `image`
 --
 ALTER TABLE `image`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=632;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=637;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

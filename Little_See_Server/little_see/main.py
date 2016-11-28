@@ -21,9 +21,8 @@ def getInfoDate():
         # getHaoQiXin()
         # from getdate.ZhiHu import getZhihu
         # getZhihu()
-
-        from getdate.Image_me import getImageBing
-        getImageBing()
+        #from getdate.Image_me import getImageBing
+        #getImageBing()
 
         # if local_hours == 6 and local_minute < 51:
         if False:
