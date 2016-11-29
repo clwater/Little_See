@@ -38,7 +38,7 @@ public  class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ListV
 
     @Override
     public ListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.listview_main_image_title, parent, false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.listview_text, parent, false);
         ListViewHolder holder = new ListViewHolder(view);
         view.setOnClickListener(this);
         return holder;

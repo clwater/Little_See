@@ -34,7 +34,8 @@ public class AUILApplication extends Application {
      */
     public void initImageLoaderConfiguration(Context context) {
         //缓存文件目录
-        File cacheDir = StorageUtils.getCacheDirectory(context);
+        //File cacheDir = StorageUtils.getCacheDirectory(context);
+        File cacheDir = StorageUtils.getOwnCacheDirectory(getApplicationContext(), "imageloader/Cache");
         //构建配置
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)
                 //默认屏幕的大小
@@ -57,9 +58,9 @@ public class AUILApplication extends Application {
                 // 设置拒绝缓存在内存中一个图片多个大小 默认为允许,(同一个图片URL)根据不同大小的imageView保存不同大小图片
                 .denyCacheImageMultipleSizesInMemory()
                 // 设置内存缓存 默认为一个当前应用可用内存的1/8大小的LruMemoryCache
-                .memoryCache(new LruMemoryCache(2 * 1024 * 1024))
+                .memoryCache(new LruMemoryCache(5 * 1024 * 1024))
                 // 设置内存缓存的最大大小 默认为一个当前应用可用内存的1/8
-                .memoryCacheSize(2 * 1024 * 1024)
+                .memoryCacheSize(5 * 1024 * 1024)
                 // 设置内存缓存最大大小占当前应用可用内存的百分比 默认为一个当前应用可用内存的1/8
                 .memoryCacheSizePercentage(13) // default
                 // 设置硬盘缓存

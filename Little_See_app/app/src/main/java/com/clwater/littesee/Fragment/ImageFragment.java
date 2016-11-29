@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.clwater.littesee.Activity.TextInfoActivity;
 import com.clwater.littesee.Adapater.DividerItemDecoration;
 import com.clwater.littesee.Adapater.RecyclerAdapter;
+import com.clwater.littesee.Adapater.RecyclerAdapter_image;
 import com.clwater.littesee.R;
 import com.clwater.littesee.Utils.Analysis.Analysis;
 import com.clwater.littesee.Utils.Analysis.SaveDate;
@@ -32,6 +33,8 @@ import com.clwater.littesee.Utils.EventBus.Event_RunInBack;
 import com.clwater.littesee.Utils.EventBus.Event_RunInFront;
 import com.clwater.littesee.Utils.HttpUtils.OkHttp_LS;
 import com.lhh.ptrrv.library.PullToRefreshRecyclerView;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -62,12 +65,12 @@ public class ImageFragment extends Fragment {
 
     List<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
     Image_meDaoOrm image_meDaoOrm;
-    RecyclerAdapter adapter;
+    RecyclerAdapter_image adapter;
 
     boolean _chageDate = false;
     int _index = 10;
     int index_size = 0 ;
-
+    public static  ImageLoader imageLoader;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,6 +78,8 @@ public class ImageFragment extends Fragment {
     {
         View view = inflater.inflate(R.layout.fragment_text, container, false);
         ButterKnife.inject(this , view);
+
+        imageLoader = ImageLoader.getInstance();
 
         // showTopProcess();
         precess_statu = true;
@@ -120,12 +125,12 @@ public class ImageFragment extends Fragment {
             }
         });
 
-
+       // main_list.setOnScrollListener(new PauseOnScrollListener(imageLoader, true, true));
 
         main_list.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new RecyclerAdapter(getActivity() , list);
+        adapter = new RecyclerAdapter_image(getActivity() , list);
         main_list.setAdapter(adapter);
-        adapter.setOnItemClickListener(new RecyclerAdapter.OnRecyclerViewItemClickListener() {
+        adapter.setOnItemClickListener(new RecyclerAdapter_image.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, String data) {
                 int index = Integer.valueOf(data);
@@ -188,7 +193,7 @@ public class ImageFragment extends Fragment {
         if (list.size() < 1){
             empty_list.setVisibility(View.VISIBLE);
         }else {
-            empty_list.setVisibility(View.GONE);
+            //empty_list.setVisibility(View.GONE);
         }
 
 
@@ -230,7 +235,13 @@ public class ImageFragment extends Fragment {
         int bewdate = 0 ;
 
         bewdate = DateUtils.checkDate__image_bing();
-        String url = "http://115.159.123.41:8001/image?statu=bing&date=" + bewdate;
+        String url = "";
+        if (list.size() < 1) {
+            bewdate = bewdate - 50;
+            url = "http://115.159.123.41:8001/imageold?statu=bing&date=" + bewdate;
+        }else {
+            url = "http://115.159.123.41:8001/image?statu=bing&date=" + bewdate;
+        }
         Log.d("gzb" , "url: " + url);
         String date = OkHttp_LS.okhttp_get(url);
         if (date.equals("no new date")) {

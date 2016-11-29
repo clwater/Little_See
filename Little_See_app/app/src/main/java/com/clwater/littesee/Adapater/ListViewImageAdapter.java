@@ -2,21 +2,16 @@ package com.clwater.littesee.Adapater;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.clwater.littesee.Config.AppConfig;
-import com.clwater.littesee.Fragment.ZhiHuFragment;
 import com.clwater.littesee.MainActivity;
 import com.clwater.littesee.R;
-import com.clwater.littesee.Utils.DBHelper.ZhiHu;
-import com.clwater.littesee.Utils.DBHelper.ZhiHuDaoOrm;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
@@ -73,7 +68,7 @@ public class ListViewImageAdapter  extends BaseAdapter {
         if(convertView==null){
             zujian=new Zujian();
             //获得组件，实例化组件
-            convertView=layoutInflater.inflate(R.layout.listview_main_image_title, null);
+            convertView=layoutInflater.inflate(R.layout.listview_text, null);
             zujian.image=(ImageView)convertView.findViewById(R.id.listview_main_image);
             zujian.title=(TextView)convertView.findViewById(R.id.listview_main_text);
 

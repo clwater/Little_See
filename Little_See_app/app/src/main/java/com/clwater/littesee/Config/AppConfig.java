@@ -26,10 +26,10 @@ public class AppConfig {
                 // 设置图片URI为空时默认图片
                 .showImageForEmptyUri(R.drawable.login_face)
                 // 设置是否将View在加载前复位
-                .resetViewBeforeLoading(false)
+                .resetViewBeforeLoading(true)
                 // 设置延迟部分时间才开始加载
                 // 默认为0
-                .delayBeforeLoading(100)
+                //.delayBeforeLoading(100)
                 // 设置添加到内存缓存
                 // 默认为false
                 .cacheInMemory(true)
@@ -38,7 +38,7 @@ public class AppConfig {
                 .imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2)
                 // 设置位图图像解码配置
                 // 默认为Bitmap.Config.ARGB_8888
-                .bitmapConfig(Bitmap.Config.ARGB_8888)
+                .bitmapConfig(Bitmap.Config.RGB_565)
                 // 设置选项的图像解码
                 .decodingOptions(new BitmapFactory.Options())
                 // 设置自定义显示器
