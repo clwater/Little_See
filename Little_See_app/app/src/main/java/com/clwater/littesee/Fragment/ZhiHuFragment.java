@@ -206,7 +206,7 @@ public class ZhiHuFragment extends Fragment {
         if (list.size() < 1){
             empty_list.setVisibility(View.VISIBLE);
         }else {
-            empty_list.setVisibility(View.GONE);
+            //empty_list.setVisibility(View.GONE);
         }
 
 
@@ -285,6 +285,10 @@ public class ZhiHuFragment extends Fragment {
             }
         }
 
+
+        if (list.size() >= 1){
+            empty_list.setVisibility(View.GONE);
+        }
     }
 
 

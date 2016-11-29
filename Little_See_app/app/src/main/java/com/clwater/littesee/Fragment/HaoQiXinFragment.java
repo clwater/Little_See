@@ -200,7 +200,7 @@ public class HaoQiXinFragment extends Fragment {
         if (list.size() < 1){
             empty_list.setVisibility(View.VISIBLE);
         }else {
-            empty_list.setVisibility(View.GONE);
+            //empty_list.setVisibility(View.GONE);
         }
 
         return list;
@@ -276,6 +276,10 @@ public class HaoQiXinFragment extends Fragment {
                 adapter.notifyDataSetChanged();
                 main_list.onFinishLoading(true, false);
             }
+        }
+
+        if (list.size() >= 1){
+            empty_list.setVisibility(View.GONE);
         }
 
     }

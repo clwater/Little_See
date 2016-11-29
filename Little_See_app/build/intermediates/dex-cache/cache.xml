@@ -160,7 +160,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="9fce7f92d6edfe7dc23b8f4069131abed1bc6ca0">
+        sha1="a8964235d8de2049fc7fd4c0245f33bd781a2d08">
         <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_19a380bcfdac216cabf512d0e7582a083b3ac538/classes.dex" />
     </item>
     <item
@@ -286,7 +286,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="fdf0a2f71f5b751253cad3d0114a6057d9c834e8">
+        sha1="4f5de4733073333b55f8c2cc73554f4e42ca398a">
         <dex dex="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_app/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_fb3e7e01233e9b505641f826fb7806bee8638d76/classes.dex" />
     </item>
     <item

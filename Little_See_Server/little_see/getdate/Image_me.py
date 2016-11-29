@@ -24,16 +24,26 @@ def getImageBing():
     url = "https://www.bing.com/"
     driver.get(url)
 
-    # print(driver.page_source)
+    #print(driver.page_source)
     text = driver.page_source
 
+
     _url = re.findall(r"g_img=.*?.jpg", text, re.I)
+    print(_url)
     image_url = _url[0].replace("g_img={url: \"/az/hprichbg/rb/", "http://images.ioliu.cn/bing/")
-    from database.image_sql import save_sql
-    save_sql(image_url , "bing")
+    print(image_url)
 
+    if "videocontent" in image_url:
+        # _text = re.findall(r"g_img=.*?//.*?/.*?/", image_url, re.I)
+        # print(image_url.replace(_text , ))
+        image_url = image_url.replace("g_img={url: \"//" , "http://")
+        print(image_url)
 
+    #from database.image_sql import save_sql
+    #save_sql(image_url , "bing")
+    #"http://images.ioliu.cn/bing/GrizzlyPeakSFVideo_ZH-CN11282703590_1920x1080.jpg"
 
+getImageBing()
 
 
 
