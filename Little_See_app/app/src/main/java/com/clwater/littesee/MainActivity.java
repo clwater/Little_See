@@ -23,6 +23,8 @@ import com.clwater.littesee.Fragment.ImageFragment;
 import com.clwater.littesee.Fragment.WangYiFragment;
 import com.clwater.littesee.Fragment.ZhiHuFragment;
 import com.clwater.littesee.Utils.Analysis.ZhiHuAnalysis;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -44,6 +46,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private HaoQiXinFragment _haoqixin;
 
     public static Context context;
+    public static ImageLoader imageLoader;
 
 
     @Override
@@ -58,6 +61,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
 
         context = this;
+
+
+        imageLoader = ImageLoader.getInstance();
+
         
        // testSql();
 

@@ -59,8 +59,8 @@ public  class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ListV
             holder.title.setTextColor(Color.parseColor("#666666"));
         }
 
-        ImageLoader imageLoader = ImageLoader.getInstance();
-        imageLoader.init(ImageLoaderConfiguration.createDefault(MainActivity.context));
+       // MainActivity.imageLoader = ImageLoader.getInstance();
+        MainActivity.imageLoader.init(ImageLoaderConfiguration.createDefault(MainActivity.context));
         ImageLoader.getInstance().displayImage(url_image, holder.image, AppConfig.imageOptions());
 
         holder.itemView.setTag(list.get(position).get("id").toString());
