@@ -22,6 +22,7 @@ import com.clwater.littesee.Activity.TextInfoActivity;
 import com.clwater.littesee.Adapater.DividerItemDecoration;
 import com.clwater.littesee.Adapater.RecyclerAdapter;
 import com.clwater.littesee.Adapater.RecyclerAdapter_image;
+import com.clwater.littesee.Config.AppConfig;
 import com.clwater.littesee.R;
 import com.clwater.littesee.Utils.Analysis.Analysis;
 import com.clwater.littesee.Utils.Analysis.SaveDate;

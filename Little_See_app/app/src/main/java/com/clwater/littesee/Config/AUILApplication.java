@@ -62,7 +62,7 @@ public class AUILApplication extends Application {
                 // 设置内存缓存的最大大小 默认为一个当前应用可用内存的1/8
                 .memoryCacheSize(5 * 1024 * 1024)
                 // 设置内存缓存最大大小占当前应用可用内存的百分比 默认为一个当前应用可用内存的1/8
-                .memoryCacheSizePercentage(13) // default
+                .memoryCacheSizePercentage(50) // default
                 // 设置硬盘缓存
                 .diskCache(new UnlimitedDiskCache(cacheDir)) //缓存路径
                 // 设置硬盘缓存的最大大小

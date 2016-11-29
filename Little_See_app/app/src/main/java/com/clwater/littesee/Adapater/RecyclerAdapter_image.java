@@ -10,8 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.clwater.littesee.Config.AppConfig;
 import com.clwater.littesee.Fragment.ImageFragment;
 import com.clwater.littesee.R;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.imageaware.ImageAware;
 import com.nostra13.universalimageloader.core.imageaware.ImageViewAware;
 
@@ -81,7 +83,8 @@ public  class RecyclerAdapter_image extends RecyclerView.Adapter<RecyclerAdapter
                 //加载完毕后判断该imageView等待的图片url是不是加载完毕的这张
                 //如果是则为imageView设置图片,否则说明imageView已经被重用到其他item
                 if(url.equals(holder.image.getTag())) {
-                    ImageFragment.imageLoader.displayImage(url , imageAware );
+                    ImageFragment.imageLoader.displayImage(url , imageAware ,  AppConfig.imageOptions());
+                    //ImageLoader.getInstance().displayImage(url, holder.image, AppConfig.imageOptions());
                 }
             }
         }.execute();
