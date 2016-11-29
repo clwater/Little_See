@@ -4,6 +4,7 @@ import com.clwater.littesee.MainActivity;
 import com.clwater.littesee.Utils.DBHelper.HaoQiXin;
 import com.clwater.littesee.Utils.DBHelper.HaoQiXinDaoOrm;
 import com.clwater.littesee.Utils.DBHelper.Image_me;
+import com.clwater.littesee.Utils.DBHelper.Image_meDaoOrm;
 import com.clwater.littesee.Utils.DBHelper.ZhiHu;
 import com.clwater.littesee.Utils.DBHelper.ZhiHuDaoOrm;
 
@@ -48,7 +49,19 @@ public class SaveDate {
 
 
     public static int imageDateSave(List<Image_me> imageList){
+        Image_meDaoOrm image_meDaoOrm = new Image_meDaoOrm(MainActivity.context);
+        int changeDate = 0;
 
-        return 0;
+        for (int i = 0 ; i < imageList.size(); i++){
+            Image_me image_me = imageList.get(i);
+            Image_me check = image_meDaoOrm.seleteImage_me(image_me.getHref());
+
+            if (check == null){
+                changeDate++;
+                image_meDaoOrm.add(image_me);
+            }
+        }
+
+        return changeDate;
     }
 }

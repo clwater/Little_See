@@ -2,6 +2,7 @@ package com.clwater.littesee.Utils.Analysis;
 
 import android.util.Log;
 
+import com.clwater.littesee.Utils.Analysis.Bean.HttpImageBean;
 import com.clwater.littesee.Utils.Analysis.Bean.HttpTextBean;
 import com.clwater.littesee.Utils.DBHelper.HaoQiXin;
 import com.clwater.littesee.Utils.DBHelper.Image_me;
@@ -57,8 +58,19 @@ public class Analysis {
         return haoQinXinList;
     }
 
-    public static List<Image_me> AnalysisImage_me(String _date){
+    public static List<Image_me> AnalysisImage_me_bing(String _date){
         List<Image_me> image_meList = new ArrayList<Image_me>();
+
+        HttpImageBean textBean = new Gson().fromJson(_date , HttpImageBean.class);
+        List<HttpImageBean.DateBean> infoList = textBean.getDate();
+
+        for (int i = 0 ; i < infoList.size() ; i ++){
+            HttpImageBean.DateBean dateBean = infoList.get(i);
+            Image_me image_me = new Image_me();
+            image_me.setHref(dateBean.getHref());
+            image_me.setStatu("bing");
+            image_meList.add(image_me);
+        }
 
         return image_meList;
     }

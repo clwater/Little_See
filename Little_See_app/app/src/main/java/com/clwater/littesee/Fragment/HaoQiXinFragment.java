@@ -164,6 +164,10 @@ public class HaoQiXinFragment extends Fragment {
         });
 
         main_list.onFinishLoading(true, false);
+
+        if (list.size() >= 1){
+            empty_list.setVisibility(View.GONE);
+        }
     }
 
     private void saveNewDate(String date) {

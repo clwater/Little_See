@@ -148,12 +148,15 @@ public class ImageFragment extends Fragment {
         });
 
         main_list.onFinishLoading(true, false);
+
+        if (list.size() >= 1){
+            empty_list.setVisibility(View.GONE);
+        }
     }
 
     private void saveNewDate(String date) {
-        List<Image_me> _image_me = Analysis.AnalysisImage_me(date);
+        List<Image_me> _image_me = Analysis.AnalysisImage_me_bing(date);
         int changeDate = SaveDate.imageDateSave(_image_me);
-
         if (changeDate > 0) {
             list = getData();
             _chageDate = true;
@@ -226,8 +229,8 @@ public class ImageFragment extends Fragment {
     private void getNewDate() {
         int bewdate = 0 ;
 
-        bewdate = DateUtils.checkDate();
-        String url = "http://115.159.123.41:8001/image?statu=bing&date=212";
+        bewdate = DateUtils.checkDate__image_bing();
+        String url = "http://115.159.123.41:8001/image?statu=bing&date=" + bewdate;
         Log.d("gzb" , "url: " + url);
         String date = OkHttp_LS.okhttp_get(url);
         if (date.equals("no new date")) {
@@ -236,7 +239,7 @@ public class ImageFragment extends Fragment {
             Toast.makeText(getActivity(), "获取请求失败,请检查网络后重试", Toast.LENGTH_SHORT).show();
         } else {
             if (date.length() > 2) {
-                //saveNewDate(date);
+                saveNewDate(date);
             }
         }
     }
@@ -264,6 +267,9 @@ public class ImageFragment extends Fragment {
             }
         }
 
+        if (list.size() >= 1){
+            empty_list.setVisibility(View.GONE);
+        }
     }
 
 

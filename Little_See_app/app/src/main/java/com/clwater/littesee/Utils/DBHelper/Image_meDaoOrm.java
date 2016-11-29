@@ -69,7 +69,7 @@ public class Image_meDaoOrm {
         try {
             return image_meDao.queryBuilder()
                     .where()
-                    .eq("title", title)
+                    .eq("href", title)
                     .queryForFirst();
         } catch (SQLException e) {
             e.printStackTrace();
