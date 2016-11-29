@@ -135,20 +135,20 @@ public class ImageFragment extends Fragment {
             public void onItemClick(View view, String data) {
                 int index = Integer.valueOf(data);
                 Log.d("gzb" , "index :" + index);
-                index = index_size - index;
-                Map<String, Object> map= list.get(index);
-                Image_me image_me = image_meDaoOrm.seleteImage_me(Integer.valueOf( map.get("id").toString() ));
-                image_meDaoOrm.add(image_me);
-
-                //upDateItemTextColor(index);
-                list.clear();
-                list = getData();
-
-                adapter.notifyDataSetChanged();
-
-                Intent intent = new Intent(getActivity() , TextInfoActivity.class);
-                intent.putExtra("href" , map.get("href").toString());
-                startActivity(intent);
+//                index = index_size - index;
+//                Map<String, Object> map= list.get(index);
+//                Image_me image_me = image_meDaoOrm.seleteImage_me(Integer.valueOf( map.get("id").toString() ));
+//                image_meDaoOrm.add(image_me);
+//
+//                //upDateItemTextColor(index);
+//                list.clear();
+//                list = getData();
+//
+//                adapter.notifyDataSetChanged();
+//
+//                Intent intent = new Intent(getActivity() , TextInfoActivity.class);
+//                intent.putExtra("href" , map.get("href").toString());
+//                startActivity(intent);
             }
         });
 
