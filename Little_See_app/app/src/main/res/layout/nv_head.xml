@@ -12,15 +12,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="16dp"
-        android:textColor="@color/_ffffff"
-        android:text="some text"/>
+        android:textColor="@color/_cccccc"
+        android:text="每日优选精彩资讯在这里"/>
 
     <ImageView
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:layout_above="@id/id_link"
         android:layout_marginBottom="16dp"
-        android:src="#666"/>
+        android:src="@drawable/sha"/>
 
 
 </RelativeLayout>

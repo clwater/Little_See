@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Little_See</string>
-    <string name="about_text" translatable="false">about_me</string>
+    <string name="app_name_cn"></string>
+    <string name="about_text" translatable="false">By gzb</string>
     <string name="email" translatable="false">gengzhibo@gengzhibo.net</string>
 
 </resources>
