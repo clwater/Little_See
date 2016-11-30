@@ -115,21 +115,6 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
 
     }
 
-    private void initProcessDialog() {
-        LayoutInflater inflater = getLayoutInflater();
-        View layout = inflater.inflate(R.layout.dlalog_process,null);
-        prcessDialog = new AlertDialog.Builder(this).create();
-        prcessDialog.show();
-        prcessDialog.getWindow().setContentView(layout);
-        prcessDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_BACK) {
-                    destoryParentActivity();
-                }
-                return false;
-            }
-        });
-    }
 
     private void destoryParentActivity() {
         this.finish();

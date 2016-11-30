@@ -8,6 +8,14 @@
     android:fitsSystemWindows="true">
 
 
+
+    <com.bm.library.PhotoView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/photoview_image_imageview"
+        android:scaleType="centerInside"
+        />
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/_toolbar"
         android:layout_width="match_parent"
@@ -16,6 +24,7 @@
         app:layout_scrollFlags="scroll|enterAlways"
         app:titleTextColor="@color/_ffffff"
         />
+
 
 
 </RelativeLayout>

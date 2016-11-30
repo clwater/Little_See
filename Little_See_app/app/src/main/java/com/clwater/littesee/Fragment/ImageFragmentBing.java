@@ -4,8 +4,12 @@ package com.clwater.littesee.Fragment;
  * Created by gengzhibo on 16/10/10.
  */
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
+import android.media.Image;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -14,15 +18,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bm.library.Info;
 import com.bm.library.PhotoView;
 import com.bumptech.glide.Glide;
+import com.clwater.littesee.Activity.ImageInfoActivity;
 import com.clwater.littesee.Adapater.DividerItemDecoration;
 import com.clwater.littesee.Adapater.RecyclerAdapter_image;
+import com.clwater.littesee.MainActivity;
 import com.clwater.littesee.R;
 import com.clwater.littesee.Utils.Analysis.Analysis;
 import com.clwater.littesee.Utils.Analysis.SaveDate;
@@ -81,6 +90,8 @@ public class ImageFragmentBing extends Fragment {
         return view ;
     }
 
+
+
     private void getNewDate() {
         Event_RunInBack event = new Event_RunInBack();
         EventBus.getDefault().post(event);
@@ -111,6 +122,7 @@ public class ImageFragmentBing extends Fragment {
 
     private void initViewPager() {
         _top_process.setVisibility(View.GONE);
+        Toast.makeText(MainActivity.context , "点击图片可随意缩放图片或者旋转,长按保存图片." , Toast.LENGTH_SHORT).show();
 
         PagerAdapter adapter = new PagerAdapter() {
 
@@ -126,13 +138,22 @@ public class ImageFragmentBing extends Fragment {
             }
 
             @Override
-            public Object instantiateItem(ViewGroup container, int position) {
+            public Object instantiateItem(ViewGroup container, final int position) {
 
                 View view = View.inflate(container.getContext(), R.layout.pager_item, null);
                 ImageView imageView = (ImageView) view.findViewById(R.id.item_img);
                 Glide.with(ImageFragmentBing.this).load(image_src[position % image_src.length]).into(imageView);
-                container.addView(view, ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.MATCH_PARENT);
+                container.addView(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+
+                imageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getActivity() , ImageInfoActivity.class);
+                        intent.putExtra("href" , image_src[position]);
+                        startActivity(intent);
+                        Log.d("gzb" , "viewpaher " + position);
+                    }
+                });
                 return view;
             }
 
@@ -195,7 +216,6 @@ public class ImageFragmentBing extends Fragment {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
-
 
 
 }
