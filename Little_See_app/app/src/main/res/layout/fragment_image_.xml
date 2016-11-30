@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:pv="http://schemas.android.com/apk/res-auto"
+    tools:context="com.clwater.littesee.MainActivity">
+
+
+    <com.github.ybq.parallaxviewpager.ParallaxViewPager
+        android:id="@+id/PVP_image_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        pv:interpolator="@anim/decelerate_interpolator"
+        pv:mode="right_overlay"
+        pv:outset="62%"
+        pv:shadow_width="30dp"/>
+
+</RelativeLayout>

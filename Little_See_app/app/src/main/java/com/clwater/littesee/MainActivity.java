@@ -20,6 +20,7 @@ import com.clwater.littesee.Activity.AboutActivity;
 import com.clwater.littesee.Activity.BaseActivity;
 import com.clwater.littesee.Fragment.HaoQiXinFragment;
 import com.clwater.littesee.Fragment.ImageFragment;
+import com.clwater.littesee.Fragment.ImageFragmentBing;
 import com.clwater.littesee.Fragment.WangYiFragment;
 import com.clwater.littesee.Fragment.ZhiHuFragment;
 import com.clwater.littesee.Utils.Analysis.ZhiHuAnalysis;
@@ -42,7 +43,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     private WangYiFragment _wangyi;
     private ZhiHuFragment _zhihu;
-    private ImageFragment _image;
+    private ImageFragmentBing _image;
     private HaoQiXinFragment _haoqixin;
 
     public static Context context;
@@ -129,7 +130,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             case R.id.nav_image:
                 toolbar.setTitle("图片");
                 if (_image == null){
-                    _image = new ImageFragment();
+                    _image = new ImageFragmentBing();
                 }
                 transaction.replace(R.id.id_content, _image);
                 transaction.commit();
