@@ -1,14 +1,21 @@
 package com.clwater.littesee.Activity;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.transition.TransitionManager;
@@ -43,6 +50,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Date;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -61,6 +69,9 @@ public class ImageInfoActivity extends BaseWebActivity  {
     public String url;
     public String imageName;
     Activity _activity;
+    public static PackageManager pm;
+    public static final int PERMISSION_READ_STORAGE = 1005;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +88,7 @@ public class ImageInfoActivity extends BaseWebActivity  {
         imageName = _url[_url.length - 1];
 
         initPhoto();
+        pm = getPackageManager();
 
     }
 
@@ -100,8 +112,25 @@ public class ImageInfoActivity extends BaseWebActivity  {
         photoview_image_imageview.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Toast.makeText(MainActivity.context, "保存到本地了,可以在本地相册中看到", Toast.LENGTH_SHORT).show();
-                //saveImage(imageName);
+                if (Build.VERSION.SDK_INT >= 23) {
+
+                    boolean permission = (PackageManager.PERMISSION_GRANTED == ImageInfoActivity.pm.checkPermission("android.permission.READ_EXTERNAL_STORAGE", "com.clwater.littesee"));
+
+                    ActivityCompat.requestPermissions(ImageInfoActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_READ_STORAGE);
+
+                    if (permission) {
+                        Toast.makeText(MainActivity.context, "保存到本地了,可以在本地相册中看到", Toast.LENGTH_SHORT).show();
+                        saveImage();
+                    } else {
+                        Toast.makeText(MainActivity.context, "你还没有授予读取SD卡读取文件的权限,请选择允许后重新长按图片保存", Toast.LENGTH_SHORT).show();
+
+                    }
+                }else {
+                    saveImage();
+                }
+
+
+
                 return false;
             }
         });
@@ -111,7 +140,28 @@ public class ImageInfoActivity extends BaseWebActivity  {
 
     }
 
+    private void saveImage() {
+        File externalStorageDirectory = Environment.getExternalStorageDirectory();
+        File directory = new File(externalStorageDirectory,"LittleSee");
+        if (!directory.exists())
+            directory.mkdir();
+        BitmapDrawable mDrawable =  (BitmapDrawable) photoview_image_imageview.getDrawable();
+        Bitmap drawingCache = ((BitmapDrawable) photoview_image_imageview.getDrawable()).getBitmap();
 
+        try {
+            File file = new File(directory, new Date().getTime() + ".jpg");
+            //File file = new File(directory,  "a.jpg");
+            FileOutputStream fos = new FileOutputStream(file);
+            drawingCache.compress(Bitmap.CompressFormat.JPEG,100,fos);
+            Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+            Uri uri = Uri.fromFile(file);
+            intent.setData(uri);
+            getApplicationContext().sendBroadcast(intent);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            Log.d("gzb" , "saveimage error");
+        }
+    }
 
 
     private void initNavigation() {
