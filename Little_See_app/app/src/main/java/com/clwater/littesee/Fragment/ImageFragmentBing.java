@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bm.library.PhotoView;
 import com.bumptech.glide.Glide;
 import com.clwater.littesee.Adapater.DividerItemDecoration;
 import com.clwater.littesee.Adapater.RecyclerAdapter_image;
@@ -34,6 +35,7 @@ import com.clwater.littesee.Utils.HttpUtils.OkHttp_LS;
 import com.github.ybq.parallaxviewpager.ParallaxViewPager;
 import com.lhh.ptrrv.library.PullToRefreshRecyclerView;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.pnikosis.materialishprogress.ProgressWheel;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -54,8 +56,14 @@ public class ImageFragmentBing extends Fragment {
 
     @InjectView(R.id.PVP_image_viewpager)
     public ParallaxViewPager PVP_image_viewpager;
+    @InjectView(R.id._top_process)
+    public ProgressWheel _top_process;
+//    @InjectView(R.id.item_img)
+//    public PhotoView item_img;
 
     private String[] image_src ;
+    //List<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,14 +72,18 @@ public class ImageFragmentBing extends Fragment {
         View view = inflater.inflate(R.layout.fragment_image_, container, false);
         ButterKnife.inject(this , view);
 
+        EventBus.getDefault().register(this);
 
-        //EventBus.getDefault().register(this);
 
         getData();
 
-        initViewPager();
 
-        return view;
+        return view ;
+    }
+
+    private void getNewDate() {
+        Event_RunInBack event = new Event_RunInBack();
+        EventBus.getDefault().post(event);
     }
 
 
@@ -89,10 +101,17 @@ public class ImageFragmentBing extends Fragment {
             }
         }
 
+        if (image_src.length > 0) {
+            initViewPager();
+        }else {
+            getNewDate();
+        }
     }
 
 
     private void initViewPager() {
+        _top_process.setVisibility(View.GONE);
+
         PagerAdapter adapter = new PagerAdapter() {
 
             @Override
@@ -108,6 +127,7 @@ public class ImageFragmentBing extends Fragment {
 
             @Override
             public Object instantiateItem(ViewGroup container, int position) {
+
                 View view = View.inflate(container.getContext(), R.layout.pager_item, null);
                 ImageView imageView = (ImageView) view.findViewById(R.id.item_img);
                 Glide.with(ImageFragmentBing.this).load(image_src[position % image_src.length]).into(imageView);
@@ -118,17 +138,62 @@ public class ImageFragmentBing extends Fragment {
 
             @Override
             public int getCount() {
-                return 40;
+                return image_src.length;
             }
         };
         PVP_image_viewpager.setAdapter(adapter);
     }
 
 
+
+
+    @Subscribe(threadMode = ThreadMode.BACKGROUND)
+    public void BackEventBus(Event_RunInBack e){
+
+        int bewdate = 0 ;
+
+        bewdate = DateUtils.checkDate__image_bing();
+        String url = "";
+        if (image_src.length < 1) {
+            bewdate = bewdate - 50;
+            url = "http://115.159.123.41:8001/imageold?statu=bing&date=" + bewdate;
+        }else {
+            url = "http://115.159.123.41:8001/image?statu=bing&date=" + bewdate;
+        }
+        Log.d("gzb" , "url: " + url);
+
+        String date = OkHttp_LS.okhttp_get(url);
+        if (date.equals("no new date")) {
+            Toast.makeText(getActivity(), "没有更新的了", Toast.LENGTH_SHORT).show();
+        } else if (date.equals("http get error")) {
+            Toast.makeText(getActivity(), "获取请求失败,请检查网络后重试", Toast.LENGTH_SHORT).show();
+        } else {
+            if (date.length() > 2) {
+                saveNewDate(date);
+            }
+        }
+
+    }
+
+    private void saveNewDate(String date) {
+        List<Image_me> _image_me = Analysis.AnalysisImage_me_bing(date);
+        int changeDate = SaveDate.imageDateSave(_image_me);
+        if (changeDate > 0) {
+           EventBus.getDefault().post(new Event_RunInFront());
+        }
+
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void FrontEventBus(Event_RunInFront e){
+        getData();
+    }
+
+
     @Override
     public void onDestroy() {
         super.onDestroy();
-        //EventBus.getDefault().unregister(this);
+        EventBus.getDefault().unregister(this);
     }
 
 

@@ -170,7 +170,6 @@ public class ImageFragment extends Fragment {
             _chageDate = false;
         }
 
-
     }
 
 
