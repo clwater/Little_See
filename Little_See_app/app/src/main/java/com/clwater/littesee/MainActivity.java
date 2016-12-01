@@ -110,7 +110,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         switch (item.getItemId()) {
             case R.id.nav_zhihu:
-                toolbar.setTitle("知乎");
+                toolbar.setTitle("知乎日报");
                 if (_zhihu == null){
                     _zhihu = new ZhiHuFragment();
                 }

@@ -87,6 +87,7 @@ public class ImageFragmentBing extends Fragment {
         getData();
 
 
+
         return view ;
     }
 
@@ -112,11 +113,13 @@ public class ImageFragmentBing extends Fragment {
             }
         }
 
-        if (image_src.length > 0) {
-            initViewPager();
-        }else {
-            getNewDate();
-        }
+
+        getNewDate();
+//        if (image_src.length > 0) {
+//            initViewPager();
+//        }else {
+//
+//        }
     }
 
 
@@ -208,6 +211,7 @@ public class ImageFragmentBing extends Fragment {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void FrontEventBus(Event_RunInFront e){
         getData();
+        initViewPager();
     }
 
 
