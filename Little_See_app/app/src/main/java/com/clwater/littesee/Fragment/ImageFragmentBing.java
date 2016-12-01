@@ -72,6 +72,7 @@ public class ImageFragmentBing extends Fragment {
 
     private String[] image_src ;
     //List<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
+    private boolean image_statu ;
 
 
     @Override
@@ -82,7 +83,15 @@ public class ImageFragmentBing extends Fragment {
         ButterKnife.inject(this , view);
 
         EventBus.getDefault().register(this);
+        image_statu = true;
 
+
+        if (image_statu) {
+            getNewDate();
+            image_statu = false;
+        }else {
+            initViewPager();
+        }
 
         getData();
 
@@ -113,8 +122,7 @@ public class ImageFragmentBing extends Fragment {
             }
         }
 
-
-        getNewDate();
+        initViewPager();
 //        if (image_src.length > 0) {
 //            initViewPager();
 //        }else {

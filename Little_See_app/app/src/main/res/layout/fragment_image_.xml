@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:pv="http://schemas.android.com/apk/res-auto"
     tools:context="com.clwater.littesee.MainActivity"
-    xmlns:wheel="http://schemas.android.com/apk/res-auto">
+    xmlns:wheel="http://schemas.android.com/apk/res-auto"
+    android:background="@color/_080808">
 
 
     <com.github.ybq.parallaxviewpager.ParallaxViewPager
