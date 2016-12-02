@@ -83,17 +83,19 @@ public class ImageFragmentBing extends Fragment {
         ButterKnife.inject(this , view);
 
         EventBus.getDefault().register(this);
-        image_statu = true;
-
-
-        if (image_statu) {
-            getNewDate();
-            image_statu = false;
-        }else {
-            initViewPager();
-        }
-
+//        image_statu = true;
+//
+//
+//        if (image_statu) {
+//            getNewDate();
+//            image_statu = false;
+//        }else {
+//            initViewPager();
+//        }
+//
         getData();
+
+        getNewDate();
 
 
 
@@ -122,12 +124,6 @@ public class ImageFragmentBing extends Fragment {
             }
         }
 
-        initViewPager();
-//        if (image_src.length > 0) {
-//            initViewPager();
-//        }else {
-//
-//        }
     }
 
 
@@ -210,9 +206,9 @@ public class ImageFragmentBing extends Fragment {
     private void saveNewDate(String date) {
         List<Image_me> _image_me = Analysis.AnalysisImage_me_bing(date);
         int changeDate = SaveDate.imageDateSave(_image_me);
-        if (changeDate > 0) {
-           EventBus.getDefault().post(new Event_RunInFront());
-        }
+        //if (changeDate > 0) {
+        EventBus.getDefault().post(new Event_RunInFront());
+        //}
 
     }
 
