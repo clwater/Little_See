@@ -2,9 +2,12 @@ import tornado.web
 import tornado.ioloop
 import socket
 
+ip = "0.0.0.0"
+
 class ParentRequesyHandler(tornado.web.RequestHandler):
     def showInfo(self):
-        print("source ip :" , self.request.remote_ip)
+        if ip != self.request.remote_ip:
+            print("source ip :" , self.request.remote_ip)
 
 class Handler_ZhiHu(ParentRequesyHandler):
     def get(self):

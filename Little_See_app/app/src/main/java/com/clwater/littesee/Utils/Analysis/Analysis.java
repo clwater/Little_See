@@ -19,6 +19,7 @@ import java.util.List;
 
 public class Analysis {
     public static List<ZhiHu> AnalysisZhiHU(String _date){
+<<<<<<< Updated upstream
         List<ZhiHu> zhiHuList = new ArrayList<ZhiHu>();
 
         Log.d("gzb" , "" + _date);
@@ -35,6 +36,27 @@ public class Analysis {
             zhiHuList.add(zhihu);
         }
 
+=======
+        Log.d("gzb" , _date);
+        List<ZhiHu> zhiHuList = null;
+
+        String JSON_DATA = "{\n" +
+                "    \"id\": 100,\n" +
+                "    \"body\": \"It is my post\",\n" +
+                "    \"number\": 0.13,\n" +
+                "    \"created_at\": \"2014-05-22 19:12:38\"\n" +
+                "}";
+        TextBean textBean = new Gson().fromJson(_date , TextBean.class);
+//
+
+
+        Log.d("gzb" , "textBean.statu:" + textBean.statu);
+//       // Log.d("gzb" , "" + foos[1].text_date.title);
+//
+//        Text_date[] t = new Gson().fromJson(String.valueOf(textBean.date), Text_date[].class);
+//
+//        Log.d("gzb" , "" + t[1].title);
+>>>>>>> Stashed changes
         return zhiHuList;
     }
 
