@@ -22,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.bottom_navigation_bar)
     BottomNavigationBar bottomNavigationBar;
 
-    NewsFragment _newsFragment;         //即刻
-    ImageFragment _imageFragment;         //实景
+    NewsFragment _newsFragment;             //即刻
+    ImageFragment _imageFragment;           //实景
     SettingFragment _settingFragment;       //设置
     DiaryFragment _diaryFragemnt;           //优选
 

@@ -18,8 +18,8 @@ def getZhihu():
     chrome_driver = os.path.abspath(r"C:\ftp\chromedriver\chromedriver.exe")
     os.environ["webdriver.chrome.driver"] = chrome_driver
 
-    #driver = webdriver.Chrome(chrome_driver)
-    driver = webdriver.PhantomJS(executable_path="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_Server/phantomjs-2.1.1-macosx/bin/phantomjs")
+    driver = webdriver.Chrome(chrome_driver)
+    #driver = webdriver.PhantomJS(executable_path="/Users/haizhi/Desktop/Little_See/Little_See/Little_See_Server/phantomjs-2.1.1-macosx/bin/phantomjs")
 
     driver.get("http://daily.zhihu.com/")
     #print(driver.page_source)
