@@ -15,7 +15,7 @@ import butterknife.ButterKnife;
  * Created by yszsyf on 17/2/26.
  */
 //实景
-public class SearchFragment extends Fragment {
+public class ImageFragment extends Fragment {
 
 
     @Override
