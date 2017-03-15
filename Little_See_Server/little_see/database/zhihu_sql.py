@@ -11,8 +11,7 @@ def save_sql(zhihulist):
     conn = mysql.connector.connect(user='root', password='', database='little_see')
     cursor = conn.cursor()
 
-
-    from utils.timeUtils import getBetweenDate
+    from LittleSeeServer.utils.timeUtils import getBetweenDate
     betweendate = getBetweenDate()
 
 

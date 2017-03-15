@@ -1,10 +1,13 @@
 # !/usr/bin/python3
 # -*- coding: UTF-8 -*-
 
-from server.server import runServer
+
 
 import time, threading
 from colorama import init,Fore
+
+
+
 
 def getInfoDate():
     print(Fore.GREEN + 'getInfoDate is running')
@@ -16,6 +19,8 @@ def getInfoDate():
         print("time : " , local_time)
         print("" , local_hours , ":" , local_minute)
 
+        from LittleSeeServer.getDate.ZhiHu import getZhihu
+        getZhihu()
 
         # # if local_hours == 6 and local_minute < 51:
         # if False:
@@ -34,6 +39,7 @@ def getInfoDate():
 
 def startServer():
     print(Fore.GREEN + 'startServer is running')
+    from LittleSeeServer.server.server import runServer
     runServer()
 
 
