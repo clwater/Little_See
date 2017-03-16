@@ -17,8 +17,15 @@ def re_data_diary(indexclass):
 
 
     for diary in diarylist:
-        # print(diary)
-        json = json + '{ "title":"%s" , "image" : "%s" , "address" : "%s" , "indexclass" : "%s"},'%(diary[1] , diary[2] , diary[3] , diary[4])
+
+        title = str(diary[1], encoding='utf-8')
+        image = str(diary[2], encoding='utf-8')
+        address = str(diary[3], encoding='utf-8')
+        indexclass = str(diary[4], encoding='utf-8')
+
+        #json = json + '{ "title":"%s" , "image" : "%s" , "address" : "%s" , "indexclass" : "%s"},'%(diary[1] , diary[2] , diary[3] , diary[4])
+
+        json = json + '{ "title":"'+title+'" , "image" : "'+image+'" , "address" : "'+address+'" , "indexclass" : "'+indexclass+'"},'
 
     json = json[0:len(json) - 1]
 

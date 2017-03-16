@@ -183,21 +183,21 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/app/build/intermediates/exploded-aar/com.github.ybq/parallaxviewpager/2.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="aac1c208af21b8ac1c50dad1030438ac1b013c1b">
-        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/app/build/intermediates/pre-dexed/debug/com.github.ybq-parallaxviewpager-2.0.0_6ec80c761c2776125c2d8d83f631e537009a410a.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/exploded-aar/com.android.support.constraint/constraint-layout/1.0.0-alpha7/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="541a2ad68dc68aa49795821f8280b7624e6a0c9b">
         <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/com.android.support.constraint-constraint-layout-1.0.0-alpha7_88eb56ff5ee8a764534b10486afc617b490dd586.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/app/build/intermediates/exploded-aar/com.github.ybq/parallaxviewpager/2.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="aac1c208af21b8ac1c50dad1030438ac1b013c1b">
+        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/app/build/intermediates/pre-dexed/debug/com.github.ybq-parallaxviewpager-2.0.0_6ec80c761c2776125c2d8d83f631e537009a410a.jar" />
     </item>
     <item
         is-multidex="false"
@@ -216,6 +216,15 @@
         revision="24.0.2"
         sha1="c7c4f9e35c2fd5900da24f9872e3971801f08ce0">
         <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/app/build/intermediates/pre-dexed/debug/okhttp-3.4.1_464d7cec729cd91164741d5941f7e4d206b23050.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yszsyf/.gradle/caches/modules-2/files-2.1/org.greenrobot/eventbus/3.0.0/ddd99896e9569eaababbe81b35d80e1b91c4ad85/eventbus-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ddd99896e9569eaababbe81b35d80e1b91c4ad85">
+        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/eventbus-3.0.0_7bdbf0f5bc07be35571cfea0a4564aaf3a1c6ed9.jar" />
     </item>
     <item
         is-multidex="false"
@@ -291,21 +300,21 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="45f5eda279825ff470e3f51019d374d1ef61e000">
-        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-24.2.0_8a2531ef650b86b3a30f61a3d74ba5014a365a30.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
         <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/com.android.support-support-v4-25.1.0_b2a44ec70c9c7bec7c745e52e29e2543c23523c3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="45f5eda279825ff470e3f51019d374d1ef61e000">
+        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-24.2.0_8a2531ef650b86b3a30f61a3d74ba5014a365a30.jar" />
     </item>
     <item
         is-multidex="false"
@@ -318,12 +327,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/classes.jar"
+        jar="/Users/yszsyf/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.0/c4ba5371a29ac9b2ad6129b1d39ea38750043eff/gson-2.8.0.jar"
         jumboMode="false"
         optimize="true"
-        revision="24.0.2"
-        sha1="d8bd2268fdcbfd52c76ade65d9900cd8def93a44">
-        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-24.2.0_bf6718043f9205cfc198d31e1b22aeeb259d6383.jar" />
+        revision="25.0.2"
+        sha1="c4ba5371a29ac9b2ad6129b1d39ea38750043eff">
+        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/gson-2.8.0_a0a2261fe922327dfb0a7dd9c48cd35730a9a10b.jar" />
     </item>
     <item
         is-multidex="false"
@@ -342,6 +351,15 @@
         revision="25.0.2"
         sha1="aee64634871d88a419d59eb743c1258a60f19700">
         <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-25.1.0_ee924b675da25d26b56d44efc2c8b8810b822c19.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="d8bd2268fdcbfd52c76ade65d9900cd8def93a44">
+        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-24.2.0_bf6718043f9205cfc198d31e1b22aeeb259d6383.jar" />
     </item>
     <item
         is-multidex="false"
@@ -372,12 +390,21 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.2.0/jars/classes.jar"
+        jar="/Users/yszsyf/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.9.0/f824591a0016efbaeddb8300bee54832a1398cfa/okio-1.9.0.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="c755536e5a100d9c76c8ea0b72f76c018f7a9de2">
-        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-24.2.0_2ee826293c203f3205349ef7b32f41ae5c56c465.jar" />
+        sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
+        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/okio-1.9.0_67e640cf9fd35e24b73a0c0941789d1d266339d7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Volumes/exdate/android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.0/support-annotations-25.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="64cb6b229a8bdfd907bc8dd46839a0053e4c018d">
+        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/support-annotations-25.1.0_d17141f6a7885d635bb45818663818affd17fada.jar" />
     </item>
     <item
         is-multidex="false"
@@ -399,21 +426,21 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Volumes/exdate/android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.0/support-annotations-25.1.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="64cb6b229a8bdfd907bc8dd46839a0053e4c018d">
-        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/support-annotations-25.1.0_d17141f6a7885d635bb45818663818affd17fada.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/app/libs/SpinKit.jar"
         jumboMode="false"
         optimize="true"
         revision="24.0.2"
         sha1="aa76be42a7912ccb387121f2a37bb0dea7244261">
         <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/app/build/intermediates/pre-dexed/debug/SpinKit_b76383ccb93cc865a08b4d0c666723c44a6641b4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yszsyf/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.4.1/c7c4f9e35c2fd5900da24f9872e3971801f08ce0/okhttp-3.4.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c7c4f9e35c2fd5900da24f9872e3971801f08ce0">
+        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/okhttp-3.4.1_464d7cec729cd91164741d5941f7e4d206b23050.jar" />
     </item>
     <item
         is-multidex="false"
@@ -459,6 +486,15 @@
         revision="24.0.2"
         sha1="771b3cc0e597b54da25f8086ba73180c59c6bc71">
         <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_48a4816a337548d57853ef830ca502b508c3d0df.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b266c8faa5af72e579b9da36ef35053ffed6ac64">
+        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-25.1.0_07747506582754cb85330cd78cc0fdba2ef3299e.jar" />
     </item>
     <item
         is-multidex="false"
