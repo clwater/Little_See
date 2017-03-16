@@ -19,13 +19,13 @@ def save_sql(zhihulist):
         cursor_search  = conn.cursor()
         sql = 'select * from diary where indexclass = \'%s\' and address = \'%s\' and dateid BETWEEN %d and %d' %( zhihu[3] , zhihu[1] , betweendate - 5 , betweendate)
         #sql = 'select * from diary where address = \'%s\' and dateid  BETWEEN  %d and %d' % (zhihu[1], betweendate - 5, betweendate)
-        print(sql)
+        #print(sql)
         cursor_search.execute(sql)
         statu = cursor_search.fetchall()
 
         if len(statu) == 0:
             _sql = 'insert into diary(title , image , address , indexclass ,dateid) values (\'%s\',\'%s\',\'%s\',\'%s\',%s)' %(zhihu[0],zhihu[2], zhihu[1], zhihu[3], betweendate)
-            print(_sql)
+            #print(_sql)
             cursor.execute(_sql)
              #cursor.execute('insert into diary(title , image , address , indexclass ,dateid) values (%s,%s,%s,%s,%s)', [zhihu[0], zhihu[2], zhihu[1], zhihu[3], betweendate])
         # else:
