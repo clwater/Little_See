@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.IntentService;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import com.clwater.littlesee.R;
 import com.clwater.littlesee.ui.activity.ChooseItemActivity;
 import com.clwater.littlesee.utils.SPHelper;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -21,7 +23,8 @@ import butterknife.ButterKnife;
 
 //每日优选
 public class DiaryFragment extends Fragment {
-
+    @BindView(R.id.recylist_diarylist)
+    RecyclerView recycleListView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,7 +35,7 @@ public class DiaryFragment extends Fragment {
 
         if (SPHelper.getStringValue(getActivity() , "diary_class").isEmpty()){
             Intent intent = new Intent(this.getActivity() , ChooseItemActivity.class);
-            //startActivity(intent);
+            startActivity(intent);
         }
 
         return view;

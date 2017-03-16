@@ -52,36 +52,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initToolbar() {
-//        setSupportActionBar(toolbar);
         toolbar.setTitle("aaa");
         setSupportActionBar(toolbar);
-        toolbar.setOnMenuItemClickListener(onMenuItemClick);
-
+        //toolbar.setOnMenuItemClickListener(onMenuItemClick);
 
     }
 
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
 
-    private Toolbar.OnMenuItemClickListener onMenuItemClick = new Toolbar.OnMenuItemClickListener() {
-        @Override
-        public boolean onMenuItemClick(MenuItem menuItem) {
-            String msg = "";
-            switch (menuItem.getItemId()) {
-                case R.id.menu_control:
-                    msg += "Click edit";
-                    break;
-            }
-
-            if(!msg.equals("")) {
-                Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
-            }
-            return true;
-        }
-    };
 
     private void init() {
 
@@ -124,15 +102,19 @@ public class MainActivity extends AppCompatActivity {
                     switch (position){
                         case 0:
                             transaction.replace(R.id.framelayout_content, _diaryFragemnt);
+                            toolbar.setTitle("优选");
                             break;
                         case 1:
                             transaction.replace(R.id.framelayout_content, _newsFragment);
+                            toolbar.setTitle("即刻");
                             break;
                         case 2:
                             transaction.replace(R.id.framelayout_content, _imageFragment);
+                            toolbar.setTitle("实景");
                             break;
                         case 3:
                             transaction.replace(R.id.framelayout_content, _settingFragment);
+                            toolbar.setTitle("设置");
                             break;
                     }
 

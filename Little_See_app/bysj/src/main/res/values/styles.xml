@@ -12,6 +12,7 @@
         <item name="windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="windowNoTitle">true</item>
+        <item name="colorControlNormal">#ffffff</item>
     </style>
 
     <style name="ToolbarPopupTheme" parent="@style/ThemeOverlay.AppCompat.Dark">

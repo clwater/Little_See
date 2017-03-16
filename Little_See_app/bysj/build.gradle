@@ -31,6 +31,7 @@ dependencies {
     compile 'com.github.navasmdc:MaterialDesign:1.5@aar'
     compile 'com.ashokvarma.android:bottom-navigation-bar:0.9.5'
     compile 'com.jakewharton:butterknife:8.5.1'
+    compile 'com.google.android:flexbox:0.2.5'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 
 }
