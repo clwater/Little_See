@@ -3,9 +3,12 @@ package com.clwater.littlesee.ui.activity;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Window;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
@@ -22,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.bottom_navigation_bar)
     BottomNavigationBar bottomNavigationBar;
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
     NewsFragment _newsFragment;             //即刻
     ImageFragment _imageFragment;           //实景
     SettingFragment _settingFragment;       //设置
@@ -32,11 +38,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
         init();
+        initToolbar();
+    }
 
+    private void initToolbar() {
+//        setSupportActionBar(toolbar);
+        toolbar.setTitle("aaa");
     }
 
     private void init() {
@@ -47,12 +59,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initFragmentManager() {
+
+
+        //bottomNavigationBar.setMode(BottomNavigationBar.MODE_CLASSIC);
         bottomNavigationBar
-                .addItem(new BottomNavigationItem(R.drawable.ic_launcher, "优选"))
+                .addItem(new BottomNavigationItem(R.drawable.ic_reloj_max, "优选"))
+                .setActiveColor("#000000")
+                .setInActiveColor("#ffffff")
                 .addItem(new BottomNavigationItem(R.drawable.ic_reloj_max, "即刻"))
-                .addItem(new BottomNavigationItem(R.drawable.ic_launcher, "实景"))
+                .setActiveColor("#000000")
+                .setInActiveColor("#ffffff")
+                .addItem(new BottomNavigationItem(R.drawable.ic_reloj_max, "实景"))
+                .setActiveColor("#000000")
+                .setInActiveColor("#ffffff")
                 .addItem(new BottomNavigationItem(R.drawable.ic_reloj_max, "设置"))
+                .setActiveColor("#000000")
+                .setInActiveColor("#ffffff")
                 .initialise();
+
+
+
+
 
         bottomNavigationBar.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener(){
             @Override
