@@ -111,6 +111,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/exploded-aar/com.antfortune.freeline/runtime/0.8.6/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="611bdfa0266e6a0bb9865118c5206b0d992f91d9">
+        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/com.antfortune.freeline-runtime-0.8.6_35f44e7cfae28294db1589418efed796f35caefe.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/Users/yszsyf/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.0/c4ba5371a29ac9b2ad6129b1d39ea38750043eff/gson-2.8.0.jar"
         jumboMode="false"
         optimize="true"

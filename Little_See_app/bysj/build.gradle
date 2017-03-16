@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.antfortune.freeline'
+apply plugin: 'com.antfortune.freeline'
 
 android {
     compileSdkVersion 25

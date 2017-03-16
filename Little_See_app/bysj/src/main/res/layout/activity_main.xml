@@ -5,12 +5,17 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:toolbar="http://schemas.android.com/apk/res-auto"
     tools:context="com.clwater.littlesee.ui.activity.MainActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_height="?attr/actionBarSize"
-        android:layout_width="match_parent" >
+        android:layout_width="match_parent"
+        app:titleTextColor="#ffffff"
+        android:background="@color/colorPrimary"
+        toolbar:popupTheme="@style/ToolbarPopupTheme"
+        >
 
     </android.support.v7.widget.Toolbar>
 

@@ -8,7 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
@@ -49,7 +54,34 @@ public class MainActivity extends AppCompatActivity {
     private void initToolbar() {
 //        setSupportActionBar(toolbar);
         toolbar.setTitle("aaa");
+        setSupportActionBar(toolbar);
+        toolbar.setOnMenuItemClickListener(onMenuItemClick);
+
+
     }
+
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    private Toolbar.OnMenuItemClickListener onMenuItemClick = new Toolbar.OnMenuItemClickListener() {
+        @Override
+        public boolean onMenuItemClick(MenuItem menuItem) {
+            String msg = "";
+            switch (menuItem.getItemId()) {
+                case R.id.menu_control:
+                    msg += "Click edit";
+                    break;
+            }
+
+            if(!msg.equals("")) {
+                Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+            }
+            return true;
+        }
+    };
 
     private void init() {
 
@@ -64,16 +96,16 @@ public class MainActivity extends AppCompatActivity {
         //bottomNavigationBar.setMode(BottomNavigationBar.MODE_CLASSIC);
         bottomNavigationBar
                 .addItem(new BottomNavigationItem(R.drawable.ic_reloj_max, "优选"))
-                .setActiveColor("#000000")
+                .setActiveColor(R.color.colorPrimary)
                 .setInActiveColor("#ffffff")
                 .addItem(new BottomNavigationItem(R.drawable.ic_reloj_max, "即刻"))
-                .setActiveColor("#000000")
+                .setActiveColor(R.color.colorPrimary)
                 .setInActiveColor("#ffffff")
                 .addItem(new BottomNavigationItem(R.drawable.ic_reloj_max, "实景"))
-                .setActiveColor("#000000")
+                .setActiveColor(R.color.colorPrimary)
                 .setInActiveColor("#ffffff")
                 .addItem(new BottomNavigationItem(R.drawable.ic_reloj_max, "设置"))
-                .setActiveColor("#000000")
+                .setActiveColor(R.color.colorPrimary)
                 .setInActiveColor("#ffffff")
                 .initialise();
 

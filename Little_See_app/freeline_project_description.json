@@ -1,0 +1,108 @@
+{
+    "project_type": "gradle",
+    "android_gradle_plugin_version": "2.2.0",
+    "freeline_gradle_plugin_version": "0.8.6",
+    "java_home": "/Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home",
+    "freeline_cache_dir": "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app",
+    "auto_dependency": true,
+    "product_flavor": "",
+    "build_script": "./gradlew :bysj:assembleDebug",
+    "build_script_work_directory": "",
+    "root_dir": "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app",
+    "main_project_name": "bysj",
+    "main_project_dir": "bysj",
+    "build_directory": "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build",
+    "build_cache_dir": "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/freeline",
+    "build_tools_version": "25.0.2",
+    "sdk_directory": "/Volumes/exdate/android/sdk",
+    "build_tools_directory": "/Volumes/exdate/android/sdk/build-tools/25.0.2",
+    "compile_sdk_version": "android-25",
+    "compile_sdk_directory": "/Volumes/exdate/android/sdk/platforms/android-25",
+    "package": "com.clwater.littlesee",
+    "debug_package": "com.clwater.littlesee",
+    "main_manifest_path": "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/src/main/AndroidManifest.xml",
+    "launcher": "com.clwater.littlesee.ui.activity.MainActivity",
+    "apk_path": "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/outputs/apk/bysj-debug.apk",
+    "extra_dep_res_paths": [
+        
+    ],
+    "exclude_dep_res_paths": [
+        
+    ],
+    "main_r_path": "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/generated/source/r/debug/R.java",
+    "use_jdk8": true,
+    "ignore_resource_ids": [
+        "avd_hide_password_1",
+        "avd_hide_password_2",
+        "avd_hide_password_3",
+        "avd_show_password_1",
+        "avd_show_password_2",
+        "avd_show_password_3"
+    ],
+    "use_system_gradle": false,
+    "check_sources_md5": [
+        
+    ],
+    "main_src_directory": [
+        "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/src/debug/java",
+        "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/src/main/java"
+    ],
+    "main_res_directory": [
+        "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/src/debug/res",
+        "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/src/main/res"
+    ],
+    "main_assets_directory": [
+        "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/src/debug/assets",
+        "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/src/main/assets"
+    ],
+    "main_jni_directory": [
+        "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/src/debug/jni",
+        "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/src/main/jni"
+    ],
+    "main_jniLibs_directory": [
+        "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/src/debug/jniLibs",
+        "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/src/main/jniLibs"
+    ],
+    "project_source_sets": {
+        "bysj": {
+            "main_src_directory": [
+                "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/src/debug/java",
+                "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/src/main/java"
+            ],
+            "main_res_directory": [
+                "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/src/debug/res",
+                "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/src/main/res"
+            ],
+            "main_assets_directory": [
+                "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/src/debug/assets",
+                "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/src/main/assets"
+            ],
+            "main_jni_directory": [
+                "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/src/debug/jni",
+                "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/src/main/jni"
+            ],
+            "main_jniLibs_directory": [
+                "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/src/debug/jniLibs",
+                "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/src/main/jniLibs"
+            ],
+            "main_manifest_path": "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/src/main/AndroidManifest.xml"
+        }
+    },
+    "modules": [
+        {
+            "name": "bysj",
+            "path": "/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj"
+        }
+    ],
+    "module_dependencies": {
+        "bysj": [
+            
+        ]
+    },
+    "databinding": [
+        
+    ],
+    "databinding_modules": [
+        
+    ]
+}
