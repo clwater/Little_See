@@ -15,6 +15,7 @@ import com.clwater.littlesee.R;
 import com.clwater.littlesee.eventbus.EventBus_Network;
 import com.clwater.littlesee.eventbus.EventBus_Network_Main;
 import com.clwater.littlesee.ui.activity.ChooseItemActivity;
+import com.clwater.littlesee.ui.activity.TextInfoActivity;
 import com.clwater.littlesee.ui.adapter.NormalRecyclerViewAdapter;
 import com.clwater.littlesee.utils.Analysis;
 import com.clwater.littlesee.utils.Bean.DiaryBean;
@@ -57,6 +58,8 @@ public class DiaryFragment extends Fragment {
            // startActivity(intent);
         }
 
+        Intent webintent = new Intent(this.getActivity() , TextInfoActivity.class);
+        startActivity(webintent);
 
 
         getDataFromServer();

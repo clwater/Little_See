@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void initToolbar() {
-        toolbar.setTitle("aaa");
+        toolbar.setTitle("优选");
         setSupportActionBar(toolbar);
         //toolbar.setOnMenuItemClickListener(onMenuItemClick);
 
