@@ -10,7 +10,7 @@ def re_data_diary(indexclass):
     betweendate = getBetweenDateWithGet()
     sql = 'select * from diary where indexclass in %s and dateid > %s'%(indexclass ,  betweendate)
 
-    print(sql)
+    # print(sql)
     cursor.execute(sql)
     diarylist = cursor.fetchall()
     json = '{"statu":"diary","date":['

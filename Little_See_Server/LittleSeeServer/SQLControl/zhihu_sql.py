@@ -25,9 +25,12 @@ def save_sql(zhihulist):
 
         if len(statu) == 0:
             _sql = 'insert into diary(title , image , address , indexclass ,dateid) values (\'%s\',\'%s\',\'%s\',\'%s\',%s)' %(zhihu[0],zhihu[2], zhihu[1], zhihu[3], betweendate)
+
+            _sql.replace('"' , '!@!#!')
+
             #print(_sql)
             cursor.execute(_sql)
-             #cursor.execute('insert into diary(title , image , address , indexclass ,dateid) values (%s,%s,%s,%s,%s)', [zhihu[0], zhihu[2], zhihu[1], zhihu[3], betweendate])
+             #cursor.execute('insert i nto diary(title , image , address , indexclass ,dateid) values (%s,%s,%s,%s,%s)', [zhihu[0], zhihu[2], zhihu[1], zhihu[3], betweendate])
         # else:
         #     print(zhihu[0], 'is also')
 
