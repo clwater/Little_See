@@ -109,34 +109,12 @@ public class TextInfoActivity  extends AppCompatActivity implements View.OnScrol
 
     @Override
     public void onScrollChange(View v, int x, int y, int oldx, int oldy) {
-        int _y = y - oldy;
+        int _y = y - oldy;  //项下划动时 _y > 0
 
+        Log.d("gzb" , "" + _y);
         view_space.setLayoutParams(new LinearLayout.LayoutParams(view_space.getWidth() , 0));
 
 
-//        baseheight = baseheight + _y;
-//        Log.d("gzb_y" , "" + _y);
-//
-//        if (baseheight > 0 ){
-//            if (baseheight >= 200){
-//                baseheight = 200;
-//            }else {
-//                view_space.getLayoutParams().height = view_space.getLayoutParams().height + _y / 2;
-//            }
-//        }
-//
-//        Log.d("gzb_xx" , "baseheight:  " + baseheight);
-
-//        if ( (_y > 20) || (_y < -20) ){
-//            if ((((_yold >= 0) && (_y <= 0)) || ((_yold <= 0) && (_y >= 0)))) {
-//                if (_y > 0) {
-//                   // changeTitlePositation(true);
-//                } else {
-//                    //changeTitlePositation(false);
-//                }
-//            }
-//            _yold = _y;
-//        }
     }
 
 
