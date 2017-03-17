@@ -1,6 +1,7 @@
 package com.clwater.littlesee.ui.activity;
 
 
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.graphics.Color;
@@ -12,6 +13,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
+    @BindView(R.id.framelayout_content)
+    FrameLayout frameLayout;
+
     NewsFragment _newsFragment;             //即刻
     ImageFragment _imageFragment;           //实景
     SettingFragment _settingFragment;       //设置
@@ -50,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         init();
         initToolbar();
     }
+
 
     private void initToolbar() {
         toolbar.setTitle("aaa");
@@ -86,8 +94,6 @@ public class MainActivity extends AppCompatActivity {
                 .setActiveColor(R.color.colorPrimary)
                 .setInActiveColor("#ffffff")
                 .initialise();
-
-
 
 
 

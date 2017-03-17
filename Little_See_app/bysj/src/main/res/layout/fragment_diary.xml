@@ -4,12 +4,20 @@
     android:layout_height="match_parent">
 
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/view_space"
+        />
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/recylist_diarylist">
+        android:id="@+id/recylist_diarylist"
+        android:layout_above="@id/view_space">
     </android.support.v7.widget.RecyclerView>
+
 
 
 </RelativeLayout>

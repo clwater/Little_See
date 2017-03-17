@@ -31,7 +31,7 @@
         android:layout_alignParentBottom="true"
         android:id="@+id/bottom_navigation_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         />
 
 

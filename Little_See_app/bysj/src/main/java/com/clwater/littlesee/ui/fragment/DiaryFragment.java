@@ -67,6 +67,7 @@ public class DiaryFragment extends Fragment {
     }
 
     private void initList() {
+        //recycleListView.getLayoutParams().height = recycleListView.getLayoutParams().height - 50;
         recycleListView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recycleListView.setAdapter(new NormalRecyclerViewAdapter(getActivity() , _DiaryList));
     }
@@ -81,11 +82,11 @@ public class DiaryFragment extends Fragment {
         String url = "http://192.168.1.104:9007/diary?indexclass=('zhihu','haoqixin')";
         _result = OkHttpUtils.okhttp_get(url);
 
-        Log.d("gzb" , "_result : " + _result);
+        //Log.d("gzb" , "_result : " + _result);
         _DiaryList = Analysis.AnalysisDiary(_result);
 
         for( DiaryBean.DateBean _dairy :_DiaryList){
-            Log.d("gzb" , _dairy.getTitle());
+            //Log.d("gzb" , _dairy.getTitle());
         }
 
         EventBus.getDefault().post(new EventBus_Network_Main("diary"));
