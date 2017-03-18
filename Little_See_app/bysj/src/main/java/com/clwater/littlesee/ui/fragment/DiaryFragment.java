@@ -75,12 +75,7 @@ public class DiaryFragment extends Fragment {
         Intent webintent = new Intent(this.getActivity() , TextInfoActivity.class);
         //startActivity(webintent);
 
-
-
         getDataFromServer();
-
-
-
 
         return view;
     }
