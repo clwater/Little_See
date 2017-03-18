@@ -2,7 +2,9 @@ package com.clwater.littlesee.ui.fragment;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -33,6 +35,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Handler;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,6 +53,9 @@ public class DiaryFragment extends Fragment {
     @BindView(R.id.imageview_list_returntop)
     ImageView imageview_list_returntop;
 
+    @BindView(R.id.swipecontainer_diarylist)
+    SwipeRefreshLayout swipecontainer_diarylist;
+
     List<DiaryBean.DateBean> _DiaryList = new ArrayList<DiaryBean.DateBean>();
 
     private String _result;
@@ -59,6 +65,7 @@ public class DiaryFragment extends Fragment {
 
     public static boolean _chageReturnIconStatu = true;
 
+    private boolean isRefresh = false;//是否刷新中
 
 
     @Override
@@ -70,14 +77,22 @@ public class DiaryFragment extends Fragment {
         EventBus.getDefault().register(this);
 
         checkIndexClass();
+        init();
 
-
-        Intent webintent = new Intent(this.getActivity() , TextInfoActivity.class);
-        //startActivity(webintent);
-
-        getDataFromServer();
+        //getDataFromServer();
 
         return view;
+    }
+
+    private void init() {
+        swipecontainer_diarylist.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getDataFromServer();
+            }
+        });
+        swipecontainer_diarylist.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light);
+
     }
 
 
@@ -89,7 +104,6 @@ public class DiaryFragment extends Fragment {
         }
 
     }
-
 
 
     private void initList() {
@@ -112,15 +126,9 @@ public class DiaryFragment extends Fragment {
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void onEventbusNetwork(EventBus_Network e){
-        String url = "http://192.168.1.104:9007/diary?indexclass=('知乎日报','好奇心日报')";
+        String url = "http://192.168.1.104:9008/diary?indexclass=('知乎日报','好奇心日报')";
         _result = OkHttpUtils.okhttp_get(url);
-
-        //Log.d("gzb" , "_result : " + _result);
         _DiaryList = Analysis.AnalysisDiary(_result);
-
-        for( DiaryBean.DateBean _dairy :_DiaryList){
-            //Log.d("gzb" , _dairy.getTitle());
-        }
 
         EventBus.getDefault().post(new EventBus_Network_Main("diary"));
 
@@ -131,6 +139,7 @@ public class DiaryFragment extends Fragment {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventbusNetworkinMain(EventBus_Network_Main e){
         initList();
+        swipecontainer_diarylist.setRefreshing(false);
     }
 
     @Override
@@ -168,6 +177,11 @@ public class DiaryFragment extends Fragment {
                 }else {
                     chageReturnIcon(false);
                 }
+
+                if (lastItemPosition == _DiaryList.size() - 1){
+                    Log.d("gzb" , "加载更多" );
+                }
+
             }
         }
 
