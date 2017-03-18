@@ -43,6 +43,8 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<NormalRecycl
     public void onBindViewHolder(NormalTextViewHolder holder, int position) {
         holder.textView.setText(list.get(position).getTitle());
         Glide.with(context).load(list.get(position).getImage()).into(holder.imageView);
+        String indexclass = list.get(position).getIndexclass();
+        holder.fromTex.setText(indexclass);
     }
 
     @Override
@@ -56,6 +58,9 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<NormalRecycl
 
         @BindView(R.id.imageview_adapter_image)
         ImageView imageView;
+
+        @BindView(R.id.textview_adapter_from)
+        TextView fromTex;
 
         NormalTextViewHolder(View view) {
             super(view);

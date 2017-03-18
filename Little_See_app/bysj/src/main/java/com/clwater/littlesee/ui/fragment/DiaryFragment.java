@@ -21,6 +21,7 @@ import com.clwater.littlesee.utils.Analysis;
 import com.clwater.littlesee.utils.Bean.DiaryBean;
 import com.clwater.littlesee.utils.OkHttpUtils;
 import com.clwater.littlesee.utils.SPHelper;
+import com.clwater.littlesee.weight.ItemDecoration;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -53,13 +54,11 @@ public class DiaryFragment extends Fragment {
         ButterKnife.bind(this , view);
         EventBus.getDefault().register(this);
 
-        if (SPHelper.getStringValue(getActivity() , "diary_class").isEmpty()){
-            Intent intent = new Intent(this.getActivity() , ChooseItemActivity.class);
-           // startActivity(intent);
-        }
+        checkIndexClass();
+
 
         Intent webintent = new Intent(this.getActivity() , TextInfoActivity.class);
-        startActivity(webintent);
+        //startActivity(webintent);
 
 
         getDataFromServer();
@@ -69,10 +68,18 @@ public class DiaryFragment extends Fragment {
         return view;
     }
 
+    private void checkIndexClass() {
+        if (SPHelper.getStringValue(getActivity() , "diary_class").isEmpty()){
+            Intent intent = new Intent(this.getActivity() , ChooseItemActivity.class);
+            // startActivity(intent);
+        }
+
+    }
+
     private void initList() {
-        //recycleListView.getLayoutParams().height = recycleListView.getLayoutParams().height - 50;
         recycleListView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recycleListView.setAdapter(new NormalRecyclerViewAdapter(getActivity() , _DiaryList));
+        recycleListView.addItemDecoration(new ItemDecoration(getActivity()));
     }
 
     private void getDataFromServer() {
@@ -82,7 +89,7 @@ public class DiaryFragment extends Fragment {
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void onEventbusNetwork(EventBus_Network e){
-        String url = "http://192.168.1.104:9007/diary?indexclass=('zhihu','haoqixin')";
+        String url = "http://192.168.1.104:9007/diary?indexclass=('知乎日报','好奇心日报')";
         _result = OkHttpUtils.okhttp_get(url);
 
         //Log.d("gzb" , "_result : " + _result);
