@@ -23,8 +23,12 @@ def getIndexInfo(driver ,index):
     haoqixin.insert(2 , text_src)
     text_text = test.get_attribute("alt")
     haoqixin.insert(0 , text_text)
-    haoqixin.insert(3 , 'haoqixin')
-    haoqixinlist.append(haoqixin)
+    haoqixin.insert(3 , '好奇心日报')
+
+    import re
+    pd = re.findall('大公司头条' ,  text_text)
+    if len(pd) < 1:
+        haoqixinlist.append(haoqixin)
 
 
 def getHaoQiXin():

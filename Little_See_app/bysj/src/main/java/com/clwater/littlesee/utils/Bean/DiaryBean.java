@@ -1,5 +1,6 @@
 package com.clwater.littlesee.utils.Bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -26,7 +27,7 @@ public class DiaryBean {
         this.date = date;
     }
 
-    public class DateBean{
+    public static class DateBean implements Serializable {
         private String title;
         private String image;
         private String address;

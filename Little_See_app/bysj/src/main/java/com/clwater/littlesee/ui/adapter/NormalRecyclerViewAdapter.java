@@ -1,6 +1,9 @@
 package com.clwater.littlesee.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.IntDef;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +14,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.clwater.littlesee.R;
+import com.clwater.littlesee.ui.activity.TextInfoActivity;
 import com.clwater.littlesee.utils.Bean.DiaryBean;
 
 import java.util.ArrayList;
@@ -52,7 +56,7 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<NormalRecycl
         return list == null ? 0 : list.size();
     }
 
-    public static class NormalTextViewHolder extends RecyclerView.ViewHolder {
+    public class NormalTextViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.textview_adapter_diary)
         TextView textView;
 
@@ -69,6 +73,13 @@ public class NormalRecyclerViewAdapter extends RecyclerView.Adapter<NormalRecycl
                 @Override
                 public void onClick(View v) {
                     Log.d("NormalTextViewHolder", "onClick--> position = " + getPosition());
+
+                    Intent intent = new Intent(context , TextInfoActivity.class);
+                    Bundle bundle=new Bundle();
+                    bundle.putSerializable("diary", list.get(getPosition()));
+                    intent.putExtras(bundle);
+                    context.startActivity(intent);
+
                 }
             });
         }

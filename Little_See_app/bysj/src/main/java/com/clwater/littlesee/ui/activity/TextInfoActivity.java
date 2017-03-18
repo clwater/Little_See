@@ -3,13 +3,17 @@ package com.clwater.littlesee.ui.activity;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
@@ -18,6 +22,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.clwater.littlesee.R;
+import com.clwater.littlesee.utils.Bean.DiaryBean;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,8 +42,6 @@ public class TextInfoActivity  extends AppCompatActivity implements View.OnScrol
     public TextView textview_sv_space;
     @BindView(R.id.webview_textinfo_web)
     public WebView webview;
-//    @BindView(R.id.linerarlayout_ll)
-//    public LinearLayout linearLayout;
     @BindView(R.id.textview_textinfo_titile)
     public TextView textview_textinfo_titile;
     @BindView(R.id.myScrolView)
@@ -49,6 +52,10 @@ public class TextInfoActivity  extends AppCompatActivity implements View.OnScrol
 
     private int baseheight = 40;
 
+
+
+    DiaryBean.DateBean diaryBean = new DiaryBean.DateBean();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,25 +63,35 @@ public class TextInfoActivity  extends AppCompatActivity implements View.OnScrol
         ButterKnife.bind(this);
 
 
-        initToolbar();
-        initImage();
-        initTitle();
-        initWebView();
+        Intent intent =this.getIntent();
+        diaryBean = (DiaryBean.DateBean) intent.getSerializableExtra("diary");
+
         init();
+
+        initToolbar(diaryBean.getIndexclass());
+        initImage(diaryBean.getImage());
+        initTitle(diaryBean.getTitle());
+        initWebView(diaryBean.getAddress());
+
+
+
     }
+
+
 
 
     private void init(){
+        int defaultMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,baseheight,getResources().getDisplayMetrics());
+        view_space.setLayoutParams(new LinearLayout.LayoutParams(view_space.getWidth() , defaultMargin));
         myscrollview.setOnScrollChangeListener(this);
     }
-    private void initTitle() {
-        textview_textinfo_titile.setText("ttitititititi");
+    private void initTitle(String title) {
+        textview_textinfo_titile.setText(title);
     }
 
-    private void initWebView() {
+    private void initWebView(String address) {
 
-        webview.loadUrl("https://www.baidu.com/s?wd=%E5%B0%8F%E8%AF%B4&rsv_spt=1&rsv_iqid=0xb187e3ac0004a2a9&issp=1&f=3&rsv_bp=0&rsv_idx=2&ie=utf-8&tn=baiduhome_pg&rsv_enter=1&rsv_sug3=8&rsv_sug1=4&rsv_sug7=100&rsv_sug2=0&prefixsug=xiaosh&rsp=0&inputT=2702&rsv_sug4=3890");
-
+        webview.loadUrl(address);
         webview.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -85,12 +102,12 @@ public class TextInfoActivity  extends AppCompatActivity implements View.OnScrol
         });
     }
 
-    private void initImage() {
-        Glide.with(this).load("http://pic1.zhimg.com/57dcafd1593d396423b88f0a6c4fdae4.jpg").into(title_image);
+    private void initImage(String image) {
+        Glide.with(this).load(image).into(title_image);
     }
 
-    private void initToolbar() {
-        toolbar.setTitle("asdasd");
+    private void initToolbar(String indexclass) {
+        toolbar.setTitle(indexclass);
     }
 
 
@@ -110,14 +127,20 @@ public class TextInfoActivity  extends AppCompatActivity implements View.OnScrol
     @Override
     public void onScrollChange(View v, int x, int y, int oldx, int oldy) {
         int _y = y - oldy;  //项下划动时 _y > 0
+        _y = _y / 4;
+        baseheight = baseheight - _y;
+        int defaultMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,baseheight,getResources().getDisplayMetrics());
+        if (baseheight > 40 ){
+            baseheight = 40;
+        }
 
+        if (baseheight <= 0){
+            toolbar.setAlpha(0);
+        }else {
+            toolbar.setAlpha(1f);
+        }
         Log.d("gzb" , "" + _y);
-        view_space.setLayoutParams(new LinearLayout.LayoutParams(view_space.getWidth() , 0));
-
-
+        view_space.setLayoutParams(new LinearLayout.LayoutParams(view_space.getWidth() , defaultMargin));
     }
-
-
-
 
 }

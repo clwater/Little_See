@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +44,7 @@ public class DiaryFragment extends Fragment {
     List<DiaryBean.DateBean> _DiaryList = new ArrayList<DiaryBean.DateBean>();
 
     private String _result;
+    private int baseLastItem ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,10 +63,19 @@ public class DiaryFragment extends Fragment {
 
         getDataFromServer();
 
+        getBaseLastItem();
+
         //initList();
 
         return view;
     }
+
+
+    private void getBaseLastItem() {
+        LinearLayoutManager layoutManager = (LinearLayoutManager) re.getLayoutManager();
+        int baseLastItem = layoutManager.findLastVisibleItemPosition();
+    }
+
 
     private void checkIndexClass() {
         if (SPHelper.getStringValue(getActivity() , "diary_class").isEmpty()){

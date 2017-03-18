@@ -31,7 +31,7 @@ def getZhihu():
         zhihu.insert(0, storelist[index].text)
         zhihu.insert(1, linklist[index].get_attribute("href"))
         zhihu.insert(2, imagelist[index].get_attribute("src"))
-        zhihu.insert(3 , 'zhihu')
+        zhihu.insert(3 , '知乎日报')
         zhihulist.append(zhihu)
         print(zhihu)
 
