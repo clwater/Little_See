@@ -11,19 +11,41 @@
         android:id="@+id/view_space"
         />
 
+
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipecontainer_diarylist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/view_space">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recylist_diarylist"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textview_diary_finish"
+                android:text="---没有更多的消息了---"
+                android:gravity="center"
+                android:textColor="#9f9f9f"
+                android:textSize="12sp"
+                android:padding="5dp"
+                android:visibility="gone"
+                android:layout_alignParentBottom="true"
+                />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recylist_diarylist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/textview_diary_finish"
+                />
+
+        </RelativeLayout>
     </android.support.v4.widget.SwipeRefreshLayout>
+
+
 
     <ImageView
         android:layout_width="30dp"

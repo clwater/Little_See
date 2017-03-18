@@ -2,40 +2,42 @@ package com.clwater.littlesee.ui.fragment;
 
 import android.app.Fragment;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.TextViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.clwater.littlesee.R;
-import com.clwater.littlesee.eventbus.EventBus_Network;
-import com.clwater.littlesee.eventbus.EventBus_Network_Main;
+import com.clwater.littlesee.database.BaseControl;
+import com.clwater.littlesee.database.BeanDiary;
+import com.clwater.littlesee.eventbus.EventBus_RunInBack;
+import com.clwater.littlesee.eventbus.EventBus_RunInFront;
 import com.clwater.littlesee.ui.activity.ChooseItemActivity;
-import com.clwater.littlesee.ui.activity.TextInfoActivity;
-import com.clwater.littlesee.ui.adapter.NormalRecyclerViewAdapter;
+import com.clwater.littlesee.ui.adapter.DiaryRecyclerViewAdapter;
 import com.clwater.littlesee.utils.Analysis;
 import com.clwater.littlesee.utils.Bean.DiaryBean;
 import com.clwater.littlesee.utils.OkHttpUtils;
 import com.clwater.littlesee.utils.SPHelper;
 import com.clwater.littlesee.weight.ItemDecoration;
+import com.litesuits.orm.LiteOrm;
+import com.litesuits.orm.db.assit.QueryBuilder;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.logging.Handler;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -56,17 +58,19 @@ public class DiaryFragment extends Fragment {
     @BindView(R.id.swipecontainer_diarylist)
     SwipeRefreshLayout swipecontainer_diarylist;
 
-    List<DiaryBean.DateBean> _DiaryList = new ArrayList<DiaryBean.DateBean>();
+    @BindView(R.id.textview_diary_finish)
+    TextView textview_diary_finish;
 
+    List<DiaryBean.DateBean> _DiaryList = new ArrayList<DiaryBean.DateBean>();
+    List<DiaryBean.DateBean> _ShowDiaryList = new ArrayList<DiaryBean.DateBean>();
+    DiaryRecyclerViewAdapter dairyAdapter;
     private String _result;
 
     private int _baseLastItem;
     private boolean _baseLastItemStatu = true;
-
-    public static boolean _chageReturnIconStatu = true;
-
-    private boolean isRefresh = false;//是否刷新中
-
+    private boolean _allDateLoad = false;
+    private int showDateCount = 0;
+    private final int DIARYLIST_EVERY_COUNT = 50;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,10 +80,11 @@ public class DiaryFragment extends Fragment {
         ButterKnife.bind(this , view);
         EventBus.getDefault().register(this);
 
-        checkIndexClass();
-        init();
 
-        //getDataFromServer();
+        checkIndexClass();      //判断是否选择了对应的栏目
+        init();
+        initList();
+        QueryData();           //查询本地数据库 查看是否有数据
 
         return view;
     }
@@ -88,10 +93,11 @@ public class DiaryFragment extends Fragment {
         swipecontainer_diarylist.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                getDataFromServer();
+               // getDataFromServer();
             }
         });
         swipecontainer_diarylist.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light);
+
 
     }
 
@@ -100,7 +106,6 @@ public class DiaryFragment extends Fragment {
     private void checkIndexClass() {
         if (SPHelper.getStringValue(getActivity() , "diary_class").isEmpty()){
             Intent intent = new Intent(this.getActivity() , ChooseItemActivity.class);
-            // startActivity(intent);
         }
 
     }
@@ -108,7 +113,8 @@ public class DiaryFragment extends Fragment {
 
     private void initList() {
         recycleListView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recycleListView.setAdapter(new NormalRecyclerViewAdapter(getActivity() , _DiaryList));
+        dairyAdapter = new DiaryRecyclerViewAdapter(getActivity() , _ShowDiaryList);
+        recycleListView.setAdapter(dairyAdapter);
         recycleListView.addItemDecoration(new ItemDecoration(getActivity()));
         recycleListView.addOnScrollListener(new DiaryListOnScroll());
 
@@ -116,30 +122,125 @@ public class DiaryFragment extends Fragment {
 
     @OnClick(R.id.imageview_list_returntop)
     public void imageview_list_returntop_onclick(){
-        recycleListView.smoothScrollToPosition(1);
+        recycleListView.smoothScrollToPosition(0);
     }
 
     private void getDataFromServer() {
-        EventBus.getDefault().post(new EventBus_Network("diary"));
-
+        EventBus.getDefault().post(new EventBus_RunInBack("diary"));
     }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
-    public void onEventbusNetwork(EventBus_Network e){
-        String url = "http://192.168.1.104:9008/diary?indexclass=('知乎日报','好奇心日报')";
-        _result = OkHttpUtils.okhttp_get(url);
-        _DiaryList = Analysis.AnalysisDiary(_result);
+    public void onEventbusNetwork(EventBus_RunInBack e){
+        if (e.getTag().equals("diary") ){
 
-        EventBus.getDefault().post(new EventBus_Network_Main("diary"));
+            String url = "http://192.168.1.104:9008/diary?indexclass=('知乎日报','好奇心日报')";
+            _result = OkHttpUtils.okhttp_get(url);
+            List<DiaryBean.DateBean> _ReasultDiaryList = Analysis.AnalysisDiary(_result);
+            saveDate(_ReasultDiaryList);
+            QueryData();
+
+            EventBus.getDefault().post(new EventBus_RunInFront("diary"));
+        }
+
+    }
+
+    private void QueryData() {
+        EventBus.getDefault().post(new EventBus_RunInBack("diaryQueryData"));
+    }
+
+    @Subscribe(threadMode = ThreadMode.BACKGROUND)
+    public void EventBus_QueryData(EventBus_RunInBack e ){
+        if (e.getTag().equals("diaryQueryData")){
+            LiteOrm liteOrm = new BaseControl().Initialize(getActivity());
+            List list = liteOrm.query(BeanDiary.class);
+            if (list.size() >= 0){
+                LoadDate(list);
+                SelectShowDate();
+            }
+        }else if (e.getTag().equals("diaryQueryDataAgain")){
+            SelectShowDate();
+        }
+    }
+
+    private void SelectShowDate() {
+        int increment  = DIARYLIST_EVERY_COUNT ;
+        if ( ( _DiaryList.size()  - showDateCount ) < DIARYLIST_EVERY_COUNT){
+            increment = _DiaryList.size() - showDateCount ;
+        }
+
+
+        //Log.d("gzb", "showDateCount: " + showDateCount);
+        if ( _DiaryList.size() - showDateCount  < 1){
+            _allDateLoad = true;
+        }
+
+        for (int i = 0 ; i < increment ; i++ , showDateCount++){
+            _ShowDiaryList.add(_DiaryList.get(showDateCount));
+        }
+
+        if (!_allDateLoad) {
+            showDiaryListDate();
+        }else {
+            EventBus.getDefault().post(new EventBus_RunInFront("diary_showDiaryListDate_Error"));
+        }
+    }
+
+    private void showDiaryListDate() {
+        EventBus.getDefault().post(new EventBus_RunInFront("diary_showDiaryListDate"));
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void EventBus_showDiaryListDate(EventBus_RunInFront e){
+        if (e.getTag().equals("diary_showDiaryListDate")){
+            ChangeList();
+        }else if (e.getTag().equals("diary_showDiaryListDate_Error")){
+//            Toast.makeText(getActivity() , "没有更多的了" , Toast.LENGTH_SHORT).show();
+            textview_diary_finish.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void ChangeList() {
+        dairyAdapter.notifyDataSetChanged();
+    }
+
+    private void LoadDate(List list) {
+        for (int i = 0 ; i < list.size() ; i++){
+            BeanDiary _beanDiary = (BeanDiary) list.get(i);
+
+            DiaryBean.DateBean _diaryBean = new DiaryBean.DateBean();
+            _diaryBean.setTitle(_beanDiary.getTitle());
+            _diaryBean.setAddress(_beanDiary.getAddress());
+            _diaryBean.setImage(_beanDiary.getImage());
+            _diaryBean.setIndexclass(_beanDiary.getIndexclass());
+            _DiaryList.add(_diaryBean);
+        }
+        Collections.reverse(_DiaryList);
+    }
+
+    private void saveDate(List<DiaryBean.DateBean> _ReasultDiaryList) {
+        LiteOrm liteOrm = new BaseControl().Initialize(getActivity());
+        for (DiaryBean.DateBean data : _ReasultDiaryList){
+            List<BeanDiary> beanDiaryList = liteOrm.query(new QueryBuilder<BeanDiary>(BeanDiary.class)
+                    .whereEquals("title", data.getTitle()));
+            if (beanDiaryList.size() == 0){
+                BeanDiary beanDiary = new BeanDiary(data.getTitle(), data.getImage(), data.getAddress(), data.getIndexclass());
+                liteOrm.save(beanDiary);
+            }
+        }
+
+
 
     }
 
 
-
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEventbusNetworkinMain(EventBus_Network_Main e){
-        initList();
-        swipecontainer_diarylist.setRefreshing(false);
+    public void onEventbusNetworkinMain(EventBus_RunInFront e){
+        if (e.getTag().equals("diary")) {
+            initList();
+            swipecontainer_diarylist.setRefreshing(false);
+        }
+
     }
 
     @Override
@@ -160,6 +261,10 @@ public class DiaryFragment extends Fragment {
         @Override
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
+            if (dy < 0){
+                textview_diary_finish.setVisibility(View.GONE);
+            }
+
             RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
             if (layoutManager instanceof LinearLayoutManager) {
                 LinearLayoutManager linearManager = (LinearLayoutManager) layoutManager;
@@ -178,8 +283,10 @@ public class DiaryFragment extends Fragment {
                     chageReturnIcon(false);
                 }
 
-                if (lastItemPosition == _DiaryList.size() - 1){
-                    Log.d("gzb" , "加载更多" );
+                if (lastItemPosition == showDateCount - 1){
+                    //Log.d("gzb" , "加载更多" );
+                    //Toast.makeText(getActivity() , "加载更多" , Toast.LENGTH_SHORT).show();
+                    EventBus.getDefault().post(new EventBus_RunInBack("diaryQueryDataAgain"));
                 }
 
             }
