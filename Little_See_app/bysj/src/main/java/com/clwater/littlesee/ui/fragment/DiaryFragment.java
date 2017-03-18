@@ -5,9 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.TranslateAnimation;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 
 import com.clwater.littlesee.R;
@@ -31,6 +36,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by yszsyf on 17/2/26.
@@ -41,10 +47,19 @@ public class DiaryFragment extends Fragment {
     @BindView(R.id.recylist_diarylist)
     RecyclerView recycleListView;
 
+    @BindView(R.id.imageview_list_returntop)
+    ImageView imageview_list_returntop;
+
     List<DiaryBean.DateBean> _DiaryList = new ArrayList<DiaryBean.DateBean>();
 
     private String _result;
-    private int baseLastItem ;
+
+    private int _baseLastItem;
+    private boolean _baseLastItemStatu = true;
+
+    public static boolean _chageReturnIconStatu = true;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,20 +76,15 @@ public class DiaryFragment extends Fragment {
         //startActivity(webintent);
 
 
+
         getDataFromServer();
 
-        getBaseLastItem();
 
-        //initList();
+
 
         return view;
     }
 
-
-    private void getBaseLastItem() {
-        LinearLayoutManager layoutManager = (LinearLayoutManager) re.getLayoutManager();
-        int baseLastItem = layoutManager.findLastVisibleItemPosition();
-    }
 
 
     private void checkIndexClass() {
@@ -85,10 +95,19 @@ public class DiaryFragment extends Fragment {
 
     }
 
+
+
     private void initList() {
         recycleListView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recycleListView.setAdapter(new NormalRecyclerViewAdapter(getActivity() , _DiaryList));
         recycleListView.addItemDecoration(new ItemDecoration(getActivity()));
+        recycleListView.addOnScrollListener(new DiaryListOnScroll());
+
+    }
+
+    @OnClick(R.id.imageview_list_returntop)
+    public void imageview_list_returntop_onclick(){
+        recycleListView.smoothScrollToPosition(1);
     }
 
     private void getDataFromServer() {
@@ -127,4 +146,48 @@ public class DiaryFragment extends Fragment {
 
 
 
+    class DiaryListOnScroll extends RecyclerView.OnScrollListener{
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+
+        }
+
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+            RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+            if (layoutManager instanceof LinearLayoutManager) {
+                LinearLayoutManager linearManager = (LinearLayoutManager) layoutManager;
+                int lastItemPosition = linearManager.findLastVisibleItemPosition();
+                int firstItemPosition = linearManager.findFirstVisibleItemPosition();
+
+                if (_baseLastItemStatu){
+                    _baseLastItem = lastItemPosition;
+                    _baseLastItemStatu = false;
+                }
+
+                if (firstItemPosition > _baseLastItem){
+                    chageReturnIcon(true);
+
+                }else {
+                    chageReturnIcon(false);
+                }
+            }
+        }
+
+    }
+
+    private void chageReturnIcon(boolean b) {
+        if (b) {
+            imageview_list_returntop.setVisibility(View.VISIBLE);
+        }else {
+            imageview_list_returntop.setVisibility(View.GONE);
+        }
+    }
+
+
 }
+
+
+

@@ -139,7 +139,7 @@ public class TextInfoActivity  extends AppCompatActivity implements View.OnScrol
         }else {
             toolbar.setAlpha(1f);
         }
-        Log.d("gzb" , "" + _y);
+        //Log.d("gzb" , "" + _y);
         view_space.setLayoutParams(new LinearLayout.LayoutParams(view_space.getWidth() , defaultMargin));
     }
 
