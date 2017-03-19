@@ -109,6 +109,7 @@ public class DiaryFragment extends Fragment {
     private void checkIndexClass() {
         if (SPHelper.getStringValue(getActivity() , "diary_class").isEmpty()){
             Intent intent = new Intent(this.getActivity() , ChooseItemActivity.class);
+            startActivity(intent);
         }
 
     }
@@ -150,13 +151,15 @@ public class DiaryFragment extends Fragment {
     private void updatefromServer() {
         LiteOrm liteOrm = new BaseControl().Initialize(getActivity());
         List list = liteOrm.query(BeanDiary.class);
-        LoadDate(list);
+        if (newDateCount > 0) {
+            LoadDate(list);
+        }
 
         for (int i = 0 ; i < newDateCount ; i ++){
             _ShowDiaryList.add(i , _DiaryList.get(i));
         }
         showDateCount += newDateCount;
-
+        newDateCount = 0;
 
 
     }

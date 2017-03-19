@@ -58,14 +58,17 @@ class Handler_Diary(ParentRequesyHandler):
         json = re_data_diary(indexclass)
         self.write(json)
 
+class Handler_DiaryClass(ParentRequesyHandler):
+    def get(self):
+        ParentRequesyHandler.showInfo(self)
+        json = "{\"statu\":\"success\" , \"dirayClass\" : [\"好奇心日报\" , \"知乎日报\"]}"
+        self.write(json)
+
 
 application = tornado.web.Application([
     (r"/" , Main ),
-    (r"/zhihu" , Handler_ZhiHu),
-    (r"/haoqixin" , Handler_HaoQiXin),
-    (r"/image" , Handler_Image),
-    (r"/imageold" , Handler_Image_Old),
-    (r"/diary" , Handler_Diary)
+    (r"/diary" , Handler_Diary),
+    (r"/dirayClass" , Handler_DiaryClass)
 
 ])
 

@@ -84,6 +84,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/exploded-aar/com.nispok/snackbar/2.11.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d0db114dc90b3e192ba48d22421a9c47cfc01f00">
+        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/com.nispok-snackbar-2.11.0_96443f8b5e9bef8a972dcdbea071530b807dd92b.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"

@@ -6,19 +6,54 @@
     android:layout_height="match_parent">
 
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"
+        android:text="保存"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:padding="10dp"
+        android:background="@color/colorPrimary"
+        android:id="@+id/textview_choose_enter"
+        android:layout_alignParentEnd="true"
+        android:visibility="gone"
+        />
+
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_height="?attr/actionBarSize"
         android:layout_width="match_parent"
         app:titleTextColor="#ffffff"
         android:background="@color/colorPrimary"
+        android:layout_toStartOf="@id/textview_choose_enter"
+        >
+
+    </android.support.v7.widget.Toolbar>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textview_chooseclass_text"
+        android:layout_below="@id/toolbar"
+        android:text="选择你感兴趣的以便获取最新的信息"
+        android:padding="10dp"
+        android:textSize="16sp"
         />
 
+
+
     <com.google.android.flexbox.FlexboxLayout
-        android:layout_below="@id/toolbar"
+        android:layout_below="@id/textview_chooseclass_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/flexboxlayout_chooseitem_activity">
+        android:id="@+id/flexboxlayout_chooseitem_activity"
+        app:alignContent="flex_start"
+        app:alignItems="flex_start"
+        app:flexWrap="wrap">
 
     </com.google.android.flexbox.FlexboxLayout>
 </RelativeLayout>

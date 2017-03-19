@@ -3,6 +3,7 @@ package com.clwater.littlesee.utils;
 import android.util.Log;
 
 import com.clwater.littlesee.utils.Bean.DiaryBean;
+import com.clwater.littlesee.utils.Bean.DiaryClassBean;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -20,5 +21,11 @@ public class Analysis {
         DiaryBean textBean = new Gson().fromJson(_result , DiaryBean.class);
         List<DiaryBean.DateBean> infoList = textBean.getDate();
         return infoList;
+    }
+
+    public static String[] AnalysisDiaryClass(String _result){
+        DiaryClassBean diaryClassBean = new Gson().fromJson(_result , DiaryClassBean.class);
+        String[] diaryClass = diaryClassBean.getDirayClass();
+        return diaryClass;
     }
 }
