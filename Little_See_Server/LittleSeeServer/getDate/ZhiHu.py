@@ -33,7 +33,7 @@ def getZhihu():
         zhihu.insert(2, imagelist[index].get_attribute("src"))
         zhihu.insert(3 , '知乎日报')
         zhihulist.append(zhihu)
-        print(zhihu)
+        #print(zhihu)
 
 
     driver.close()

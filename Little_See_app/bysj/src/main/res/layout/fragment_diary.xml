@@ -13,6 +13,7 @@
 
 
 
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipecontainer_diarylist"
         android:layout_width="match_parent"
@@ -58,5 +59,11 @@
         android:visibility="gone"
         />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="没有数据"
+        android:gravity="center"
+        android:id="@+id/textview_diary_nodate"/>
 
 </RelativeLayout>

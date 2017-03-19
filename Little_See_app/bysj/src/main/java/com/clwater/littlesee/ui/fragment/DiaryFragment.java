@@ -49,17 +49,11 @@ import butterknife.OnClick;
 
 //每日优选
 public class DiaryFragment extends Fragment {
-    @BindView(R.id.recylist_diarylist)
-    RecyclerView recycleListView;
-
-    @BindView(R.id.imageview_list_returntop)
-    ImageView imageview_list_returntop;
-
-    @BindView(R.id.swipecontainer_diarylist)
-    SwipeRefreshLayout swipecontainer_diarylist;
-
-    @BindView(R.id.textview_diary_finish)
-    TextView textview_diary_finish;
+    @BindView(R.id.recylist_diarylist) RecyclerView recycleListView;
+    @BindView(R.id.imageview_list_returntop) ImageView imageview_list_returntop;
+    @BindView(R.id.swipecontainer_diarylist) SwipeRefreshLayout swipecontainer_diarylist;
+    @BindView(R.id.textview_diary_finish) TextView textview_diary_finish;
+    @BindView(R.id.textview_diary_nodate) TextView textview_diary_nodate;
 
     List<DiaryBean.DateBean> _DiaryList = new ArrayList<DiaryBean.DateBean>();
     List<DiaryBean.DateBean> _ShowDiaryList = new ArrayList<DiaryBean.DateBean>();
@@ -69,6 +63,9 @@ public class DiaryFragment extends Fragment {
     private int _baseLastItem;
     private boolean _baseLastItemStatu = true;
     private boolean _allDateLoad = false;
+    private boolean _getNewDate = false;
+    private boolean _getINNewDate = true;
+    private int newDateCount = 0 ;
     private int showDateCount = 0;
     private final int DIARYLIST_EVERY_COUNT = 50;
 
@@ -86,6 +83,9 @@ public class DiaryFragment extends Fragment {
         initList();
         QueryData();           //查询本地数据库 查看是否有数据
 
+        swipecontainer_diarylist.setRefreshing(true);
+        getDataFromServer();
+
         return view;
     }
 
@@ -93,7 +93,10 @@ public class DiaryFragment extends Fragment {
         swipecontainer_diarylist.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-               // getDataFromServer();
+                if (_getINNewDate) {
+                    _getINNewDate = false;
+                    getDataFromServer();
+                }
             }
         });
         swipecontainer_diarylist.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light);
@@ -126,21 +129,35 @@ public class DiaryFragment extends Fragment {
     }
 
     private void getDataFromServer() {
-        EventBus.getDefault().post(new EventBus_RunInBack("diary"));
+        EventBus.getDefault().post(new EventBus_RunInBack("diary_getDataFromServer"));
     }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void onEventbusNetwork(EventBus_RunInBack e){
-        if (e.getTag().equals("diary") ){
+        if (e.getTag().equals("diary_getDataFromServer") ){
 
-            String url = "http://192.168.1.104:9008/diary?indexclass=('知乎日报','好奇心日报')";
+            String url = "http://192.168.1.102:9008/diary?indexclass=('知乎日报','好奇心日报')";
             _result = OkHttpUtils.okhttp_get(url);
             List<DiaryBean.DateBean> _ReasultDiaryList = Analysis.AnalysisDiary(_result);
             saveDate(_ReasultDiaryList);
-            QueryData();
+            updatefromServer();
 
-            EventBus.getDefault().post(new EventBus_RunInFront("diary"));
+            EventBus.getDefault().post(new EventBus_RunInFront("diary_getDataFromServer_Finish"));
         }
+
+    }
+
+    private void updatefromServer() {
+        LiteOrm liteOrm = new BaseControl().Initialize(getActivity());
+        List list = liteOrm.query(BeanDiary.class);
+        LoadDate(list);
+
+        for (int i = 0 ; i < newDateCount ; i ++){
+            _ShowDiaryList.add(i , _DiaryList.get(i));
+        }
+        showDateCount += newDateCount;
+
+
 
     }
 
@@ -183,6 +200,10 @@ public class DiaryFragment extends Fragment {
         }else {
             EventBus.getDefault().post(new EventBus_RunInFront("diary_showDiaryListDate_Error"));
         }
+
+        if ( showDateCount == 0){
+            EventBus.getDefault().post(new EventBus_RunInFront("diary_showDiaryListDate_Error2"));
+        }
     }
 
     private void showDiaryListDate() {
@@ -196,7 +217,21 @@ public class DiaryFragment extends Fragment {
             ChangeList();
         }else if (e.getTag().equals("diary_showDiaryListDate_Error")){
 //            Toast.makeText(getActivity() , "没有更多的了" , Toast.LENGTH_SHORT).show();
-            textview_diary_finish.setVisibility(View.VISIBLE);
+            if (showDateCount != 0) {
+                textview_diary_finish.setVisibility(View.VISIBLE);
+            }
+        }else if (e.getTag().equals("diary_getDataFromServer_Finish")){
+            if (_ShowDiaryList.size() == 0){
+                textview_diary_nodate.setVisibility(View.VISIBLE);
+            }else {
+                textview_diary_nodate.setVisibility(View.GONE);
+            }
+
+            ChangeList();
+            _getINNewDate = true;
+            swipecontainer_diarylist.setRefreshing(false);
+        }else if (e.getTag().equals("diary_showDiaryListDate_Error2")){
+            textview_diary_finish.setVisibility(View.GONE);
         }
     }
 
@@ -224,6 +259,8 @@ public class DiaryFragment extends Fragment {
             List<BeanDiary> beanDiaryList = liteOrm.query(new QueryBuilder<BeanDiary>(BeanDiary.class)
                     .whereEquals("title", data.getTitle()));
             if (beanDiaryList.size() == 0){
+                _getNewDate = true;
+                newDateCount++;
                 BeanDiary beanDiary = new BeanDiary(data.getTitle(), data.getImage(), data.getAddress(), data.getIndexclass());
                 liteOrm.save(beanDiary);
             }
