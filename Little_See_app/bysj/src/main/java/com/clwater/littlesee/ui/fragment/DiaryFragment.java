@@ -27,6 +27,7 @@ import com.clwater.littlesee.utils.Analysis;
 import com.clwater.littlesee.utils.Bean.DiaryBean;
 import com.clwater.littlesee.utils.OkHttpUtils;
 import com.clwater.littlesee.utils.SPHelper;
+import com.clwater.littlesee.utils.WebContent;
 import com.clwater.littlesee.weight.ItemDecoration;
 import com.litesuits.orm.LiteOrm;
 import com.litesuits.orm.db.assit.QueryBuilder;
@@ -137,7 +138,7 @@ public class DiaryFragment extends Fragment {
     public void onEventbusNetwork(EventBus_RunInBack e){
         if (e.getTag().equals("diary_getDataFromServer") ){
 
-            String url = "http://192.168.1.102:9008/diary?indexclass=('知乎日报','好奇心日报')";
+            String url = WebContent.ServerAddress + "/diary?indexclass=('知乎日报','好奇心日报')";
             _result = OkHttpUtils.okhttp_get(url);
             List<DiaryBean.DateBean> _ReasultDiaryList = Analysis.AnalysisDiary(_result);
             saveDate(_ReasultDiaryList);

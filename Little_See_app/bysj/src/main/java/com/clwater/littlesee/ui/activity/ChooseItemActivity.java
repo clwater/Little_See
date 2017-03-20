@@ -19,6 +19,7 @@ import com.clwater.littlesee.eventbus.EventBus_RunInFront;
 import com.clwater.littlesee.utils.Analysis;
 import com.clwater.littlesee.utils.OkHttpUtils;
 import com.clwater.littlesee.utils.SPHelper;
+import com.clwater.littlesee.utils.WebContent;
 import com.google.android.flexbox.FlexboxLayout;
 import com.nispok.snackbar.Snackbar;
 import com.nispok.snackbar.SnackbarManager;
@@ -76,9 +77,9 @@ public class ChooseItemActivity extends AppCompatActivity {
             for (int j = i ; j < result.length ; j++){
                 if (result[j].equals(rr[i])){
                     _resultStatu[j] = false;
-                    chooseListCount++;
                 }else {
                     _resultStatu[j] = true;
+                    chooseListCount++;
                 }
             }
         }
@@ -188,7 +189,8 @@ public class ChooseItemActivity extends AppCompatActivity {
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void EventBus_getDiaryCLassFromServer(EventBus_RunInBack e){
         if (e.getTag().equals("getDiaryCLassFromServer")){
-            String url = "http://192.168.1.102:9008/dirayClass";
+            String url = WebContent.ServerAddress +  "/dirayClass";
+            //Log.d("gzb" , "url: " + url);
             String _result = OkHttpUtils.okhttp_get(url);
             result = Analysis.AnalysisDiaryClass(_result);
             EventBus.getDefault().post(new EventBus_RunInFront("getDiaryClassAnalysis"));
