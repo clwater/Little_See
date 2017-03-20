@@ -1,13 +1,9 @@
 package com.clwater.littlesee.ui.activity;
 
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
