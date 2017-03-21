@@ -2,6 +2,7 @@ package com.clwater.littlesee.ui.fragment;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -86,8 +88,10 @@ public class DiaryFragment extends Fragment {
         initList();
         QueryData();           //查询本地数据库 查看是否有数据
 
+
         return view;
     }
+
 
     private void init() {
         swipecontainer_diarylist.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
