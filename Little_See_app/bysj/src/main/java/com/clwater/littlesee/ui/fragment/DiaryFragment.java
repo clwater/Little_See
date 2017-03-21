@@ -64,7 +64,6 @@ public class DiaryFragment extends Fragment {
     private int _baseLastItem;
     private boolean _baseLastItemStatu = true;
     private boolean _allDateLoad = false;
-    private boolean _getNewDateFirst = true;
     private boolean _getINNewDate = true;
     private int newDateCount = 0 ;
     private int showDateCount = 0;
@@ -79,12 +78,10 @@ public class DiaryFragment extends Fragment {
         EventBus.getDefault().register(this);
 
 
-        checkIndexClass();      //判断是否选择了对应的栏目
+        //checkIndexClass();      //判断是否选择了对应的栏目
         init();
         initList();
         QueryData();           //查询本地数据库 查看是否有数据
-
-
 
         return view;
     }
@@ -105,23 +102,24 @@ public class DiaryFragment extends Fragment {
     }
 
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.d("gzb" , "onResume");
-        getDataFromServer();
-    }
-
     private void checkIndexClass() {
         String a = SPHelper.getDiaryclass(getActivity());
         Log.d("gzb" , "a :" +a);
         if (a.isEmpty()){
             Intent intent = new Intent(this.getActivity() , ChooseItemActivity.class);
             startActivity(intent);
+        }else {
+            getDataFromServer();
         }
 
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        checkIndexClass();
+    }
 
     private void initList() {
         recycleListView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -138,16 +136,14 @@ public class DiaryFragment extends Fragment {
     }
 
     private void getDataFromServer() {
-        if (_getNewDateFirst) {
             swipecontainer_diarylist.setRefreshing(true);
             EventBus.getDefault().post(new EventBus_RunInBack("diary_getDataFromServer"));
-            _getNewDateFirst = false;
-        }
     }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void onEventbusNetwork(EventBus_RunInBack e){
         if (e.getTag().equals("diary_getDataFromServer") ){
+
             String r = SPHelper.getDiaryclass(getActivity());
             String[] rr = r.split(",");
             String _indexclass = "";
