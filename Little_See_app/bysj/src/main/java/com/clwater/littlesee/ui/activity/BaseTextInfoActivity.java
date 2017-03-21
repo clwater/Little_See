@@ -15,6 +15,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
@@ -33,7 +35,7 @@ import butterknife.ButterKnife;
  * Created by yszsyf on 17/3/17.
  */
 
-public class TextInfoActivity  extends AppCompatActivity implements View.OnScrollChangeListener {
+public class BaseTextInfoActivity extends AppCompatActivity implements View.OnScrollChangeListener {
 
     @BindView(R.id.toolbar)
     public Toolbar toolbar;
@@ -68,7 +70,7 @@ public class TextInfoActivity  extends AppCompatActivity implements View.OnScrol
         diaryBean = (DiaryBean.DateBean) intent.getSerializableExtra("diary");
 
         init();
-
+        initWebView();
         initToolbar(diaryBean.getIndexclass());
         initImage(diaryBean.getImage());
         initTitle(diaryBean.getTitle());
@@ -105,6 +107,22 @@ public class TextInfoActivity  extends AppCompatActivity implements View.OnScrol
                 return true;
             }
         });
+    }
+
+    private void initWebView() {
+        WebSettings settings = webview.getSettings();
+        settings.setJavaScriptEnabled(true);
+        settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        settings.setLoadWithOverviewMode(true);
+        settings.setBuiltInZoomControls(true);
+        settings.setDomStorageEnabled(true);
+        settings.setDatabaseEnabled(true);
+        settings.setAppCachePath(getCacheDir().getAbsolutePath() + "/webViewCache");
+        settings.setAppCacheEnabled(true);
+        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        settings.setDisplayZoomControls(true);
+
+        webview.setWebChromeClient(new WebChromeClient());
     }
 
     private void initImage(String image) {

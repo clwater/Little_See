@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.clwater.littlesee.R;
-import com.clwater.littlesee.ui.activity.TextInfoActivity;
+import com.clwater.littlesee.ui.activity.BaseTextInfoActivity;
 import com.clwater.littlesee.utils.Bean.DiaryBean;
 
 import java.util.ArrayList;
@@ -71,9 +71,8 @@ public class DiaryRecyclerViewAdapter extends RecyclerView.Adapter<DiaryRecycler
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("NormalTextViewHolder", "onClick--> position = " + getPosition());
-
-                    Intent intent = new Intent(context , TextInfoActivity.class);
+                    Log.d("gzb", "onClick--> position = " + getPosition());
+                    Intent intent = new Intent(context , BaseTextInfoActivity.class);
                     Bundle bundle=new Bundle();
                     bundle.putSerializable("diary", list.get(getPosition()));
                     intent.putExtras(bundle);

@@ -18,7 +18,7 @@
         </activity>
 
         <activity android:name=".ui.activity.ChooseItemActivity" android:theme="@style/AppTheme.Base"/>
-        <activity android:name=".ui.activity.TextInfoActivity" android:theme="@style/Theme.Design"/>
+        <activity android:name=".ui.activity.BaseTextInfoActivity" android:theme="@style/Theme.Design"/>
     </application>
 
 </manifest>
