@@ -9,6 +9,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -76,6 +79,8 @@ public class DiaryFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_diary, container, false);
         ButterKnife.bind(this , view);
         EventBus.getDefault().register(this);
+        setHasOptionsMenu(true);
+
 
 
         //checkIndexClass();      //判断是否选择了对应的栏目
@@ -97,21 +102,38 @@ public class DiaryFragment extends Fragment {
             }
         });
         swipecontainer_diarylist.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light);
-
-
     }
 
+
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        final MenuItem fav;
+        fav = menu.add("话题");
+        fav.setIcon(R.drawable.ic_launcher);
+        //fav.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        fav.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                //Log.d("gzb" , "" + fav.getTitle());
+                inChooseItemActivity();
+                return false;
+            }
+        });
+    }
 
     private void checkIndexClass() {
         String a = SPHelper.getDiaryclass(getActivity());
         Log.d("gzb" , "a :" +a);
         if (a.isEmpty()){
-            Intent intent = new Intent(this.getActivity() , ChooseItemActivity.class);
-            startActivity(intent);
+            inChooseItemActivity();
         }else {
             getDataFromServer();
         }
 
+    }
+
+    private void inChooseItemActivity(){
+        Intent intent = new Intent(this.getActivity() , ChooseItemActivity.class);
+        startActivity(intent);
     }
 
 
