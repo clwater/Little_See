@@ -64,7 +64,7 @@ public class DiaryFragment extends Fragment {
     private int _baseLastItem;
     private boolean _baseLastItemStatu = true;
     private boolean _allDateLoad = false;
-    private boolean _getNewDate = false;
+    private boolean _getNewDateFirst = true;
     private boolean _getINNewDate = true;
     private int newDateCount = 0 ;
     private int showDateCount = 0;
@@ -84,8 +84,7 @@ public class DiaryFragment extends Fragment {
         initList();
         QueryData();           //查询本地数据库 查看是否有数据
 
-        swipecontainer_diarylist.setRefreshing(true);
-        getDataFromServer();
+
 
         return view;
     }
@@ -106,9 +105,17 @@ public class DiaryFragment extends Fragment {
     }
 
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("gzb" , "onResume");
+        getDataFromServer();
+    }
 
     private void checkIndexClass() {
-        if (SPHelper.getStringValue(getActivity() , "diary_class").isEmpty()){
+        String a = SPHelper.getDiaryclass(getActivity());
+        Log.d("gzb" , "a :" +a);
+        if (a.isEmpty()){
             Intent intent = new Intent(this.getActivity() , ChooseItemActivity.class);
             startActivity(intent);
         }
@@ -131,14 +138,28 @@ public class DiaryFragment extends Fragment {
     }
 
     private void getDataFromServer() {
-        EventBus.getDefault().post(new EventBus_RunInBack("diary_getDataFromServer"));
+        if (_getNewDateFirst) {
+            swipecontainer_diarylist.setRefreshing(true);
+            EventBus.getDefault().post(new EventBus_RunInBack("diary_getDataFromServer"));
+            _getNewDateFirst = false;
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void onEventbusNetwork(EventBus_RunInBack e){
         if (e.getTag().equals("diary_getDataFromServer") ){
+            String r = SPHelper.getDiaryclass(getActivity());
+            String[] rr = r.split(",");
+            String _indexclass = "";
+            for (int i = 0 ; i < rr.length - 1 ; i++){
+                _indexclass = _indexclass + "\'" + rr[i] + "\',";
+            }
 
-            String url = WebContent.ServerAddress + "/diary?indexclass=('知乎日报','好奇心日报')";
+            _indexclass = _indexclass + "\'" + rr[rr.length - 1] + "\'";
+
+            String url = WebContent.ServerAddress + "/diary?indexclass=(" + _indexclass+ ")";
+
+            Log.d("gzb" , url);
             _result = OkHttpUtils.okhttp_get(url);
             List<DiaryBean.DateBean> _ReasultDiaryList = Analysis.AnalysisDiary(_result);
             saveDate(_ReasultDiaryList);
@@ -263,7 +284,6 @@ public class DiaryFragment extends Fragment {
             List<BeanDiary> beanDiaryList = liteOrm.query(new QueryBuilder<BeanDiary>(BeanDiary.class)
                     .whereEquals("title", data.getTitle()));
             if (beanDiaryList.size() == 0){
-                _getNewDate = true;
                 newDateCount++;
                 BeanDiary beanDiary = new BeanDiary(data.getTitle(), data.getImage(), data.getAddress(), data.getIndexclass());
                 liteOrm.save(beanDiary);

@@ -35,9 +35,9 @@ public class SPHelper {
 
     public static String getDiaryclass(Context context){
         String r = getStringValue(context , DIARYCLASS);
-        if (r.isEmpty()){
-            r = ",";
-        }
+//        if (r.isEmpty()){
+//            r = ",";
+//        }
         return r;
     }
 }
