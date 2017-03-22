@@ -375,7 +375,6 @@ public class DiaryFragment extends Fragment {
 
             }
         }
-
     }
 
     private void chageReturnIcon(boolean b) {
@@ -385,9 +384,4 @@ public class DiaryFragment extends Fragment {
             imageview_list_returntop.setVisibility(View.GONE);
         }
     }
-
-
 }
-
-
-
