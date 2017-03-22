@@ -11,6 +11,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class SPHelper {
     private static String DIARYCLASS = "diaryclass";
+    private static String SERVERADDRESS = "serveraddress";
 
     private static SharedPreferences init(Context context){
         SharedPreferences sp = context.getSharedPreferences("SP", MODE_PRIVATE);
@@ -35,9 +36,21 @@ public class SPHelper {
 
     public static String getDiaryclass(Context context){
         String r = getStringValue(context , DIARYCLASS);
-//        if (r.isEmpty()){
-//            r = ",";
-//        }
         return r;
     }
+
+
+    public static void saveServeraddress(Context context , String value){
+        setStringValue(context , SERVERADDRESS , value);
+    }
+
+    public static String getServeraddress(Context context){
+        String r = getStringValue(context , SERVERADDRESS);
+        if (r.isEmpty()){
+            r = WebContent.ServerAddress;
+        }
+        return r;
+    }
+
+
 }

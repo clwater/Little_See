@@ -180,10 +180,14 @@ public class DiaryFragment extends Fragment {
 
             Log.d("gzb" , url);
             _result = OkHttpUtils.okhttp_get(url);
-            List<DiaryBean.DateBean> _ReasultDiaryList = Analysis.AnalysisDiary(_result);
-            saveDate(_ReasultDiaryList);
-            updatefromServer();
-
+            String dateResult = Analysis.CheckDateStatu(_result);
+            if (dateResult.equals("1")){
+                Log.d("gzb" , "today is no date");
+            }else {
+                List<DiaryBean.DateBean> _ReasultDiaryList = Analysis.AnalysisDiary(_result);
+                saveDate(_ReasultDiaryList);
+                updatefromServer();
+            }
             EventBus.getDefault().post(new EventBus_RunInFront("diary_getDataFromServer_Finish"));
         }
 

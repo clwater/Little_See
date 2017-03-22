@@ -5,5 +5,5 @@ package com.clwater.littlesee.utils;
  */
 
 public class WebContent {
-    public static String ServerAddress = "http://192.168.1.140:9008";
+    public static String ServerAddress = "http://192.168.1.107:9008";
 }

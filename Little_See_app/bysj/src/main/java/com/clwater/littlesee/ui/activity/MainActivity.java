@@ -27,6 +27,8 @@ import com.clwater.littlesee.ui.fragment.NewsFragment;
 import com.clwater.littlesee.ui.fragment.DiaryFragment;
 import com.clwater.littlesee.ui.fragment.ImageFragment;
 import com.clwater.littlesee.ui.fragment.SettingFragment;
+import com.clwater.littlesee.utils.SPHelper;
+import com.clwater.littlesee.utils.WebContent;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,6 +61,11 @@ public class MainActivity extends AppCompatActivity {
 
         init();
         initToolbar();
+        checkAddress();
+    }
+
+    private void checkAddress() {
+        WebContent.ServerAddress = SPHelper.getServeraddress(this);
     }
 
 
