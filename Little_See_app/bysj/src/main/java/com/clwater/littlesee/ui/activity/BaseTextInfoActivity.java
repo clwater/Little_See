@@ -118,19 +118,74 @@ public class BaseTextInfoActivity extends AppCompatActivity implements View.OnSc
 
     }
 
-    private void shouZhiHu(String address) {
+    private void showZhiHu(String address) {
         showText = OkHttpUtils.okhttp_get(address);
 //        Log.d("gzb" , showText);
         showText = showText.replace("\n" , "");
         showText = showText.replace("\r" , "");
         showText = showText.replace("\t" , "");
-        showText = GetUseTextZhiHU(showText);
+        showText = GetUseTextZhiHu(showText);
         String[] Csss = new String[]{"http://daily.zhihu.com/css/share.css?v=5956a"};
         showText = WebUtils.buildWithCss(showText , Csss);
         EventBus.getDefault().post(new EventBus_RunInFront("showZhihiText"));
     }
 
-    private String GetUseTextZhiHU(String showText) {
+    private void showHaoQiXin(String address) {
+        showText = OkHttpUtils.okhttp_get(address);
+//        Log.d("gzb" , showText);
+        showText = showText.replace("\n" , "");
+        showText = showText.replace("\r" , "");
+        showText = showText.replace("\t" , "");
+        showText = GetUseTextHaoQinXin(showText);
+
+        String[] Csss = new String[]{"http://m.qdaily.com/assets/mobile/common.css", "http://m.qdaily.com/assets/mobile/articles/show.css"};
+//        String[] Csss = new String[]{"http://www.qdaily.com/assets/web/common-fb47b35ba95f91c7f57eed4ef3e01d68a567749051a0065301993277e0c65999.css" ,
+//                                     "http://www.qdaily.com/assets/web/articles/show-95c002a30d0f02840e7bbb65d9f0a0563f2cabedfadcb4795da01bdb5a82ec61.css"};
+        showText = WebUtils.buildWithCss(showText , Csss);
+
+        Log.d("gzb" , showText);
+        EventBus.getDefault().post(new EventBus_RunInFront("showHaoqixinText"));
+    }
+
+
+//    private String GetUseTextHaoQinXin(String showText) {
+//
+//
+//        Pattern pattern = Pattern.compile("<div class=\"article-detail-bd\">.*?<div class=\"article-detail-ft\">");
+//        Matcher matcher = pattern.matcher(showText);
+//        StringBuffer buffer = new StringBuffer();
+//        while (matcher.find()){
+//            buffer.append(matcher.group());
+//        }
+//
+//        return  buffer.toString();
+//
+////        return "";
+//    }
+
+
+
+    public static String GetUseTextHaoQinXin(String re){
+        String text = re.substring(re.indexOf("<div class=\"article-detail-bd\">") , re.lastIndexOf("article-detail-ft"));
+        //re.indexOf("<body ") , re.lastIndexOf("</html>")  );
+        text = text.replace("data-src" , "src");
+        text = text.replace("class=\"lazyload\"" , "class=\"lazyload\" style=\"max-width: 96%\"");
+        text = text.replace("class=\"excerpt\"" , "style=\"\n" +
+                "    position: relative;\n" +
+                "    margin-top: 15px;\n" +
+                "    margin-top: .75rem;\n" +
+                "    padding: 25px 0;\n" +
+                "    padding: 1.25rem 0;\n" +
+                "    color: #9c9c9c;\n" +
+                "    text-align: center;\n" +
+                "\"");
+        text = text.replace("class=\"article-detail-bd\"" , "style=\"padding-left: 10px ;padding-top: 10px\"");
+        text = text.replace("题图来自" , "<b>题图来自</b>");
+        text = text.replace("<p" , "<p style=\"font-size: 20px\"");
+        return  text;
+    }
+
+    private String GetUseTextZhiHu(String showText) {
 
 
         Pattern pattern = Pattern.compile("<div class=\"question\">.*?<div class=\"view-more\">");
@@ -147,6 +202,8 @@ public class BaseTextInfoActivity extends AppCompatActivity implements View.OnSc
     public  void webViewtextShow(EventBus_RunInFront e){
         if (e.getTag().equals("showZhihiText")){
             webview.loadDataWithBaseURL(WebUtils.BASE_URL, showText, WebUtils.MIME_TYPE, WebUtils.ENCODING, WebUtils.FAIL_URL_ZHIHU);
+        }else if (e.getTag().equals("showHaoqixinText")){
+            webview.loadDataWithBaseURL(WebUtils.BASE_URL, showText, WebUtils.MIME_TYPE, WebUtils.ENCODING, WebUtils.FAIL_URL_HAOQIXIN);
         }
 
         snackbar.dismiss();
@@ -158,10 +215,14 @@ public class BaseTextInfoActivity extends AppCompatActivity implements View.OnSc
             String address = e.getTag3();
 
             if (diaryBeanAddress.equals("知乎日报")){
-                shouZhiHu(address);
+                showZhiHu(address);
+            }else if (diaryBeanAddress.equals("好奇心日报")){
+                address = address.replace("www.qdaily.com" , "m.qdaily.com/mobile");
+                showHaoQiXin(address);
             }
         }
     }
+
 
     private void initWebViewConfig() {
         WebSettings settings = webview.getSettings();
