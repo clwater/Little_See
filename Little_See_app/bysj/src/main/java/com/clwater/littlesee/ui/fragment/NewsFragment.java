@@ -58,7 +58,7 @@ public class NewsFragment extends Fragment {
     @BindView(R.id.swipecontainer_newslist) SwipeRefreshLayout swipecontainer_newslist;
     @BindView(R.id.textview_news_finish)
     TextView textview_news_finish;
-    @BindView(R.id.textview_news_nodate) TextView textview_news_nodate;
+    @BindView(R.id.imageview_news_nodate) ImageView imageview_news_nodate;
 
     List<NewsBean.DateBean> _NewsList = new ArrayList<NewsBean.DateBean>();
     List<NewsBean.DateBean> _ShowNewsList = new ArrayList<NewsBean.DateBean>();
@@ -275,9 +275,9 @@ public class NewsFragment extends Fragment {
             }
         }else if (e.getTag().equals("news_getDataFromServer_Finish")){
             if (_ShowNewsList.size() == 0){
-                textview_news_nodate.setVisibility(View.VISIBLE);
+                imageview_news_nodate.setVisibility(View.VISIBLE);
             }else {
-                textview_news_nodate.setVisibility(View.GONE);
+                imageview_news_nodate.setVisibility(View.GONE);
             }
 
             ChangeList();

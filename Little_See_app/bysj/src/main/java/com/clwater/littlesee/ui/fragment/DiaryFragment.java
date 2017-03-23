@@ -57,7 +57,7 @@ public class DiaryFragment extends Fragment {
     @BindView(R.id.imageview_list_returntop) ImageView imageview_list_returntop;
     @BindView(R.id.swipecontainer_diarylist) SwipeRefreshLayout swipecontainer_diarylist;
     @BindView(R.id.textview_diary_finish) TextView textview_diary_finish;
-    @BindView(R.id.textview_diary_nodate) TextView textview_diary_nodate;
+    @BindView(R.id.imageview_diary_nodate) ImageView imageview_diary_nodate;
 
     List<DiaryBean.DateBean> _DiaryList = new ArrayList<DiaryBean.DateBean>();
     List<DiaryBean.DateBean> _ShowDiaryList = new ArrayList<DiaryBean.DateBean>();
@@ -271,9 +271,9 @@ public class DiaryFragment extends Fragment {
             }
         }else if (e.getTag().equals("diary_getDataFromServer_Finish")){
             if (_ShowDiaryList.size() == 0){
-                textview_diary_nodate.setVisibility(View.VISIBLE);
+                imageview_diary_nodate.setVisibility(View.VISIBLE);
             }else {
-                textview_diary_nodate.setVisibility(View.GONE);
+                imageview_diary_nodate.setVisibility(View.GONE);
             }
 
             ChangeList();
