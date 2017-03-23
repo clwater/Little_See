@@ -53,11 +53,9 @@ public class NewsFragment extends Fragment {
 
 
     @BindView(R.id.recylist_newslist) RecyclerView recycleListView;
-    @BindView(R.id.imageview_list_returntop)
-    ImageView imageview_list_returntop;
+    @BindView(R.id.imageview_list_returntop) ImageView imageview_list_returntop;
     @BindView(R.id.swipecontainer_newslist) SwipeRefreshLayout swipecontainer_newslist;
-    @BindView(R.id.textview_news_finish)
-    TextView textview_news_finish;
+    @BindView(R.id.textview_news_finish) TextView textview_news_finish;
     @BindView(R.id.imageview_news_nodate) ImageView imageview_news_nodate;
 
     List<NewsBean.DateBean> _NewsList = new ArrayList<NewsBean.DateBean>();
@@ -183,8 +181,12 @@ public class NewsFragment extends Fragment {
 //            String url = WebContent.ServerAddress + "/news?indexclass=(" + _indexclass+ ")";
 //
 //            Log.d("gzb" , url);
-            _result = OkHttpUtils.okhttp_get("http://3g.163.com/touch/reconstruct/article/list/BBM54PGAwangning/0-100.html");
+            _result = OkHttpUtils.okhttp_get("http://3g.163.com/touch/reconstruct/article/list/BBM54PGAwangning/0-50.html");
             Log.d("gzb" , "_result: " + _result);
+            List<NewsBean.DateBean> _ReasultNewsList = Analysis.AnalysisNews(_result);
+            saveDate(_ReasultNewsList , "网易新闻");
+            updatefromServer();
+            EventBus.getDefault().post(new EventBus_RunInFront("news_getDataFromServer_Finish"));
 //            String dateResult = Analysis.CheckDateStatu(_result);
 //            if (dateResult.equals("1")){
 //                Log.d("gzb" , "today is no date");
@@ -298,22 +300,22 @@ public class NewsFragment extends Fragment {
 
             NewsBean.DateBean _newsBean = new NewsBean.DateBean();
             _newsBean.setTitle(_beanNews.getTitle());
-            _newsBean.setAddress(_beanNews.getAddress());
-            _newsBean.setImage(_beanNews.getImage());
-            _newsBean.setIndexclass(_beanNews.getIndexclass());
+            _newsBean.setUrl(_beanNews.getAddress());
+            _newsBean.setImgsrc(_beanNews.getImage());
+            //_newsBean.setIndexclass(_beanNews.getIndexclass());
             _NewsList.add(_newsBean);
         }
-        Collections.reverse(_NewsList);
+        //Collections.reverse(_NewsList);
     }
 
-    private void saveDate(List<NewsBean.DateBean> _ReasultNewsList) {
+    private void saveDate(List<NewsBean.DateBean> _ReasultNewsList , String Indexclass) {
         LiteOrm liteOrm = new BaseControl().Initialize(getActivity());
         for (NewsBean.DateBean data : _ReasultNewsList){
             List<BeanNews> beanNewsList = liteOrm.query(new QueryBuilder<BeanNews>(BeanNews.class)
                     .whereEquals("title", data.getTitle()));
             if (beanNewsList.size() == 0){
                 newDateCount++;
-                BeanNews beanNews = new BeanNews(data.getTitle(), data.getImage(), data.getAddress(), data.getIndexclass());
+                BeanNews beanNews = new BeanNews(data.getTitle(), data.getImgsrc(), data.getUrl(), Indexclass);
                 liteOrm.save(beanNews);
             }
         }

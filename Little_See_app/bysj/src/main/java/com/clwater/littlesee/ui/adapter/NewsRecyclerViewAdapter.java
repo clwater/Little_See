@@ -39,13 +39,13 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
 
     @Override
     public NormalTextViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new NormalTextViewHolder(mLayoutInflater.inflate(R.layout.adapter_diray, parent, false));
+        return new NormalTextViewHolder(mLayoutInflater.inflate(R.layout.adapter_news, parent, false));
     }
 
     @Override
     public void onBindViewHolder(NormalTextViewHolder holder, int position) {
         holder.textView.setText(list.get(position).getTitle());
-        Glide.with(context).load(list.get(position).getImage()).into(holder.imageView);
+        Glide.with(context).load(list.get(position).getImgsrc()).into(holder.imageView);
         String indexclass = list.get(position).getIndexclass();
         holder.fromTex.setText(indexclass);
     }

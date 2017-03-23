@@ -17,7 +17,7 @@ def re_data_diary(indexclass):
     if len(diarylist) == 0:
         json ='{"statu" : "1" , "date" : ""}'
     else :
-        json = '{"statu":"diary","date":['
+        json = '{"statu":"0","date":['
 
 
         for diary in diarylist:
@@ -35,6 +35,8 @@ def re_data_diary(indexclass):
 
         json = json + "]}"
 
+
+    print(json)
 
     cursor.close()
     conn.close()
