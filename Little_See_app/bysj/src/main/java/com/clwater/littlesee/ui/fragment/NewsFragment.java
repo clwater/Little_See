@@ -171,28 +171,29 @@ public class NewsFragment extends Fragment {
     public void onEventbusNetwork(EventBus_RunInBack e){
         if (e.getTag().equals("news_getDataFromServer") ){
 
-            String r = SPHelper.getNewsclass(getActivity());
-            String[] rr = r.split(",");
-            String _indexclass = "";
-            for (int i = 0 ; i < rr.length - 1 ; i++){
-                _indexclass = _indexclass + "\'" + rr[i] + "\',";
-            }
-
-            _indexclass = _indexclass + "\'" + rr[rr.length - 1] + "\'";
-
-            String url = WebContent.ServerAddress + "/news?indexclass=(" + _indexclass+ ")";
-
-            Log.d("gzb" , url);
-            _result = OkHttpUtils.okhttp_get(url);
-            String dateResult = Analysis.CheckDateStatu(_result);
-            if (dateResult.equals("1")){
-                Log.d("gzb" , "today is no date");
-            }else {
-                List<NewsBean.DateBean> _ReasultNewsList = Analysis.AnalysisNews(_result);
-                saveDate(_ReasultNewsList);
-                updatefromServer();
-            }
-            EventBus.getDefault().post(new EventBus_RunInFront("news_getDataFromServer_Finish"));
+//            String r = SPHelper.getNewsclass(getActivity());
+//            String[] rr = r.split(",");
+//            String _indexclass = "";
+//            for (int i = 0 ; i < rr.length - 1 ; i++){
+//                _indexclass = _indexclass + "\'" + rr[i] + "\',";
+//            }
+//
+//            _indexclass = _indexclass + "\'" + rr[rr.length - 1] + "\'";
+//
+//            String url = WebContent.ServerAddress + "/news?indexclass=(" + _indexclass+ ")";
+//
+//            Log.d("gzb" , url);
+            _result = OkHttpUtils.okhttp_get("http://3g.163.com/touch/reconstruct/article/list/BBM54PGAwangning/0-100.html");
+            Log.d("gzb" , "_result: " + _result);
+//            String dateResult = Analysis.CheckDateStatu(_result);
+//            if (dateResult.equals("1")){
+//                Log.d("gzb" , "today is no date");
+//            }else {
+//                List<NewsBean.DateBean> _ReasultNewsList = Analysis.AnalysisNews(_result);
+//                saveDate(_ReasultNewsList);
+//                updatefromServer();
+//            }
+//            EventBus.getDefault().post(new EventBus_RunInFront("news_getDataFromServer_Finish"));
         }
 
     }
