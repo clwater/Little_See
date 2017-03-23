@@ -49,7 +49,7 @@ import butterknife.ButterKnife;
  * Created by yszsyf on 17/3/17.
  */
 
-public class œBaseTextInfoActivity extends AppCompatActivity implements View.OnScrollChangeListener {
+public class BaseTextInfoActivity extends AppCompatActivity implements View.OnScrollChangeListener {
 
     @BindView(R.id.toolbar)
     public Toolbar toolbar;

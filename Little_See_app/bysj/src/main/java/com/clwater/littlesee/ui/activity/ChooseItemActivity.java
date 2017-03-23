@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -71,7 +72,7 @@ public class ChooseItemActivity extends AppCompatActivity {
             init();
         }else if (index.equals("news")){
             _index = 1;
-            showDialogPor();
+          //  showDialogPor();
             initToolBar("即刻类别");
             result = new String[]{"网易新闻"};
             EventBus.getDefault().post(new EventBus_RunInFront("getClassAnalysis"));
@@ -87,6 +88,7 @@ public class ChooseItemActivity extends AppCompatActivity {
         }else if (_index == 1){
             r = SPHelper.getNewsclass(activity);
         }
+
         String[] rr = r.split(",");
         for (int i = 0 ; i < rr.length ; i++){
             //Log.d("gzb" , " " + rr[i]);
@@ -221,7 +223,9 @@ public class ChooseItemActivity extends AppCompatActivity {
     public void EventBus_showgetClassAnalysis(EventBus_RunInFront e){
         if (e.getTag().equals("getClassAnalysis")){
             chooseListCount = 0;
+            Log.d("gzb" , "rrrr12312rr:");
             showDiaryClass();
+            Log.d("gzb" , "rrrrrr:");
             getDefaultChoose();
         }
     }
@@ -242,6 +246,8 @@ public class ChooseItemActivity extends AppCompatActivity {
             flexboxLayout.addView(textView);
             _resultStatu[i] = false;
             _textviewitem[i] = textView;
+        }
+        if (_index != 1) {
             snackbar.dismiss();
         }
 
