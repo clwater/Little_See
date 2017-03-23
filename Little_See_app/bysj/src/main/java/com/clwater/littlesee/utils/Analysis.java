@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.clwater.littlesee.utils.Bean.DiaryBean;
 import com.clwater.littlesee.utils.Bean.DiaryClassBean;
+import com.clwater.littlesee.utils.Bean.NewsBean;
 import com.clwater.littlesee.utils.Bean.ResultBean;
 import com.google.gson.Gson;
 
@@ -27,6 +28,12 @@ public class Analysis {
     public static List<DiaryBean.DateBean> AnalysisDiary(String _result){
         DiaryBean textBean = new Gson().fromJson(_result , DiaryBean.class);
         List<DiaryBean.DateBean> infoList = textBean.getDate();
+        return infoList;
+    }
+
+    public static List<NewsBean.DateBean> AnalysisNews(String _result){
+        NewsBean textBean = new Gson().fromJson(_result , NewsBean.class);
+        List<NewsBean.DateBean> infoList = textBean.getDate();
         return infoList;
     }
 

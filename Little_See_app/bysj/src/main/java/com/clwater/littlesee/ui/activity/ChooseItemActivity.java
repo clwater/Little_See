@@ -1,5 +1,6 @@
 package com.clwater.littlesee.ui.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -47,6 +48,8 @@ public class ChooseItemActivity extends AppCompatActivity {
 
     private Snackbar snackbar;
 
+    private int _index ;
+
 
 
     @Override
@@ -57,16 +60,33 @@ public class ChooseItemActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
         activity = this;
-        
-        showDialogPor();
-        initToolBar();
-        init();
+
+        Intent intent = getIntent();
+        String index =  intent.getStringExtra("index");
+
+        if (index.equals("diary")) {
+            _index = 0;
+            showDialogPor();
+            initToolBar("优选话题");
+            init();
+        }else if (index.equals("news")){
+            _index = 1;
+            showDialogPor();
+            initToolBar("即刻类别");
+            result = new String[]{"网易新闻"};
+            EventBus.getDefault().post(new EventBus_RunInFront("getClassAnalysis"));
+        }
 
 
     }
 
     private void getDefaultChoose() {
-        String r = SPHelper.getDiaryclass(activity);
+        String r = "";
+        if (_index == 0) {
+            r = SPHelper.getDiaryclass(activity);
+        }else if (_index == 1){
+            r = SPHelper.getNewsclass(activity);
+        }
         String[] rr = r.split(",");
         for (int i = 0 ; i < rr.length ; i++){
             //Log.d("gzb" , " " + rr[i]);
@@ -121,7 +141,11 @@ public class ChooseItemActivity extends AppCompatActivity {
                 _choose = _choose + result[i] + ",";
             }
         }
-        SPHelper.saveDiaryclass(activity , _choose);
+        if (_index == 0 ) {
+            SPHelper.saveDiaryclass(activity, _choose);
+        }else if (_index == 1){
+            SPHelper.saveNewsclass(activity, _choose);
+        }
 
         activity.finish();
     }
@@ -134,8 +158,8 @@ public class ChooseItemActivity extends AppCompatActivity {
         SnackbarManager.show(snackbar);
     }
 
-    private void initToolBar() {
-        toolbar.setTitle("优选话题");
+    private void initToolBar(String title) {
+        toolbar.setTitle(title);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -189,13 +213,13 @@ public class ChooseItemActivity extends AppCompatActivity {
             //Log.d("gzb" , "url: " + url);
             String _result = OkHttpUtils.okhttp_get(url);
             result = Analysis.AnalysisDiaryClass(_result);
-            EventBus.getDefault().post(new EventBus_RunInFront("getDiaryClassAnalysis"));
+            EventBus.getDefault().post(new EventBus_RunInFront("getClassAnalysis"));
         }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void EventBus_showgetDiaryClassAnalysis(EventBus_RunInFront e){
-        if (e.getTag().equals("getDiaryClassAnalysis")){
+    public void EventBus_showgetClassAnalysis(EventBus_RunInFront e){
+        if (e.getTag().equals("getClassAnalysis")){
             chooseListCount = 0;
             showDiaryClass();
             getDefaultChoose();

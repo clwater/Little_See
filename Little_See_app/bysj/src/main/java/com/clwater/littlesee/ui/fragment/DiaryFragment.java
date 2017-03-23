@@ -134,6 +134,7 @@ public class DiaryFragment extends Fragment {
 
     private void inChooseItemActivity(){
         Intent intent = new Intent(this.getActivity() , ChooseItemActivity.class);
+        intent.putExtra("index" , "diary" );
         startActivity(intent);
     }
 

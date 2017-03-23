@@ -11,6 +11,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class SPHelper {
     private static String DIARYCLASS = "diaryclass";
+    private static String NEWSLASS = "newsclass";
     private static String SERVERADDRESS = "serveraddress";
 
     private static SharedPreferences init(Context context){
@@ -36,6 +37,15 @@ public class SPHelper {
 
     public static String getDiaryclass(Context context){
         String r = getStringValue(context , DIARYCLASS);
+        return r;
+    }
+
+    public static void saveNewsclass(Context context , String value){
+        setStringValue(context , NEWSLASS , value);
+    }
+
+    public static String getNewsclass(Context context){
+        String r = getStringValue(context , NEWSLASS);
         return r;
     }
 
