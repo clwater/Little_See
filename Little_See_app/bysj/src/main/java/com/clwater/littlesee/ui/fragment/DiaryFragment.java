@@ -142,7 +142,7 @@ public class DiaryFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        checkIndexClass();
+        //checkIndexClass();
     }
 
     private void initList() {

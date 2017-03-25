@@ -212,6 +212,7 @@ public class NewsFragment extends Fragment {
         }
         showDateCount += newDateCount;
         newDateCount = 0;
+//        Collections.reverse(_ShowNewsList);
 
 
     }
@@ -225,6 +226,7 @@ public class NewsFragment extends Fragment {
         if (e.getTag().equals("newsQueryData")){
             LiteOrm liteOrm = new BaseControl().Initialize(getActivity());
             List list = liteOrm.query(BeanNews.class);
+            Collections.reverse(list);
             if (list.size() >= 0){
                 LoadDate(list);
                 SelectShowDate();
@@ -305,7 +307,7 @@ public class NewsFragment extends Fragment {
             //_newsBean.setIndexclass(_beanNews.getIndexclass());
             _NewsList.add(_newsBean);
         }
-        //Collections.reverse(_NewsList);
+      //  Collections.reverse(_NewsList);
     }
 
     private void saveDate(List<NewsBean.DateBean> _ReasultNewsList , String Indexclass) {
