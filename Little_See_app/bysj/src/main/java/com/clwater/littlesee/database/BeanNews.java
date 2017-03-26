@@ -21,6 +21,16 @@ public class BeanNews {
     @PrimaryKey(AssignType.AUTO_INCREMENT)
     private int id;
 
+    @Column("docid")
+    private String docid;
+
+    public String getDocid() {
+        return docid;
+    }
+
+    public void setDocid(String docid) {
+        this.docid = docid;
+    }
 
     @Column("title")
     private String title;

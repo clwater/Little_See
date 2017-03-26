@@ -208,7 +208,9 @@ public class NewsFragment extends Fragment {
         }
 
         for (int i = 0 ; i < newDateCount ; i ++){
-            _ShowNewsList.add(i , _NewsList.get(i));
+//        for (int i = newDateCount - 1 ; i >= 0 ; i--){
+//            _ShowNewsList.add(i , _NewsList.get(i));
+            _ShowNewsList.add(_NewsList.get(i));
         }
         showDateCount += newDateCount;
         newDateCount = 0;
@@ -226,7 +228,7 @@ public class NewsFragment extends Fragment {
         if (e.getTag().equals("newsQueryData")){
             LiteOrm liteOrm = new BaseControl().Initialize(getActivity());
             List list = liteOrm.query(BeanNews.class);
-            Collections.reverse(list);
+            //Collections.reverse(list);
             if (list.size() >= 0){
                 LoadDate(list);
                 SelectShowDate();
@@ -305,14 +307,16 @@ public class NewsFragment extends Fragment {
             _newsBean.setUrl(_beanNews.getAddress());
             _newsBean.setImgsrc(_beanNews.getImage());
             //_newsBean.setIndexclass(_beanNews.getIndexclass());
-            _NewsList.add(_newsBean);
+            _NewsList.add(0 , _newsBean);
         }
       //  Collections.reverse(_NewsList);
     }
 
     private void saveDate(List<NewsBean.DateBean> _ReasultNewsList , String Indexclass) {
         LiteOrm liteOrm = new BaseControl().Initialize(getActivity());
-        for (NewsBean.DateBean data : _ReasultNewsList){
+        for (int i = _ReasultNewsList.size() - 1 ; i >= 0 ; i-- ){
+        //for (NewsBean.DateBean data : _ReasultNewsList){
+            NewsBean.DateBean data = _ReasultNewsList.get(i);
             List<BeanNews> beanNewsList = liteOrm.query(new QueryBuilder<BeanNews>(BeanNews.class)
                     .whereEquals("title", data.getTitle()));
             if (beanNewsList.size() == 0){
