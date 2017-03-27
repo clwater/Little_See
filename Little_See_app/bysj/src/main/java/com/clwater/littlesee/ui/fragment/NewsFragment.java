@@ -124,7 +124,7 @@ public class NewsFragment extends Fragment {
 
     private void checkIndexClass() {
         String a = SPHelper.getNewsclass(getActivity());
-//        Log.d("gzb" , "a :" +a);
+        Log.d("gzb" , "a :" +a);
         if (a.isEmpty()){
             inChooseItemActivity();
         }else {
