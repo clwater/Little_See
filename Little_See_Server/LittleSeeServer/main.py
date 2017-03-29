@@ -3,19 +3,22 @@
 
 
 
-import time, threading
+import threading
+
 from colorama import init,Fore
-
-
 
 
 def getInfoDate():
     print(Fore.GREEN + 'getInfoDate is running')
 
-    from LittleSeeServer.getDate.HaoQiXin import getHaoQiXin
-    getHaoQiXin()
-    from LittleSeeServer.getDate.ZhiHu import getZhihu
-    getZhihu()
+    # from LittleSeeServer.getDate.diary.HaoQiXin import getHaoQiXin
+    # getHaoQiXin()
+    # from LittleSeeServer.getDate.diary.ZhiHu import getZhihu
+    # getZhihu()
+
+
+    from LittleSeeServer.getDate.news.ChinaNews import getChinaNews
+    getChinaNews()
 
     # while True:
     #     local_time = time.strftime('%Y-%m-%d %H:%M',time.localtime(time.time()))
@@ -58,8 +61,8 @@ if __name__ == '__main__':
 
     thread_getInfoDate = threading.Thread(target=getInfoDate, name='getInfoDate')
     thread_startServer = threading.Thread(target=startServer, name='startServer')
-    #thread_getInfoDate.start()
+    thread_getInfoDate.start()
     thread_startServer.start()
-    #thread_getInfoDate.join()
+    thread_getInfoDate.join()
     thread_startServer.join()
 
