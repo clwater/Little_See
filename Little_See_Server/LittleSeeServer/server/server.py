@@ -58,6 +58,15 @@ class Handler_Diary(ParentRequesyHandler):
         json = re_data_diary(indexclass)
         self.write(json)
 
+class Handler_News(ParentRequesyHandler):
+    def get(self):
+        ParentRequesyHandler.showInfo(self)
+        indexclass = self.get_argument("indexclass" , None)
+
+        from LittleSeeServer.server.server_news import re_data_news
+        json = re_data_news(indexclass)
+        self.write(json)
+
 class Handler_DiaryClass(ParentRequesyHandler):
     def get(self):
         ParentRequesyHandler.showInfo(self)
@@ -68,7 +77,8 @@ class Handler_DiaryClass(ParentRequesyHandler):
 application = tornado.web.Application([
     (r"/" , Main ),
     (r"/diary" , Handler_Diary),
-    (r"/dirayClass" , Handler_DiaryClass)
+    (r"/dirayClass" , Handler_DiaryClass),
+    (r"/news" , Handler_News)
 
 ])
 
