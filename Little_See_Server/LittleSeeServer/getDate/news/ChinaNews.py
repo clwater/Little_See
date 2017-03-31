@@ -77,6 +77,7 @@ def getNews(news):
 
 
 def getChinaNews():
+
     reponse = requests.get('http://www.chinanews.com/china.shtml')
     reponse.encoding = 'gb2312'
     html = reponse.text
@@ -98,7 +99,7 @@ def getChinaNews():
     #     ind = ind + 1
     for news in newsList:
         # news = newsList[ind]
-        print(news)
+        # print(news)
         getNews(news)
 
     _newsList.reverse()
@@ -107,4 +108,4 @@ def getChinaNews():
 
 
 
-getChinaNews()
+# getChinaNews()
