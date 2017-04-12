@@ -3,15 +3,6 @@
 
     <item
         is-multidex="false"
-        jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="0a0ef86b7fa568a52bf6214a0326ca1f1d618da7">
-        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-25.1.0_77d6ac17100a87609b028eaf16073375df63ecfa.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/exploded-aar/com.jakewharton/butterknife/8.5.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
@@ -30,21 +21,84 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/exploded-aar/com.android.support/support-fragment/25.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="2a53c4f3518116b8c6aee0e477233f0f7da8616f">
-        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.1.0_5fb1d5e2488d67dc3ed2cb5326f41ea931829e39.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="f02263e35e52668dd17b73bf961437e3d562b35f">
         <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-25.1.0_ce9a098b636969736d721ba4a66d3e20c89ee26a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/exploded-aar/com.antfortune.freeline/runtime/0.8.6/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="611bdfa0266e6a0bb9865118c5206b0d992f91d9">
+        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/com.antfortune.freeline-runtime-0.8.6_35f44e7cfae28294db1589418efed796f35caefe.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
+        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.1.0_ffc29e2c06e3ff537bf3f93f9c9b75447c0b2ad3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6fb6ac3e8d3b9013819920d9ea11f3803c4c0033">
+        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.1.0_67f928e8597f7fb0baec83498c0801949480510a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/exploded-aar/com.android.support.constraint/constraint-layout/1.0.0-alpha7/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="541a2ad68dc68aa49795821f8280b7624e6a0c9b">
+        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/com.android.support.constraint-constraint-layout-1.0.0-alpha7_88eb56ff5ee8a764534b10486afc617b490dd586.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yszsyf/.gradle/caches/modules-2/files-2.1/org.greenrobot/eventbus/3.0.0/ddd99896e9569eaababbe81b35d80e1b91c4ad85/eventbus-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ddd99896e9569eaababbe81b35d80e1b91c4ad85">
+        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/eventbus-3.0.0_7bdbf0f5bc07be35571cfea0a4564aaf3a1c6ed9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Volumes/exdate/android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.0-alpha7/constraint-layout-solver-1.0.0-alpha7.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="439eeb5ffd54cbd18db0a6aea471e8356f19fc36">
+        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/constraint-layout-solver-1.0.0-alpha7_d4b8dca63afdc7ed87df45ffcfbb85dfac3761ab.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0a0ef86b7fa568a52bf6214a0326ca1f1d618da7">
+        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-25.1.0_77d6ac17100a87609b028eaf16073375df63ecfa.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/exploded-aar/com.android.support/support-fragment/25.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2a53c4f3518116b8c6aee0e477233f0f7da8616f">
+        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.1.0_5fb1d5e2488d67dc3ed2cb5326f41ea931829e39.jar" />
     </item>
     <item
         is-multidex="false"
@@ -75,24 +129,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/exploded-aar/com.antfortune.freeline/runtime/0.8.6/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="611bdfa0266e6a0bb9865118c5206b0d992f91d9">
-        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/com.antfortune.freeline-runtime-0.8.6_35f44e7cfae28294db1589418efed796f35caefe.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/exploded-aar/com.nispok/snackbar/2.11.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d0db114dc90b3e192ba48d22421a9c47cfc01f00">
-        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/com.nispok-snackbar-2.11.0_96443f8b5e9bef8a972dcdbea071530b807dd92b.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
@@ -120,6 +156,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/exploded-aar/com.nispok/snackbar/2.11.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d0db114dc90b3e192ba48d22421a9c47cfc01f00">
+        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/com.nispok-snackbar-2.11.0_96443f8b5e9bef8a972dcdbea071530b807dd92b.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/exploded-aar/com.ashokvarma.android/bottom-navigation-bar/0.9.5/jars/classes.jar"
         jumboMode="false"
         optimize="true"
@@ -135,15 +180,6 @@
         revision="25.0.2"
         sha1="775715f20fc19479343592af2fa4d46c7d00fa5e">
         <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/com.google.android-flexbox-0.2.5_125851b44909827c9bd3b688e1dd0ef248a4355a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
-        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.1.0_ffc29e2c06e3ff537bf3f93f9c9b75447c0b2ad3.jar" />
     </item>
     <item
         is-multidex="false"
@@ -174,39 +210,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="6fb6ac3e8d3b9013819920d9ea11f3803c4c0033">
-        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.1.0_67f928e8597f7fb0baec83498c0801949480510a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/exploded-aar/com.android.support.constraint/constraint-layout/1.0.0-alpha7/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="541a2ad68dc68aa49795821f8280b7624e6a0c9b">
-        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/com.android.support.constraint-constraint-layout-1.0.0-alpha7_88eb56ff5ee8a764534b10486afc617b490dd586.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Users/yszsyf/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.4.1/c7c4f9e35c2fd5900da24f9872e3971801f08ce0/okhttp-3.4.1.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="c7c4f9e35c2fd5900da24f9872e3971801f08ce0">
         <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/okhttp-3.4.1_464d7cec729cd91164741d5941f7e4d206b23050.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/yszsyf/.gradle/caches/modules-2/files-2.1/org.greenrobot/eventbus/3.0.0/ddd99896e9569eaababbe81b35d80e1b91c4ad85/eventbus-3.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ddd99896e9569eaababbe81b35d80e1b91c4ad85">
-        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/eventbus-3.0.0_7bdbf0f5bc07be35571cfea0a4564aaf3a1c6ed9.jar" />
     </item>
     <item
         is-multidex="false"
@@ -225,15 +234,6 @@
         revision="25.0.2"
         sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
         <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/glide-3.7.0_df877c23cfad8f108fddb8d430ca799e4b5d65c9.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Volumes/exdate/android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.0-alpha7/constraint-layout-solver-1.0.0-alpha7.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="439eeb5ffd54cbd18db0a6aea471e8356f19fc36">
-        <dex dex="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_app/bysj/build/intermediates/pre-dexed/debug/constraint-layout-solver-1.0.0-alpha7_d4b8dca63afdc7ed87df45ffcfbb85dfac3761ab.jar" />
     </item>
 
 </items>

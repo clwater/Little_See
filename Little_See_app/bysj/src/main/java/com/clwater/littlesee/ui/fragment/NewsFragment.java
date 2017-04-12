@@ -169,33 +169,34 @@ public class NewsFragment extends Fragment {
     public void onEventbusNetwork(EventBus_RunInBack e){
         if (e.getTag().equals("news_getDataFromServer") ){
 
-//            String r = SPHelper.getNewsclass(getActivity());
-//            String[] rr = r.split(",");
-//            String _indexclass = "";
-//            for (int i = 0 ; i < rr.length - 1 ; i++){
-//                _indexclass = _indexclass + "\'" + rr[i] + "\',";
-//            }
-//
-//            _indexclass = _indexclass + "\'" + rr[rr.length - 1] + "\'";
-//
-//            String url = WebContent.ServerAddress + "/news?indexclass=(" + _indexclass+ ")";
-//
-//            Log.d("gzb" , url);
-            _result = OkHttpUtils.okhttp_get("http://3g.163.com/touch/reconstruct/article/list/BBM54PGAwangning/0-50.html");
+            String r = SPHelper.getNewsclass(getActivity());
+            String[] rr = r.split(",");
+            String _indexclass = "";
+            for (int i = 0 ; i < rr.length - 1 ; i++){
+                _indexclass = _indexclass + "\'" + rr[i] + "\',";
+            }
+
+            _indexclass = _indexclass + "\'" + rr[rr.length - 1] + "\'";
+
+            String url = WebContent.ServerAddress + "/news?indexclass=(" + _indexclass+ ")";
+
+            Log.d("gzb" , url);
+            _result = OkHttpUtils.okhttp_get(url);
+//            _result = OkHttpUtils.okhttp_get("http://3g.163.com/touch/reconstruct/article/list/BBM54PGAwangning/0-50.html");
             Log.d("gzb" , "_result: " + _result);
-            List<NewsBean.DateBean> _ReasultNewsList = Analysis.AnalysisNews(_result);
-            saveDate(_ReasultNewsList , "网易新闻");
-            updatefromServer();
-            EventBus.getDefault().post(new EventBus_RunInFront("news_getDataFromServer_Finish"));
-//            String dateResult = Analysis.CheckDateStatu(_result);
-//            if (dateResult.equals("1")){
-//                Log.d("gzb" , "today is no date");
-//            }else {
-//                List<NewsBean.DateBean> _ReasultNewsList = Analysis.AnalysisNews(_result);
-//                saveDate(_ReasultNewsList);
-//                updatefromServer();
-//            }
+//            List<NewsBean.DateBean> _ReasultNewsList = Analysis.AnalysisNews(_result);
+//            saveDate(_ReasultNewsList , "网易新闻");
+//            updatefromServer();
 //            EventBus.getDefault().post(new EventBus_RunInFront("news_getDataFromServer_Finish"));
+            String dateResult = Analysis.CheckDateStatu(_result);
+            if (dateResult.equals("1")){
+                Log.d("gzb" , "today is no date");
+            }else {
+                List<NewsBean.DateBean> _ReasultNewsList = Analysis.AnalysisNews(_result);
+                saveDate(_ReasultNewsList);
+                updatefromServer();
+            }
+            EventBus.getDefault().post(new EventBus_RunInFront("news_getDataFromServer_Finish"));
         }
 
     }
@@ -226,7 +227,7 @@ public class NewsFragment extends Fragment {
         if (e.getTag().equals("newsQueryData")){
             LiteOrm liteOrm = new BaseControl().Initialize(getActivity());
             List list = liteOrm.query(BeanNews.class);
-            Collections.reverse(list);
+//            Collections.reverse(list);
             if (list.size() >= 0){
                 LoadDate(list);
                 SelectShowDate();
@@ -302,22 +303,26 @@ public class NewsFragment extends Fragment {
 
             NewsBean.DateBean _newsBean = new NewsBean.DateBean();
             _newsBean.setTitle(_beanNews.getTitle());
-            _newsBean.setUrl(_beanNews.getAddress());
-            _newsBean.setImgsrc(_beanNews.getImage());
-            //_newsBean.setIndexclass(_beanNews.getIndexclass());
+            _newsBean.setAddress(_beanNews.getAddress());
+            if (_beanNews.getImage().isEmpty()){
+                _newsBean.setImage("http://www.chinanews.com/2017/04-12/U661P4T8D8197879F5012DT20170412210236.jpg");
+            }else {
+                _newsBean.setImage(_beanNews.getImage());
+            }
+            _newsBean.setIndexclass(_beanNews.getIndexclass());
             _NewsList.add(_newsBean);
         }
       //  Collections.reverse(_NewsList);
     }
 
-    private void saveDate(List<NewsBean.DateBean> _ReasultNewsList , String Indexclass) {
+    private void saveDate(List<NewsBean.DateBean> _ReasultNewsList ) {
         LiteOrm liteOrm = new BaseControl().Initialize(getActivity());
         for (NewsBean.DateBean data : _ReasultNewsList){
             List<BeanNews> beanNewsList = liteOrm.query(new QueryBuilder<BeanNews>(BeanNews.class)
                     .whereEquals("title", data.getTitle()));
             if (beanNewsList.size() == 0){
                 newDateCount++;
-                BeanNews beanNews = new BeanNews(data.getTitle(), data.getImgsrc(), data.getUrl(), Indexclass);
+                BeanNews beanNews = new BeanNews(data.getTitle(), data.getImage(), data.getAddress(), data.getIndexclass());
                 liteOrm.save(beanNews);
             }
         }

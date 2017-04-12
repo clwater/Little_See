@@ -74,7 +74,7 @@ public class ChooseItemActivity extends AppCompatActivity {
             _index = 1;
           //  showDialogPor();
             initToolBar("即刻类别");
-            result = new String[]{"网易新闻"};
+            result = new String[]{"中国新闻网"};
             EventBus.getDefault().post(new EventBus_RunInFront("getClassAnalysis"));
         }
 

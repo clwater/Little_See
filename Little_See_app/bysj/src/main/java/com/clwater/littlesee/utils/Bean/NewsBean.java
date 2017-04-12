@@ -9,29 +9,30 @@ import java.util.List;
 
 public class NewsBean {
 
-    private List<DateBean> BBM54PGAwangning;
+    private String statu;
 
-    public List<DateBean> getBBM54PGAwangning() {
-        return BBM54PGAwangning;
+    private List<DateBean> date;
+
+    public String getStatu() {
+        return statu;
     }
 
-    public void setBBM54PGAwangning(List<DateBean> BBM54PGAwangning) {
-        this.BBM54PGAwangning = BBM54PGAwangning;
+    public void setStatu(String statu) {
+        this.statu = statu;
+    }
+
+    public List<DateBean> getDate() {
+        return date;
+    }
+
+    public void setDate(List<DateBean> date) {
+        this.date = date;
     }
 
     public static class DateBean implements Serializable {
-        private String docid;
         private String title;
-        private String source;
-        private String stitle;
-        private String imgsrc;
-        private String hasImg;
-        private String digest;
-        private String commentCount;
-        private String ptime;
-        private String url;
-        private String imgsrc3gtype;
-
+        private String image;
+        private String address;
         private String indexclass;
 
         public String getTitle() {
@@ -42,84 +43,20 @@ public class NewsBean {
             this.title = title;
         }
 
-        public String getDocid() {
-            return docid;
+        public String getImage() {
+            return image;
         }
 
-        public void setDocid(String docid) {
-            this.docid = docid;
+        public void setImage(String image) {
+            this.image = image;
         }
 
-        public String getSource() {
-            return source;
+        public String getAddress() {
+            return address;
         }
 
-        public void setSource(String source) {
-            this.source = source;
-        }
-
-        public String getStitle() {
-            return stitle;
-        }
-
-        public void setStitle(String stitle) {
-            this.stitle = stitle;
-        }
-
-        public String getImgsrc() {
-            return imgsrc;
-        }
-
-        public void setImgsrc(String imgsrc) {
-            this.imgsrc = imgsrc;
-        }
-
-        public String getHasImg() {
-            return hasImg;
-        }
-
-        public void setHasImg(String hasImg) {
-            this.hasImg = hasImg;
-        }
-
-        public String getDigest() {
-            return digest;
-        }
-
-        public void setDigest(String digest) {
-            this.digest = digest;
-        }
-
-        public String getCommentCount() {
-            return commentCount;
-        }
-
-        public void setCommentCount(String commentCount) {
-            this.commentCount = commentCount;
-        }
-
-        public String getPtime() {
-            return ptime;
-        }
-
-        public void setPtime(String ptime) {
-            this.ptime = ptime;
-        }
-
-        public String getUrl() {
-            return url;
-        }
-
-        public void setUrl(String url) {
-            this.url = url;
-        }
-
-        public String getImgsrc3gtype() {
-            return imgsrc3gtype;
-        }
-
-        public void setImgsrc3gtype(String imgsrc3gtype) {
-            this.imgsrc3gtype = imgsrc3gtype;
+        public void setAddress(String address) {
+            this.address = address;
         }
 
         public String getIndexclass() {
