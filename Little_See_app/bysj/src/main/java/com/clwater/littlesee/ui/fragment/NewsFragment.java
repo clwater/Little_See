@@ -84,7 +84,7 @@ public class NewsFragment extends Fragment {
 
 
 
-        checkIndexClass();      //判断是否选择了对应的栏目
+//        checkIndexClass();      //判断是否选择了对应的栏目
         init();
         initList();
         QueryData();           //查询本地数据库 查看是否有数据
