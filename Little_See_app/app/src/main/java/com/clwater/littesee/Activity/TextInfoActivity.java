@@ -216,6 +216,8 @@ public class TextInfoActivity  extends BaseWebActivity implements View.OnScrollC
             toolbar.setTitle("好奇心日报");
         }else if (statu.equals("wangyi")){
             toolbar.setTitle("网易新闻");
+        }else if (statu.equals("chinanews")){
+            toolbar.setTitle("中国新闻网");
         }
         setSupportActionBar(toolbar);
         final ActionBar ab = getSupportActionBar();

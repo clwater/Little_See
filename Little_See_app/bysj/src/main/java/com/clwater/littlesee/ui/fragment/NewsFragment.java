@@ -305,7 +305,8 @@ public class NewsFragment extends Fragment {
             _newsBean.setTitle(_beanNews.getTitle());
             _newsBean.setAddress(_beanNews.getAddress());
             if (_beanNews.getImage().isEmpty()){
-                _newsBean.setImage("http://www.chinanews.com/2017/04-12/U661P4T8D8197879F5012DT20170412210236.jpg");
+//                _newsBean.setImage("noimage");
+                _newsBean.setImage("http://i8.chinanews.com/2013/home/images/logo.jpg");
             }else {
                 _newsBean.setImage(_beanNews.getImage());
             }

@@ -33,11 +33,11 @@ public class Analysis {
     }
 
     public static List<NewsBean.DateBean> AnalysisNews(String _result){
-        _result = _result.replace("artiList(" , "");
-        _result = _result.substring(0 , _result.length()  - 1 );
+//        _result = _result.replace("artiList(" , "");
+//        _result = _result.substring(0 , _result.length()  - 1 );
         Log.d("gzb" , _result);
         NewsBean textBean = new Gson().fromJson(_result , NewsBean.class);
-        List<NewsBean.DateBean> infoList = textBean.getBBM54PGAwangning();
+        List<NewsBean.DateBean> infoList = textBean.getDate();
         return infoList;
     }
 

@@ -223,9 +223,7 @@ public class ChooseItemActivity extends AppCompatActivity {
     public void EventBus_showgetClassAnalysis(EventBus_RunInFront e){
         if (e.getTag().equals("getClassAnalysis")){
             chooseListCount = 0;
-            Log.d("gzb" , "rrrr12312rr:");
             showDiaryClass();
-            Log.d("gzb" , "rrrrrr:");
             getDefaultChoose();
         }
     }

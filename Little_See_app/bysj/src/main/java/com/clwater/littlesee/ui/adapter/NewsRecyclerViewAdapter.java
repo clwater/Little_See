@@ -45,7 +45,7 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
     @Override
     public void onBindViewHolder(NormalTextViewHolder holder, int position) {
         holder.textView.setText(list.get(position).getTitle());
-        Glide.with(context).load(list.get(position).getImgsrc()).into(holder.imageView);
+        Glide.with(context).load(list.get(position).getImage()).into(holder.imageView);
         String indexclass = list.get(position).getIndexclass();
         holder.fromTex.setText(indexclass);
     }
