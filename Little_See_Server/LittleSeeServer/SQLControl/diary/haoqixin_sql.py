@@ -11,7 +11,7 @@ def save_sql(haoqixinlist):
     conn = mysql.connector.connect(user='root', password='root', database='littlesee')
     cursor = conn.cursor()
 
-    from LittleSeeServer.utils.timeUtils import getBetweenDate
+    from utils.timeUtils import getBetweenDate
     betweendate = getBetweenDate()
 
 

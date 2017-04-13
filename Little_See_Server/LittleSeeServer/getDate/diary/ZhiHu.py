@@ -38,7 +38,7 @@ def getZhihu():
 
     driver.close()
     driver.quit()
-    from LittleSeeServer.SQLControl.diary.zhihu_sql import save_sql
+    from SQLControl.diary.zhihu_sql import save_sql
     save_sql(zhihulist)
 
 

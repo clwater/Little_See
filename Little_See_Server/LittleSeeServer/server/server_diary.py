@@ -6,7 +6,7 @@ def re_data_diary(indexclass):
     print(indexclass)
     conn = mysql.connector.connect(user='root', password='root', database='littlesee')
     cursor = conn.cursor()
-    from LittleSeeServer.utils.timeUtils import getBetweenDateWithGet
+    from utils.timeUtils import getBetweenDateWithGet
     betweendate = getBetweenDateWithGet()
     sql = 'select * from diary where indexclass in %s and dateid > %s'%(indexclass ,  betweendate)
 

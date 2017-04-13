@@ -66,5 +66,5 @@ def getHaoQiXin():
 
     # print(haoqixinlist)
 
-    from LittleSeeServer.SQLControl.diary.haoqixin_sql import save_sql
+    from SQLControl.diary.haoqixin_sql import save_sql
     save_sql(haoqixinlist)

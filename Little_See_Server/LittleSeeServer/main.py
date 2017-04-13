@@ -8,14 +8,16 @@ import threading
 from colorama import init,Fore
 
 
+
+
 def getInfoDate():
     print(Fore.GREEN + 'getInfoDate is running')
 
-    # from LittleSeeServer.getDate.diary.HaoQiXin import getHaoQiXin
+    # from getDate.diary.HaoQiXin import getHaoQiXin
     # getHaoQiXin()
-    from LittleSeeServer.getDate.diary.ZhiHu import getZhihu
+    from getDate.diary.ZhiHu import getZhihu
     getZhihu()
-    from LittleSeeServer.getDate.news.ChinaNews import getChinaNews
+    from getDate.news.ChinaNews import getChinaNews
     getChinaNews()
 
 
@@ -26,10 +28,10 @@ def getInfoDate():
     #     print("time : " , local_time)
     #     print("" , local_hours , ":" , local_minute)
 
-        # from LittleSeeServer.getDate.ZhiHu import getZhihu
+        # from getDate.ZhiHu import getZhihu
         # getZhihu()
 
-        # from LittleSeeServer.getDate.HaoQiXin import getHaoQiXin
+        # from getDate.HaoQiXin import getHaoQiXin
         # getHaoQiXin()
 
         # # if local_hours == 6 and local_minute < 51:
@@ -49,19 +51,28 @@ def getInfoDate():
 
 def startServer():
     print(Fore.GREEN + 'startServer is running')
-    from LittleSeeServer.server.server import runServer
+    from server.server import runServer
     runServer()
 
 
 
-if __name__ == '__main__':
+def main():
     init(autoreset=True)
     print(Fore.RED + 'Server is running')
 
     thread_getInfoDate = threading.Thread(target=getInfoDate, name='getInfoDate')
     thread_startServer = threading.Thread(target=startServer, name='startServer')
+
     thread_getInfoDate.start()
     thread_startServer.start()
+
     thread_getInfoDate.join()
     thread_startServer.join()
+
+
+
+
+
+if __name__ == '__main__':
+    main()
 

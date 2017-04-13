@@ -63,6 +63,8 @@ public class NewsFragment extends Fragment {
     NewsRecyclerViewAdapter newsAdapter;
     private String _result;
 
+//    List <String> _id = new ArrayList<String>();
+
     private int _baseLastItem;
     private boolean _baseLastItemStatu = true;
     private boolean _allDateLoad = false;
@@ -148,7 +150,8 @@ public class NewsFragment extends Fragment {
 
     private void initList() {
         recycleListView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        newsAdapter = new NewsRecyclerViewAdapter(getActivity() , _ShowNewsList);
+//        newsAdapter = new NewsRecyclerViewAdapter(getActivity() , _ShowNewsList , _id);
+        newsAdapter = new NewsRecyclerViewAdapter(getActivity() , _ShowNewsList );
         recycleListView.setAdapter(newsAdapter);
         recycleListView.addItemDecoration(new ItemDecoration(getActivity()));
         recycleListView.addOnScrollListener(new NewsFragment.NewsListOnScroll());
@@ -193,6 +196,7 @@ public class NewsFragment extends Fragment {
                 Log.d("gzb" , "today is no date");
             }else {
                 List<NewsBean.DateBean> _ReasultNewsList = Analysis.AnalysisNews(_result);
+                Collections.reverse(_ReasultNewsList);
                 saveDate(_ReasultNewsList);
                 updatefromServer();
             }
@@ -203,7 +207,26 @@ public class NewsFragment extends Fragment {
 
     private void updatefromServer() {
         LiteOrm liteOrm = new BaseControl().Initialize(getActivity());
-        List list = liteOrm.query(BeanNews.class);
+//        List list = liteOrm.query(BeanNews.class);
+//        _ShowNewsList.clear();
+
+        _NewsList.clear();
+
+        QueryBuilder qb = new QueryBuilder(BeanNews.class)
+                .appendOrderDescBy("id");
+//                .appendOrderAscBy("id");
+//        List list = qb.getQueryClass();
+
+        List list = liteOrm.query(qb);
+
+
+        for (int i = 0 ; i < list.size() ; i++){
+            BeanNews n = (BeanNews) list.get(i);
+            Log.d("gzb" , n.getId() + n.getTitle());
+        }
+
+//        Collections.reverse(list);
+
         if (newDateCount > 0) {
             LoadDate(list);
         }
@@ -211,10 +234,10 @@ public class NewsFragment extends Fragment {
         for (int i = 0 ; i < newDateCount ; i ++){
             _ShowNewsList.add(i , _NewsList.get(i));
         }
+
         showDateCount += newDateCount;
         newDateCount = 0;
 //        Collections.reverse(_ShowNewsList);
-
 
     }
 
@@ -226,7 +249,20 @@ public class NewsFragment extends Fragment {
     public void EventBus_QueryData(EventBus_RunInBack e ){
         if (e.getTag().equals("newsQueryData")){
             LiteOrm liteOrm = new BaseControl().Initialize(getActivity());
-            List list = liteOrm.query(BeanNews.class);
+            QueryBuilder qb = new QueryBuilder(BeanNews.class)
+                    .appendOrderDescBy("id");
+//                .appendOrderAscBy("id");
+//        List list = qb.getQueryClass();
+
+
+            _NewsList.clear();
+            List list = liteOrm.query(qb);
+
+            for (int i = 0 ; i < list.size() ; i++){
+                BeanNews n = (BeanNews) list.get(i);
+                Log.d("gzb" , n.getId() + n.getTitle());
+            }
+
 //            Collections.reverse(list);
             if (list.size() >= 0){
                 LoadDate(list);
@@ -298,9 +334,11 @@ public class NewsFragment extends Fragment {
     }
 
     private void LoadDate(List list) {
+//        _ShowNewsList.clear();
         for (int i = 0 ; i < list.size() ; i++){
             BeanNews _beanNews = (BeanNews) list.get(i);
-
+//            _id.add(String.valueOf(_beanNews.getId()));
+//            _beanNews.setId(((BeanNews) list.get(i)).getId());
             NewsBean.DateBean _newsBean = new NewsBean.DateBean();
             _newsBean.setTitle(_beanNews.getTitle());
             _newsBean.setAddress(_beanNews.getAddress());
@@ -313,7 +351,7 @@ public class NewsFragment extends Fragment {
             _newsBean.setIndexclass(_beanNews.getIndexclass());
             _NewsList.add(_newsBean);
         }
-      //  Collections.reverse(_NewsList);
+//        Collections.reverse(_NewsList);
     }
 
     private void saveDate(List<NewsBean.DateBean> _ReasultNewsList ) {

@@ -61,7 +61,7 @@ def getNews(news):
 
 
 
-    from LittleSeeServer.SQLControl.news.chinanews_sql import check
+    from SQLControl.news.chinanews_sql import check
     if check(address , '中国新闻网'):
         imageaddress = getImage(address)
         _news.insert(0, title)
@@ -91,7 +91,7 @@ def getChinaNews():
     newsList = re.findall('<divclass=\"content_list\">.*</div>' , html)
     newsList = re.findall('<li><div.*?</li>' , newsList[0])
     #
-    # from LittleSeeServer.SQLControl.news.chinanews_sql import sql_c
+    # from SQLControl.news.chinanews_sql import sql_c
     # sql_c().inssome()
 
     # ind = 0
@@ -103,7 +103,7 @@ def getChinaNews():
         getNews(news)
 
     _newsList.reverse()
-    from LittleSeeServer.SQLControl.news.chinanews_sql import save_sql
+    from SQLControl.news.chinanews_sql import save_sql
     save_sql(_newsList)
 
 

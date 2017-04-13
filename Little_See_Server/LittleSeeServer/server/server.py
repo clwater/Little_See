@@ -54,7 +54,7 @@ class Handler_Diary(ParentRequesyHandler):
         ParentRequesyHandler.showInfo(self)
         indexclass = self.get_argument("indexclass" , None)
 
-        from LittleSeeServer.server.server_diary import re_data_diary
+        from server.server_diary import re_data_diary
         json = re_data_diary(indexclass)
         self.write(json)
 
@@ -63,7 +63,7 @@ class Handler_News(ParentRequesyHandler):
         ParentRequesyHandler.showInfo(self)
         indexclass = self.get_argument("indexclass" , None)
 
-        from LittleSeeServer.server.server_news import re_data_news
+        from server.server_news import re_data_news
         json = re_data_news(indexclass)
         self.write(json)
 

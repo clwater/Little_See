@@ -30,10 +30,12 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
     private final LayoutInflater mLayoutInflater;
     private final Context context;
     List<NewsBean.DateBean> list = new ArrayList<NewsBean.DateBean>();
-
-    public NewsRecyclerViewAdapter(Context context , List<NewsBean.DateBean> _list) {
+//    List <String> _id = new ArrayList<String>();
+//    public NewsRecyclerViewAdapter(Context context , List<NewsBean.DateBean> _list , List <String> _id) {
+    public NewsRecyclerViewAdapter(Context context , List<NewsBean.DateBean> _list ) {
         this.list = _list;
         this.context = context;
+//        this._id = _id;
         mLayoutInflater = LayoutInflater.from(context);
     }
 
