@@ -220,10 +220,10 @@ public class NewsFragment extends Fragment {
         List list = liteOrm.query(qb);
 
 
-        for (int i = 0 ; i < list.size() ; i++){
-            BeanNews n = (BeanNews) list.get(i);
-            Log.d("gzb" , n.getId() + n.getTitle());
-        }
+//        for (int i = 0 ; i < list.size() ; i++){
+//            BeanNews n = (BeanNews) list.get(i);
+//            Log.d("gzb" , n.getId() + n.getTitle());
+//        }
 
 //        Collections.reverse(list);
 
@@ -258,10 +258,10 @@ public class NewsFragment extends Fragment {
             _NewsList.clear();
             List list = liteOrm.query(qb);
 
-            for (int i = 0 ; i < list.size() ; i++){
-                BeanNews n = (BeanNews) list.get(i);
-                Log.d("gzb" , n.getId() + n.getTitle());
-            }
+//            for (int i = 0 ; i < list.size() ; i++){
+//                BeanNews n = (BeanNews) list.get(i);
+//                Log.d("gzb" , n.getId() + n.getTitle());
+//            }
 
 //            Collections.reverse(list);
             if (list.size() >= 0){
