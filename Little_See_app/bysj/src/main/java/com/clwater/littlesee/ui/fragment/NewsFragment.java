@@ -50,8 +50,6 @@ import butterknife.OnClick;
  */
 //即刻
 public class NewsFragment extends Fragment {
-
-
     @BindView(R.id.recylist_newslist) RecyclerView recycleListView;
     @BindView(R.id.imageview_list_returntop) ImageView imageview_list_returntop;
     @BindView(R.id.swipecontainer_newslist) SwipeRefreshLayout swipecontainer_newslist;
@@ -130,7 +128,7 @@ public class NewsFragment extends Fragment {
         if (a.isEmpty()){
             inChooseItemActivity();
         }else {
-           // getDataFromServer();
+            getDataFromServer();
         }
 
     }
@@ -207,26 +205,10 @@ public class NewsFragment extends Fragment {
 
     private void updatefromServer() {
         LiteOrm liteOrm = new BaseControl().Initialize(getActivity());
-//        List list = liteOrm.query(BeanNews.class);
-//        _ShowNewsList.clear();
-
         _NewsList.clear();
-
         QueryBuilder qb = new QueryBuilder(BeanNews.class)
                 .appendOrderDescBy("id");
-//                .appendOrderAscBy("id");
-//        List list = qb.getQueryClass();
-
         List list = liteOrm.query(qb);
-
-
-//        for (int i = 0 ; i < list.size() ; i++){
-//            BeanNews n = (BeanNews) list.get(i);
-//            Log.d("gzb" , n.getId() + n.getTitle());
-//        }
-
-//        Collections.reverse(list);
-
         if (newDateCount > 0) {
             LoadDate(list);
         }
@@ -237,7 +219,6 @@ public class NewsFragment extends Fragment {
 
         showDateCount += newDateCount;
         newDateCount = 0;
-//        Collections.reverse(_ShowNewsList);
 
     }
 
@@ -251,19 +232,9 @@ public class NewsFragment extends Fragment {
             LiteOrm liteOrm = new BaseControl().Initialize(getActivity());
             QueryBuilder qb = new QueryBuilder(BeanNews.class)
                     .appendOrderDescBy("id");
-//                .appendOrderAscBy("id");
-//        List list = qb.getQueryClass();
-
-
             _NewsList.clear();
             List list = liteOrm.query(qb);
 
-//            for (int i = 0 ; i < list.size() ; i++){
-//                BeanNews n = (BeanNews) list.get(i);
-//                Log.d("gzb" , n.getId() + n.getTitle());
-//            }
-
-//            Collections.reverse(list);
             if (list.size() >= 0){
                 LoadDate(list);
                 SelectShowDate();

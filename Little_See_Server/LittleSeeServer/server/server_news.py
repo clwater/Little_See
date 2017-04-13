@@ -36,7 +36,7 @@ def re_data_news(indexclass):
         json = json + "]}"
 
 
-    print(json)
+    # print(json)
 
     cursor.close()
     conn.close()

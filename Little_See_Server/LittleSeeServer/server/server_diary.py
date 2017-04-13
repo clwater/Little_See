@@ -8,7 +8,7 @@ def re_data_diary(indexclass):
     cursor = conn.cursor()
     from utils.timeUtils import getBetweenDateWithGet
     betweendate = getBetweenDateWithGet()
-    sql = 'select * from diary where indexclass in %s and dateid > %s'%(indexclass ,  betweendate)
+    sql = 'select * from diary where indexclass in %s and dateid > %s order by `id` desc'%(indexclass ,  betweendate)
 
     # print(sql)
     cursor.execute(sql)
@@ -36,7 +36,7 @@ def re_data_diary(indexclass):
         json = json + "]}"
 
 
-    print(json)
+    # print(json)
 
     cursor.close()
     conn.close()

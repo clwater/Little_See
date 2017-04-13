@@ -186,6 +186,7 @@ public class DiaryFragment extends Fragment {
                 Log.d("gzb" , "today is no date");
             }else {
                 List<DiaryBean.DateBean> _ReasultDiaryList = Analysis.AnalysisDiary(_result);
+                Collections.reverse(_ReasultDiaryList);
                 saveDate(_ReasultDiaryList);
                 updatefromServer();
             }
@@ -196,7 +197,14 @@ public class DiaryFragment extends Fragment {
 
     private void updatefromServer() {
         LiteOrm liteOrm = new BaseControl().Initialize(getActivity());
-        List list = liteOrm.query(BeanDiary.class);
+        _DiaryList.clear();
+        QueryBuilder qb = new QueryBuilder(BeanDiary.class)
+                .appendOrderDescBy("id");
+        List list = liteOrm.query(qb);
+        for (int i = 0 ;i < list.size() ; i++){
+            BeanDiary b =  (BeanDiary )list.get(i);
+            Log.d("gzb" , b.getId() + b.getTitle());
+        }
         if (newDateCount > 0) {
             LoadDate(list);
         }
@@ -218,7 +226,16 @@ public class DiaryFragment extends Fragment {
     public void EventBus_QueryData(EventBus_RunInBack e ){
         if (e.getTag().equals("diaryQueryData")){
             LiteOrm liteOrm = new BaseControl().Initialize(getActivity());
-            List list = liteOrm.query(BeanDiary.class);
+            QueryBuilder qb = new QueryBuilder(BeanDiary.class)
+                    .appendOrderDescBy("id");
+            _DiaryList.clear();
+            List list = liteOrm.query(qb);
+            for (int i = 0 ;i < list.size() ; i++){
+                BeanDiary b =  (BeanDiary )list.get(i);
+                Log.d("gzb" , b.getId() + b.getTitle());
+            }
+
+//            List list = liteOrm.query(BeanDiary.class);
             if (list.size() >= 0){
                 LoadDate(list);
                 SelectShowDate();
@@ -299,7 +316,7 @@ public class DiaryFragment extends Fragment {
             _diaryBean.setIndexclass(_beanDiary.getIndexclass());
             _DiaryList.add(_diaryBean);
         }
-        Collections.reverse(_DiaryList);
+//        Collections.reverse(_DiaryList);
     }
 
     private void saveDate(List<DiaryBean.DateBean> _ReasultDiaryList) {
