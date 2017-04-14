@@ -16,7 +16,7 @@ public class BaseControl {
         if (liteOrm == null) {
             liteOrm = LiteOrm.newSingleInstance(context, "littlesee.db");
         }
-        liteOrm.setDebugged(true);
+        liteOrm.setDebugged(false);
         return liteOrm;
     }
 }

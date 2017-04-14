@@ -127,13 +127,21 @@ public class BaseTextInfoActivity extends AppCompatActivity implements View.OnSc
         }
     }
 
-    private void initWebView(String diaryBeanAddress, String address) {
+    private void initWebView(String BeanAddress, String address) {
         initWebViewConfig();
-        Log.d("gzb" , "diaryBeanAddress: " + diaryBeanAddress + "  address:  " + address);
-        EventBus.getDefault().post(new EventBus_RunInBack("textinfoinback" , diaryBeanAddress , address));
+        Log.d("gzb" , "BeanAddress: " + BeanAddress + "  address:  " + address);
+        EventBus.getDefault().post(new EventBus_RunInBack("textinfoinback" , BeanAddress , address));
 
 
     }
+
+    private void showChinaNews(String address) {
+        showText = OkHttpUtils.okhttp_get(address);
+        showText = showText.replace("\n" , "");
+        showText = showText.replace("\r" , "");
+        showText = showText.replace("\t" , "");
+    }
+
 
     private void showZhiHu(String address) {
         showText = OkHttpUtils.okhttp_get(address);
@@ -228,17 +236,20 @@ public class BaseTextInfoActivity extends AppCompatActivity implements View.OnSc
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void textInfoActivityBack(EventBus_RunInBack e){
         if (e.getTag().equals("textinfoinback")){
-            String diaryBeanAddress = e.getTag2();
+            String beanAddress = e.getTag2();
             String address = e.getTag3();
 
-            if (diaryBeanAddress.equals("知乎日报")){
+            if (beanAddress.equals("知乎日报")){
                 showZhiHu(address);
-            }else if (diaryBeanAddress.equals("好奇心日报")){
+            }else if (beanAddress.equals("好奇心日报")){
                 address = address.replace("www.qdaily.com" , "m.qdaily.com/mobile");
                 showHaoQiXin(address);
+            }else if (beanAddress.equals("中国新闻网")){
+                showChinaNews(address);
             }
         }
     }
+
 
 
     private void initWebViewConfig() {
