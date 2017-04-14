@@ -75,8 +75,9 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
                 public void onClick(View v) {
                     Log.d("gzb", "onClick--> position = " + getPosition());
                     Intent intent = new Intent(context , BaseTextInfoActivity.class);
+                    intent.putExtra("index" , "news");
                     Bundle bundle=new Bundle();
-                    bundle.putSerializable("news", list.get(getPosition()));
+                    bundle.putSerializable("class", list.get(getPosition()));
                     intent.putExtras(bundle);
                     context.startActivity(intent);
 

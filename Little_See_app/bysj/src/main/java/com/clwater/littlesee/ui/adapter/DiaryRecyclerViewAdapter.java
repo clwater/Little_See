@@ -73,8 +73,9 @@ public class DiaryRecyclerViewAdapter extends RecyclerView.Adapter<DiaryRecycler
                 public void onClick(View v) {
                     Log.d("gzb", "onClick--> position = " + getPosition());
                     Intent intent = new Intent(context , BaseTextInfoActivity.class);
+                    intent.putExtra("index" , "diary");
                     Bundle bundle=new Bundle();
-                    bundle.putSerializable("diary", list.get(getPosition()));
+                    bundle.putSerializable("class", list.get(getPosition()));
                     intent.putExtras(bundle);
                     context.startActivity(intent);
 

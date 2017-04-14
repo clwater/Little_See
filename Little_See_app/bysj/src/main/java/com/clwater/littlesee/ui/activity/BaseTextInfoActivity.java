@@ -28,6 +28,7 @@ import com.clwater.littlesee.R;
 import com.clwater.littlesee.eventbus.EventBus_RunInBack;
 import com.clwater.littlesee.eventbus.EventBus_RunInFront;
 import com.clwater.littlesee.utils.Bean.DiaryBean;
+import com.clwater.littlesee.utils.Bean.NewsBean;
 import com.clwater.littlesee.utils.OkHttpUtils;
 import com.clwater.littlesee.utils.WebUtils;
 import com.nispok.snackbar.Snackbar;
@@ -73,7 +74,8 @@ public class BaseTextInfoActivity extends AppCompatActivity implements View.OnSc
     private Snackbar snackbar;
 
 
-    DiaryBean.DateBean diaryBean = new DiaryBean.DateBean();
+    String _indexclass , _image , _title , _address;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,13 +85,28 @@ public class BaseTextInfoActivity extends AppCompatActivity implements View.OnSc
         EventBus.getDefault().register(this);
 
         Intent intent =this.getIntent();
-        diaryBean = (DiaryBean.DateBean) intent.getSerializableExtra("diary");
+        if (intent.getStringExtra("index").equals("diary")) {
+            DiaryBean.DateBean diaryBean = new DiaryBean.DateBean();
+            diaryBean = (DiaryBean.DateBean) intent.getSerializableExtra("class");
+            _indexclass = diaryBean.getIndexclass();
+            _image = diaryBean.getImage();
+            _title = diaryBean.getTitle();
+            _address = diaryBean.getAddress();
+        }else if (intent.getStringExtra("index").equals("news")){
+            NewsBean.DateBean newsBean = new NewsBean.DateBean();
+            newsBean = (NewsBean.DateBean) intent.getSerializableExtra("class");
+            _indexclass = newsBean.getIndexclass();
+            _image = newsBean.getImage();
+            _title = newsBean.getTitle();
+            _address = newsBean.getAddress();
+        }
 
         init();
-        initToolbar(diaryBean.getIndexclass());
-        initImage(diaryBean.getImage());
-        initTitle(diaryBean.getTitle());
-        initWebView(diaryBean.getIndexclass() , diaryBean.getAddress() );
+
+        initToolbar(_indexclass);
+        initImage(_image);
+        initTitle(_title);
+        initWebView(_indexclass , _address);
 
         showDialogPor();
     }
