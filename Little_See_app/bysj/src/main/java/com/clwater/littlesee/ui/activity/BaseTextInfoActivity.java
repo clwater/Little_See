@@ -22,6 +22,7 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.clwater.littlesee.R;
@@ -39,6 +40,8 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -136,10 +139,33 @@ public class BaseTextInfoActivity extends AppCompatActivity implements View.OnSc
     }
 
     private void showChinaNews(String address) {
+        address = address.replace("http://www.chinanews.com/" , "http://www.chinanews.com/m/");
+        Log.d("gzb" , address);
         showText = OkHttpUtils.okhttp_get(address);
         showText = showText.replace("\n" , "");
         showText = showText.replace("\r" , "");
         showText = showText.replace("\t" , "");
+
+        showText = GetUseTextChinaNews(showText);
+
+
+        String[] Csss = new String[]{"http://i4.chinanews.com/2014/wap/css/index.css" , "http://i2.chinanews.com/2014/wap/css/content.css"};
+        showText = WebUtils.buildWithCss(showText , Csss);
+        EventBus.getDefault().post(new EventBus_RunInFront("showChinaNewsText"));
+
+
+
+
+//        byte[] b = showText.getBytes(); //获取数据的bytes
+//        try {
+
+
+
+//        } catch (UnsupportedEncodingException e) {
+//            EventBus.getDefault().post(new EventBus_RunInFront("showText_error"));
+//        }
+
+
     }
 
 
@@ -154,6 +180,10 @@ public class BaseTextInfoActivity extends AppCompatActivity implements View.OnSc
         showText = WebUtils.buildWithCss(showText , Csss);
         EventBus.getDefault().post(new EventBus_RunInFront("showZhihiText"));
     }
+
+
+
+
 
     private void showHaoQiXin(String address) {
         showText = OkHttpUtils.okhttp_get(address);
@@ -173,10 +203,18 @@ public class BaseTextInfoActivity extends AppCompatActivity implements View.OnSc
     }
 
 
-//    private String GetUseTextHaoQinXin(String showText) {
-//
-//
-//        Pattern pattern = Pattern.compile("<div class=\"article-detail-bd\">.*?<div class=\"article-detail-ft\">");
+
+
+    private String GetUseTextChinaNews(String showText) {
+
+        showText = showText.substring( showText.indexOf("<body id=\"backtop\">") , showText.indexOf("<div class=\"fenx_box \">"));
+//        showText = showText.substring(0 , showText.indexOf("<div id=\"download_app\" class=\"download_app\" style=\"\">"));
+        showText = showText.replace("http://cpro.baidustatic.com/cpro/ui/c.js" , "");
+
+        Log.d("gzb" , showText);
+
+
+//        Pattern pattern = Pattern.compile("<div class=\"question\">.*?<div class=\"view-more\">");
 //        Matcher matcher = pattern.matcher(showText);
 //        StringBuffer buffer = new StringBuffer();
 //        while (matcher.find()){
@@ -184,9 +222,23 @@ public class BaseTextInfoActivity extends AppCompatActivity implements View.OnSc
 //        }
 //
 //        return  buffer.toString();
-//
-////        return "";
-//    }
+        return showText;
+    }
+
+
+    private String GetUseTextZhiHu(String showText) {
+
+
+        Pattern pattern = Pattern.compile("<div class=\"question\">.*?<div class=\"view-more\">");
+        Matcher matcher = pattern.matcher(showText);
+        StringBuffer buffer = new StringBuffer();
+        while (matcher.find()){
+            buffer.append(matcher.group());
+        }
+
+        return  buffer.toString();
+    }
+
 
 
 
@@ -210,18 +262,7 @@ public class BaseTextInfoActivity extends AppCompatActivity implements View.OnSc
         return  text;
     }
 
-    private String GetUseTextZhiHu(String showText) {
 
-
-        Pattern pattern = Pattern.compile("<div class=\"question\">.*?<div class=\"view-more\">");
-        Matcher matcher = pattern.matcher(showText);
-        StringBuffer buffer = new StringBuffer();
-        while (matcher.find()){
-             buffer.append(matcher.group());
-        }
-
-        return  buffer.toString();
-    }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public  void webViewtextShow(EventBus_RunInFront e){
@@ -229,6 +270,10 @@ public class BaseTextInfoActivity extends AppCompatActivity implements View.OnSc
             webview.loadDataWithBaseURL(WebUtils.BASE_URL, showText, WebUtils.MIME_TYPE, WebUtils.ENCODING, WebUtils.FAIL_URL_ZHIHU);
         }else if (e.getTag().equals("showHaoqixinText")){
             webview.loadDataWithBaseURL(WebUtils.BASE_URL, showText, WebUtils.MIME_TYPE, WebUtils.ENCODING, WebUtils.FAIL_URL_HAOQIXIN);
+        }else if (e.getTag().equals("showChinaNewsText")){
+            webview.loadDataWithBaseURL(WebUtils.BASE_URL, showText, WebUtils.MIME_TYPE, WebUtils.ENCODING, WebUtils.FAIL_URL_HAOQIXIN);
+        }else if (e.getTag().equals("showText_error")){
+            Toast.makeText(this , "数据获取失败,请稍后重试" , Toast.LENGTH_SHORT).show();
         }
 
         snackbar.dismiss();
