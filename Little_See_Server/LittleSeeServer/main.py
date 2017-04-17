@@ -20,6 +20,9 @@ def getInfoDate():
     from getDate.news.ChinaNews import getChinaNews
     getChinaNews()
 
+    from getDate.image.bing import getBingImage_Today
+    getBingImage_Today()
+
 
     # while True:
     #     local_time = time.strftime('%Y-%m-%d %H:%M',time.localtime(time.time()))

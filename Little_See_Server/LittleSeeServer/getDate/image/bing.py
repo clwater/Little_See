@@ -10,8 +10,53 @@ import re
 
 bingimageList = []
 
+
+def getBingImage_Today():
+    print(Fore.GREEN + 'getBing')
+    reponse = requests.get('https://bing.ioliu.cn/')
+    html = reponse.text
+
+    divList = re.findall('<div class="card progressive">.*?</div>.*?</div>.*?</div>', html)
+
+    imageaddress = re.findall('<a class="ctrl download".*?</a>', divList[0])
+    imageaddress = imageaddress[0]
+
+    imageaddress = re.findall('href=".*?\"', imageaddress)
+    imageaddress = imageaddress[0]
+    imageaddress = imageaddress.replace('href="', '')
+    imageaddress = imageaddress.replace('"', '')
+    imageaddress = imageaddress.replace('/photo/', '')
+    imageaddress = imageaddress.replace('?force=download', '')
+    imageaddress = 'https://static.ioliu.cn/bing/' + imageaddress
+
+
+    text = re.findall('<h3>.*?</h3>', divList[0])
+    text = text[0]
+    text = text.replace('<h3>', '')
+    text = text.replace('</h3>', '')
+    # print(text)
+    if '\'' in text:
+        strinfo = re.compile('\'')
+        text = strinfo.sub('`', text)
+
+    bingimage = []
+    bingimage.append(imageaddress)
+    bingimage.append(text)
+    bingimage.append(0)
+    bingimage.append('Bing')
+
+    from SQLControl.image.bingimage_sql import check
+    if check():
+        from SQLControl.image.bingimage_sql import saveToday
+        saveToday(bingimage)
+
+
+
+
+
+
 def getBingImage_ALL():
-    print(Fore.GREEN + 'getZhihu')
+    print(Fore.GREEN + 'getBing_all')
 
     index = 0
     _index = 0
@@ -76,4 +121,6 @@ def getBingImage_ALL():
         bingimageList.clear()
 
 # getBingImage_ALL()
+
+# getBingImage_Today()
 

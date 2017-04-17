@@ -1,5 +1,6 @@
 
 import requests , re
+from colorama import Fore
 
 _newsList = []
 
@@ -77,7 +78,7 @@ def getNews(news):
 
 
 def getChinaNews():
-
+    print(Fore.GREEN + 'getChinaNews')
     reponse = requests.get('http://www.chinanews.com/china.shtml')
     reponse.encoding = 'gb2312'
     html = reponse.text
