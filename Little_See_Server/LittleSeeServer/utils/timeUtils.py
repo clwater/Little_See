@@ -20,7 +20,7 @@ def getBetweenDateWithGet():
     return ((d2 - d1).days - 3)
 
 def getBetweenDate_image():
-    d1 = datetime.date(2016, 4, 30)
+    d1 = datetime.date(2016, 2 , 23)
     year = time.strftime('%Y', time.localtime(time.time()))
     mouth = time.strftime('%m', time.localtime(time.time()))
     day = time.strftime('%d', time.localtime(time.time()))

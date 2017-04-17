@@ -7,13 +7,17 @@ from colorama import Fore
 import requests
 import re
 
+
+bingimageList = []
+
 def getBingImage_ALL():
     print(Fore.GREEN + 'getZhihu')
 
     index = 0
+    _index = 0
 
-    while index < 1:
-        # print(index)
+    while index < 35:
+        print(index)
         url = 'https://bing.ioliu.cn/?p=' + str(index)
         reponse = requests.get(url)
         html = reponse.text
@@ -36,15 +40,40 @@ def getBingImage_ALL():
             imageaddress = 'https://static.ioliu.cn/bing/' + imageaddress
 
 
-            print(imageaddress)
+            # print(imageaddress)
 
 
             text = re.findall('<h3>.*?</h3>' , div)
             text = text[0]
             text = text.replace('<h3>' , '')
             text = text.replace('</h3>' , '')
+            # print(text)
+            if '\'' in text:
+                strinfo = re.compile('\'')
+                text = strinfo.sub('`', text)
+            # print(text)
 
-            print(text)
+            # print(text)
+
+            bingimage = []
+            bingimage.append(imageaddress)
+            bingimage.append(text)
+            bingimage.append(_index)
+            bingimage.append('Bing')
+
+            # print(bingimage)
+
+            bingimageList.append(bingimage)
+
+            _index = _index + 1
+
+
         index = index + 1
 
-getBingImage_ALL()
+        from SQLControl.image.bingimage_sql import save_sql
+        save_sql(bingimageList)
+
+        bingimageList.clear()
+
+# getBingImage_ALL()
+
