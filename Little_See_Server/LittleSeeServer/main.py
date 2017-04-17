@@ -63,13 +63,13 @@ def main():
     init(autoreset=True)
     print(Fore.RED + 'Server is running')
 
-    thread_getInfoDate = threading.Thread(target=getInfoDate, name='getInfoDate')
+    # thread_getInfoDate = threading.Thread(target=getInfoDate, name='getInfoDate')
     thread_startServer = threading.Thread(target=startServer, name='startServer')
 
-    thread_getInfoDate.start()
+    # thread_getInfoDate.start()
     thread_startServer.start()
 
-    thread_getInfoDate.join()
+    # thread_getInfoDate.join()
     thread_startServer.join()
 
 

@@ -9,41 +9,6 @@ class ParentRequesyHandler(tornado.web.RequestHandler):
         if ip != self.request.remote_ip:
             print("source ip :" , self.request.remote_ip)
 
-class Handler_ZhiHu(ParentRequesyHandler):
-    def get(self):
-        ParentRequesyHandler.showInfo(self)
-        message = self.get_argument("date", None)
-        # from server.server_zhihu import re_data_zhihu
-        # json = re_data_zhihu(message)
-        # self.write(json)
-
-class Handler_HaoQiXin(ParentRequesyHandler):
-    def get(self):
-        ParentRequesyHandler.showInfo(self)
-        message = self.get_argument("date", None)
-        # from server.server_haoqixin import re_data_haoqixin
-        # json = re_data_haoqixin(message)
-        # self.write(json)
-
-class Handler_Image(ParentRequesyHandler):
-    def get(self):
-        ParentRequesyHandler.showInfo(self)
-        message = self.get_argument("date", None)
-        statu = self.get_argument("statu" , None)
-        # from server.server_image import re_data_image
-        # json = re_data_image(message , statu)
-        # self.write(json)
-
-
-class Handler_Image_Old(ParentRequesyHandler):
-    def get(self):
-        ParentRequesyHandler.showInfo(self)
-        message = self.get_argument("date", None)
-        statu = self.get_argument("statu" , None)
-        # from server.server_image import re_data_image_old
-        # json = re_data_image_old(message , statu)
-        # self.write(json)
-
 class Main(ParentRequesyHandler):
     def get(self, *args, **kwargs):
         ParentRequesyHandler.showInfo(self)
@@ -74,11 +39,25 @@ class Handler_DiaryClass(ParentRequesyHandler):
         self.write(json)
 
 
+class Handler_Image(ParentRequesyHandler):
+    def get(self):
+        ParentRequesyHandler.showInfo(self)
+        indexclass = self.get_argument("indexclass" , None)
+
+        from server.server_image import re_data_image
+        json = re_data_image(indexclass)
+
+        self.write(json)
+        # self.write(indexclass)
+
+
 application = tornado.web.Application([
     (r"/" , Main ),
     (r"/diary" , Handler_Diary),
     (r"/dirayClass" , Handler_DiaryClass),
-    (r"/news" , Handler_News)
+    (r"/news" , Handler_News),
+    (r"/image" , Handler_Image),
+
 
 ])
 
