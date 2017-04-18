@@ -1,11 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/view_space"
+        />
+
+
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipecontainer_imagelist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="实景"/>
+        android:layout_above="@id/view_space">
 
-</LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recylist_imagelist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/view_space"
+            />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+
+
+
+</RelativeLayout>
