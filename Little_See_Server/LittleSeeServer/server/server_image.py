@@ -22,7 +22,7 @@ def re_data_image(indexclass):
 
         for image in imagelist:
 
-            print(image)
+            # print(image)
 
             address = str(image[1], encoding='utf-8')
             indexclass = str(image[2], encoding='utf-8')
