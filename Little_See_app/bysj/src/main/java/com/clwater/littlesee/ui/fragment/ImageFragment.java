@@ -66,14 +66,14 @@ public class ImageFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_image, container, false);
         ButterKnife.bind(this , view);
         EventBus.getDefault().register(this);
-
         setHasOptionsMenu(true);
 
-        init();
 
+
+        getDataFromServer();
+        init();
         initList();
 
-//        getDataFromServer();
 
 
         updatefromServer();
@@ -91,15 +91,6 @@ public class ImageFragment extends Fragment {
     }
 
     private void init() {
-        swipecontainer_imagelist.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                if (_getINNewDate) {
-                    _getINNewDate = false;
-                    getDataFromServer();
-                }
-            }
-        });
         swipecontainer_imagelist.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light);
     }
 

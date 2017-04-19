@@ -3,6 +3,8 @@
     package="com.clwater.littlesee">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 
     <application android:allowBackup="true" android:icon="@mipmap/ic_launcher"
@@ -21,6 +23,7 @@
         <activity android:name=".ui.activity.BaseTextInfoActivity" android:theme="@style/Theme.Design"/>
 
         <activity android:name=".ui.activity.DebugActivity"/>
+        <activity android:name=".ui.activity.BaseImagetInfoActivity" android:theme="@style/Theme.Design"/>
     </application>
 
 </manifest>

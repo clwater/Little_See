@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.clwater.littlesee.R;
+import com.clwater.littlesee.ui.activity.BaseImagetInfoActivity;
 import com.clwater.littlesee.ui.activity.BaseTextInfoActivity;
 import com.clwater.littlesee.utils.Bean.DiaryBean;
 import com.clwater.littlesee.utils.Bean.ImageBean;
@@ -77,12 +78,13 @@ public class ImageRecyclerViewAdapter extends RecyclerView.Adapter<ImageRecycler
                 public void onClick(View v) {
                     Log.d("gzb", "onClick--> position = " + getPosition());
                     Log.d("gzb" , "address" + list.get(getPosition()).getAddress());
-//                    Intent intent = new Intent(context , BaseTextInfoActivity.class);
-//                    intent.putExtra("index" , "diary");
-//                    Bundle bundle=new Bundle();
-//                    bundle.putSerializable("class", list.get(getPosition()));
-//                    intent.putExtras(bundle);
-//                    context.startActivity(intent);
+
+                    Intent intent = new Intent(context , BaseImagetInfoActivity.class);
+                    intent.putExtra("index" , "image");
+                    Bundle bundle=new Bundle();
+                    bundle.putSerializable("class", list.get(getPosition()));
+                    intent.putExtras(bundle);
+                    context.startActivity(intent);
 
                 }
             });
