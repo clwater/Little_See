@@ -4,8 +4,10 @@ import android.util.Log;
 
 import com.clwater.littlesee.utils.Bean.DiaryBean;
 import com.clwater.littlesee.utils.Bean.DiaryClassBean;
+import com.clwater.littlesee.utils.Bean.ImageBean;
 import com.clwater.littlesee.utils.Bean.NewsBean;
 import com.clwater.littlesee.utils.Bean.ResultBean;
+import com.clwater.littlesee.utils.Bean.ResultBean_image;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -26,9 +28,22 @@ public class Analysis {
         return resultBean.getStatu();
     }
 
+
+    public static String CheckDateStatu_Image(String _result){
+        Log.d("gzb" , _result);
+        ResultBean_image resultBean = new Gson().fromJson(_result , ResultBean_image.class);
+        return resultBean.getStatu();
+    }
+
     public static List<DiaryBean.DateBean> AnalysisDiary(String _result){
         DiaryBean textBean = new Gson().fromJson(_result , DiaryBean.class);
         List<DiaryBean.DateBean> infoList = textBean.getDate();
+        return infoList;
+    }
+
+    public static List<ImageBean.DateBean> AnalysisImage(String _result){
+        ImageBean textBean = new Gson().fromJson(_result , ImageBean.class);
+        List<ImageBean.DateBean> infoList = textBean.getDate();
         return infoList;
     }
 

@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     FrameLayout frameLayout;
 
     NewsFragment _newsFragment;             //即刻
-    ImageFragment _imageFragment;           //实景
+    ImageFragment _imageFragment;           //璞致
     SettingFragment _settingFragment;       //设置
     DiaryFragment _diaryFragemnt;           //优选
 
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 .addItem(new BottomNavigationItem(R.drawable.ic_reloj_max, "即刻"))
                 .setActiveColor(R.color._000000)
                 .setInActiveColor("#ffffff")
-                .addItem(new BottomNavigationItem(R.drawable.ic_reloj_max, "实景"))
+                .addItem(new BottomNavigationItem(R.drawable.ic_reloj_max, "璞致"))
                 .setActiveColor(R.color._000000)
                 .setInActiveColor("#ffffff")
                 .addItem(new BottomNavigationItem(R.drawable.ic_reloj_max, "设置"))
@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
 
                             break;
                         case 2:
-                            toolbar.setTitle("实景");
+                            toolbar.setTitle("璞致");
                             switchContent(_tempFragment , _imageFragment);
                             _tempFragment = _imageFragment;
 

@@ -123,7 +123,7 @@ public class DiaryFragment extends Fragment {
 
     private void checkIndexClass() {
         String a = SPHelper.getDiaryclass(getActivity());
-        Log.d("gzb" , "a :" +a);
+//        Log.d("gzb" , "a :" +a);
         if (a.isEmpty()){
             inChooseItemActivity();
         }else {
@@ -203,7 +203,7 @@ public class DiaryFragment extends Fragment {
         List list = liteOrm.query(qb);
         for (int i = 0 ;i < list.size() ; i++){
             BeanDiary b =  (BeanDiary )list.get(i);
-            Log.d("gzb" , b.getId() + b.getTitle());
+//            Log.d("gzb" , b.getId() + b.getTitle());
         }
         if (newDateCount > 0) {
             LoadDate(list);
@@ -214,8 +214,6 @@ public class DiaryFragment extends Fragment {
         }
         showDateCount += newDateCount;
         newDateCount = 0;
-
-
     }
 
     private void QueryData() {
@@ -232,7 +230,7 @@ public class DiaryFragment extends Fragment {
             List list = liteOrm.query(qb);
             for (int i = 0 ;i < list.size() ; i++){
                 BeanDiary b =  (BeanDiary )list.get(i);
-                Log.d("gzb" , b.getId() + b.getTitle());
+//                Log.d("gzb" , b.getId() + b.getTitle());
             }
 
 //            List list = liteOrm.query(BeanDiary.class);
@@ -330,8 +328,6 @@ public class DiaryFragment extends Fragment {
                 liteOrm.save(beanDiary);
             }
         }
-
-
 
     }
 

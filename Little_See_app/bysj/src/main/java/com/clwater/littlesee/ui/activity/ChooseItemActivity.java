@@ -76,6 +76,12 @@ public class ChooseItemActivity extends AppCompatActivity {
             initToolBar("即刻类别");
             result = new String[]{"中国新闻网"};
             EventBus.getDefault().post(new EventBus_RunInFront("getClassAnalysis"));
+        }else if (index.equals("image")){
+            _index = 2;
+            //  showDialogPor();
+            initToolBar("璞致类别");
+            result = new String[]{"Bing"};
+            EventBus.getDefault().post(new EventBus_RunInFront("getClassAnalysis"));
         }
 
 
@@ -87,6 +93,8 @@ public class ChooseItemActivity extends AppCompatActivity {
             r = SPHelper.getDiaryclass(activity);
         }else if (_index == 1){
             r = SPHelper.getNewsclass(activity);
+        }else if (_index == 2){
+            r = SPHelper.getImageclass(activity);
         }
 
         String[] rr = r.split(",");
@@ -147,6 +155,8 @@ public class ChooseItemActivity extends AppCompatActivity {
             SPHelper.saveDiaryclass(activity, _choose);
         }else if (_index == 1){
             SPHelper.saveNewsclass(activity, _choose);
+        }else if (_index == 2){
+            SPHelper.saveImageclass(activity, _choose);
         }
 
         activity.finish();
@@ -245,7 +255,7 @@ public class ChooseItemActivity extends AppCompatActivity {
             _resultStatu[i] = false;
             _textviewitem[i] = textView;
         }
-        if (_index != 1) {
+        if (_index == 0) {
             snackbar.dismiss();
         }
 

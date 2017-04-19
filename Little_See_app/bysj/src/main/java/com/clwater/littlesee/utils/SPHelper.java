@@ -13,6 +13,7 @@ public class SPHelper {
     private static String DIARYCLASS = "diaryclass";
     private static String NEWSLASS = "newsclass";
     private static String SERVERADDRESS = "serveraddress";
+    private static String IMAGECLASS  = "imageclass";
 
     private static SharedPreferences init(Context context){
         SharedPreferences sp = context.getSharedPreferences("SP", MODE_PRIVATE);
@@ -37,6 +38,16 @@ public class SPHelper {
 
     public static String getDiaryclass(Context context){
         String r = getStringValue(context , DIARYCLASS);
+        return r;
+    }
+
+
+    public static void saveImageclass(Context context , String value){
+        setStringValue(context , IMAGECLASS , value);
+    }
+
+    public static String getImageclass(Context context){
+        String r = getStringValue(context , IMAGECLASS);
         return r;
     }
 
