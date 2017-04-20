@@ -27,22 +27,41 @@
 
                 />
 
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="DEBUG"
-                android:textSize="20dp"
-                android:id="@+id/textview_serting_debug"
                 android:layout_below="@+id/textview_seeting_titiledebug"
-                />
+                >
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:paddingTop="3dp"
+                    android:text="DEBUG"
+                    android:textSize="20dp"
+                    android:id="@+id/textview_serting_debug"
+                    />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textview_serting_debug"
+                    android:text="用于开发过程中手动调试服务器地址"
+                    android:layout_marginStart="10dp"
+                    android:paddingTop="2dp"
+                    android:id="@+id/textview_seeting_debuginfo"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/_fafafa"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/textview_seeting_debuginfo"
+                    />
+            </RelativeLayout>
         </RelativeLayout>
-
-
     </ScrollView>
-
-
 
 </LinearLayout>
