@@ -54,6 +54,7 @@ import java.util.regex.Pattern;
 import butterknife.BindInt;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 /**
@@ -63,8 +64,8 @@ import butterknife.ButterKnife;
 public class BaseImagetInfoActivity extends AppCompatActivity  {
 
     @BindView(R.id.toolbar) public Toolbar toolbar;
-
     @BindView(R.id.image_imageinfo_image) ImageView image_imageinfo_image;
+    @BindView(R.id.textview_imageinfo_save) TextView textview_imageinfo_save;
 
 
 
@@ -99,7 +100,7 @@ public class BaseImagetInfoActivity extends AppCompatActivity  {
     }
 
     private void initImage(String address) {
-        address = address + "_1920x1200.jpg";
+        address = address + "_1920x1080.jpg";
         Glide.with(this).load(address).into(image_imageinfo_image);
 
 
@@ -113,7 +114,6 @@ public class BaseImagetInfoActivity extends AppCompatActivity  {
                     ActivityCompat.requestPermissions(BaseImagetInfoActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_READ_STORAGE);
 
                     if (permission) {
-                        Toast.makeText(BaseImagetInfoActivity.this, "保存到本地了,可以在本地相册中看到", Toast.LENGTH_SHORT).show();
                         saveImage();
                     } else {
                         Toast.makeText(BaseImagetInfoActivity.this, "你还没有授予读取SD卡读取文件的权限,请选择允许后重新长按图片保存", Toast.LENGTH_SHORT).show();
@@ -131,8 +131,15 @@ public class BaseImagetInfoActivity extends AppCompatActivity  {
 
     }
 
+    @OnClick(R.id.textview_imageinfo_save)
+    public void textview_imageinfo_save_onclice(){
+        saveImage();
+    }
 
     private void saveImage() {
+
+        Toast.makeText(BaseImagetInfoActivity.this, "保存到本地了,可以在本地相册中看到", Toast.LENGTH_SHORT).show();
+
         File externalStorageDirectory = Environment.getExternalStorageDirectory();
         File directory = new File(externalStorageDirectory,"LittleSee");
         if (!directory.exists())
