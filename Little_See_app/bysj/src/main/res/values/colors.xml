@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="window_background">#FFF5F5F5</color>
+    <color name="_fafafa">#fafafa</color>
     <color name="_ffffff">#ffffff</color>
     <color name="_000000">#000000</color>
 </resources>

@@ -46,7 +46,7 @@ import butterknife.ButterKnife;
 /**
  * Created by yszsyf on 17/2/26.
  */
-//璞致
+//佳景
 public class ImageFragment extends Fragment {
     @BindView(R.id.recylist_imagelist) RecyclerView recycleListView;
     @BindView(R.id.swipecontainer_imagelist) SwipeRefreshLayout swipecontainer_imagelist;

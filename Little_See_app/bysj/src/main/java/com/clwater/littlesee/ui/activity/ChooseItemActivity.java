@@ -79,7 +79,7 @@ public class ChooseItemActivity extends AppCompatActivity {
         }else if (index.equals("image")){
             _index = 2;
             //  showDialogPor();
-            initToolBar("璞致类别");
+            initToolBar("佳景类别");
             result = new String[]{"Bing"};
             EventBus.getDefault().post(new EventBus_RunInFront("getClassAnalysis"));
         }
