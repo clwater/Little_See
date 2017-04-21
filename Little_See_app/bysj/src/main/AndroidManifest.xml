@@ -7,9 +7,18 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 
-    <application android:allowBackup="true" android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name" android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true" android:theme="@style/AppTheme">
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:name=".Application"
+        >
+
 
         <activity android:name=".ui.activity.MainActivity"
             android:theme="@style/AppTheme.Base">
@@ -33,6 +42,12 @@
 
         <activity android:name=".ui.activity.DebugActivity"/>
         <activity android:name=".ui.activity.BaseImagetInfoActivity" android:theme="@style/Theme.Design"/>
+
+
+        <meta-data
+           android:name="com.clwater.littlesee.utils.glide.GlideConfiguration"
+           android:value="GlideModule" />
+
     </application>
 
 </manifest>
