@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 
 import com.clwater.littlesee.R;
+import com.clwater.littlesee.ui.activity.AboutActivity;
 import com.clwater.littlesee.ui.activity.ChooseItemActivity;
 import com.clwater.littlesee.ui.activity.DebugActivity;
 
@@ -29,6 +30,8 @@ public class SettingFragment extends Fragment {
     @BindView(R.id.textview_setting_class_image) TextView textview_setting_class_image;
     @BindView(R.id.textview_setting_class_news) TextView textview_setting_class_news;
     @BindView(R.id.textview_setting_class_diary) TextView textview_setting_class_diary;
+
+    @BindView(R.id.textview_setting_aboutme) TextView textview_setting_aboutme;
 
 
 
@@ -67,7 +70,11 @@ public class SettingFragment extends Fragment {
         Intent intent = new Intent(this.getActivity() , ChooseItemActivity.class);
         intent.putExtra("index" , "diary" );
         startActivity(intent);
+    }
 
+    @OnClick(R.id.textview_setting_aboutme)
+    public void textview_setting_aboutme_onclick(){
+        startActivity(new Intent(this.getActivity() , AboutActivity.class));
     }
 
 

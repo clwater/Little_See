@@ -4,9 +4,26 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+
+    <!--<color name="colorPrimary">#3F51B5</color>-->
+    <!--<color name="colorPrimaryDark">#303F9F</color>-->
+    <color name="scrim">#99323232</color>
+    <!--<color name="colorAccent">#FF4081</color>-->
+    <color name="text_primary_light">#ffffffff</color>
+    <color name="email">#ef6269</color> <!-- pink 300 -->
+    <!--<color name="window_background">#FFF5F5F5</color>-->
+    <color name="primary">#69F0AE</color>
+    <color name="accent">@color/primary</color>
+    <color name="background_light">#fafafa</color>
+    <color name="primary_super_dark">#11261c</color>
+    <color name="background_super_dark">#ff292929</color>
+    <color name="hint_disabled_dark">#43000000</color>
+
+
     <color name="window_background">#FFF5F5F5</color>
     <color name="_fafafa">#fafafa</color>
     <color name="_e7e7e7">#e7e7e7</color>
     <color name="_ffffff">#ffffff</color>
     <color name="_000000">#000000</color>
+    <color name="_ef6269">#ef6269</color>
 </resources>

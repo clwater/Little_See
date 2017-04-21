@@ -24,6 +24,7 @@
                 android:paddingBottom="15dp"
                 android:id="@+id/textview_seeting_titiledebug"
                 android:textColor="@color/_000000"
+                android:layout_marginTop="20dp"
                 />
 
             <RelativeLayout
@@ -75,6 +76,7 @@
                 android:id="@+id/textview_seeting_titileclass"
                 android:textColor="@color/_000000"
                 android:layout_below="@+id/rela_seeting_item1"
+                android:layout_marginTop="20dp"
                 />
 
 
@@ -162,6 +164,50 @@
                     android:background="@color/_e7e7e7"
                     android:layout_marginTop="10dp"
                     android:layout_below="@+id/textview_setting_class_image"
+                    />
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="关于与帮助"
+                android:textSize="16sp"
+                android:paddingStart="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="15dp"
+                android:id="@+id/textview_seeting_titilabout"
+                android:textColor="@color/_000000"
+                android:layout_below="@+id/rela_seeting_class_image"
+                android:layout_marginTop="20dp"
+                />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textview_seeting_titilabout"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:id="@+id/rela_seeting_class_about"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="3dp"
+                    android:text="关于我"
+                    android:textSize="20dp"
+                    android:id="@+id/textview_setting_aboutme"
+                    android:textColor="@color/_000000"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/_e7e7e7"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/textview_setting_aboutme"
                     />
             </RelativeLayout>
 
