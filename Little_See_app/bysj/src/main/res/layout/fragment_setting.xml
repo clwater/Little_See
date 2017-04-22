@@ -5,9 +5,20 @@
     android:background="@color/_fafafa"
     >
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/view_space"
+        />
+
+
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/view_space"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
