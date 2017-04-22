@@ -1,5 +1,7 @@
 package com.clwater.littlesee.utils;
 
+import android.util.Log;
+
 import java.io.File;
 import java.math.BigDecimal;
 
@@ -26,6 +28,30 @@ public class FileHelp {
         }
         return size;
     }
+
+
+    public static long getFolderSize_SQL(File file) throws Exception {
+        long size = 0;
+        try {
+            File[] fileList = file.listFiles();
+            for (File aFileList : fileList) {
+                if (aFileList.isDirectory()) {
+                    size = size + getFolderSize(aFileList);
+                } else {
+                    size = size + aFileList.length();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        size = size - 21008;
+//        Log.d("gzb" , "" + size);
+
+        return size;
+    }
+
+
 
     // 格式化单位
     public static String getFormatSize(double size) {

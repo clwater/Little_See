@@ -86,7 +86,7 @@
                 android:layout_below="@+id/textview_seeting_titilebase"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:id="@+id/rela_seeting_item2"
+                android:id="@+id/rela_seeting_item_cache"
                 >
 
                 <TextView
@@ -129,7 +129,7 @@
                 android:paddingBottom="15dp"
                 android:id="@+id/textview_seeting_titileclass"
                 android:textColor="@color/_000000"
-                android:layout_below="@+id/rela_seeting_item2"
+                android:layout_below="@+id/rela_seeting_item_cache"
                 android:layout_marginTop="20dp"
                 />
 

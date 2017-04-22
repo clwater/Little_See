@@ -23,12 +23,15 @@ import android.widget.Toast;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.clwater.littlesee.R;
+import com.clwater.littlesee.eventbus.EventBus_UpdateSetting;
 import com.clwater.littlesee.ui.fragment.NewsFragment;
 import com.clwater.littlesee.ui.fragment.DiaryFragment;
 import com.clwater.littlesee.ui.fragment.ImageFragment;
 import com.clwater.littlesee.ui.fragment.SettingFragment;
 import com.clwater.littlesee.utils.SPHelper;
 import com.clwater.littlesee.utils.WebContent;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+//        EventBus.getDefault().register(this);
 
         init();
         initToolbar();
@@ -155,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
                             toolbar.setTitle("设置");
                             switchContent(_tempFragment , _settingFragment);
                             _tempFragment = _settingFragment;
-
+                            EventBus.getDefault().post(new EventBus_UpdateSetting());
                             break;
                     }
                 }
@@ -183,5 +187,11 @@ public class MainActivity extends AppCompatActivity {
         _tempFragment = _diaryFragemnt;
         transaction.replace(R.id.framelayout_content, _diaryFragemnt);
         transaction.commit();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+//        EventBus.getDefault().unregister(this);
     }
 }

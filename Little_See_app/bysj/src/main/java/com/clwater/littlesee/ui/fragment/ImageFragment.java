@@ -115,9 +115,9 @@ public class ImageFragment extends Fragment {
             _indexclass = _indexclass + "\'" + rr[rr.length - 1] + "\'";
             String url = WebContent.ServerAddress + "/image?indexclass=(" + _indexclass+ ")";
 
-            Log.d("gzb" , url);
+//            Log.d("gzb" , url);
             _result = OkHttpUtils.okhttp_get(url);
-            Log.d("gzb" , "_result" + _result);
+//            Log.d("gzb" , "_result" + _result);
             String dateResult = Analysis.CheckDateStatu_Image(_result);
             if (dateResult.equals("1")){
                 Log.d("gzb" , "today is no date");
@@ -169,7 +169,7 @@ public class ImageFragment extends Fragment {
 
             BeanImage b =  (BeanImage)list.get(i);
 
-            Log.d("gzb" , b.getAddress());
+//            Log.d("gzb" , b.getAddress());
             ImageBean.DateBean d = new ImageBean.DateBean();
             d.setAddress(b.getAddress());
             d.setIndexclass(b.getIndexclass());
@@ -199,7 +199,7 @@ public class ImageFragment extends Fragment {
 
     private void checkIndexClass() {
         String a = SPHelper.getImageclass(getActivity());
-        Log.d("gzb" , "a :" +a);
+//        Log.d("gzb" , "a :" +a);
         if (a.isEmpty()){
             inChooseItemActivity();
         }else {
