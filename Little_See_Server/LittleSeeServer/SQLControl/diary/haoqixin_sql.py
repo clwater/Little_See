@@ -33,3 +33,4 @@ def save_sql(haoqixinlist):
 
     print('haoqixin sql run ok')
 
+

@@ -9,7 +9,6 @@ from colorama import init,Fore
 
 
 
-
 def getInfoDate():
     print(Fore.GREEN + 'getInfoDate is running')
 
@@ -78,4 +77,6 @@ def main():
 
 if __name__ == '__main__':
     main()
-
+    #
+    # from getDate.image.bing import getBingImage_ALL
+    # getBingImage_ALL()
