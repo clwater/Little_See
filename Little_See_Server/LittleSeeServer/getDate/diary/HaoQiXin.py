@@ -9,6 +9,8 @@ from selenium.webdriver.common.action_chains import ActionChains
 haoqixinlist = []
 
 
+
+
 def getIndexInfo(driver ,index):
     haoqixin = []
     #print(index)
@@ -42,6 +44,8 @@ def getHaoQiXin():
     driver = webdriver.PhantomJS(executable_path="/Users/yszsyf/Desktop/github_me/Little_See/Little_See_Server/phantomjs-2.1.1-macosx/bin/phantomjs")
     #driver = webdriver.PhantomJS(executable_path="/Users/yszsyf/Desktop/android/Little_See/Little_See_Server/phantomjs-2.1.1-macosx/bin/phantomjs")
     driver.get("http://www.qdaily.com/tags/29.html")
+
+
 
 
     index = 1

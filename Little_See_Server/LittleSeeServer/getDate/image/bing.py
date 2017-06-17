@@ -15,6 +15,7 @@ def getBingImage_Today():
     print(Fore.GREEN + 'getBing')
     reponse = requests.get('https://bing.ioliu.cn/')
     html = reponse.text
+    # html = html.replace('Þúfa' , 'pufa')
 
     divList = re.findall('<div class="card progressive">.*?</div>.*?</div>.*?</div>', html)
 

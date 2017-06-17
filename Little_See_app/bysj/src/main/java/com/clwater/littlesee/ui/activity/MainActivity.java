@@ -111,17 +111,17 @@ public class MainActivity extends AppCompatActivity {
 
         //bottomNavigationBar.setMode(BottomNavigationBar.MODE_CLASSIC);
         bottomNavigationBar
-                .addItem(new BottomNavigationItem(R.drawable.ic_reloj_max, "优选"))
+                .addItem(new BottomNavigationItem(R.drawable.dairy, "优选"))
                 //.setActiveColor(R.color._000000)
                 .setActiveColor(R.color._000000)
                 .setInActiveColor("#ffffff")
-                .addItem(new BottomNavigationItem(R.drawable.ic_reloj_max, "即刻"))
+                .addItem(new BottomNavigationItem(R.drawable.news, "即刻"))
                 .setActiveColor(R.color._000000)
                 .setInActiveColor("#ffffff")
-                .addItem(new BottomNavigationItem(R.drawable.ic_reloj_max, "佳景"))
+                .addItem(new BottomNavigationItem(R.drawable.image, "佳景"))
                 .setActiveColor(R.color._000000)
                 .setInActiveColor("#ffffff")
-                .addItem(new BottomNavigationItem(R.drawable.ic_reloj_max, "设置"))
+                .addItem(new BottomNavigationItem(R.drawable.setting, "设置"))
                 .setActiveColor(R.color._000000)
                 .setInActiveColor("#ffffff")
                 .initialise();

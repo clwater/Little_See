@@ -38,7 +38,7 @@ def re_data_image(indexclass):
         json = json + "]}"
 
 
-    # print(json)
+    print(json)
 
     cursor.close()
     conn.close()

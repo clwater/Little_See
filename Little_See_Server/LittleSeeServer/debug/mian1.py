@@ -6,7 +6,7 @@ def test1():
     conn = mysql.connector.connect(user='root', password='root', database='littlesee')
     cursor = conn.cursor()
 
-    sql = 'select title from news'
+    sql = 'select title from diary'
 
     # print(sql)
     cursor.execute(sql)

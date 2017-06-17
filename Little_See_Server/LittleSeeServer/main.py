@@ -6,22 +6,30 @@
 import threading
 
 from colorama import init,Fore
+import requests
 
 
+# def checknetwork():
+#     reponse = requests.get('https://bing.ioliu.cn')
+#     html = reponse.text
+#
+#     print(html)
 
 def getInfoDate():
     print(Fore.GREEN + 'getInfoDate is running')
 
+    # checknetwork()
+    #
     # from getDate.diary.HaoQiXin import getHaoQiXin
     # getHaoQiXin()
     from getDate.diary.ZhiHu import getZhihu
     getZhihu()
-    from getDate.news.ChinaNews import getChinaNews
-    getChinaNews()
-
-    from getDate.image.bing import getBingImage_Today
-    getBingImage_Today()
-
+    # from getDate.news.ChinaNews import getChinaNews
+    # getChinaNews()
+    #
+    # from getDate.image.bing import getBingImage_Today
+    # getBingImage_Today()
+    #
 
     # while True:
     #     local_time = time.strftime('%Y-%m-%d %H:%M',time.localtime(time.time()))
